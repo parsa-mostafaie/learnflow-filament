@@ -9,6 +9,7 @@
 @layer components {
     body {
         font-family: 'Open Sans', sans-serif;
+        @apply accent-[#6b46c1];
     }
 
     html[lang=fa] body {
@@ -26,28 +27,8 @@
         @apply rounded-xl;
     }
 
-    a {
-        @apply no-underline transition-colors duration-200 hover:text-[#4a90e2];
-    }
-
-    .nav-link {
-        @apply p-2 transition-colors duration-200 hover:bg-[#8f6fff] hover:text-[#f7fafc] hover:rounded;
-    }
-
-    .btn {
-        @apply bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none hover:bg-[#5a3e96];
-    }
-
-    .btn i {
-        margin-right: 0.5rem;
-    }
-
-    .input {
-        @apply w-full p-3 border border-solid border-[#ccc] rounded transition-colors duration-200 focus:border-[#6b46c1] focus:outline-none;
-    }
-
-    .input-minimal {
-        @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+    a.link {
+        @apply underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800;
     }
 
     .contact-info {
