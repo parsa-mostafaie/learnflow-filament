@@ -24,10 +24,10 @@
     section,
     nav,
     header {
-        @apply rounded-xl;
+        @apply rounded-xl mb-2;
     }
 
-    a.link {
+    .link {
         @apply underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800;
     }
 
@@ -50,5 +50,57 @@
 
     .container {
         @apply mx-auto;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        @apply p-2 outline-none;
+    }
+
+    .btn-group {
+        display: flex;
+    }
+
+    .btn-group>* {
+        margin-right: -1px;
+    }
+
+    .btn-group>:not(:first-child),
+    .btn-group>:not(:first-child) * {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    .btn-group>:not(:last-child),
+    .btn-group>:not(:last-child) * {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    *:is([tw-root], .tw-root):has([tw-none]) {
+        display: none;
+    }
+
+    /* Gradient Scroll Bar */
+
+    /* width, height */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #1f2937;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(rgb(186, 85, 211), rgb(147, 112, 219), rgb(138, 43, 226));
+        border-radius: 100vh;
     }
 }
