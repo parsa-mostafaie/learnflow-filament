@@ -8,8 +8,16 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::middleware(['auth', 'verified', 'isRole:admin'])->as('admin')->prefix('admin')->group(function () {
+    Route::view('/', 'admin');
+
+    Route::view('questions', 'admin.questions')
+        ->name('.questions');
+});
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

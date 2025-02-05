@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }"
+    x-bind:class="{ 'dark' : darkMode }" x-init="
+    if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        localStorage.setItem('darkMode', 'true');
+    }
+    darkMode = JSON.parse(localStorage.getItem('darkMode'));
+    $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))">
 
 <head>
     <meta charset="utf-8">
@@ -65,7 +71,8 @@
                 <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
                     <h3 class="text-xl font-bold mb-2">{{ __('Interactive Exercises') }}</h3>
                     <p class="mb-4">
-                        {{ __('Engage with interactive exercises that adapt to your learning pace and style.') }}</p>
+                        {{ __('Engage with interactive exercises that adapt to your learning pace and style.') }}
+                    </p>
                     <div class="mt-auto text-center">
                         <a href="#"
                             class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>

@@ -80,9 +80,6 @@
         border-bottom-right-radius: 0 !important;
     }
 
-    *:is([tw-root], .tw-root):has([tw-none]) {
-        display: none;
-    }
 
     /* Gradient Scroll Bar */
 
@@ -103,4 +100,9 @@
         background: linear-gradient(rgb(186, 85, 211), rgb(147, 112, 219), rgb(138, 43, 226));
         border-radius: 100vh;
     }
+
+}
+
+#nprogress .bar {
+    --livewire-progress-bar-color: rgb(186, 85, 211);
 }
