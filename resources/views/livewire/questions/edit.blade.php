@@ -43,40 +43,40 @@ $submit = function () {
 ?>
 
 <div id="edit-question-section">
-    <x-modal name="edit-question" focusable :show="!empty($this->form->model)">
-        <div class="p-6">
-            <div>
-                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    {{ __('Edit a question') }}
-                </h2>
+  <x-modal name="edit-question" focusable :show="!empty($this->form->model)">
+    <div class="p-6">
+      <div>
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+          {{ __('Edit a question') }}
+        </h2>
 
-                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    {{ __('Edit a question') }}
-                </p>
-            </div>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          {{ __('Edit a question') }}
+        </p>
+      </div>
 
-            <form wire:submit="submit" class="mt-6 space-y-6" @if (!$this->form->model) inert @endif>
-                <div>
-                    <x-input-label for="question" :value="__('Question Text')" />
-                    <x-text-input :disabled="!$this->form->model" wire:model="form.question" id="question"
-                        class="block mt-1 w-full" type="text" name="question" required autofocus
-                        autocomplete="question" />
-                    <x-input-error :messages="$errors->get('form.question')" class="mt-2" />
-                </div>
-
-                <div>
-                    <x-input-label for="answer" :value="__('Answer')" />
-                    <x-text-input wire:model="form.answer" id="answer" class="block mt-1 w-full" type="text"
-                        name="answer" autofocus autocomplete="answer" :disabled="!$this->form->model" />
-                    <x-input-error :messages="$errors->get('form.answer')" class="mt-2" />
-                </div>
-
-                <div class="flex items-center gap-4">
-                    <x-gradiant-button :disabled="!$this->form->model" x-on:click="$dispatch('close-modal', 'edit-question')">{{ __('Cancel') }}</x-gradiant-button>
-                    <x-gradiant-button :disabled="!$this->form->model">{{ __('Save') }}</x-gradiant-button>
-                </div>
-            </form>
+      <form wire:submit="submit" class="mt-6 space-y-6" @if (!$this->form->model) inert @endif>
+        <div>
+          <x-input-label for="question" :value="__('Question Text')" />
+          <x-text-input :disabled="!$this->form->model" wire:model="form.question" id="question" class="block mt-1 w-full"
+            type="text" name="question" required autofocus autocomplete="question" />
+          <x-input-error :messages="$errors->get('form.question')" class="mt-2" />
         </div>
 
-    </x-modal>
+        <div>
+          <x-input-label for="answer" :value="__('Answer')" />
+          <x-text-input wire:model="form.answer" id="answer" class="block mt-1 w-full" type="text" name="answer"
+            autofocus autocomplete="answer" :disabled="!$this->form->model" />
+          <x-input-error :messages="$errors->get('form.answer')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center gap-4">
+          <x-gradient-button type="button" :disabled="!$this->form->model"
+            x-on:click="$dispatch('close-modal', 'edit-question')">{{ __('Cancel') }}</x-gradient-button>
+          <x-gradient-button :disabled="!$this->form->model">{{ __('Save') }}</x-gradient-button>
+        </div>
+      </form>
+    </div>
+
+  </x-modal>
 </div>

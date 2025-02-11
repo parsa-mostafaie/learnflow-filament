@@ -13,7 +13,7 @@ class CoursePolicy
      */
     public function enroll(?User $user, Course $course): bool
     {
-        return !!$user?->isNot($course->author);
+        return !!$user;
     }
 
     /**
@@ -54,6 +54,14 @@ class CoursePolicy
     public function update(?User $user, Course $course): bool
     {
         return (!!$user) && ($user->isRole('developer') || $course->user->is($user));
+    }
+
+    /**
+     * Determine whether the user can assign to the model.
+     */
+    public function assign(?User $user, Course $course): bool
+    {
+        return $this->update($user, $course);
     }
 
     /**

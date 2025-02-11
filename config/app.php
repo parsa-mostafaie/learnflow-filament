@@ -123,4 +123,33 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'leitner' => [
+        /** 
+         * day_length: Simulated day length in hours
+         * Recommended: 24 (In production)
+         */
+        'day_length' => floatval(env('LEITNER_DAY_LENGTH', 24)), // Default to 24 hours
+        /**
+         * max_daily_task: Maximum of New daily tasks in a day
+         * Default: 5
+         */
+        'max_daily_task' => intval(env('LEITNER_MAX_DAILY', 5)),
+        /**
+         * max_of_first_stage: Maximum count of cards can be in the first stage
+         * Default: 20
+         */
+        'max_of_first_stage' => intval(env('LEITNER_MAX_IN_FIRST', 5)),
+        /**
+         * count of simulated days that should wait to stage ends
+         */
+        'review_wait_per_stage' => [
+            1 => 1,
+            2 => 2,
+            3 => 4,
+            4 => 8,
+            5 => 16,
+            6 => null
+        ]
+    ]
+
 ];

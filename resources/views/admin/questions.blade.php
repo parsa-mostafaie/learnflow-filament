@@ -21,5 +21,5 @@
         </div>
     </div>
 
-    <livewire:questions.edit lazy />
+    <livewire:questions.edit />
 </x-app-layout>

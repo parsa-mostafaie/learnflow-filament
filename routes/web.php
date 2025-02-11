@@ -13,11 +13,16 @@ Route::middleware(['auth', 'verified', 'isRole:admin'])->as('admin')->prefix('ad
 
     Route::view('questions', 'admin.questions')
         ->name('.questions');
+
+    Route::view('courses', 'admin.courses')
+        ->name('.courses');
 });
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('courses/{id}', 'course.single')
+    ->name('course.single')->middleware("perform_daily_task");
 
 require __DIR__ . '/auth.php';

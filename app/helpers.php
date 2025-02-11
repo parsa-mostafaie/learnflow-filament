@@ -7,5 +7,5 @@ function isRole($role)
     /** @var \App\Models\User */
     $u = Auth::user();
 
-    return $u->isRole($role);
+    return $u && $u->isRole($role);
 }

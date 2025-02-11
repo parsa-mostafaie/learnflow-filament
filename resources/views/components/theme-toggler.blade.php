@@ -1,6 +1,6 @@
 <!-- Darkmode Toggler -->
 <button x-on:click="darkMode = !darkMode" type="button"
-    class="fixed bottom-4 left-4 rounded-lg text-sm p-2.5 text-gray-500 dark:text-gray-400 hover:bg-purple-100 dark:hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-700 bg-gradient-to-br from-purple-600 to-blue-500 dark:bg-gradient-to-br dark:from-purple-600 dark:to-blue-500">
+    class="fixed bottom-4 left-4 rounded-lg text-sm p-2.5 text-gray-500 dark:text-gray-400 hover:bg-purple-100 dark:hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-700 bg-gradient-to-br from-purple-600 to-blue-500 dark:bg-gradient-to-br dark:from-purple-600 dark:to-blue-500 z-[100]">
     <svg x-show="!darkMode" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" fill="#FFD700"></path>
     </svg>

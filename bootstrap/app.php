@@ -11,7 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->alias(['isRole' => App\Http\Middleware\isRole::class]);
+        $middleware->alias(['isRole' => App\Http\Middleware\isRole::class, 'perform_daily_task' => App\Http\Middleware\PerfomDailyTask::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

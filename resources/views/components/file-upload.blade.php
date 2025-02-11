@@ -23,7 +23,7 @@
                 @endif
             </p>
         </div>
-        <input @change="handleInput($event)" x-ref="input" {{ $attributes->merge(['id' => $id, 'type' => 'file', 'class' => 'hidden']) }} />
+        <input @change="handleInput($event)" x-ref="input" {{ $attributes->merge(['id' => $id, 'type' => 'file', 'class' => 'hidden', 'accept'=>'.jpg, .jpeg, .png']) }} />
     </label>
 
     <div x-show="isSelected" class="flex flex-col items-center justify-center w-full h-64 border-2 border-purple-500 border-dashed rounded-lg bg-purple-50 dark:bg-purple-700 shadow-lg transform transition-transform duration-300 scale-105 dark:scale-105">

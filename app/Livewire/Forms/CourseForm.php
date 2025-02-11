@@ -61,6 +61,11 @@ class CourseForm extends Form
         $this->reset();
     }
 
+    public function sync($selectedQuestions)
+    {
+        $this->course->questions()->sync($selectedQuestions);
+    }
+
     public function setModel($course = null)
     {
         $this->course = $course;

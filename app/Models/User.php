@@ -66,6 +66,6 @@ class User extends Authenticatable
 
     public function enrolledCourses()
     {
-        return $this->belongsToMany(Course::class)->withTimestamps(); // A user can enroll in many courses
+        return $this->belongsToMany(Course::class)->withTrashed()->withPivot('last_course_visit')->withTimestamps(); // A user can enroll in many courses
     }
 }

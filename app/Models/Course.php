@@ -11,16 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class Course extends Model
 {
-    use HasFactory, HasImage, Traits\Enrollable, Traits\HasAuthor, SoftDeletes;
+    use HasFactory, HasImage, Traits\Enrollable, Traits\HasAuthor, SoftDeletes, Traits\HasDailyTasks;
 
     protected $fillable = ['title', 'description', 'user_id', 'slug', 'thumbnail'];
 
-    /**
-     * The "booted" method of the model.
-     */
     protected static function booted(): void
     {
-        /** Hide Soft-Deleted models that current user (if not a developer) is not author of them */
         static::addGlobalScope('hide_deleteds', function (Builder $builder) {
             $user = Auth::user();
 
@@ -31,5 +27,10 @@ class Course extends Model
                 });
             }
         });
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'course_questions');
     }
 }

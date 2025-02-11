@@ -24,19 +24,28 @@ $logout = function (Logout $logout) {
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-
-                    @if(\isRole('admin'))
-                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')" wire:navigate>
-                            {{ __('Admin') }}
+                    @if(auth()->check())
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        @if(\isRole('admin'))
+                            <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')" wire:navigate>
+                                {{ __('Admin') }}
+                            </x-nav-link>
+                        @endif
+                    @else
+                        <x-nav-link :href="route('login')" wire:navigate>
+                            {{ __('Login') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('register')" wire:navigate>
+                            {{ __('Register') }}
                         </x-nav-link>
                     @endif
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
+            @if(auth()->check())
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -65,6 +74,7 @@ $logout = function (Logout $logout) {
                     </x-slot>
                 </x-dropdown>
             </div>
+            @endif
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -81,17 +91,28 @@ $logout = function (Logout $logout) {
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @auth
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
             
-            @if(\isRole('admin'))
-            <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')" wire:navigate>
-                {{ __('Admin') }}
-            </x-responsive-nav-link>
+                @if(\isRole('admin'))
+                <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')" wire:navigate>
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
+                @endif
+            @else
+                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')" wire:navigate>
+                    {{ __('Login') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')" wire:navigate>
+                    {{ __('Register') }}
+                </x-responsive-nav-link>
             @endif
         </div>
 
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
@@ -112,5 +133,6 @@ $logout = function (Logout $logout) {
                 </button>
             </div>
         </div>
+        @endauth
     </div>
 </nav>
