@@ -4,8 +4,10 @@
 use function Livewire\Volt\{state, computed, on, mount};
 use App\Models\Course, App\Events\CourseViewedEvent;
 
+// Define the state for the component
 state(['course', 'in_feed']);
 
+// Define an event listener to reload the course model when the 'course-single-reload' event is dispatched
 on([
     'course-single-reload' => function ($course) {
         if ($course == $this->course->id) {
@@ -14,10 +16,12 @@ on([
     },
 ]);
 
+// Define a mount function to handle actions when the component is initialized
 mount(function () {
     if ($this->in_feed) {
         return;
     }
+    // Dispatch an event when the course is viewed
     // event(new CourseViewedEvent($this->course, auth()->user()));
 });
 ?>

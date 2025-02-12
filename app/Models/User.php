@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Question;
 
+/**
+ * Class User
+ * 
+ * This model represents a user and provides functionality for managing users.
+ * A user has attributes like name, email, and password. The user model also includes traits for roles and notifications.
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -47,25 +53,54 @@ class User extends Authenticatable
         ];
     }
 
-    // Accessor for role name
+    /**
+     * Get the role name attribute.
+     * 
+     * This method returns the name of the role based on the role ID.
+     * 
+     * @return string
+     */
     public function getRoleNameAttribute()
     {
         return array_flip(static::roles)[$this->role];
     }
 
+    /**
+     * Get the questions authored by the user.
+     * 
+     * This method defines the relationship between the user and their questions.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function questions()
     {
         return $this->hasMany(Question::class); // A user can be an author of many questions
     }
 
-    // Relation to Course model
+    /**
+     * Get the courses authored by the user.
+     * 
+     * This method defines the relationship between the user and their courses.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function courses()
     {
         return $this->hasMany(Course::class); // A user can be an author of many courses
     }
 
+    /**
+     * Get the courses the user is enrolled in.
+     * 
+     * This method defines the relationship between the user and the courses they are enrolled in.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function enrolledCourses()
     {
-        return $this->belongsToMany(Course::class)->withTrashed()->withPivot('last_course_visit')->withTimestamps(); // A user can enroll in many courses
+        return $this->belongsToMany(Course::class)
+            ->withTrashed()
+            ->withPivot('last_course_visit')
+            ->withTimestamps(); // A user can enroll in many courses
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use Illuminate\Support\Facades\Config;
@@ -8,8 +9,21 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class Leitner
+ * 
+ * This class implements the Leitner Box algorithm for spaced repetition learning.
+ */
 class Leitner implements Interfaces\Leitner
 {
+  /**
+   * Update the card's stage and review date based on whether the user knows the card.
+   * 
+   * @param \App\Models\User $user
+   * @param \App\Models\Card $card
+   * @param bool $state
+   * @return void
+   */
   public function knowsCard($user, $card, $state)
   {
     $new_stage = 1;
@@ -24,6 +38,13 @@ class Leitner implements Interfaces\Leitner
     $card->update(['stage' => $new_stage, 'review_date' => $review_date]);
   }
 
+  /**
+   * Check daily tasks for the given user and course.
+   * 
+   * @param \App\Models\User $user
+   * @param \App\Models\Course $course
+   * @return void
+   */
   public function checkDailyTasks($user, $course)
   {
     if ($course->isEnrolledBy($user)) {
@@ -39,6 +60,13 @@ class Leitner implements Interfaces\Leitner
     }
   }
 
+  /**
+   * Perform daily tasks for the given user and course.
+   * 
+   * @param \App\Models\User $user
+   * @param \App\Models\Course $course
+   * @return void
+   */
   public function performDailyTask($user, $course)
   {
     // Calculate the number of questions already assigned to the user in stage 1
@@ -49,7 +77,7 @@ class Leitner implements Interfaces\Leitner
       })
       ->count();
 
-    // Calculate $_count
+    // Calculate the number of questions to assign
     $_count = min($this->getMaximumDailyTaskCount(), max(0, $this->getMaximumOfFirstStage() - $assignedCount));
 
     // Get questions from the course that are not yet assigned to the user
@@ -71,6 +99,13 @@ class Leitner implements Interfaces\Leitner
     }
   }
 
+  /**
+   * Get the first card to learn for the given course and user.
+   * 
+   * @param \App\Models\Course $course
+   * @param int $user_id
+   * @return \App\Models\Card|null
+   */
   public function getFirstToLearnCard($course, $user_id)
   {
     return Card::where('user_id', $user_id)
@@ -85,26 +120,53 @@ class Leitner implements Interfaces\Leitner
   }
 
   // Configurables
+
+  /**
+   * Get the length of a day for the daily tasks.
+   * 
+   * @return float
+   */
   public function getDailyTaskDayLength()
   {
     return Config::float('app.leitner.day_length', 24);
   }
 
+  /**
+   * Get the maximum number of daily tasks.
+   * 
+   * @return int
+   */
   public function getMaximumDailyTaskCount()
   {
     return Config::integer('app.leitner.max_daily_task', 5);
   }
 
+  /**
+   * Get the maximum number of cards in the first stage.
+   * 
+   * @return int
+   */
   public function getMaximumOfFirstStage()
   {
     return Config::integer('app.leitner.max_of_first_stage', 5);
   }
 
+  /**
+   * Get the review wait times for each stage.
+   * 
+   * @return array
+   */
   public function getReviewWaits()
   {
     return Config::array('app.leitner.review_wait_per_stage', []);
   }
 
+  /**
+   * Get the review wait time for a specific stage.
+   * 
+   * @param string|int $stage
+   * @return mixed
+   */
   public function getReviewWait($stage = '1')
   {
     return config('app.leitner.review_wait_per_stage.' . $stage, null);

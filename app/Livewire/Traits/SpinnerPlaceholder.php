@@ -2,8 +2,20 @@
 
 namespace App\Livewire\Traits;
 
+/**
+ * Trait SpinnerPlaceholder
+ * 
+ * This trait provides a method to generate a placeholder spinner for loading states.
+ */
 trait SpinnerPlaceholder
 {
+    /**
+     * Generate the HTML for a loading spinner placeholder.
+     * 
+     * This method returns a div with an animated SVG spinner and an accessible label for screen readers.
+     * 
+     * @return string
+     */
     public function placeholder()
     {
         return <<<HTML

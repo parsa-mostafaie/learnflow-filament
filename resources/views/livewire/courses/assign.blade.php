@@ -15,6 +15,7 @@ state(['course' => null, 'selectedQuestions' => [], 'search' => null, 'limit' =>
 
 form(CourseForm::class, 'form');
 
+// Event listener to open the assign course modal and load selected questions
 on([
     'assign-to-course' => function ($course_id) {
         $course = Course::withTrashed()->findOrFail($course_id);
@@ -29,6 +30,7 @@ on([
     },
 ]);
 
+// Load questions based on search and pagination
 $loadQuestions = function () {
     $newQuestions = Question::search($this->search)->limit($this->limit)
         ->offset($this->offset)
@@ -41,11 +43,13 @@ $loadQuestions = function () {
     }
 };
 
+// Load more questions for pagination
 $loadMore = function () {
     $this->offset += $this->limit;
     $this->loadQuestions();
 };
 
+// Submit the selected questions to the course
 $submit = function () {
     if (!$this->form->course) {
         return;
@@ -60,6 +64,7 @@ $submit = function () {
     $this->dispatch('course-assigned');
 };
 
+// Handle search input change and reload questions
 $searchChange = function () {
     $this->more_found = true;
     $this->offset = 0;
@@ -67,6 +72,7 @@ $searchChange = function () {
     $this->loadQuestions();
 };
 
+// Initial mount to load questions
 mount(fn() => $this->loadQuestions());
 ?>
 

@@ -14,6 +14,11 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
+/**
+ * Class CoursesTable
+ * 
+ * This table component is responsible for displaying and managing courses.
+ */
 class CoursesTable extends DataTableComponent
 {
     use Traits\SpinnerPlaceholder;
@@ -21,17 +26,33 @@ class CoursesTable extends DataTableComponent
 
     protected $listeners = ['courses-table-reload' => '$refresh'];
 
+    /**
+     * Define the query builder for the courses.
+     * 
+     * @return Builder
+     */
     public function builder(): Builder
     {
+        // Retrieve courses, including soft-deleted ones, and eager load the author relationship
         return Course::withTrashed()->with('author');
     }
 
+    /**
+     * Configure the data table.
+     * 
+     * Set the primary key and default sorting for the table.
+     */
     public function configure(): void
     {
         $this->setPrimaryKey('id');
         $this->setDefaultSort('id', 'desc');
     }
 
+    /**
+     * Define the filters for the data table.
+     * 
+     * @return array
+     */
     public function filters(): array
     {
         return [
@@ -45,6 +66,11 @@ class CoursesTable extends DataTableComponent
         ];
     }
 
+    /**
+     * Define the columns for the data table.
+     * 
+     * @return array
+     */
     public function columns(): array
     {
         return [

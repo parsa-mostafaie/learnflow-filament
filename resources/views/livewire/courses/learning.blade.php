@@ -1,10 +1,14 @@
 <?php
+
 use function Livewire\Volt\{state, computed, on, mount};
-use App\Models\Card, App\Events\CourseViewedEvent;
+use App\Models\Card;
+use App\Events\CourseViewedEvent;
 use App\Facades\Leitner;
 
+// Define the state for the component
 state(['course', 'in_feed', 'card' => null, 'started' => false]);
 
+// Define event listeners to handle course reload and card updates
 on([
     'course-single-reload' => function ($course) {
         if ($course == $this->course->id) {
@@ -18,6 +22,7 @@ on([
     },
 ]);
 
+// Define the loadCard function to load the first card to learn
 $loadCard = function () {
     if (!$this->started) {
         $this->course->checkDailyTasks(auth()->user());
@@ -28,6 +33,7 @@ $loadCard = function () {
 };
 ?>
 
+{{-- Learning Section --}}
 <div>
   @if ($course->isEnrolledBy(auth()->user()))
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-2">
@@ -36,7 +42,7 @@ $loadCard = function () {
         <div class="flex justify-center">
           @if ($this->started)
             @if ($this->card)
-              <livewire:courses.question-card :card="$this->card" wire:key="{{ $this->card->id }}"/>
+              <livewire:courses.question-card :card="$this->card" wire:key="{{ $this->card->id }}" />
             @else
               {{ __("You've Completed your today's learning!") }}
             @endif

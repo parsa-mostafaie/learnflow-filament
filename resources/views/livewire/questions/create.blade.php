@@ -1,25 +1,34 @@
 <?php
 
 use function Livewire\Volt\{state, form, usesFileUploads};
-
 use Illuminate\Support\Str;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Forms\QuestionForm;
 
+// Enable file uploads (commented out for now)
 // usesFileUploads();
 
+// Define the form for the question
 form(QuestionForm::class);
 
+/**
+ * Function to handle the form submission
+ */
 $submit = function () {
+    // Authorize the user to create a question
     $this->authorize('create', Question::class);
 
+    // Save the form data
     $this->form->save();
 
+    // Dispatch events to indicate that the question was stored and to reload the questions table
     $this->dispatch('question-stored');
     $this->dispatch('questions-table-reload');
-}; ?>
+};
+?>
 
+{{-- Section for creating a new question --}}
 <section class="m-2 mx-3">
   <div>
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">

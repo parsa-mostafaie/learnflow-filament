@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Models\Question;
 
+/**
+ * Class QuestionForm
+ * 
+ * This form component is responsible for handling the creation and updating of questions.
+ */
 class QuestionForm extends Form
 {
     public $model = null;
@@ -16,6 +21,11 @@ class QuestionForm extends Form
     public $question = '';
     public $answer = '';
 
+    /**
+     * Define the validation rules for the form fields.
+     * 
+     * @return array
+     */
     public function rules()
     {
         $unique = Rule::unique(Question::class)->where(function ($query) {
@@ -33,24 +43,41 @@ class QuestionForm extends Form
         ];
     }
 
+    /**
+     * Save the question data.
+     * 
+     * This method validates the form data and creates or updates the question record in the database.
+     */
     public function save()
     {
+        // Validate the form data
         $data = $this->validate();
 
         /**
          * @var \App\Models\User
+         * 
+         * Get the authenticated user
          */
         $user = Auth::user();
 
-        if (!$this->model)
+        // Create or update the question
+        if (!$this->model) {
             $user->questions()->create($data);
-        else
+        } else {
             $this->model->update($data);
+        }
 
+        // Reset the form fields
         $this->reset();
 
     }
 
+    /**
+     * Set the model for the form.
+     * 
+     * @param \App\Models\Question|null $question
+     * @return \App\Models\Question|null
+     */
     public function setModel($question = null)
     {
         $this->model = $question;

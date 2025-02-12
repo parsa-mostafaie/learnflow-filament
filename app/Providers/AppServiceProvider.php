@@ -5,10 +5,18 @@ namespace App\Providers;
 use App\Services\Leitner;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class AppServiceProvider
+ * 
+ * This service provider is responsible for registering and bootstrapping application services.
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+     * 
+     * This method registers the Leitner service as a singleton in the application container
+     * and creates an alias for the service.
      */
     public function register(): void
     {
@@ -21,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     * 
+     * This method is called after all other services have been registered and is used for
+     * initializing or bootstrapping any application services.
      */
     public function boot(): void
     {

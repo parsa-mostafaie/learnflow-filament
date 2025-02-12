@@ -1,7 +1,6 @@
 <?php
 
 use function Livewire\Volt\{state, form, usesFileUploads, on, mount};
-
 use Milwad\LaravelValidate\Rules\ValidSlug;
 use Illuminate\Support\Str;
 use App\Models\Course;
@@ -9,12 +8,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Livewire\Forms\CourseForm;
 
+// Enable file uploads
 usesFileUploads();
 
+// Define the state for the component
 state(['course' => null]);
 
+// Define the form for the course
 form(CourseForm::class, 'form');
 
+// Define an event listener to handle the edit-course event
 on([
     'edit-course' => function ($course_id) {
         $course = Course::withTrashed()->findOrFail($course_id);
@@ -28,10 +31,12 @@ on([
     },
 ]);
 
+// Define the reset function to reset the form
 $_reset = function () {
     $this->form->setModel($this->form->course);
 };
 
+// Define the submit function to handle form submission
 $submit = function () {
     if (!$this->form->course) {
         return;
@@ -47,6 +52,7 @@ $submit = function () {
 };
 ?>
 
+{{-- Edit Course Section --}}
 <div id="edit-course-section">
   <x-modal name="edit-course" focusable :show="!empty($this->form->model)">
     <div class="p-6">
@@ -83,13 +89,11 @@ $submit = function () {
         </div>
 
         <div>
-          {{-- <input type="file" wire:model="form.thumbnail" class="ring-none"> --}}
-
+          {{-- File upload component for thumbnail --}}
           <x-file-upload wire:model="form.thumbnail" id="edit-course-dropzone-file">
             <img class="mt-2 rounded-lg w-[50%] block"
               src="{{ $this->form->thumbnail ? $this->form->thumbnail->temporaryUrl() : $this->form->course?->image_url }}" />
           </x-file-upload>
-
           <x-input-error :messages="$errors->get('form.thumbnail')" class="mt-2" />
         </div>
 

@@ -1,17 +1,19 @@
 <?php
 
 use function Livewire\Volt\{state, form, usesFileUploads};
-
 use Milwad\LaravelValidate\Rules\ValidSlug;
 use Illuminate\Support\Str;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Forms\CourseForm;
 
+// Enable file uploads
 usesFileUploads();
 
+// Define the form for the course
 form(CourseForm::class);
 
+// Define the submit function to handle form submission
 $submit = function () {
     $this->authorize('create', Course::class);
 
@@ -21,10 +23,10 @@ $submit = function () {
     $this->dispatch('courses-table-reload');
 };
 
+// Define the reset function to reset the form
 $_reset = function () {
     $this->form->reset();
 };
-
 ?>
 
 <section class="m-2 mx-3">
@@ -59,16 +61,13 @@ $_reset = function () {
     </div>
 
     <div>
-      {{-- <input type="file" wire:model="form.thumbnail" class="ring-none"> --}}
-
+      {{-- File upload component for thumbnail --}}
       <x-file-upload wire:model="form.thumbnail" id="create-course-dropzone-file">
         @if ($this->form->thumbnail)
           <img class="mt-2 rounded-lg w-[50%] block" src="{{ $this->form->thumbnail->temporaryUrl() }}" />
         @endif
       </x-file-upload>
-
       <x-input-error :messages="$errors->get('form.thumbnail')" class="mt-2" />
-
     </div>
 
     <div class="flex items-center gap-4">

@@ -15,6 +15,11 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 use App\Models\Question;
 
+/**
+ * Class QuestionsTable
+ * 
+ * This table component is responsible for displaying and managing questions.
+ */
 class QuestionsTable extends DataTableComponent
 {
     use Traits\SpinnerPlaceholder;
@@ -22,16 +27,33 @@ class QuestionsTable extends DataTableComponent
 
     protected $listeners = ['questions-table-reload' => '$refresh'];
 
+    /**
+     * Define the query builder for the questions.
+     * 
+     * @return Builder
+     */
     public function builder(): Builder
     {
+        // Retrieve questions and eager load the author relationship
         return Question::with('author');
     }
 
+    /**
+     * Configure the data table.
+     * 
+     * Set the primary key and default sorting for the table.
+     */
     public function configure(): void
     {
         $this->setPrimaryKey('id');
         $this->setDefaultSort('id', 'desc');
     }
+
+    /**
+     * Define the filters for the data table.
+     * 
+     * @return array
+     */
     public function filters(): array
     {
         return [
@@ -44,15 +66,24 @@ class QuestionsTable extends DataTableComponent
                 ->setFilterDefaultValue(false)
         ];
     }
+
+    /**
+     * Define the columns for the data table.
+     * 
+     * @return array
+     */
     public function columns(): array
     {
         return [
             Column::make("Id", "id")
-                ->sortable()->searchable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Question Text", "question")
-                ->sortable()->searchable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Question Answer", "answer")
-                ->sortable()->searchable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Author", "user_id")
                 ->format(
                     fn($value, $row, Column $column) => $row->author->name

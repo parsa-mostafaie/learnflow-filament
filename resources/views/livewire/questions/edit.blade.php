@@ -1,19 +1,22 @@
 <?php
 
 use function Livewire\Volt\{state, form, usesFileUploads, on, mount};
-
 use Illuminate\Support\Str;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Livewire\Forms\QuestionForm;
 
+// Enable file uploads
 usesFileUploads();
 
+// Define the state for the component
 state(['question' => null]);
 
+// Define the form for the question
 form(QuestionForm::class, 'form');
 
+// Define event listeners to handle the edit-question event
 on([
     'edit-question' => function ($question_id) {
         $question = Question::findOrFail($question_id);
@@ -27,6 +30,9 @@ on([
     },
 ]);
 
+/**
+ * Function to handle the form submission
+ */
 $submit = function () {
     if (!$this->form->model) {
         return;
@@ -42,6 +48,7 @@ $submit = function () {
 };
 ?>
 
+{{-- Container for the edit question section --}}
 <div id="edit-question-section">
   <x-modal name="edit-question" focusable :show="!empty($this->form->model)">
     <div class="p-6">
@@ -77,6 +84,5 @@ $submit = function () {
         </div>
       </form>
     </div>
-
   </x-modal>
 </div>

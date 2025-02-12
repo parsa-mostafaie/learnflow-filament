@@ -4,15 +4,23 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+/**
+ * Configure the application.
+ * 
+ * This script configures the application with routing, middleware, and exception handling.
+ * It uses the basePath as the directory one level above the current directory.
+ */
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__ . '/../routes/web.php',
-        commands: __DIR__ . '/../routes/console.php',
-        health: '/up',
+        web: __DIR__ . '/../routes/web.php', // Set the path for web routes
+        commands: __DIR__ . '/../routes/console.php', // Set the path for console commands
+        health: '/up', // Set the health check route
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Alias the middleware for role checking and performing daily tasks
         $middleware->alias(['isRole' => App\Http\Middleware\isRole::class, 'perform_daily_task' => App\Http\Middleware\PerfomDailyTask::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
+        // Configure exception handling (currently empty)
+    })
+    ->create();

@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Enlearn
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Enlearn is a platform designed to help users learn anything efficiently and effectively using the Leitner box algorithm. Whether you're studying for exams, learning a new language, or acquiring new skills, Enlearn offers a user-friendly and interactive experience to support your learning journey.
 
-## About Laravel
+## Innovations
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Leitner System Integration:** Enlearn utilizes the Leitner system to enhance memory retention and recall. This spaced repetition system helps users learn and retain information more effectively.
+- **Customizable Learning Paths:** Users can tailor their learning paths based on their goals and progress, ensuring a personalized learning experience.
+- **Interactive Exercises:** The platform features a variety of interactive exercises that adapt to the user's learning pace and style, making learning more engaging and effective.
+- **Daily Streaks and Progress Tracking:** Users can maintain their learning momentum with daily streaks and track their progress over time. This feature motivates users to stay consistent in their learning journey.
+- **Admin Panel for Management:** Enlearn provides an admin panel for managing questions, courses, and users, making it easy for administrators to keep the platform updated and organized.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation and Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Prerequisites
 
-## Learning Laravel
+- PHP >= 8.x (8.2.12)
+- Composer
+- Node.js and NPM
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Steps to Install
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Clone the project repository:
+    ```bash
+    git clone https://github.com/parsa-mostafaie/enlearn.git
+    cd enlearn
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Install PHP dependencies:
+    ```bash
+    composer install
+    ```
 
-## Laravel Sponsors
+3. Install NPM dependencies:
+    ```bash
+    npm install
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Create and configure the `.env` file:
+    ```bash
+    cp .env.example .env
+    ```
+    Update the `.env` file with your database and other environment settings.
 
-### Premium Partners
+5. Generate the application key:
+    ```bash
+    php artisan key:generate
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+6. Link the storage directory:
+    ```bash
+    php artisan storage:link
+    ```
 
-## Contributing
+7. Migrate the database and seed it:
+    ```bash
+    php artisan migrate --seed
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Running the Application
 
-## Code of Conduct
+Run the development server and Webpack build in one command:
+    ```
+    composer run dev
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+You can now access the application in your browser at `http://localhost:8000`.
 
-## Security Vulnerabilities
+## Contact
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you need any help or have questions, you can reach out to us via email at `pmostafaie1390@gmail.com`.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Thank you for using Enlearn! We hope you have a great learning experience.
