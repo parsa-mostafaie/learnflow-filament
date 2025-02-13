@@ -26,6 +26,6 @@ $action = function () {
 {{-- Restore button with authorization check --}}
 <div>
   @can('restore', $this->course)
-    <x-primary-button wire:click="action">Restore</x-primary-button>
+    <x-primary-button wire:click="action">{{ __('Restore') }}</x-primary-button>
   @endcan
 </div>

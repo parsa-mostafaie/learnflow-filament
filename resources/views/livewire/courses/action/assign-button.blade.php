@@ -14,4 +14,4 @@ $action = function () {
 ?>
 
 {{-- Primary button component with click event handler --}}
-<x-primary-button wire:click="action">Assign</x-primary-button>
+<x-primary-button wire:click="action">{{ __('Assign') }}</x-primary-button>

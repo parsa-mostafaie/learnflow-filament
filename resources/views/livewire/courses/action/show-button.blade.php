@@ -11,5 +11,6 @@ state(['course']);
 {{-- Container for the show button --}}
 <div>
   {{-- Secondary button with navigation --}}
-  <x-secondary-button wire:navigate href="{{ route('course.single', $this->course->slug) }}">View</x-secondary-button>
+  <x-secondary-button wire:navigate
+    href="{{ route('course.single', $this->course->slug) }}">{{ __('View') }}</x-secondary-button>
 </div>

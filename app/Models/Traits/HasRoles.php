@@ -94,8 +94,8 @@ trait HasRoles
      * @param bool $secure
      * @return int
      */
-    public function validateRole($role, $secure = true)
+    public static function validateRole($role, $secure = true)
     {
-        return min(max(static::roles[$role], static::MIN_ROLE), $secure ? static::MAX_SECURE_ROLE : static::MAX_ROLE);
+        return min(max(static::roles[$role] ?? $role, static::MIN_ROLE), $secure ? static::MAX_SECURE_ROLE : static::MAX_ROLE);
     }
 }

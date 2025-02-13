@@ -29,6 +29,6 @@ $action = function () {
 <div>
   @can('delete', $this->question)
     {{-- Delete button with authorization check --}}
-    <x-danger-button wire:click="action">Delete</x-danger-button>
+    <x-danger-button wire:click="action">{{ __('Delete') }}</x-danger-button>
   @endcan
 </div>

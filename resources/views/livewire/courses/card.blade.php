@@ -30,7 +30,7 @@ mount(function () {
   <img src="{{ $course->image_url }}" alt="Course Image" class="rounded-lg" />
   <div class="grow">
     <h1 class="font-bold text-lg flex justify-between mb-2">
-      <a href="{{ route('course.single', $course->slug) }}">{{ $course->title }}</a>
+      <a wire:navigate href="{{ route('course.single', $course->slug) }}">{{ $course->title }}</a>
       <livewire:courses.actions :course="$this->course" :in_show="true" />
     </h1>
     {{ $course->description }}

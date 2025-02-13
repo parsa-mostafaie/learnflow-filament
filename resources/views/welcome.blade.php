@@ -10,20 +10,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ config('app.name', 'Enlearn') }}</title>
+  <title>{{ config('app.name', 'Deeplearn') }}</title>
 
   {{-- Fonts --}}
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-  {{-- Styles --}}}
+  {{-- Styles --}}
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
-  {{-- Hero Section --}}}
+  {{-- Hero Section --}}
   <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
-    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => config('app.name', 'Enlearn')]) }}</h2>
+    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => config('app.name', 'Deeplearn')]) }}</h2>
     <p class="text-xl mb-6">
       {{ __('The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm') }}
     </p>
@@ -34,20 +34,20 @@
     </a>
   </header>
 
-  {{-- About Section --}}}
+  {{-- About Section --}}
   <section id="about" class="container mx-auto p-8">
     <h2 class="text-3xl font-semibold mb-4">{{ __('About Us') }}</h2>
     <p>
-      {{ __('At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.', ['name' => config('app.name', 'Enlearn')]) }}
+      {{ __('At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.', ['name' => config('app.name', 'Deeplearn')]) }}
     </p>
   </section>
 
-  {{-- Features Section --}}}
+  {{-- Features Section --}}
   <section id="features" class="container mx-auto bg-gray-200 p-8 dark:bg-gray-700">
     <div>
       <h2 class="text-3xl font-semibold mb-4">{{ __('Our Features') }}</h2>
       <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {{-- Feature 1 --}}}
+        {{-- Feature 1 --}}
         <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
           <h3 class="text-xl font-bold mb-2">{{ __('Daily Streaks') }}</h3>
           <p class="mb-4">
@@ -57,7 +57,7 @@
             <a href="#" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
           </div>
         </div>
-        {{-- Feature 2 --}}}
+        {{-- Feature 2 --}}
         <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
           <h3 class="text-xl font-bold mb-2">{{ __('Leitner System') }}</h3>
           <p class="mb-4">
@@ -67,7 +67,7 @@
             <a href="#" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
           </div>
         </div>
-        {{-- Feature 3 --}}}
+        {{-- Feature 3 --}}
         <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
           <h3 class="text-xl font-bold mb-2">{{ __('Interactive Exercises') }}</h3>
           <p class="mb-4">{{ __('Engage with interactive exercises that adapt to your learning pace and style.') }}
@@ -80,7 +80,7 @@
     </div>
   </section>
 
-  {{-- Contact Section --}}}
+  {{-- Contact Section --}}
   <section id="contact" class="container mx-auto p-8">
     <h2 class="text-3xl font-semibold mb-4">{{ __('Contact Us') }}</h2>
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2 gap-6">
@@ -114,10 +114,10 @@
     </div>
   </section>
 
-  {{-- Footer --}}}
+  {{-- Footer --}}
   <footer
     class="bg-purple-700 text-white p-4 text-center container mx-auto rounded-lg dark:bg-gray-800 dark:text-white">
-    <p>&copy; 2025 {{ config('app.name', 'Enlearn') }}: Learn Anything. {{ __('All rights reserved.') }}</p>
+    <p>&copy; 2025 {{ config('app.name', 'Deeplearn') }}: Learn Anything. {{ __('All rights reserved.') }}</p>
   </footer>
 </body>
 

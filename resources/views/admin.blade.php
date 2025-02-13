@@ -25,6 +25,15 @@
                                     class="scale-on-hover fas fa-arrow-right border rounded-full p-1 text-xs text-gray-300 border-gray-100 hover:bg-gray-100 hover:text-gray-500 dark:border-gray-500 dark:hover:bg-gray-600 dark:hover:text-white"></i>
                             </p>
                         </div>
+                        @can('viewAny',"App\\Models\\User")
+                        <div class="p-3 rounded bg-purple-500 text-white dark:bg-purple-800 select-none flex flex-col scale-on-hover">
+                            <div class="border-b-2 border-gray-100 dark:border-gray-500">{{ __("Users") }}</div>
+                            <p wire:navigate href="{{ route('admin.users') }}" class="text-center mt-2">
+                                <i
+                                    class="scale-on-hover fas fa-arrow-right border rounded-full p-1 text-xs text-gray-300 border-gray-100 hover:bg-gray-100 hover:text-gray-500 dark:border-gray-500 dark:hover:bg-gray-600 dark:hover:text-white"></i>
+                            </p>
+                        </div>
+                        @endcan
                     </div>
                 </div>
             </div>

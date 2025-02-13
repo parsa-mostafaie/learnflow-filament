@@ -23,6 +23,11 @@ Route::middleware(['auth', 'verified', 'isRole:admin'])->as('admin')->prefix('ad
     // Admin courses page
     Route::view('courses', 'admin.courses')
         ->name('.courses');
+
+    // Developer users page
+    Route::view('users', 'admin.users')
+        ->name('.users')
+        ->can('viewAny', 'App\\Models\\User');
 });
 
 // Route for the profile page, accessible only to authenticated users
