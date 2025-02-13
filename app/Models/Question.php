@@ -17,7 +17,7 @@ class Question extends Model
     /** @use HasFactory<\Database\Factories\QuestionFactory> */
     use HasFactory, Traits\HasAuthor;
 
-    protected $fillable = ["question", "answer"];
+    protected $fillable = ["question", "answer", 'user_id'];
 
     /**
      * Get the courses that the question is associated with.
