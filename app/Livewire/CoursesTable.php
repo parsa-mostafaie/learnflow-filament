@@ -56,7 +56,7 @@ class CoursesTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            BooleanFilter::make("My courses")
+            BooleanFilter::make(__("My courses"))
                 ->filter(function (Builder $builder, bool $enabled) {
                     if ($enabled && Auth::user()) {
                         $builder->whereBelongsTo(Auth::user());
@@ -74,35 +74,35 @@ class CoursesTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make(__("Id"), "id")
                 ->sortable()
                 ->searchable(),
-            Column::make("Title", "title")
+            Column::make(__("Title"), "title")
                 ->sortable()
                 ->searchable(),
-            Column::make("Description", "description")
+            Column::make(__("Description"), "description")
                 ->sortable()
                 ->searchable(),
-            CountColumn::make('Enrolled Users')
+            CountColumn::make(__('Enrolled Users'))
                 ->setDataSource('enrolls')
                 ->sortable(),
-            CountColumn::make('Questions')
+            CountColumn::make(__('Questions'))
                 ->setDataSource('questions')
                 ->sortable(),
-            Column::make("Author", "user_id")
+            Column::make(__("Author"), "user_id")
                 ->format(
                     fn($value, $row, Column $column) => $row->author->name
                 ),
-            Column::make("Slug", "slug")
+            Column::make(__("Slug"), "slug")
                 ->sortable()
                 ->searchable(),
-            Column::make("Created at", "created_at")
+            Column::make(__("Created at"), "created_at")
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
+            Column::make(__("Updated at"), "updated_at")
                 ->sortable(),
-            Column::make("Deleted at", "deleted_at")
+            Column::make(__("Deleted at"), "deleted_at")
                 ->sortable(),
-            LivewireComponentColumn::make('Actions', 'id')
+            LivewireComponentColumn::make(__('Actions'), 'id')
                 ->component('courses.actions')
                 ->attributes(fn($value) => ['course' => $value]),
         ];

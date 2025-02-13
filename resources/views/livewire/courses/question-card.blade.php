@@ -23,15 +23,20 @@ $knowing = function ($state) {
   <div class="flex justify-between">
     <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white select-none">
       {{ $card->courseQuestion->question->question }}</h5>
-    <div class="rounded-lg bg-purple-900 dark:bg-purple-500 text-gray-200 p-2">{{ $card->courseQuestion->course->title }}</div>
+    <div class="rounded-lg bg-purple-900 dark:bg-purple-500 text-gray-200 p-2">{{ $card->courseQuestion->course->title }}
+    </div>
   </div>
   @if ($showAnswer)
-    <p class="mb-3 text-md text-purple-700 dark:text-purple-400 font-bold mt-2">{{ $card->courseQuestion->question->answer }}</p>
-    <x-button-group>
-      <x-primary-button type="button" wire:click="knowing(true)">{{ __('I know this') }}</x-primary-button>
-      <x-danger-button type="button" wire:click="knowing(false)">{{ __('I don\'t know this') }}</x-danger-button>
-    </x-button-group>
+    <p class="mb-3 text-md text-purple-700 dark:text-purple-400 font-bold mt-2 text-center">
+      {{ $card->courseQuestion->question->answer }}</p>
+    <div class="flex justify-center">
+      <x-button-group>
+        <x-primary-button type="button" wire:click="knowing(true)">{{ __('I know this') }}</x-primary-button>
+        <x-danger-button type="button" wire:click="knowing(false)">{{ __('I don\'t know this') }}</x-danger-button>
+      </x-button-group>
+    </div>
   @else
-    <x-primary-button class="mt-2" type="button" x-show="showAnswerButton" wire:click="toggleAnswer">{{ __('See the Answer') }}!</x-primary-button>
+    <x-primary-button class="mt-2" type="button" x-show="showAnswerButton"
+      wire:click="toggleAnswer">{{ __('See the Answer') }}!</x-primary-button>
   @endif
 </div>

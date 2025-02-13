@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }" x-bind:class="{ 'dark': darkMode }"
-  x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }"
+  x-bind:class="{ 'dark': darkMode }" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       localStorage.setItem('darkMode', 'true');
   }
   darkMode = JSON.parse(localStorage.getItem('darkMode'));
@@ -117,7 +117,8 @@
   {{-- Footer --}}
   <footer
     class="bg-purple-700 text-white p-4 text-center container mx-auto rounded-lg dark:bg-gray-800 dark:text-white">
-    <p>&copy; 2025 {{ config('app.name', 'Deeplearn') }}: Learn Anything. {{ __('All rights reserved.') }}</p>
+    <p>&copy; {{ __('2025') }} {{ __(config('app.name', 'Deeplearn')) }}: {{ __('Deep learn anything.') }}
+      {{ __('All rights reserved.') }}</p>
   </footer>
 </body>
 

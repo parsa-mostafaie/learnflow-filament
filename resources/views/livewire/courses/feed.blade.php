@@ -4,7 +4,7 @@ use App\Models\Course;
 use function Livewire\Volt\{mount, state, on};
 
 // Define the state for the component
-state(['limit' => 5, 'offset' => 0, 'search' => '', 'sortBy'=>'created_at', 'courses' => collect([]), 'more_found' => true, 'only_enrolled' => false]);
+state(['limit' => 5, 'offset' => 0, 'search' => '', 'sortBy' => 'created_at', 'courses' => collect([]), 'more_found' => true, 'only_enrolled' => false]);
 
 on(['course-single-reload' => 'searchChange']);
 
@@ -32,7 +32,7 @@ $loadMore = function () {
         ->take($this->limit)
         ->get()
         ->shuffle()
-        ->sortBy($this->sortBy, descending:true);
+        ->sortBy($this->sortBy, descending: true);
 
     // Update the count of new courses
     $this->more_found = $newCourses->isNotEmpty();
@@ -62,7 +62,7 @@ mount(fn() => $this->loadMore());
     <div class="flex gap-1 flex-wrap flex-col">
       {{-- Search input for filtering courses --}}
       <x-text-input wire:input.throttle="searchChange()" wire:model.throttle="search"
-        placeholder="Filter Title, description, slug of course..." />
+        placeholder="{{ __('Filter Title, description, slug of course...') }}" />
       <div class="bg-purple-500 dark:bg-purple-400 text-gray-100 p-3 rounded">
         <div class="flex items-center mb-4">
           <input id="only-enrolled" type="checkbox" value="" wire:model.throttle="only_enrolled"
@@ -72,11 +72,13 @@ mount(fn() => $this->loadMore());
         </div>
         <div class="flex items-center">
           <input id="enrolls_first" wire:model="sortBy" type="radio" value="enrolls_count" name="enrolls-first"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" wire:change="searchChange">
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            wire:change="searchChange">
           <label for="enrolls_first" class="mx-2 text-sm font-medium">{{ __('More Enrolls First') }}</label>
           <input id="news_first" type="radio" wire:model="sortBy" value="created_at" name="news_first"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" wire:change="searchChange">
-          <label for="news_first" class="mx-2 text-sm font-medium">{{__("New courses first")}}</label>
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            wire:change="searchChange">
+          <label for="news_first" class="mx-2 text-sm font-medium">{{ __('New courses first') }}</label>
         </div>
       </div>
     </div>
@@ -86,7 +88,7 @@ mount(fn() => $this->loadMore());
     @endforeach
     {{-- Display a message if no courses are found --}}
     @if ($this->courses->count() == 0)
-      <div class="text-purple-900 dark:text-purple-400 px-2 pt-2">
+      <div class="text-purple-900 dark:text-purple-400 px-2 pt-2 -mt-6">
         {{ __('No results found') }}!</div>
     @endif
   </div>

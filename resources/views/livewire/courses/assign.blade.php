@@ -99,7 +99,7 @@ mount(fn() => $this->loadQuestions());
           @foreach ($this->questions as $question)
             <li class="px-4 py-4 flex items-center">
               <input type="checkbox" id="ci_question_{{ $question['id'] }}" wire:key="ci_question_{{ $question['id'] }}" wire:model="selectedQuestions"
-                value="{{ $question['id'] }}" class="h-4 w-4 text-blue-600 border-gray-300 rounded mr-3"
+                value="{{ $question['id'] }}" class="h-4 w-4 text-blue-600 border-gray-300 rounded me-3"
                 @if (in_array($question['id'], $selectedQuestions)) checked @endif>
               <span class="text-gray-900 dark:text-gray-300" style="direction:auto;">{{ $question['question'] }}:
                 {{ $question['answer'] }}</span>

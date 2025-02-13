@@ -57,7 +57,7 @@ class QuestionsTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            BooleanFilter::make("My questions")
+            BooleanFilter::make(__("My questions"))
                 ->filter(function (Builder $builder, bool $enabled) {
                     if ($enabled) {
                         $builder->whereBelongsTo(Auth::user());
@@ -75,24 +75,24 @@ class QuestionsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make(__("Id"), "id")
                 ->sortable()
                 ->searchable(),
-            Column::make("Question Text", "question")
+            Column::make(__("Question Text"), "question")
                 ->sortable()
                 ->searchable(),
-            Column::make("Question Answer", "answer")
+            Column::make(__("Question Answer"), "answer")
                 ->sortable()
                 ->searchable(),
-            Column::make("Author", "user_id")
+            Column::make(__("Author"), "user_id")
                 ->format(
                     fn($value, $row, Column $column) => $row->author->name
                 ),
-            Column::make("Created at", "created_at")
+            Column::make(__("Created at"), "created_at")
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
+            Column::make(__("Updated at"), "updated_at")
                 ->sortable(),
-            LivewireComponentColumn::make('Actions', 'id')
+            LivewireComponentColumn::make(__('Actions'), 'id')
                 ->component('questions.actions')
                 ->attributes(fn($value) => ['question' => $value]),
         ];

@@ -8,12 +8,14 @@
 
 @layer components {
     body {
-        font-family: 'Open Sans', sans-serif;
+        font-family: Figtree, "Vazir", ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+            "Noto Color Emoji" !important;
         @apply accent-[#6b46c1];
     }
 
-    html[lang=fa] body {
-        font-family: 'Vazir', sans-serif;
+    [dir="rtl"] * {
+        --tw-space-x-reverse: 1 !important;
     }
 
     .header-section {
@@ -64,22 +66,21 @@
         display: flex;
     }
 
-    .btn-group>* {
-        margin-right: -1px;
+    .btn-group > * {
+        margin-inline-end: -1px;
     }
 
-    .btn-group>:not(:first-child),
-    .btn-group>:not(:first-child) * {
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
+    .btn-group > :not(:first-child),
+    .btn-group > :not(:first-child) * {
+        border-start-start-radius: 0 !important;
+        border-end-start-radius: 0 !important;
     }
 
-    .btn-group>:not(:last-child),
-    .btn-group>:not(:last-child) * {
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
+    .btn-group > :not(:last-child),
+    .btn-group > :not(:last-child) * {
+        border-start-end-radius: 0 !important;
+        border-end-end-radius: 0 !important;
     }
-
 
     /* Gradient Scroll Bar */
 
@@ -97,10 +98,13 @@
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-        background: linear-gradient(rgb(186, 85, 211), rgb(147, 112, 219), rgb(138, 43, 226));
+        background: linear-gradient(
+            rgb(186, 85, 211),
+            rgb(147, 112, 219),
+            rgb(138, 43, 226)
+        );
         border-radius: 100vh;
     }
-
 }
 
 #nprogress .bar {

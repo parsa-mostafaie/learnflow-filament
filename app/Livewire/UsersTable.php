@@ -46,7 +46,7 @@ class UsersTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            BooleanFilter::make("Admins Only")
+            BooleanFilter::make(__("Admins Only"))
                 ->filter(function (Builder $builder, bool $enabled) {
                     if ($enabled) {
                         $builder->where('role', '>=', '1');
@@ -64,27 +64,27 @@ class UsersTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make(__("Id"), "id")
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make(__("Name"), "name")
                 ->sortable()
                 ->searchable(),
-            Column::make("Email", "email")
+            Column::make(__("Email"), "email")
                 ->sortable()
                 ->searchable(),
-            Column::make("Role", "role")
+            Column::make(__("Role"), "role")
                 ->format(
                     fn($value, $row, Column $column) => $row->role_name
                 )
                 ->sortable(),
-            Column::make("Verified at", "email_verified_at")
+            Column::make(__("Verified at"), "email_verified_at")
                 ->sortable(),
-            Column::make("Created at", "created_at")
+            Column::make(__("Created at"), "created_at")
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
+            Column::make(__("Updated at"), "updated_at")
                 ->sortable(),
-            LivewireComponentColumn::make('Actions', 'id')
+            LivewireComponentColumn::make(__('Actions'), 'id')
                 ->component('users.actions')
                 ->attributes(fn($value) => ['user' => $value]),
         ];

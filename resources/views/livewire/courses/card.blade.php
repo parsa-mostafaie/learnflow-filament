@@ -35,7 +35,7 @@ mount(function () {
     </h1>
     {{ $course->description }}
     <p class="text-gray-400">{{ $course->author->name }}</p>
-    <p class="text-gray-500">{{ $course->enrolls()->count() }} Enrolled Users</p>
-    <p class="text-gray-500">{{ $course->questions()->count() }} Questions</p>
+    <p class="text-gray-500">{{ $course->enrolls()->count() }} {{ __('Enrolled Users') }}</p>
+    <p class="text-gray-500">{{ $course->questions()->count() }} {{ __('Questions') }}</p>
   </div>
 </div>
