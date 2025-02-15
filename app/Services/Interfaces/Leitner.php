@@ -65,4 +65,11 @@ interface Leitner
    * @return int
    */
   public function getMaximumOfFirstStage();
+
+  /**
+   * Calculate Percentage of course that have been learned
+   * 
+   * @return float|null
+   */
+  public function getLearnedPercentage($course, $user);
 }

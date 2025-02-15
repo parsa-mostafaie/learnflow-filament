@@ -64,7 +64,7 @@
             {{ __('Utilize the efficient Leitner system to ensure you retain and recall what you learn effectively.') }}
           </p>
           <div class="mt-auto text-center">
-            <a href="#" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
+            <a href="https://en.wikipedia.org/wiki/Leitner_system" target="_blank" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
           </div>
         </div>
         {{-- Feature 3 --}}
@@ -96,7 +96,7 @@
         </x-primary-button>
       </form>
       <div
-        class="contact-info shadow-lg p-4 bg-[#f7fafc] rounded-lg md:rotate-[10deg] md:translate-x-4 md:translate-y-4 dark:bg-gray-800">
+        class="contact-info shadow-lg p-4 bg-[#f7fafc] rounded-lg md:rotate-[10deg] md:translate-x-4 md:translate-y-2 dark:bg-gray-800">
         <h3 class="text-xl font-bold mb-3">{{ __('Contact with Developer') }}</h3>
         <p>{{ __('Or contact with the developer from:') }}</p>
         <div class="flex gap-1 flex-wrap">

@@ -26,6 +26,10 @@ class Leitner implements Interfaces\Leitner
    */
   public function knowsCard($user, $card, $state)
   {
+    if (is_null($card->review_date)) {
+      return;
+    }
+
     $new_stage = 1;
 
     if ($state) {
@@ -170,5 +174,27 @@ class Leitner implements Interfaces\Leitner
   public function getReviewWait($stage = '1')
   {
     return config('app.leitner.review_wait_per_stage.' . $stage, null);
+  }
+
+  /**
+   * Get learned percent of course
+   * 
+   * @param \App\Models\Course $course
+   * @param \App\Models\User $user
+   * @return float|null
+   */
+  public function getLearnedPercentage($course, $user)
+  {
+    if ($course->isEnrolledBy($user)) {
+      $q_sum = $course->questions()->count() * count($this->getReviewWaits());
+      $user_q_sum =
+        Card::whereHas('courseQuestion', fn($builder) => $builder->where('course_id', $course->id))
+          ->where('user_id', $user->id)
+          ->sum('stage');
+
+      return $user_q_sum / $q_sum * 100;
+    }
+
+    return null;
   }
 }

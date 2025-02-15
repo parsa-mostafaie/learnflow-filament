@@ -39,6 +39,9 @@ $loadCard = function () {
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-2">
       <div class="p-6 text-gray-900 dark:text-gray-100">
         <h1 class="text-lg text-center font-bold mb-1">{{ __('Learn') }}</h1>
+        <div class="my-2 container mx-auto">
+          <x-progress :percentage="Leitner::getLearnedPercentage($this->course, auth()->user())"></x-progress>
+        </div>
         <div class="flex justify-center">
           @if ($this->started)
             @if ($this->card)

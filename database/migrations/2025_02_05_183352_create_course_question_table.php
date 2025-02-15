@@ -13,6 +13,8 @@ class CreateCourseQuestionTable extends Migration
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            $table->unique(['course_id', 'question_id']);
         });
     }
 

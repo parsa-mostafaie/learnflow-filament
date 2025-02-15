@@ -13,12 +13,12 @@ return new class extends Migration {
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->text('question');
-            $table->text('answer');
+            $table->string('question');
+            $table->string('answer');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->index([DB::raw('question(255)'), DB::raw('answer(255)')], 'questions_unique_index');
+            $table->unique('question', 'answer');
         });
     }
 

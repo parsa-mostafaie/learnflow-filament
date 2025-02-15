@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->timestamp('review_date')->nullable();
             $table->integer('stage')->default(1);
             $table->timestamps();
+
+            $table->unique(['user_id', 'course_question_id']);
         });
     }
 
