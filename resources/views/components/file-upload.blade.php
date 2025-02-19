@@ -1,6 +1,34 @@
 @props(['id'])
 
-<div x-data="fileUploadComponent()" class="relative flex items-center justify-center w-full py-6">
+<div x-data="{
+    fileName: '',
+    isSelected: false,
+    isDragging: false,
+    handleInput(event) {
+        this.isSelected = true;
+        this.fileName = event.target.files[0].name;
+        @this.upload('{{ $attributes->wire('model')->value() }}', event.target.files[0]);
+    },
+    handleDrop(event) {
+        this.isSelected = true;
+        this.fileName = event.dataTransfer.files[0].name;
+        @this.upload('{{ $attributes->wire('model')->value() }}', event.dataTransfer.files[0]);
+    },
+    removeFile() {
+        this.isSelected = false;
+        this.fileName = '';
+        this.$refs.input.value = '';
+        @this.set('{{ $attributes->wire('model')->value() }}', null);
+    },
+    init() {
+        this.$watch('$wire.{{ $attributes->wire('model')->value() }}', value => {
+            if (!value) {
+                this.removeFile();
+            }
+        });
+    }
+}" class="relative flex items-center justify-center w-full py-6">
+    
     <label for="{{ $id }}" 
            x-show="!isSelected"
            @dragover.prevent="isDragging = true"
@@ -37,36 +65,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function fileUploadComponent() {
-        return {
-            fileName: '',
-            isSelected: false,
-            isDragging: false,
-            handleInput(event) {
-                this.isSelected = true;
-                this.fileName = event.target.files[0].name;
-                @this.upload('{{ $attributes->wire('model')->value() }}', event.target.files[0]);
-            },
-            handleDrop(event) {
-                this.isSelected = true;
-                this.fileName = event.dataTransfer.files[0].name;
-                @this.upload('{{ $attributes->wire('model')->value() }}', event.dataTransfer.files[0]);
-            },
-            removeFile() {
-                this.isSelected = false;
-                this.fileName = '';
-                this.$refs.input.value = '';
-                @this.set('{{ $attributes->wire('model')->value() }}', null);
-            },
-            init() {
-                this.$watch('$wire.{{ $attributes->wire('model')->value() }}', value => {
-                    if (!value) {
-                        this.removeFile();
-                    }
-                });
-            }
-        }
-    }
-</script>
