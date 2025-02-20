@@ -6,8 +6,10 @@ use App\Models\Course;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Masmerise\Toaster\Toaster;
 use Milwad\LaravelValidate\Rules\ValidSlug;
 
 /**
@@ -52,11 +54,16 @@ class CourseForm extends Form
      */
     public function save()
     {
-        // Validate the form data
-        $data = $this->validate();
-
         // Generate slug if not provided
-        $data['slug'] = $data['slug'] ?: Str::slug($data['title']);
+        $this->slug = $this->slug ?: Str::slug($this->title);
+
+        try {
+            // Validate the form data
+            $data = $this->validate();
+        } catch (ValidationException $e) {
+            Toaster::error(__('Having Some validation errors'));
+            throw $e;
+        }
 
         // Store the thumbnail image if provided
         if ($data['thumbnail']) {

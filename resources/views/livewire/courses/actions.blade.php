@@ -11,50 +11,56 @@ state(['course', 'in_show']);
 on([
     'course-single-reload' => function ($course) {
         if ($course == $this->course_model->id) {
-            $this->course_model->fresh();
+            if ($this->in_show == true) {
+                $this->course_model->fresh();
+            }
         }
     },
 ]);
 
 // Define a computed property to get the course model
-$course_model = computed(fn() => $this->course instanceof App\Models\Course ? $this->course : Course::withTrashed()->findOrFail($this->course));
+$course_model = computed(fn() => $this->course instanceof App\Models\Course ? $this->course : Course::withTrashed()->findOrNew($this->course));
 ?>
 
 {{-- Container for action buttons --}}
 <div>
-  <x-button-group>
-    {{-- Action buttons for trashed courses --}}
-    @if ($this->course_model->trashed())
-      @can('forceDelete', $this->course_model)
-        <livewire:courses.action.forcedelete-button :course="$this->course_model" />
-      @endcan
-      @can('restore', $this->course_model)
-        <livewire:courses.action.restore-button :course="$this->course_model" />
-      @endcan
-    @else
-      @can('delete', $this->course_model)
-        <livewire:courses.action.delete-button :course="$this->course_model" />
-      @endcan
-    @endif
+  @if ($this->course_model->exists())
+    <x-button-group>
+      {{-- Action buttons for trashed courses --}}
+      @if ($this->course_model->trashed())
+        @if (!$this->in_show)
+          @can('forceDelete', $this->course_model)
+            <livewire:courses.action.forcedelete-button :course="$this->course_model" />
+          @endcan
+        @endif
+        @can('restore', $this->course_model)
+          <livewire:courses.action.restore-button :course="$this->course_model" />
+        @endcan
+      @else
+        @can('delete', $this->course_model)
+          <livewire:courses.action.delete-button :course="$this->course_model" />
+        @endcan
+      @endif
 
-    {{-- Action buttons for non-trashed courses when not in show mode --}}
-    @if (!$in_show)
-      @can('update', $this->course_model)
-        <livewire:courses.action.edit-button :course="$this->course_model" />
-      @endcan
-      @can('assign', $this->course_model)
-        <livewire:courses.action.assign-button :course="$this->course_model" />
-      @endcan
-    @endif
+      {{-- Action buttons for non-trashed courses when not in show mode --}}
+      @if (!$in_show)
+        @can('update', $this->course_model)
+          <livewire:courses.action.edit-button :course="$this->course_model" />
+        @endcan
+        @can('assign', $this->course_model)
+          <livewire:courses.action.assign-button :course="$this->course_model" />
+        @endcan
+      @endif
 
-    {{-- Enroll/Unenroll button --}}
-    @can('enroll', $this->course_model)
-      <livewire:courses.action.enroll-button :course="$this->course_model" />
-    @endcan
+      {{-- Enroll/Unenroll button --}}
+      @can('enroll', $this->course_model)
+        <livewire:courses.action.enroll-button :course="$this->course_model" />
+      @endcan
 
-    {{-- Show button when not in show mode --}}
-    @if (!$in_show)
-      <livewire:courses.action.show-button :course="$this->course_model" />
-    @endif
-  </x-button-group>
+      {{-- Show button when not in show mode --}}
+      @if (!$in_show)
+        <livewire:courses.action.show-button :course="$this->course_model" />
+      @endif
+    </x-button-group>
+  @endif
 </div>

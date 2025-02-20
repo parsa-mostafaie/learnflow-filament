@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4c943bce35bdb62d0351862ee64dc0c",
+    "content-hash": "a53a1e23e61c36c2a8fec6971fadb13c",
     "packages": [
+        {
+            "name": "aphisitworachorch/kacher",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aphisitworachorch/kacher.git",
+                "reference": "037183e1fa3dfcb74e2bd3ea6e7693a95f6cafd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aphisitworachorch/kacher/zipball/037183e1fa3dfcb74e2bd3ea6e7693a95f6cafd2",
+                "reference": "037183e1fa3dfcb74e2bd3ea6e7693a95f6cafd2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.37|^11.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0|^9.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Aphisitworachorch\\Kacher\\KacherServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aphisitworachorch\\Kacher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arsanandha Aphisitworachorch",
+                    "email": "arsanandha.ap@gmail.com"
+                }
+            ],
+            "description": "Kacher is Laravel DB to DBML (dbdiagram.io/dbdocs.io)",
+            "keywords": [
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/aphisitworachorch/kacher/issues",
+                "source": "https://github.com/aphisitworachorch/kacher/tree/v1.2"
+            },
+            "time": "2024-06-15T03:54:14+00:00"
+        },
         {
             "name": "blade-ui-kit/blade-heroicons",
             "version": "2.5.0",
@@ -2789,6 +2843,77 @@
                 "source": "https://github.com/MarkBaker/PHPMatrix/tree/3.0.1"
             },
             "time": "2022-12-02T22:17:43+00:00"
+        },
+        {
+            "name": "masmerise/livewire-toaster",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/masmerise/livewire-toaster.git",
+                "reference": "9dc12004756eb1183c485a77fc5edf7bee3ec8e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/masmerise/livewire-toaster/zipball/9dc12004756eb1183c485a77fc5edf7bee3ec8e6",
+                "reference": "9dc12004756eb1183c485a77fc5edf7bee3ec8e6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.0",
+                "livewire/livewire": "^3.0",
+                "php": "~8.2|~8.3|~8.4"
+            },
+            "conflict": {
+                "stevebauman/unfinalize": "*"
+            },
+            "require-dev": {
+                "dive-be/php-crowbar": "^1.0",
+                "larastan/larastan": "^2.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^9.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Toaster": "Masmerise\\Toaster\\Toaster"
+                    },
+                    "providers": [
+                        "Masmerise\\Toaster\\ToasterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masmerise\\Toaster\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammed Sari",
+                    "email": "support@muhammedsari.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Beautiful toast notifications for Laravel / Livewire.",
+            "homepage": "https://github.com/masmerise/livewire-toaster",
+            "keywords": [
+                "alert",
+                "laravel",
+                "livewire",
+                "toast",
+                "toaster"
+            ],
+            "support": {
+                "issues": "https://github.com/masmerise/livewire-toaster/issues",
+                "source": "https://github.com/masmerise/livewire-toaster/tree/2.6.0"
+            },
+            "time": "2024-12-01T11:27:35+00:00"
         },
         {
             "name": "milwad/laravel-validate",

@@ -34,6 +34,8 @@ $register = function () {
 
     Auth::login($user);
 
+    Toaster::success(__('Logged in!'));
+
     $this->redirect(route('dashboard', absolute: false), navigate: true);
 };
 

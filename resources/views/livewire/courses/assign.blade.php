@@ -7,6 +7,7 @@ use App\Models\Question, App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Livewire\Forms\CourseForm;
+use Masmerise\Toaster\Toaster;
 
 usesFileUploads();
 usesPagination();
@@ -62,6 +63,7 @@ $submit = function () {
     $this->dispatch('close-modal', 'assign-course');
     $this->dispatch('courses-table-reload');
     $this->dispatch('course-assigned');
+    Toaster::info(__('Saved.'));
 };
 
 // Handle search input change and reload questions

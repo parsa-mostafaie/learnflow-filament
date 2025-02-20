@@ -10,11 +10,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "aphisitworachorch/kacher": "^1.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "livewire/volt": "^1.0",
         "maatwebsite/excel": "^3.1",
+        "masmerise/livewire-toaster": "^2.6",
         "milwad/laravel-validate": "^1.8",
         "rappasoft/laravel-livewire-tables": "^3.6"
     },

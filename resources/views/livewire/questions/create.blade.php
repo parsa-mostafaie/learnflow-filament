@@ -57,7 +57,7 @@ $submit = function () {
     <div class="flex items-center gap-4">
       <x-gradient-button>{{ __('Save') }}</x-gradient-button>
 
-      <x-action-message class="me-3" on="question-stored">
+      <x-action-message class="me-3" on="question-stored" message="{{ __('Saved.') }}">
         {{ __('Saved.') }}
       </x-action-message>
     </div>

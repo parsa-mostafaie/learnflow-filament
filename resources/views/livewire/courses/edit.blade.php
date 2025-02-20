@@ -7,6 +7,7 @@ use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Livewire\Forms\CourseForm;
+use Masmerise\Toaster\Toaster;
 
 // Enable file uploads
 usesFileUploads();
@@ -49,6 +50,8 @@ $submit = function () {
     $this->dispatch('close-modal', 'edit-course');
     $this->dispatch('courses-table-reload');
     $this->dispatch('course-updated');
+
+    Toaster::success(__('Saved.'));
 };
 ?>
 

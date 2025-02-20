@@ -1,9 +1,13 @@
 <?php
 
 use App\Livewire\Actions\Logout;
+use function Livewire\Volt\uses;
+use Masmerise\Toaster\Toaster;
 
 $logout = function (Logout $logout) {
     $logout();
+
+    Toaster::success(__('Logged Out!'));
 
     $this->redirect('/', navigate: true);
 };

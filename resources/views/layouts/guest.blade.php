@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }" x-init="if (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    localStorage.setItem('darkMode', 'true');
-}
-darkMode = JSON.parse(localStorage.getItem('darkMode'));
-$watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)));">
+<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }"
+  x-init="if (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      localStorage.setItem('darkMode', 'true');
+  }
+  darkMode = JSON.parse(localStorage.getItem('darkMode'));
+  $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)));">
 
 <head>
   <meta charset="utf-8">
@@ -36,6 +37,10 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
       {{ $slot }}
     </div>
   </div>
+
+  @persist('toaster')
+    <x-toaster-hub />
+  @endpersist
 </body>
 
 </html>

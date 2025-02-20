@@ -17,6 +17,8 @@ $login = function () {
 
     Session::regenerate();
 
+    Toaster::success(__('Logged in!'));
+
     $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
 };
 

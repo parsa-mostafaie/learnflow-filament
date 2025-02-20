@@ -64,7 +64,8 @@
             {{ __('Utilize the efficient Leitner system to ensure you retain and recall what you learn effectively.') }}
           </p>
           <div class="mt-auto text-center">
-            <a href="https://en.wikipedia.org/wiki/Leitner_system" target="_blank" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
+            <a href="https://en.wikipedia.org/wiki/Leitner_system" target="_blank"
+              class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
           </div>
         </div>
         {{-- Feature 3 --}}
@@ -120,6 +121,10 @@
     <p>&copy; {{ __('2025') }} {{ __(config('app.name', 'Deeplearn')) }}: {{ __('Deep learn anything.') }}
       {{ __('All rights reserved.') }}</p>
   </footer>
+
+  @persist('toaster')
+    <x-toaster-hub />
+  @endpersist
 </body>
 
 </html>

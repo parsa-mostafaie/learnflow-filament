@@ -6,6 +6,7 @@ use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Livewire\Forms\QuestionForm;
+use Masmerise\Toaster\Toaster;
 
 // Enable file uploads
 usesFileUploads();
@@ -45,6 +46,7 @@ $submit = function () {
     $this->dispatch('close-modal', 'edit-question');
     $this->dispatch('questions-table-reload');
     $this->dispatch('question-updated');
+    Toaster::success(__('Saved.'));
 };
 ?>
 

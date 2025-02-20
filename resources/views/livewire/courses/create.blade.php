@@ -74,7 +74,7 @@ $_reset = function () {
       <x-gradient-button>{{ __('Save') }}</x-gradient-button>
       <x-gradient-button type="button" wire:click="_reset">{{ __('Reset') }}</x-gradient-button>
 
-      <x-action-message class="me-3" on="course-stored">
+      <x-action-message class="me-3" on="course-stored" message="{{ __('Saved.') }}">
         {{ __('Saved.') }}
       </x-action-message>
     </div>

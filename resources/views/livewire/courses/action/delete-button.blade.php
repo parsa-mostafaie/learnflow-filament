@@ -5,6 +5,7 @@ use function Livewire\Volt\state;
 use function Livewire\Volt\computed;
 use App\Events\{CourseEnrollment, CourseUnenrollment};
 use App\Models\Course;
+use Masmerise\Toaster\Toaster;
 
 // Define the state for the component
 state(['course']);
@@ -18,6 +19,7 @@ $action = function () {
     $this->course->delete();
 
     // Dispatch events to reload the courses table and the single course view
+    Toaster::warning(__('Soft Deleted.'));
     $this->dispatch('courses-table-reload');
     $this->dispatch('course-single-reload', $this->course->id);
 };

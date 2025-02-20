@@ -4,6 +4,7 @@
 use function Livewire\Volt\state;
 use function Livewire\Volt\computed;
 use App\Events\{CourseEnrollment, CourseUnenrollment};
+use Masmerise\Toaster\Toaster;
 use App\Models\Course;
 
 // Define the state for the component
@@ -22,6 +23,7 @@ $action = function () {
     // Dispatch events to reload the questions table and the single question view
     $this->dispatch('questions-table-reload');
     $this->dispatch('question-single-reload', $this->question->id);
+    Toaster::warning(__('Deleted.'));
 };
 ?>
 
@@ -29,6 +31,6 @@ $action = function () {
 <div>
   @can('delete', $this->question)
     {{-- Delete button with authorization check --}}
-    <x-danger-button wire:click="action">{{ __('Delete') }}</x-danger-button>
+    <x-danger-button wire:click="action">{{ __('Force Delete') }}</x-danger-button>
   @endcan
 </div>

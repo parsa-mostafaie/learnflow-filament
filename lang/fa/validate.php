@@ -36,6 +36,7 @@ return [
     'snake-case' => 'مقدار :attribute صحیح نمی باشد.',
     'strong-password' => 'مقدار :attribute صحیح نمی باشد.',
     'ulid' => 'مقدار :attribute صحیح نمی باشد.',
+    'unique' => ':attribute قبلا انتخاب شده است.',
     'url' => 'مقدار :attribute صحیح نمی باشد.',
     'username' => 'مقدار :attribute صحیح نمی باشد.',
     'uuid' => 'مقدار :attribute صحیح نمی باشد.',
