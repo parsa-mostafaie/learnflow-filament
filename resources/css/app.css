@@ -15,6 +15,7 @@
     }
 
     [dir="rtl"] * {
+        direction: rtl;
         --tw-space-x-reverse: 1 !important;
     }
 
@@ -54,7 +55,6 @@
         @apply mx-auto;
     }
 
-    button,
     input,
     optgroup,
     select,

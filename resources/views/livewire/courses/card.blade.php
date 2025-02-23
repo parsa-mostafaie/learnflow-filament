@@ -27,9 +27,9 @@ mount(function () {
 ?>
 
 <div class="flex gap-6 sm:flex-row flex-col">
-  <img src="{{ $course->image_url }}" alt="Course Image" class="rounded-lg" />
+  <img src="{{ $course->image_url }}" class="max-h-[200px] rounded-lg" alt="Course Image" />
   <div class="grow">
-    <h1 class="font-bold text-lg flex justify-between mb-2">
+    <h1 class="font-bold text-lg flex justify-between sm:flex-row flex-col mb-2 gap-2 items-center">
       <a wire:navigate href="{{ route('course.single', $course->slug) }}">{{ $course->title }}</a>
       <livewire:courses.actions :course="$this->course" :in_show="true" />
     </h1>

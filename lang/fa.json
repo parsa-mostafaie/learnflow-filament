@@ -1,135 +1,137 @@
 {
     "ltr": "rtl",
-    "Admin": "مدیریت",
-    "Try Managing one of options below": "یکی از موارد زیر را مدیریت کنید",
-    "Questions": "سوال ها",
-    "Courses": "دوره ها",
-    "Users": "کاربران",
-    "Dashboard": "داشبورد",
-    "Profile": "پروفایل",
-    "Welcome to :name": "به :name خوش آمدید",
-    "The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm": "پلتفرم نهایی برای یادگیری کارآمد، عمیق و مؤثر هر چیزی با استفاده از الگوریتم جعبه لایتنر",
-    "Get Started": "بزن بریم!",
-    "About Us": "درباره ما",
-    "At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.": "در :name ما به ارائه منابع آموزشی درجه یک متناسب با نیازهای شما اختصاص داریم. پلتفرم ما به گونه ای طراحی شده است که کاربر پسند، تعاملی و جذاب باشد و به شما اطمینان دهد که بهترین تجربه یادگیری ممکن را دارید.",
-    "Our Features": "چرا ما؟",
-    "Daily Streaks": "فعالیت روزانه",
-    "Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!": "با انجام فعالیت های روزانه، شتاب یادگیری خود را حفظ کنید. ثابت بمانید و پیشرفت خود را افزایش دهید!",
-    "Learn More": "بیشتر بدانید",
-    "Leitner System": "الگوریتم لایتنر",
-    "Utilize the efficient Leitner system to ensure you retain and recall what you learn effectively.": "از سیستم کارآمد لایتنر برای اطمینان از حفظ و یادآوری مطالبی که به طور مؤثر یاد می‌گیرید، استفاده کنید.",
-    "Interactive Exercises": "تمارین فعال",
-    "Engage with interactive exercises that adapt to your learning pace and style.": "در تمرینات تعاملی که با سرعت و سبک یادگیری شما سازگار است، شرکت کنید.",
-    "Contact Us": "ارتباط با ما",
-    "Your Name": "نام شما",
-    "Your Email": "ایمیل شما",
-    "Your Message": "پیام شما",
-    "Send Message": "ارسال پیام",
-    "Contact with Developer": "ارتباط با توسعه دهنده",
-    "Or contact with the developer from:": "یا از طریق:",
-    "LinkedIn": "لینکدین",
-    "GitHub": "گیت هاب",
-    "Phone": "تلفن",
-    "All rights reserved.": "تمام حقوق محفوظ است.",
-    "Deep learn anything.": "هر چیزی را عمیق بیاموزید.",
-    "Deeplearn": "دیپ لرن",
-    "Saved.": "ذخیره شد",
-    "Click to upload": "برای آپلود کلیک کنید",
-    "or drag and drop": "یا بکشید و رها کنید",
-    "SVG, PNG, JPG or other image types": "میتوانید فقط عکس آپلود کنید",
-    "Selected File:": "فایل انتخاب شده:",
-    "Remove File": "حذف سند",
-    "Assign a question to course": "نسبت دادن یک سوال به یک دوره",
-    "Search questions...": "جست و جو در سوالات...",
-    "Loading...": "درحال بارگذاری...",
-    "Load More": "بیشتر بیار",
-    "Assign Questions": "نسبت دادن سوالات",
-    "Add a course": "افزودن دوره",
-    "Create a new course": "ساخت دوره جدید",
-    "Title": "عنوان",
-    "Description": "توضیحات",
-    "Slug": "نام مختصر (انگلیسی)",
-    "Id": "شناسه",
-    "Save": "ذخیره",
-    "Reset": "بازنشانی",
-    "Edit a course": "ویرایش یک دوره",
-    "Cancel": "لغو",
-    "Only Enrolled Courses": "فقط اونهایی که ثبت نام کردم",
-    "More Enrolls First": "اول اونهایی که بیشتر ثبت نام کردن",
-    "New courses first": "اول جدیدتر ها",
-    "Filter Title, description, slug of course...": "جست و جو در عنوان، توضیحات و ...",
-    "No results found": "گشتم نبود، نگرد نیست",
-    "Loading more courses": "دارم دنبال نتایج بیشتری میگردم",
-    "Learn": "ز گهواره تا گور دانش بجوی",
-    "You've Completed your today's learning!": "آفرین! هر چی امروز بود رو یاد گرفتی!",
-    "Start Learning!": "بزن بریم بجوییم!",
-    "I know this": "ساده بود، میدونستم",
-    "I don't know this": "نمی دونستم",
-    "See the Answer": "جواب رو بیار ببینم",
-    "Assign": "نسبت دادن سوال",
-    "Delete": "حذف نرم (موقت)",
-    "Edit": "ویرایش",
-    "Restore": "باز گرداندن",
-    "Enroll": "ثبت نام",
-    "Unenroll": "لغو ثبت نام",
-    "Force Delete": "حذف همیشگی",
-    "View": "صفحه اختصاصی",
-    "Author": "صاحب",
-    "Actions": "دستورات",
-    "Created at": "اضافه شده در",
-    "Updated at": "آخرین تغییر در",
-    "Deleted at": "حذف موقت در",
-    "Enrolled Users": "کاربر ثبت نام شده",
-    "Question Text": "صورت سوال",
-    "Question Answer": "پاسخ سوال",
-    "Login": "ورود",
-    "Register": "ثبت نام",
-    "Log Out": "خروج",
-    "This is a secure area of the application. Please confirm your password before continuing.": "این یک منطقه امن برنامه است. لطفاً قبل از ادامه رمز عبور خود را تأیید کنید.",
-    "Password": "رمز عبور",
-    "Confirm": "تایید",
-    "Name": "نام",
-    "Email": "ایمیل",
-    "Remember me": "من رو یادت بمونه",
-    "Forgot your password?": "رمزم رو یادم رفته",
-    "Don't have any account?": "من اینجا عضو نیستم",
-    "Log in": "ورود",
-    "Confirm Password": "تکرار رمز عبور",
-    "Reset Password": "بازنشانی رمز عبور",
-    "Already registered?": "قبلا ثبت نام کردم",
-    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "رمز عبور خود را فراموش کرده اید؟ مشکلی نیست. فقط آدرس ایمیل خود را به ما اطلاع دهید و ما یک پیوند بازنشانی رمز عبور را برای شما ایمیل می کنیم که به شما امکان می دهد رمز جدیدی را انتخاب کنید.",
-    "Email Password Reset Link": "ارسال پیوند بازنشانی رمز عبور",
-    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "با تشکر برای ثبت نام! قبل از شروع، آیا می توانید آدرس ایمیل خود را با کلیک کردن روی پیوندی که به تازگی برای شما ایمیل کرده ایم تأیید کنید؟ اگر ایمیلی را دریافت نکردید، ما با کمال میل ایمیل دیگری را برای شما ارسال خواهیم کرد.",
-    "We have emailed your password reset link.": "برایت پیوند بازنشانی رمز عبور رو ایمیل کردیم",
-    "A new verification link has been sent to the email address you provided during registration.": "یک پیوند تأیید جدید به آدرس ایمیلی که هنگام ثبت نام ارائه کرده اید ارسال شده است.",
-    "Resend Verification Email": "ارسال لینک تایید جدید",
-    "Promote": "ارتقا",
-    "Demote": "تنزل",
-    "Edit a question": "ویرایش یک سوال",
-    "Answer": "جواب",
-    "Add a question": "افزودن سوال جدید",
-    "Create a new question": "ساخت یک سوال جدید",
-    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. قبل از حذف حساب خود، لطفاً هر گونه داده یا اطلاعاتی را که می خواهید حفظ کنید دانلود کنید.",
-    "Delete Account": "حذف اکانت",
-    "Are you sure you want to delete your account?": "آیا مطمئن هستید که می خواهید حساب خود را حذف کنید؟",
-    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. لطفاً رمز عبور خود را وارد کنید تا تأیید کنید که می خواهید حساب خود را برای همیشه حذف کنید.",
-    "New Password": "رمز عبور جدید",
-    "Current Password": "رمز عبور فعلی",
-    "Ensure your account is using a long, random password to stay secure.": "اطمینان حاصل کنید که حساب شما از یک رمز عبور طولانی و تصادفی برای حفظ امنیت استفاده می کند.",
-    "Update Password": "تغییر رمز عبور",
-    "Profile Information": "اطلاعات نمایه",
-    "Update your account's profile information and email address.": "اطلاعات نمایه و آدرس ایمیل حساب خود را به روز کنید.",
-    "Your email address is unverified.": "آدرس ایمیل شما تایید نشده است.",
-    "Click here to re-send the verification email.": "برای ارسال مجدد ایمیل تایید اینجا را کلیک کنید.",
-    "A new verification link has been sent to your email address.": "یک پیوند تأیید جدید به آدرس ایمیل شما ارسال شده است.",
-    "My courses": "دوره های من",
-    "My questions": "سوالات من",
-    "Admins Only": "فقط مدیران",
-    "Deleted.": "حذفش کردم!",
-    "Soft Deleted.": "حذفش کردم! اما میتونی برش گردونی",
+    "Admin": "مدیریت 👨‍💼",
+    "Try Managing one of options below": "یکی از موارد زیر را مدیریت کنید ⬇️",
+    "Questions": "سوال ها ❓",
+    "Courses": "دوره ها 📚",
+    "Users": "کاربران 👥",
+    "Dashboard": "داشبورد 📊",
+    "Profile": "پروفایل 👤",
+    "Welcome to :name": "به :name خوش آمدید 🎉",
+    "The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm": "پلتفرم نهایی برای یادگیری کارآمد، عمیق و مؤثر هر چیزی با استفاده از الگوریتم جعبه لایتنر 🧠",
+    "Get Started": "بزن بریم! 🚀",
+    "About Us": "درباره ما 🧐",
+    "At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.": "در :name ما به ارائه منابع آموزشی درجه یک متناسب با نیازهای شما اختصاص داریم. پلتفرم ما به گونه ای طراحی شده است که کاربر پسند، تعاملی و جذاب باشد و به شما اطمینان دهد که بهترین تجربه یادگیری ممکن را دارید. ⭐️",
+    "Our Features": "چرا ما؟ 🌟",
+    "Daily Streaks": "فعالیت روزانه 🔄",
+    "Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!": "با انجام فعالیت های روزانه، شتاب یادگیری خود را حفظ کنید. ثابت بمانید و پیشرفت خود را افزایش دهید! 🚀",
+    "Learn More": "بیشتر بدانید 📖",
+    "Leitner System": "الگوریتم لایتنر 🗂",
+    "Utilize the efficient Leitner system to ensure you retain and recall what you learn effectively.": "از سیستم کارآمد لایتنر برای اطمینان از حفظ و یادآوری مطالبی که به طور مؤثر یاد می‌گیرید، استفاده کنید. 🧠",
+    "Interactive Exercises": "تمارین فعال ⚡️",
+    "Engage with interactive exercises that adapt to your learning pace and style.": "در تمرینات تعاملی که با سرعت و سبک یادگیری شما سازگار است، شرکت کنید. 🎯",
+    "Contact Us": "ارتباط با ما 📧",
+    "Your Name": "نام شما ✍️",
+    "Your Email": "ایمیل شما 📧",
+    "Your Message": "پیام شما 💬",
+    "Send Message": "ارسال پیام ✉️",
+    "Contact with Developer": "ارتباط با توسعه دهنده 💻",
+    "Or contact with the developer from:": "یا از طریق: 📞",
+    "LinkedIn": "لینکدین 🔗",
+    "GitHub": "گیت هاب 🐱",
+    "Phone": "تلفن 📞",
+    "All rights reserved.": "تمام حقوق محفوظ است. ©",
+    "Deep learn anything.": "هر چیزی را عمیق بیاموزید. 🌊",
+    "Deeplearn": "دیپ لرن 💡",
+    "Saved.": "ذخیره شد 💾",
+    "Click to upload": "برای آپلود کلیک کنید 📤",
+    "or drag and drop": "یا بکشید و رها کنید 🖱️",
+    "SVG, PNG, JPG or other image types": "میتوانید فقط عکس آپلود کنید 🖼️",
+    "Selected File:": "فایل انتخاب شده: 📂",
+    "Remove File": "حذف سند 🗑️",
+    "Assign a question to course": "نسبت دادن یک سوال به یک دوره ✅",
+    "Search questions...": "جست و جو در سوالات... 🔍",
+    "Loading...": "درحال بارگذاری... ⏳",
+    "Load More": "بیشتر بیار ➕",
+    "Assign Questions": "نسبت دادن سوالات ✅",
+    "Add a course": "افزودن دوره ➕",
+    "Create a new course": "ساخت دوره جدید 🆕",
+    "Title": "عنوان 🏷️",
+    "Description": "توضیحات 📝",
+    "Slug": "نام مختصر (انگلیسی) 🏷️",
+    "Id": "شناسه 🆔",
+    "Save": "ذخیره 💾",
+    "Reset": "بازنشانی 🔄",
+    "Edit a course": "ویرایش یک دوره ✏️",
+    "Cancel": "لغو ❌",
+    "Only Enrolled Courses": "فقط اونهایی که ثبت نام کردم 📝",
+    "More Enrolls First": "اول اونهایی که بیشتر ثبت نام کردن 🔝",
+    "New courses first": "اول جدیدتر ها 🆕",
+    "Filter Title, description, slug of course...": "جست و جو در عنوان، توضیحات و ... 🔍",
+    "No results found": "گشتم نبود، نگرد نیست 🔍🚫",
+    "Loading more courses": "دارم دنبال نتایج بیشتری میگردم 🔍📚",
+    "Learn": "ز گهواره تا گور دانش بجوی 🎓",
+    "You've Completed your today's learning!": "آفرین! هر چی امروز بود رو یاد گرفتی! 🎉",
+    "Start Learning!": "بزن بریم بجوییم! 🚀",
+    "I know this": "ساده بود، میدونستم ✔️",
+    "I don't know this": "نمی دونستم ❓",
+    "See the Answer": "جواب رو بیار ببینم 👀",
+    "Assign": "نسبت دادن سوال ✅",
+    "Delete": "حذف نرم (موقت) 🗑️",
+    "Edit": "ویرایش ✏️",
+    "Restore": "باز گرداندن 🔄",
+    "Enroll": "ثبت نام 📋",
+    "Unenroll": "لغو ثبت نام ❌",
+    "Force Delete": "حذف همیشگی 🗑️",
+    "View": "صفحه اختصاصی 👀",
+    "Author": "صاحب ✍️",
+    "Actions": "دستورات 🛠️",
+    "Created at": "اضافه شده در 📅",
+    "Updated at": "آخرین تغییر در 🕒",
+    "Deleted at": "حذف موقت در 🗑️⏳",
+    "Enrolled Users": "کاربر ثبت نام شده 👥",
+    "Question Text": "صورت سوال ❓",
+    "Question Answer": "پاسخ سوال 💡",
+    "Login": "ورود 🔓",
+    "Register": "ثبت نام 📝",
+    "Log Out": "خروج 🔒",
+    "This is a secure area of the application. Please confirm your password before continuing.": "این یک منطقه امن برنامه است. لطفاً قبل از ادامه رمز عبور خود را تأیید کنید. 🔒",
+    "Password": "رمز عبور 🔑",
+    "Confirm": "تایید ✔️",
+    "Name": "نام 🏷️",
+    "Email": "ایمیل 📧",
+    "Remember me": "من رو یادت بمونه 💭",
+    "Forgot your password?": "رمزم رو یادم رفته 🤔",
+    "Don't have any account?": "من اینجا عضو نیستم 🚫",
+    "Log in": "ورود 🔓",
+    "Confirm Password": "تکرار رمز عبور 🔑",
+    "Reset Password": "بازنشانی رمز عبور 🔄",
+    "Already registered?": "قبلا ثبت نام کردم 📋",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "رمز عبور خود را فراموش کرده اید؟ مشکلی نیست. فقط آدرس ایمیل خود را به ما اطلاع دهید و ما یک پیوند بازنشانی رمز عبور را برای شما ایمیل می کنیم که به شما امکان می دهد رمز جدیدی را انتخاب کنید. 🔄📧",
+    "Email Password Reset Link": "ارسال پیوند بازنشانی رمز عبور 📧",
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "با تشکر برای ثبت نام! قبل از شروع، آیا می توانید آدرس ایمیل خود را با کلیک کردن روی پیوندی که به تازگی برای شما ایمیل کرده ایم تأیید کنید؟ اگر ایمیلی را دریافت نکردید، ما با کمال میل ایمیل دیگری را برای شما ارسال خواهیم کرد. 📧✔️",
+    "We have emailed your password reset link.": "برایت پیوند بازنشانی رمز عبور رو ایمیل کردیم 📧🔄",
+    "A new verification link has been sent to the email address you provided during registration.": "یک پیوند تأیید جدید به آدرس ایمیلی که هنگام ثبت نام ارائه کرده اید ارسال شده است. 📧✔️",
+    "Resend Verification Email": "ارسال لینک تایید جدید 📧🔄",
+    "Promote": "ارتقا ⬆️",
+    "Demote": "تنزل ⬇️",
+    "Edit a question": "ویرایش یک سوال ✏️",
+    "Answer": "جواب 💡",
+    "Add a question": "افزودن سوال جدید ➕❓",
+    "Create a new question": "ساخت یک سوال جدید 🆕❓",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. قبل از حذف حساب خود، لطفاً هر گونه داده یا اطلاعاتی را که می خواهید حفظ کنید دانلود کنید. 🗑️📂",
+    "Delete Account": "حذف اکانت 🗑️",
+    "Are you sure you want to delete your account?": "آیا مطمئن هستید که می خواهید حساب خود را حذف کنید؟ ❓🗑️",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. لطفاً رمز عبور خود را وارد کنید تا تأیید کنید که می خواهید حساب خود را برای همیشه حذف کنید. 🔑🗑️",
+    "New Password": "رمز عبور جدید 🔑🆕",
+    "Current Password": "رمز عبور فعلی 🔑",
+    "Ensure your account is using a long, random password to stay secure.": "اطمینان حاصل کنید که حساب شما از یک رمز عبور طولانی و تصادفی برای حفظ امنیت استفاده می کند. 🔒🔑",
+    "Update Password": "تغییر رمز عبور 🔑🔄",
+    "Profile Information": "اطلاعات نمایه 👤",
+    "Update your account's profile information and email address.": "اطلاعات نمایه و آدرس ایمیل حساب خود را به روز کنید. ✏️📧",
+    "Your email address is unverified.": "آدرس ایمیل شما تایید نشده است. 🚫📧",
+    "Click here to re-send the verification email.": "برای ارسال مجدد ایمیل تایید اینجا را کلیک کنید. 🔄📧",
+    "A new verification link has been sent to your email address.": "یک پیوند تأیید جدید به آدرس ایمیل شما ارسال شده است. 📧✔️",
+    "My courses": "دوره های من 📚",
+    "My questions": "سوالات من ❓",
+    "Admins Only": "فقط مدیران 👨‍💼",
+    "Deleted.": "حذفش کردم! 🗑️",
+    "Soft Deleted.": "حذفش کردم! اما میتونی برش گردونی 🗑️⏳",
     "Done.": "انجام شد 😎",
-    "Restored.": "برش گردوندم",
-    "Having Some validation errors": "تعدادی خطا در ورودی وجود دارد آنها را بر طرف کنید",
-    "Logged Out!": "خارج شدی اما امیدوارم زودی برگردی!",
-    "Logged in!": "خوشحالم دوباره میبینمت 😉"
+    "Restored.": "برش گردوندم 🔄",
+    "Having Some validation errors": "تعدادی خطا در ورودی وجود دارد آنها را بر طرف کنید ❌",
+    "Logged Out!": "خارج شدی اما امیدوارم زودی برگردی! 👋",
+    "Logged in!": "خوشحالم دوباره میبینمت 😉",
+    "Verified at": "تایید شده در ✅",
+    "Role": "نقش 🎭"
 }

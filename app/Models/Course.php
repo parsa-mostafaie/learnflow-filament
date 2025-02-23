@@ -37,8 +37,8 @@ class Course extends Model
 
             if ($user && !isRole('developer')) {
                 $builder->where(function ($query) use ($user) {
-                    $query->whereNull('deleted_at')
-                        ->orWhere('user_id', $user->id);
+                    $query->whereNull('courses.deleted_at')
+                        ->orWhere('courses.user_id', $user->id);
                 });
             }
         });

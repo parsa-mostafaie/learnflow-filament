@@ -18,6 +18,15 @@ on([
     'knows-card' => function ($card, $state) {
         $card = Card::findOrFail($card);
         Leitner::knowsCard(auth()->user(), $card, $state);
+
+        if ($state) {
+            $rand = rand(0, 7);
+            Toaster::success(__("know.good.{$rand}"));
+        } else {
+            $rand = rand(0, 5);
+            Toaster::error(__("know.bad.{$rand}"));
+        }
+
         $this->loadCard();
     },
 ]);
@@ -30,6 +39,10 @@ $loadCard = function () {
     }
 
     $this->card = Leitner::getFirstToLearnCard($this->course, auth()->id());
+
+    if (!$this->card) {
+        Toaster::success(__("You've Completed your today's learning!"));
+    }
 };
 ?>
 
