@@ -20,6 +20,12 @@ trait HasRoles
         'developer' => 2
     ];
 
+    const roles_minified = [
+        'user' => 0,
+        'admin' => 1,
+        'developer' => 2
+    ];
+
     /**
      * Get the role name attribute.
      * 

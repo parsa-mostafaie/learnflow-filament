@@ -75,7 +75,7 @@ $logout = function (Logout $logout) {
 
               {{-- Authentication --}}
               <button wire:click="logout" class="w-full text-start p-0">
-                <x-dropdown-link>
+                <x-dropdown-link class="!text-red-600 text-bold">
                   {{ __('Log Out') }}
                 </x-dropdown-link>
               </button>
@@ -139,7 +139,7 @@ $logout = function (Logout $logout) {
 
             {{-- Authentication --}}
             <button wire:click="logout" class="w-full text-start">
-              <x-responsive-nav-link>
+              <x-responsive-nav-link class="!text-red-600 text-bold">
                 {{ __('Log Out') }}
               </x-responsive-nav-link>
             </button>

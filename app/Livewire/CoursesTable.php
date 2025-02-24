@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
  * Class CoursesTable
@@ -69,7 +71,16 @@ class CoursesTable extends DataTableComponent
                     }
                 })
                 ->setFilterDefaultValue(false)
-                ->setInputAttributes($this->getFilterAttributes())
+                ->setInputAttributes($this->getFilterAttributes()),
+            SelectFilter::make(__("Deletion state"))
+                ->options(['' => __('All'), 1 => __('Not Soft Deleteds'), 2 => __("Soft Deleteds")])
+                ->filter(function (Builder $builder, $value) {
+                    if ($value == 2) {
+                        $builder->whereNotNull('deleted_at');
+                    } else if ($value == 1) {
+                        $builder->whereNull('deleted_at');
+                    }
+                })
         ];
     }
 

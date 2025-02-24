@@ -3,7 +3,7 @@
   <div
     class="@if ($this->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($this->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ms-2">
     <div x-data="{ open: false, childElementOpen: false }" @keydown.window.escape="if (!childElementOpen) { open = false }"
-      x-on:click.away="if (!childElementOpen) { open = false }" class="inline-block relative w-full text-left md:w-auto"
+      x-on:click.away="if (!childElementOpen) { open = false }" class="inline-block relative w-full text-start md:w-auto"
       wire:key="{{ $tableName }}-column-select-button">
       <div>
         <span class="rounded-md shadow-sm">

@@ -13,7 +13,7 @@
             x-on:mousedown.away="if (!this.childElementOpen) { filterPopoverOpen = false }" @endif
     @class([
         'btn-group d-block d-md-inline' => $this->isBootstrap,
-        'relative block md:inline-block text-left' => $this->isTailwind,
+        'relative block md:inline-block text-start' => $this->isTailwind,
     ])>
     <div>
       <button type="button" @class([

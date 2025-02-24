@@ -14,6 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 use App\Models\User;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
  * Class UsersTable
@@ -57,14 +58,23 @@ class UsersTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            BooleanFilter::make(__("Admins Only"))
-                ->filter(function (Builder $builder, bool $enabled) {
-                    if ($enabled) {
-                        $builder->where('role', '>=', '1');
+            SelectFilter::make(__('Role'))->options([
+                '' => __('All'),
+                ...(array_flip(User::roles))
+            ])
+                ->filter(function ($builder, $value) {
+                    if ($value)
+                        $builder->where('users.role', '>=', $value);
+                }),
+            SelectFilter::make(__("Verify state"))
+                ->options(['' => __('All'), 1 => __('Not Verified'), 2 => __("Verified")])
+                ->filter(function (Builder $builder, $value) {
+                    if ($value == 2) {
+                        $builder->whereNotNull('email_verified_at');
+                    } else if ($value == 1) {
+                        $builder->whereNull('email_verified_at');
                     }
                 })
-                ->setFilterDefaultValue(false)
-                ->setInputAttributes($this->getFilterAttributes())
         ];
     }
 

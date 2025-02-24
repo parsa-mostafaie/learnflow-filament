@@ -6,7 +6,7 @@
   ])>
   <div @class([
       'dropdown d-block d-md-inline' => $this->isBootstrap,
-      'relative inline-block text-left z-10 w-full md:w-auto' =>
+      'relative inline-block text-start z-10 w-full md:w-auto' =>
           $this->isTailwind,
   ])>
     <button

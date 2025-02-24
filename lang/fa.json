@@ -125,6 +125,9 @@
     "A new verification link has been sent to your email address.": "یک پیوند تأیید جدید به آدرس ایمیل شما ارسال شده است. 📧✔️",
     "My courses": "دوره های من 📚",
     "My questions": "سوالات من ❓",
+    "Soft Deleteds": "حذف شده 🗑️⏳",
+    "Not Soft Deleteds": "حذف نشده ❌🗑️⏳",
+    "Deletion state": "وضعیت حذف ❓🗑️⏳",
     "Admins Only": "فقط مدیران 👨‍💼",
     "Deleted.": "حذفش کردم! 🗑️",
     "Soft Deleted.": "حذفش کردم! اما میتونی برش گردونی 🗑️⏳",
@@ -134,10 +137,14 @@
     "Logged Out!": "خارج شدی اما امیدوارم زودی برگردی! 👋",
     "Logged in!": "خوشحالم دوباره میبینمت 😉",
     "Verified at": "تایید شده در ✅",
+    "Verified": "تایید شده ✅",
+    "Not Verified": "تایید نشده ❌",
+    "Verify state": "وضع تایید ✅",
     "Role": "نقش 🎭",
     "You've Completed this course!": "آفرین! دوره رو کاملا گذروندی! 🎉👏🎊🥳",
     "More questions first": "اول اونهایی که سوالات بیشتری دارند 🧩",
     "Last Course Visited": "آخرین بازدید دوره 📚",
     "User": "کاربر 👤",
-    "Learn Percentage": "میزان یادگیری 📔"
+    "Learn Percentage": "میزان یادگیری 📔",
+    "All": "همه 🔄"
 }
