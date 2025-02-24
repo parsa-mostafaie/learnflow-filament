@@ -55,4 +55,27 @@ class Course extends Model
     {
         return $this->belongsToMany(Question::class, 'course_questions');
     }
+
+    /**
+     * Search in courses
+     */
+    public function scopeSearch(Builder $builder, array $search): void
+    {
+        $_ = fn($address, $default = '') => data_get($search, $address, $default);
+        $builder
+            ->where(function ($builder) use ($_) {
+                $search_text = "%{$_('search')}%";
+                $builder
+                    ->whereLike('title', $search_text)
+                    ->orWhereLike('description', $search_text)
+                    ->orWhereLike('slug', $search_text);
+                $builder->orWhereHas('user', fn($user) => $user->whereLike('users.name', $search_text));
+            })
+            ->when($_('filters.only_enrolled', false), function ($builder) {
+                $builder->whereHas('enrolls', function ($users) {
+                    $users->where('users.id', auth()->id());
+                });
+            })
+            ->orderBy($_('sortBy', 'created_at'), 'desc');
+    }
 }

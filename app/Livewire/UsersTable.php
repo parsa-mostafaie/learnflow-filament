@@ -25,7 +25,18 @@ class UsersTable extends DataTableComponent
     use Traits\SpinnerPlaceholder, Traits\TableCustomizations;
     protected $model = User::class;
 
+    // Change the page URL parameter for pagination
+    public ?string $pageName = 'users';
+
+    // A unique name to identify the table in session variables
+    public string $tableName = 'users';
+
     protected $listeners = ['users-table-reload' => '$refresh'];
+
+    public function builder(): Builder
+    {
+        return User::query()->withCount('courses', 'enrolledCourses');
+    }
 
     /**
      * Configure the data table.
@@ -78,6 +89,12 @@ class UsersTable extends DataTableComponent
                 ->format(
                     fn($value, $row, Column $column) => $row->role_name
                 )
+                ->sortable(),
+            CountColumn::make(__('Courses'))
+                ->setDataSource('courses')
+                ->sortable(),
+            CountColumn::make(__('Enrolled Courses'))
+                ->setDataSource('enrolledCourses')
                 ->sortable(),
             Column::make(__("Verified at"), "email_verified_at")
                 ->sortable(),

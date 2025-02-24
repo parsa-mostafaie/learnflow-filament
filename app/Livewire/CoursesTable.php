@@ -24,6 +24,12 @@ class CoursesTable extends DataTableComponent
     use Traits\SpinnerPlaceholder, Traits\TableCustomizations;
     protected $model = Course::class;
 
+    // Change the page URL parameter for pagination
+    public ?string $pageName = 'courses';
+
+    // A unique name to identify the table in session variables
+    public string $tableName = 'courses';
+
     protected $listeners = ['courses-table-reload' => '$refresh'];
 
     /**
@@ -34,7 +40,7 @@ class CoursesTable extends DataTableComponent
     public function builder(): Builder
     {
         // Retrieve courses, including soft-deleted ones, and eager load the author relationship
-        return Course::withTrashed()->with('author');
+        return Course::withTrashed()->with('author')->withCount('enrolls')->withCount('questions');
     }
 
     /**

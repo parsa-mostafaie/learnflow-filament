@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 

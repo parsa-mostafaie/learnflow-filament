@@ -85,6 +85,19 @@ class CoursePolicy
     }
 
     /**
+     * Determine whether the user can manage enrollments of a specific course.
+     * 
+     * @param User|null $user
+     * @param Course $course
+     * @return bool
+     */
+    public function seeEnrolls(?User $user, Course $course): bool
+    {
+        // Developers or the course author can update the course
+        return $this->update($user, $course);
+    }
+
+    /**
      * Determine whether the user can assign to a specific course.
      * 
      * @param User|null $user
