@@ -27,7 +27,7 @@
     section,
     nav,
     header {
-        @apply rounded-xl mb-2;
+        @apply rounded-xl mb-2 mx-auto container;
     }
 
     .link {

@@ -44,6 +44,8 @@ $loadCard = function () {
         Toaster::success(__("You've Completed your today's learning!"));
     }
 };
+
+$percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth()->user()));
 ?>
 
 {{-- Learning Section --}}
@@ -53,17 +55,21 @@ $loadCard = function () {
       <div class="p-6 text-gray-900 dark:text-gray-100">
         <h1 class="text-lg text-center font-bold mb-1">{{ __('Learn') }}</h1>
         <div class="my-2 container mx-auto">
-          <x-progress :percentage="Leitner::getLearnedPercentage($this->course, auth()->user())"></x-progress>
+          <x-progress :percentage="$this->percentage" />
         </div>
         <div class="flex justify-center">
-          @if ($this->started)
-            @if ($this->card)
-              <livewire:courses.question-card :card="$this->card" wire:key="{{ $this->card->id }}" />
+          @if ($this->percentage != 100)
+            @if ($this->started)
+              @if ($this->card)
+                <livewire:courses.question-card :card="$this->card" wire:key="{{ $this->card->id }}" />
+              @else
+                {{ __("You've Completed your today's learning!") }}
+              @endif
             @else
-              {{ __("You've Completed your today's learning!") }}
+              <x-gradient-button type="button" wire:click="loadCard">{{ __('Start Learning!') }}</x-gradient-button>
             @endif
           @else
-            <x-gradient-button type="button" wire:click="loadCard">{{ __('Start Learning!') }}</x-gradient-button>
+            {{ __("You've Completed this course!") }}
           @endif
         </div>
       </div>

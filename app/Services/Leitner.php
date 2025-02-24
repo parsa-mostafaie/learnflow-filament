@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Config;
 use App\Models\Card;
 use App\Models\CourseQuestion;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -186,11 +186,11 @@ class Leitner implements Interfaces\Leitner
   public function getLearnedPercentage($course, $user)
   {
     if ($course->isEnrolledBy($user)) {
-      $q_sum = $course->questions()->count() * count($this->getReviewWaits());
+      $q_sum = $course->questions()->count() * (count($this->getReviewWaits()) - 1);
       $user_q_sum =
         Card::whereHas('courseQuestion', fn($builder) => $builder->where('course_id', $course->id))
           ->where('user_id', $user->id)
-          ->sum('stage');
+          ->sum(DB::raw('stage - 1'));
 
       return $user_q_sum / $q_sum * 100;
     }

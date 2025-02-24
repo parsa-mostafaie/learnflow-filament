@@ -35,10 +35,10 @@ class Course extends Model
         static::addGlobalScope('hide_deleteds', function (Builder $builder) {
             $user = Auth::user();
 
-            if ($user && !isRole('developer')) {
+            if (!$user || !isRole('developer')) {
                 $builder->where(function ($query) use ($user) {
                     $query->whereNull('courses.deleted_at')
-                        ->orWhere('courses.user_id', $user->id);
+                        ->orWhere('courses.user_id', $user?->id);
                 });
             }
         });
