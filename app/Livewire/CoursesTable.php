@@ -21,7 +21,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
  */
 class CoursesTable extends DataTableComponent
 {
-    use Traits\SpinnerPlaceholder;
+    use Traits\SpinnerPlaceholder, Traits\TableCustomizations;
     protected $model = Course::class;
 
     protected $listeners = ['courses-table-reload' => '$refresh'];
@@ -63,6 +63,7 @@ class CoursesTable extends DataTableComponent
                     }
                 })
                 ->setFilterDefaultValue(false)
+                ->setInputAttributes($this->getFilterAttributes())
         ];
     }
 

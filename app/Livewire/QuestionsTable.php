@@ -22,7 +22,7 @@ use App\Models\Question;
  */
 class QuestionsTable extends DataTableComponent
 {
-    use Traits\SpinnerPlaceholder;
+    use Traits\SpinnerPlaceholder, Traits\TableCustomizations;
     protected $model = Question::class;
 
     protected $listeners = ['questions-table-reload' => '$refresh'];
@@ -64,6 +64,7 @@ class QuestionsTable extends DataTableComponent
                     }
                 })
                 ->setFilterDefaultValue(false)
+                ->setInputAttributes($this->getFilterAttributes())
         ];
     }
 

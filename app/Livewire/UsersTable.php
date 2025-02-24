@@ -22,7 +22,7 @@ use App\Models\User;
  */
 class UsersTable extends DataTableComponent
 {
-    use Traits\SpinnerPlaceholder;
+    use Traits\SpinnerPlaceholder, Traits\TableCustomizations;
     protected $model = User::class;
 
     protected $listeners = ['users-table-reload' => '$refresh'];
@@ -53,6 +53,7 @@ class UsersTable extends DataTableComponent
                     }
                 })
                 ->setFilterDefaultValue(false)
+                ->setInputAttributes($this->getFilterAttributes())
         ];
     }
 
