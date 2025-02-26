@@ -14,6 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 use App\Models\User;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
@@ -92,14 +93,24 @@ class UsersTable extends DataTableComponent
             Column::make(__("Name"), "name")
                 ->sortable()
                 ->searchable(),
-            Column::make(__("Email"), "email")
+            LinkColumn::make(__("Email"), "email")
+                ->title(fn($row) => $row->email)
+                ->location(fn($row) => "mailto:{$row->email}")
+                ->attributes(fn($row) => ['class' => 'text-purple-300'])
                 ->sortable()
                 ->searchable(),
-            Column::make(__("Role"), "role")
-                ->format(
-                    fn($value, $row, Column $column) => $row->role_name
-                )
-                ->sortable(),
+            ComponentColumn::make(__('Role'), 'role')
+                ->component('components.pill')
+                ->attributes(fn($value, $row, Column $column) => [
+                    'color' => match ($row->role) {
+                        0 => 'bg-gray-500',
+                        1 => 'bg-blue-500',
+                        2 => 'bg-purple-500',
+                        3 => 'bg-green-500',
+                        default => 'bg-green-500',
+                    },
+                    'content' => __($row->role_name)
+                ]),
             CountColumn::make(__('Courses'))
                 ->setDataSource('courses')
                 ->sortable(),
@@ -114,7 +125,7 @@ class UsersTable extends DataTableComponent
                 ->sortable(),
             LivewireComponentColumn::make(__('Actions'), 'id')
                 ->component('users.actions')
-                ->attributes(fn($value) => ['user' => $value]),
+                ->attributes(fn($value) => ['user' => $value])
         ];
     }
 }

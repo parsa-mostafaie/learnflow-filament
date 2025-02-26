@@ -10,7 +10,7 @@ export default {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./vendor/masmerise/livewire-toaster/resources/views/*.blade.php",
-        "./app/Livewire/Traits/*.php"
+        "./app/**/*.php"
     ],
 
     theme: {

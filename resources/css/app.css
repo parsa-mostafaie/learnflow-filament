@@ -14,8 +14,11 @@
         @apply accent-[#6b46c1];
     }
 
-    [dir="rtl"] * {
+    [dir="rtl"] {
         direction: rtl;
+    }
+
+    [dir="rtl"] * {
         --tw-space-x-reverse: 1 !important;
     }
 

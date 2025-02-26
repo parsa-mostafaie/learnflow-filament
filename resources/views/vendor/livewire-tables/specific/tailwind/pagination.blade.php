@@ -38,13 +38,13 @@
 
       <div class="hidden md:flex-1 md:flex md:items-center md:justify-between">
         <div>
-          <span class="relative z-0 inline-flex rounded-md shadow-sm">
+          <span class="relative z-0 inline-flex rounded-md shadow-sm" style="direction: ltr">
             <span>
               {{-- Previous Page Link --}}
               @if ($paginator->onFirstPage())
                 <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
                   <span
-                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-s-md leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600"
                     aria-hidden="true">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd"
@@ -57,7 +57,7 @@
                 <button type="button" wire:click="previousPage('{{ $paginator->getPageName() }}')"
                   dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after"
                   rel="prev"
-                  class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:ring-gray-600 dark:border-gray-600 dark:hover:bg-gray-600"
+                  class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-s-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:ring-gray-600 dark:border-gray-600 dark:hover:bg-gray-600"
                   aria-label="{{ __('pagination.previous') }}">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
@@ -109,7 +109,7 @@
                 <button type="button" wire:click="nextPage('{{ $paginator->getPageName() }}')"
                   dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after"
                   rel="next"
-                  class="relative inline-flex items-center px-2 py-2 -ms-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:ring-gray-600 dark:border-gray-600 dark:hover:bg-gray-600"
+                  class="relative inline-flex items-center px-2 py-2 -ms-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-e-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:ring-gray-600 dark:border-gray-600 dark:hover:bg-gray-600"
                   aria-label="{{ __('pagination.next') }}">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
@@ -120,7 +120,7 @@
               @else
                 <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
                   <span
-                    class="relative inline-flex items-center px-2 py-2 -ms-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-r-md leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                    class="relative inline-flex items-center px-2 py-2 -ms-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-e-md leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600"
                     aria-hidden="true">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd"
