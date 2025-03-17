@@ -176,5 +176,11 @@
     "guard": "گارد",
     "remember": "مرا بخاطر بسپار",
     "enrolled": "ثبت نام",
-    "unenrolled": "لغو ثبت نام"
+    "unenrolled": "لغو ثبت نام",
+    "Log Out Impersonation": "خروج از هویت جعلی",
+    "Impersonate": "جعل هویت",
+    "leaved-impersonation": "خروج از هویت جعلی",
+    "Leaved Impersonation": "خارج شدن از هویت جعلی",
+    "Taked Impersonation": "برگزیدن هویت جعلی",
+    "impersonated": "برگزیدن هویت جعلی"
 }

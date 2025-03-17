@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "aphisitworachorch/kacher": "^1.2",
+        "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",

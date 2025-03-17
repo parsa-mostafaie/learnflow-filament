@@ -12,6 +12,18 @@ $logout = function (Logout $logout) {
     $this->redirect('/', navigate: true);
 };
 
+$logout_impersonation = function () {
+    if (!app('impersonate')->isImpersonating()) {
+        return;
+    }
+
+    app('impersonate')->leave();
+
+    Toaster::success(__('Logged Out!'));
+
+    $this->redirect('/', navigate: true);
+};
+
 ?>
 
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
@@ -79,6 +91,13 @@ $logout = function (Logout $logout) {
                   {{ __('Log Out') }}
                 </x-dropdown-link>
               </button>
+              @impersonating($guard = null)
+                <button wire:click="logout_impersonation" class="w-full text-start p-0">
+                  <x-dropdown-link class="!text-red-600 text-bold">
+                    {{ __('Log Out Impersonation') }}
+                  </x-dropdown-link>
+                </button>
+              @endImpersonating
             </x-slot>
           </x-dropdown>
         </div>
@@ -143,6 +162,13 @@ $logout = function (Logout $logout) {
                 {{ __('Log Out') }}
               </x-responsive-nav-link>
             </button>
+            @impersonating($guard = null)
+              <button wire:click="logout_impersonation" class="w-full text-start">
+                <x-responsive-nav-link class="!text-red-600 text-bold">
+                  {{ __('Log Out Impersonation') }}
+                </x-responsive-nav-link>
+              </button>
+            @endImpersonating
           </div>
         </div>
       @endauth

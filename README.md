@@ -91,7 +91,13 @@ You can login as super-admin By using ``pmostafaie1390@gmail.com`` as both of em
 
 ## Todos
 
-- Complete Logging User activities and logs table
+- Add Site settings
+- Rating to courses (and/or reaction)
+- Saving courses (favorites)
+- Permissions
+- Ban users
+- Socialite Logging in
+- Site search improvements
 - Category for courses
 - Purchasable Courses
 - **And more...**

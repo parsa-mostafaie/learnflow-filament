@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Question;
 use Spatie\Activitylog\LogOptions;
+use Lab404\Impersonate\Models\Impersonate;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -20,7 +21,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Traits\HasRoles, CausesActivity, LogsActivity;
+    use HasFactory, Notifiable, Traits\HasRoles, CausesActivity, LogsActivity, Impersonate;
 
     /**
      * The attributes that are mass assignable.
@@ -119,5 +120,21 @@ class User extends Authenticatable
     public function activitySubjectStamp()
     {
         return view('components.activity-stamp', ['title' => $this->name, 'slug' => $this->email, 'title_link' => "mailto:{$this->email}"]);
+    }
+
+    /**
+     * @return bool
+     */
+    public function canImpersonate()
+    {
+        return $this->isRole('developer');
+    }
+
+    /**
+     * @return bool
+     */
+    public function canBeImpersonated()
+    {
+        return !$this->isRole('developer');
     }
 }

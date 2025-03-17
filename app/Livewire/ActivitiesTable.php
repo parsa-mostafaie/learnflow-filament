@@ -155,6 +155,8 @@ class ActivitiesTable extends DataTableComponent
                         'Log Out' => 'bg-red-700',
                         'unenrolled' => 'bg-red-400',
                         'enrolled' => 'bg-green-400',
+                        'Leaved Impersonation' => 'bg-blue-700',
+                        'Taked Impersonation' => 'bg-blue-500',
                         '' => 'bg-green-600',
                         default => null,
                     },
@@ -174,6 +176,8 @@ class ActivitiesTable extends DataTableComponent
                         'Log Out' => 'bg-red-700',
                         'unenrolled' => 'bg-red-400',
                         'enrolled' => 'bg-green-400',
+                        'impersonated' => 'bg-blue-500',
+                        'leaved-impersonation' => 'bg-blue-700',
                         default => null,
                     },
                     'content' => __($row->event)

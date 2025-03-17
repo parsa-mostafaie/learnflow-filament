@@ -18,5 +18,11 @@ $user_model = computed(fn() => $this->user instanceof App\Models\User ? $this->u
       {{-- Render the change role button if the user has permission --}}
       <livewire:users.action.change-role-button :user="$this->user_model" />
     @endcan
+
+    @canImpersonate($guard = null)
+    @canBeImpersonated($this->user_model, $guard = null)
+    <livewire:users.action.impersonate :user="$this->user_model" />
+    @endCanImpersonate
+    @endCanBeImpersonated
   </x-button-group>
 </div>
