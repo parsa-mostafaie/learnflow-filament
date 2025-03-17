@@ -20,8 +20,10 @@ $logout_impersonation = function () {
     app('impersonate')->leave();
 
     Toaster::success(__('Logged Out!'));
-
-    $this->redirect('/', navigate: true);
+    
+    if ($redirectTo = app('impersonate')->getLeaveRedirectTo() != 'back') {
+        $this->redirect(app('impersonate')->getLeaveRedirectTo(), navigate: true);
+    }
 };
 
 ?>
