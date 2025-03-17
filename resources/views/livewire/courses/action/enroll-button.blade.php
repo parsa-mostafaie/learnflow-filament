@@ -3,7 +3,7 @@
 <?php
 use function Livewire\Volt\state;
 use function Livewire\Volt\computed;
-use App\Events\{CourseEnrollment, CourseUnenrollment};
+use App\Events\{CourseEnrollment};
 use App\Models\Course;
 use Masmerise\Toaster\Toaster;
 
@@ -20,14 +20,14 @@ $action = function () {
         // Unenroll the user from the course
         $this->course->unenroll($user = Auth::user());
         // Optional: Dispatch an event for course unenrollment
-        // event(new CourseUnenrollment($user, $this->course));
+        event(new CourseEnrollment($user, $this->course, true));
     } else {
         // Enroll the user in the course
         $this->course->enroll($user = Auth::user());
         // Check and perform daily tasks for the user
         $this->course->checkDailyTasks($user);
         // Optional: Dispatch an event for course enrollment
-        // event(new CourseEnrollment($user, $this->course));
+        event(new CourseEnrollment($user, $this->course));
     }
 
     // Dispatch events to reload the courses table and the single course view

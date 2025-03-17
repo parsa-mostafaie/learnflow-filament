@@ -52,9 +52,10 @@ class ImportCoursesFromExcel extends Command
                 }
 
                 try {
-                    $question = Question::create([
+                    $question = Question::firstOrCreate([
                         'question' => $row[1],
                         'answer' => $row[2],
+                    ], [
                         'user_id' => 1
                     ]);
 

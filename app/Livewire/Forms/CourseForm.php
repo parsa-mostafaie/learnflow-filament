@@ -6,6 +6,7 @@ use App\Models\Course;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -42,7 +43,7 @@ class CourseForm extends Form
             'title' => 'required|string|max:256',
             'description' => 'nullable|string|max:2048',
             'slug' => ['nullable', 'string', new ValidSlug, $unique],
-            'thumbnail' => 'nullable|image|max:1024',
+            'thumbnail' => ['nullable', File::types(['jpg', 'png', 'jpeg'])->max(1024)],
         ];
     }
 
@@ -61,18 +62,20 @@ class CourseForm extends Form
             // Validate the form data
             $data = $this->validate();
         } catch (ValidationException $e) {
-            Toaster::error(__('Having Some validation errors'));
+            Toaster::error(\__('Having Some validation errors'));
             throw $e;
         }
 
         // Store the thumbnail image if provided
-        if ($data['thumbnail']) {
+        if (!empty($data['thumbnail'])) {
             $data['thumbnail'] = $data['thumbnail']->store('course-thumbnails');
 
             if ($this->course) {
                 // Remove the previous image if updating an existing course
                 $this->course->removePreviousImage();
             }
+        } else if(isset($data['thumbnail'])) {
+            unset($data['thumbnail']);
         }
 
         /**

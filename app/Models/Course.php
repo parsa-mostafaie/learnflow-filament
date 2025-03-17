@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Course
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Course extends Model
 {
-    use HasFactory, HasImage, Traits\Enrollable, Traits\HasAuthor, SoftDeletes, Traits\HasDailyTasks;
+    use HasFactory, LogsActivity, HasImage, Traits\Enrollable, Traits\HasAuthor, SoftDeletes, Traits\HasDailyTasks;
 
     protected $fillable = ['title', 'description', 'user_id', 'slug', 'thumbnail'];
 
@@ -77,5 +79,19 @@ class Course extends Model
                 });
             })
             ->orderBy($_('sortBy', 'created_at'), 'desc');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['title', 'description', 'slug', 'user_id', 'deleted_at', 'user.name'])
+            ->useLogName('system')
+            ->dontLogIfAttributesChangedOnly(['updated_at'])
+            ->logOnlyDirty();
+    }
+
+    public function activitySubjectStamp()
+    {
+        return view('components.activity-stamp', ['title' => $this->title, 'slug' => $this->slug, 'title_link' => route('course.single', $this->slug)]);
     }
 }

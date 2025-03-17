@@ -9,19 +9,23 @@ Deeplearn is a platform designed to help users learn anything efficiently and ef
 -   **Interactive Exercises:** The platform features a variety of interactive exercises that adapt to the user's learning pace and style, making learning more engaging and effective.
 -   **Daily Streaks and Progress Tracking:** Users can maintain their learning momentum with daily streaks and track their progress over time. This feature motivates users to stay consistent in their learning journey.
 -   **Admin Panel for Management:** Deeplearn provides an admin panel for managing questions, courses, and users, making it easy for administrators to keep the platform updated and organized.
+-   **And More...**
 
 ## Installation and Setup
 
 ### Prerequisites
 
--   PHP >= 8.x (8.2.12)
+-   PHP >= 8.x (Recommended 8.2.12)
 -   Composer
 -   Node.js and NPM
+-   Git
+-   PHP ext-zip in php.ini
 
 ### Steps to Install
 
 1. Clone the project repository:
-
+    
+    If you have Cloned The repository previously, you can skip this step. but run commands below in the directory that conatins composer.json and README.md
     ```bash
     git clone https://github.com/parsa-mostafaie/deeplearn.git
     cd deeplearn
@@ -64,6 +68,18 @@ Deeplearn is a platform designed to help users learn anything efficiently and ef
     php artisan migrate --seed
     ```
 
+8. Seed database from excel file:
+    ```bash
+    php artisan import:courses ./words.xlsx
+    ```
+
+9. Optimize For Better Performance:
+    
+    ```bash
+    php artisan optimize:clear
+    php artisan optimize
+    ```
+
 ### Running the Application
 
 Run the development server and Webpack build in one command:
@@ -71,6 +87,15 @@ Run the development server and Webpack build in one command:
    `
 
 You can now access the application in your browser at `http://localhost:8000`.
+You can login as super-admin By using ``pmostafaie1390@gmail.com`` as both of email & password
+
+## Todos
+
+- Complete Logging User activities and logs table
+- Category for courses
+- Purchasable Courses
+- **And more...**
+
 
 ## Contact
 

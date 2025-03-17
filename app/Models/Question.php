@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Question
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 class Question extends Model
 {
     /** @use HasFactory<\Database\Factories\QuestionFactory> */
-    use HasFactory, Traits\HasAuthor;
+    use HasFactory, Traits\HasAuthor, LogsActivity;
 
     protected $fillable = ["question", "answer", 'user_id'];
 
@@ -42,5 +44,18 @@ class Question extends Model
     public static function search($search)
     {
         return Question::where(DB::raw('CONCAT(question,  ": ", answer)'), 'like', '%' . $search . '%');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['question', 'answer', 'user_id', 'user.name'])
+            ->useLogName('system')
+            ->logOnlyDirty();
+    }
+
+    public function activitySubjectStamp()
+    {
+        return view('components.activity-stamp', ['title' => $this->question, 'slug' => $this->answer]);
     }
 }

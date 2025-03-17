@@ -192,7 +192,7 @@ class Leitner implements Interfaces\Leitner
           ->where('user_id', $user->id)
           ->sum(DB::raw('stage - 1'));
 
-      return $user_q_sum / $q_sum * 100;
+      return $q_sum == 0 ? 100 : $user_q_sum / $q_sum * 100;
     }
 
     return null;

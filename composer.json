@@ -18,7 +18,8 @@
         "maatwebsite/excel": "^3.1",
         "masmerise/livewire-toaster": "^2.6",
         "milwad/laravel-validate": "^1.8",
-        "rappasoft/laravel-livewire-tables": "^3.6"
+        "rappasoft/laravel-livewire-tables": "^3.6",
+        "spatie/laravel-activitylog": "^4.10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -29,7 +30,8 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
         "pestphp/pest": "^3.7",
-        "pestphp/pest-plugin-laravel": "^3.0"
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "phpunit/phpunit": "^11.0"
     },
     "autoload": {
         "psr-4": {

@@ -18,6 +18,13 @@
           <livewire:users-table lazy />
         </div>
       </div>
+      <div class="bg-white dark:bg-gray-800 shadow-sm mt-2 sm:rounded-lg">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
+          <h3 class="font-bold text-lg mb-3">{{ __('Logs') }}</h3>
+          {{-- Livewire component for the activities table --}}
+          <livewire:activities-table lazy />
+        </div>
+      </div>
     </div>
   </div>
 </x-app-layout>

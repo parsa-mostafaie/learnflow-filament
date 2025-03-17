@@ -57,25 +57,36 @@ mount(fn() => $this->loadMore());
             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
           <label for="only-enrolled" class="ms-2 text-sm font-medium">{{ __('Only Enrolled Courses') }}</label>
         </div>
-        <div class="flex items-center">
-          <input id="enrolls_first" wire:model="search.sortBy" type="radio" value="enrolls_count" name="enrolls-first"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            wire:change="searchChange">
-          <label for="enrolls_first" class="mx-2 text-sm font-medium">{{ __('More Enrolls First') }}</label>
-          <input id="questions_first" wire:model="search.sortBy" type="radio" value="questions_count" name="enrolls-first"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            wire:change="searchChange">
-          <label for="questions_first" class="mx-2 text-sm font-medium">{{ __('More questions first') }}</label>
-          <input id="news_first" type="radio" wire:model="search.sortBy" value="courses.created_at" name="news_first"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            wire:change="searchChange" checked>
-          <label for="news_first" class="mx-2 text-sm font-medium">{{ __('New courses first') }}</label>
+        <hr>
+        <p class="font-bold my-2">{{ __('Sort By...') }}</p>
+        <div class="flex items-center sm:flex-row flex-col">
+          <div>
+            <input id="enrolls_first" wire:model="search.sortBy" type="radio" value="enrolls_count"
+              name="enrolls-first"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              wire:change="searchChange">
+            <label for="enrolls_first" class="mx-2 text-sm font-medium">{{ __('More Enrolls First') }}</label>
+          </div>
+          <div><input id="questions_first" wire:model="search.sortBy" type="radio" value="questions_count"
+              name="enrolls-first"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              wire:change="searchChange">
+            <label for="questions_first" class="mx-2 text-sm font-medium">{{ __('More questions first') }}</label>
+          </div>
+          <div><input id="news_first" type="radio" wire:model="search.sortBy" value="courses.created_at"
+              name="news_first"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              wire:change="searchChange" checked>
+            <label for="news_first" class="mx-2 text-sm font-medium">{{ __('New courses first') }}</label>
+          </div>
         </div>
       </div>
     </div>
     {{-- Loop through the list of courses and display each one using the course card component --}}
     @foreach ($this->courses as $course)
-      <livewire:courses.card :$course :in_feed='true' wire:key="{{ $course->id }}" />
+      <div class="p-2 border border-1 rounded-lg">
+        <livewire:courses.card :$course :in_feed='true' wire:key="{{ $course->id }}" />
+      </div>
     @endforeach
     {{-- Display a message if no courses are found --}}
     @if ($this->courses->count() == 0)

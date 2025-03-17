@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Question;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class User
@@ -17,7 +20,7 @@ use App\Models\Question;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Traits\HasRoles;
+    use HasFactory, Notifiable, Traits\HasRoles, CausesActivity, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -102,5 +105,19 @@ class User extends Authenticatable
             ->withTrashed()
             ->withPivot('last_course_visit')
             ->withTimestamps(); // A user can enroll in many courses
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'email', 'email_verified_at'])
+            ->useLogName('system')
+            ->logOnlyDirty()
+            ->dontLogIfAttributesChangedOnly(['role', 'updated_at', 'remember_token', 'password']);
+    }
+
+    public function activitySubjectStamp()
+    {
+        return view('components.activity-stamp', ['title' => $this->name, 'slug' => $this->email, 'title_link' => "mailto:{$this->email}"]);
     }
 }

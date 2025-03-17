@@ -64,9 +64,12 @@ $_reset = function () {
       {{-- File upload component for thumbnail --}}
       <x-file-upload wire:model="form.thumbnail" id="create-course-dropzone-file">
         @if ($this->form->thumbnail)
-          <img class="mt-2 rounded-lg w-[50%] block" src="{{ $this->form->thumbnail->temporaryUrl() }}" />
+          <img class="mt-2 rounded-lg block" src="{{ $this->form->thumbnail->temporaryUrl() }}" />
         @endif
       </x-file-upload>
+
+      <p class="text-purple-500 my-2" wire:loading wire:target="form.thumbnail">{{ __('Loading...') }}</p>
+
       <x-input-error :messages="$errors->get('form.thumbnail')" class="mt-2" />
     </div>
 

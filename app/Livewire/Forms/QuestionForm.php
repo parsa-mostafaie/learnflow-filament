@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Models\Question;
+use Illuminate\Validation\ValidationException;
+use Masmerise\Toaster\Toaster;
 
 /**
  * Class QuestionForm
@@ -50,8 +52,13 @@ class QuestionForm extends Form
      */
     public function save()
     {
-        // Validate the form data
-        $data = $this->validate();
+        try {
+            // Validate the form data
+            $data = $this->validate();
+        } catch (ValidationException $e) {
+            Toaster::error(__('Having Some validation errors'));
+            throw $e;
+        }
 
         /**
          * @var \App\Models\User
