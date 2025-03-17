@@ -108,6 +108,12 @@
         );
         border-radius: 100vh;
     }
+
+    *::selection {
+        background-color: rgb(186, 85, 211);
+        color: white;
+    }
+
 }
 
 #nprogress .bar {
