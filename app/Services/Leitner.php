@@ -90,6 +90,7 @@ class Leitner implements Interfaces\Leitner
         $query->where('user_id', $user->id);
       })
       ->limit($_count)
+      ->orderBy('id')
       ->get();
 
     // Assign the questions to the user
