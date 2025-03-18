@@ -4,7 +4,7 @@ use App\Models\Course;
 use function Livewire\Volt\{mount, state, on};
 
 // Define the state for the component
-state(['limit' => 5, 'offset' => 0, 'courses' => collect([]), 'more_found' => true, 'search' => ['search' => '', 'sortBy' => 'created_at', 'filters' => []]]);
+state(['limit' => 5, 'offset' => 0, 'courses' => collect([]), 'more_found' => true, 'search' => ['search' => '', 'sortBy' => 'courses.created_at', 'filters' => []]]);
 
 on(['course-single-reload' => 'searchChange']);
 
@@ -17,9 +17,7 @@ $loadMore = function () {
         ->search($this->search)
         ->skip($this->offset)
         ->take($this->limit)
-        ->get()
-        ->shuffle()
-        ->sortBy($this->search['sortBy'] ?: 'created_at', descending: true);
+        ->get();
 
     // Update the count of new courses
     $this->more_found = $newCourses->isNotEmpty();
@@ -84,7 +82,7 @@ mount(fn() => $this->loadMore());
     </div>
     {{-- Loop through the list of courses and display each one using the course card component --}}
     @foreach ($this->courses as $course)
-      <div class="p-2 border border-1 rounded-lg">
+      <div class="p-2 border border-1 rounded-lg" wire:key="container-course-{{ $course->id }}">
         <livewire:courses.card :$course :in_feed='true' wire:key="{{ $course->id }}" />
       </div>
     @endforeach

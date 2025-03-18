@@ -78,7 +78,7 @@ class Course extends Model
                     $users->where('users.id', auth()->id());
                 });
             })
-            ->orderBy($_('sortBy', 'created_at'), 'desc');
+            ->orderBy($_('sortBy', 'courses.created_at'), 'desc');
     }
 
     public function getActivitylogOptions(): LogOptions
