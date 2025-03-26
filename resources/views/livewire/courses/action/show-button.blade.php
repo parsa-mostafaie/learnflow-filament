@@ -10,7 +10,10 @@ state(['course']);
 
 {{-- Container for the show button --}}
 <div>
-  {{-- Secondary button with navigation --}}
+  @can('view', $this->course)
   <x-secondary-button wire:navigate
-    href="{{ route('course.single', $this->course->slug) }}">{{ __('View') }}</x-secondary-button>
+    href="{{ route('course.single', $this->course->slug) }}" title="{{ __('View') }}">
+    <i class="fas fa-eye"></i>
+  </x-secondary-button>
+  @endcan
 </div>

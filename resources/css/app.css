@@ -67,10 +67,12 @@
 
     .btn-group {
         display: flex;
+        align-items: stretch;
     }
 
     .btn-group > * {
         margin-inline-end: -1px;
+        min-height: 100%;
     }
 
     .btn-group > :not(:last-child),

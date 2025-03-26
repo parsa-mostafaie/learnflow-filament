@@ -21,10 +21,14 @@ $action_multiple = function () {
 <div>
   <x-button-group>
     @can('assign', $this->course)
-      <x-primary-button wire:click="action">{{ __('Assign') }}</x-primary-button>
+      <x-primary-button wire:click="action" title="{{ __('Assign') }}">
+        <i class="fas fa-check-circle"></i>
+      </x-primary-button>
     @endcan
     @can('assignMany', $this->course)
-      <x-primary-button wire:click="action_multiple">{{ __('Assign Multiple') }}</x-primary-button>
+      <x-primary-button wire:click="action_multiple" title="{{ __('Assign Multiple') }}">
+        <i class="fas fa-tasks"></i>
+      </x-primary-button>
     @endcan
   </x-button-group>
 </div>

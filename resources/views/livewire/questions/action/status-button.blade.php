@@ -35,13 +35,19 @@ $reject = fn() => $this->action('rejected');
   <x-button-group>
     @can('changeStatus', $this->question)
       @if ($this->question->status != 'pending')
-        <x-primary-button wire:click="pend">{{ __('Move to pending') }}</x-primary-button>
+        <x-primary-button wire:click="pend" title="{{ __('Move to pending') }}">
+          <i class="fas fa-clock"></i>
+        </x-primary-button>
       @endif
       @if ($this->question->status != 'approved')
-        <x-primary-button wire:click="approve">{{ __('Approve') }}</x-primary-button>
+        <x-secondary-button wire:click="approve" title="{{ __('Approve') }}">
+          <i class="fas fa-check-circle"></i>
+        </x-secondary-button>
       @endif
       @if ($this->question->status != 'rejected')
-        <x-danger-button wire:click="reject">{{ __('Reject') }}</x-danger-button>
+        <x-danger-button wire:click="reject" title="{{ __('Reject') }}">
+          <i class="fas fa-times-circle"></i>
+        </x-danger-button>
       @endif
     @endcan
   </x-button-group>

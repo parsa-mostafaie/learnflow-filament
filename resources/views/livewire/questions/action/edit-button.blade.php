@@ -17,4 +17,8 @@ $action = function () {
 ?>
 
 {{-- Primary button for editing the question --}}
-<x-primary-button wire:click="action">{{ __('Edit') }}</x-primary-button>
+<div>
+    <x-primary-button wire:click="action" title="{{ __('Edit') }}">
+        <i class="fas fa-edit"></i>
+    </x-primary-button>
+</div>

@@ -37,9 +37,13 @@ $demote = fn() => $this->action($this->user->role - 1);
 {{-- Container for the changeRole button --}}
 <div>
   @can('changeRole', [$this->user, $this->user->role + 1, true])
-    <x-primary-button wire:click="promote">{{ __('Promote') }}</x-primary-button>
+    <x-primary-button wire:click="promote" title="{{ __('Promote') }}" class="text-green-600">
+      <i class="fas fa-arrow-up"></i>
+    </x-primary-button>
   @endcan
   @can('changeRole', [$this->user, $this->user->role - 1, true])
-    <x-danger-button wire:click="demote">{{ __('Demote') }}</x-danger-button>
+    <x-danger-button wire:click="demote" title="{{ __('Demote') }}" class="text-red-600">
+      <i class="fas fa-arrow-down"></i>
+    </x-danger-button>
   @endcan
 </div>
