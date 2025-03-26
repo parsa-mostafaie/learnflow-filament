@@ -42,7 +42,7 @@ class CoursesTable extends DataTableComponent
     public function builder(): Builder
     {
         // Retrieve courses, including soft-deleted ones, and eager load the author relationship
-        return Course::withTrashed()->with('author')->withCount('enrolls')->withCount('questions');
+        return Course::withTrashed()->with('author')->withCount('enrolls', 'questions', 'questions_approved', 'questions_rejected', 'questions_pending')->withCount('questions');
     }
 
     /**
@@ -105,7 +105,16 @@ class CoursesTable extends DataTableComponent
                 ->setDataSource('enrolls')
                 ->sortable(),
             CountColumn::make(__('Questions'))
-                ->setDataSource('questions')
+                ->setDataSource('questions_all')
+                ->sortable(),
+            CountColumn::make(__('Approved Questions'))
+                ->setDataSource('questions_approved')
+                ->sortable(),
+            CountColumn::make(__('Rejected Questions'))
+                ->setDataSource('questions_rejected')
+                ->sortable(),
+            CountColumn::make(__('Pending Questions'))
+                ->setDataSource('questions_pending')
                 ->sortable(),
             Column::make(__("Author"), "user_id")
                 ->format(

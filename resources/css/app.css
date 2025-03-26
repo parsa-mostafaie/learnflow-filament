@@ -23,7 +23,7 @@
     }
 
     .header-section {
-        background-color: #6b46c1;
+        @apply bg-purple-500;
         /* Header section color */
     }
 
@@ -73,16 +73,16 @@
         margin-inline-end: -1px;
     }
 
-    .btn-group > :not(:first-child),
-    .btn-group > :not(:first-child) * {
-        border-start-start-radius: 0 !important;
-        border-end-start-radius: 0 !important;
-    }
-
     .btn-group > :not(:last-child),
-    .btn-group > :not(:last-child) * {
+    .btn-group > :not(:last-child, .btn-group) * {
         border-start-end-radius: 0 !important;
         border-end-end-radius: 0 !important;
+    }
+
+    .btn-group > :not(:first-child),
+    .btn-group > :not(:first-child, .btn-group) * {
+        border-start-start-radius: 0 !important;
+        border-end-start-radius: 0 !important;
     }
 
     /* Gradient Scroll Bar */
@@ -113,7 +113,6 @@
         background-color: rgb(186, 85, 211);
         color: white;
     }
-
 }
 
 #nprogress .bar {

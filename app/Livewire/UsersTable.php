@@ -61,7 +61,11 @@ class UsersTable extends DataTableComponent
         return [
             SelectFilter::make(__('Role'))->options([
                 '' => __('All'),
-                ...(array_flip(User::roles))
+                ...User::query()
+                    ->distinct()
+                    ->pluck('role') // Fetch unique role values
+                    ->mapWithKeys(fn($value) => [$value => __(User::getRoleName($value))]) // Transform to key-value pair
+                    ->toArray()
             ])
                 ->filter(function ($builder, $value) {
                     if ($value)
@@ -96,7 +100,7 @@ class UsersTable extends DataTableComponent
             LinkColumn::make(__("Email"), "email")
                 ->title(fn($row) => $row->email)
                 ->location(fn($row) => "mailto:{$row->email}")
-                ->attributes(fn($row) => ['class' => 'text-purple-300'])
+                ->attributes(fn($row) => ['class' => 'text-purple-500'])
                 ->sortable()
                 ->searchable(),
             ComponentColumn::make(__('Role'), 'role')

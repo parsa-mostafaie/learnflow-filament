@@ -3,33 +3,38 @@
 use App\Models\Course;
 use function Livewire\Volt\{mount, state, on};
 
-// Define the state for the component
-state(['limit' => 5, 'offset' => 0, 'courses' => collect([]), 'more_found' => true, 'search' => ['search' => '', 'sortBy' => 'courses.created_at', 'filters' => []]]);
+state([
+    'limit' => 10,
+    'offset' => 0,
+    'courses' => collect([]),
+    'more_found' => true,
+    'search' => [
+        'text' => null,
+        'filters' => [
+            'only_enrolled' => false,
+        ],
+        'sortBy' => 'courses.created_at',
+        'sortDirection' => 'desc',
+    ],
+]);
 
-on(['course-single-reload' => 'searchChange']);
+on(['course-reload' => 'searchChange']);
 
-// Define the loadMore function to fetch new courses
 $loadMore = function () {
-    // Fetch new courses based on the current offset and limit
     $newCourses = Course::withTrashed()
+        ->with(['user'])
         ->withCount('enrolls')
-        ->withCount('questions')
+        ->withCount('questions_approved')
         ->search($this->search)
         ->skip($this->offset)
         ->take($this->limit)
         ->get();
 
-    // Update the count of new courses
     $this->more_found = $newCourses->isNotEmpty();
-
-    // Merge new courses into the existing collection
     $this->courses = $this->courses->merge($newCourses);
-
-    // Increment the offset for the next load
     $this->offset += $this->limit;
 };
 
-// Define the searchChange function to handle search input changes
 $searchChange = function () {
     $this->more_found = true;
     $this->offset = 0;
@@ -37,64 +42,70 @@ $searchChange = function () {
     $this->loadMore();
 };
 
-// Load initial courses when the component mounts
 mount(fn() => $this->loadMore());
 ?>
 
-<div x-data="{ loading: false }"
-  @if ($this->more_found) @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { if (!loading) { loading = true; $wire.loadMore().then(() => { loading = false; }); } }" @endif>
-  <div class="flex flex-col gap-6">
-    <div class="flex gap-1 flex-wrap flex-col">
-      {{-- Search input for filtering courses --}}
-      <x-text-input wire:input.throttle="searchChange()" wire:model.throttle="search.search"
-        placeholder="{{ __('Filter Title, description, slug of course...') }}" />
-      <div class="bg-purple-500 dark:bg-purple-400 text-gray-100 p-3 rounded">
-        <div class="flex items-center mb-4">
-          <input id="only-enrolled" type="checkbox" value="" wire:model.throttle="search.filters.only_enrolled"
-            wire:change.throttle="searchChange"
-            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="only-enrolled" class="ms-2 text-sm font-medium">{{ __('Only Enrolled Courses') }}</label>
-        </div>
-        <hr>
-        <p class="font-bold my-2">{{ __('Sort By...') }}</p>
-        <div class="flex items-center sm:flex-row flex-col">
-          <div>
-            <input id="enrolls_first" wire:model="search.sortBy" type="radio" value="enrolls_count"
-              name="enrolls-first"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              wire:change="searchChange">
-            <label for="enrolls_first" class="mx-2 text-sm font-medium">{{ __('More Enrolls First') }}</label>
-          </div>
-          <div><input id="questions_first" wire:model="search.sortBy" type="radio" value="questions_count"
-              name="enrolls-first"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              wire:change="searchChange">
-            <label for="questions_first" class="mx-2 text-sm font-medium">{{ __('More questions first') }}</label>
-          </div>
-          <div><input id="news_first" type="radio" wire:model="search.sortBy" value="courses.created_at"
-              name="news_first"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              wire:change="searchChange" checked>
-            <label for="news_first" class="mx-2 text-sm font-medium">{{ __('New courses first') }}</label>
-          </div>
-        </div>
+<div id="search-courses-section" x-data="{ loading: false }"
+  @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !loading && $wire.more_found) { loading = true; $wire.loadMore().then(() => { loading = false; }); }">
+  <!-- Page Header: Title and Search Input -->
+  <div class="bg-white dark:bg-gray-800 p-6 space-y-6 shadow rounded">
+    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+      {{ __('Search Courses') }}
+    </h2>
+    <p class="text-sm text-gray-600 dark:text-gray-400">
+      {{ __('Filter and sort courses to find your desired ones.') }}
+    </p>
+    <x-search-input onInput="searchChange()" model="search.text"
+      placeholder="{{ __('Filter Title, description, slug of course...') }}" />
+  </div>
+
+  <!-- Filters and Sorting -->
+  <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 shadow mt-2">
+    <div class="space-y-4">
+      <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('Filters') }}</p>
+      <div class="flex flex-wrap gap-4 items-center">
+        <x-checkbox-filter id="enrolled-filter" model="search.filters.only_enrolled"
+          label="{{ __('Only Enrolled Courses') }}" wire:change="searchChange" />
       </div>
     </div>
-    {{-- Loop through the list of courses and display each one using the course card component --}}
-    @foreach ($this->courses as $course)
-      <div class="p-2 border border-1 rounded-lg" wire:key="container-course-{{ $course->id }}">
-        <livewire:courses.card :$course :in_feed='true' wire:key="{{ $course->id }}" />
+    <div class="space-y-4 mt-6">
+      <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('Sort By') }}</p>
+      <div class="flex gap-4 flex-wrap items-center">
+        <x-dropdown-filter id="sort-column" model="search.sortBy" label="{{ __('Column') }}" :options="[
+            'courses.created_at' => __('Creation Date'),
+            'enrolls_count' => __('Enrolls Count'),
+            'questions_approved_count' => __('Questions Count'),
+            'title' => __('Title'),
+        ]"
+          wire:change="searchChange" />
+        <x-dropdown-filter id="sort-direction" model="search.sortDirection" label="{{ __('Direction') }}"
+          :options="[
+              'asc' => __('Ascending'),
+              'desc' => __('Descending'),
+          ]" wire:change="searchChange" />
       </div>
-    @endforeach
-    {{-- Display a message if no courses are found --}}
-    @if ($this->courses->count() == 0)
-      <div class="text-purple-900 dark:text-purple-400 px-2 pt-2 -mt-6">
-        {{ __('No results found') }}!</div>
-    @endif
+    </div>
+  </div>
+
+  <!-- Courses List -->
+  <div class="p-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg flex flex-col gap-2">
+      @if ($this->courses->isNotEmpty())
+        @foreach ($this->courses as $course)
+          <div class="p-2 border border-1 rounded-lg dark:border-0" wire:key="container-course-{{ $course->id }}">
+            <livewire:courses.card :$course :in_feed='true' wire:key="{{ $course->id }}" />
+          </div>
+        @endforeach
+      @else
+        <div class="p-4 text-center text-gray-500 dark:text-gray-400">
+          {{ __('No results found.') }}
+        </div>
+      @endif
+    </div>
   </div>
 
   {{-- Loading indicator for fetching more courses --}}
-  <div wire:loading class="text-purple-900 dark:text-purple-400 px-2 pt-2">
+  <div wire:loading class="text-purple-900 dark:text-purple-400 px-2">
     {{ __('Loading more courses') }}...
   </div>
 </div>

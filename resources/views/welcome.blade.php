@@ -25,7 +25,8 @@
 <body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
   {{-- Hero Section --}}
   <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
-    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'Deeplearn'))]) }}</h2>
+    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'Deeplearn'))]) }}
+    </h2>
     <p class="text-xl mb-6">
       {{ __('The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm') }}
     </p>
@@ -50,16 +51,12 @@
       <h2 class="text-3xl font-semibold mb-4">{{ __('Our Features') }}</h2>
       <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {{-- Feature 1 --}}
-        <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
-          <h3 class="text-xl font-bold mb-2">{{ __('Daily Streaks') }}</h3>
-          <p class="mb-4">
-            {{ __('Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!') }}
-          </p>
-          <div class="mt-auto text-center">
-            <a href="#" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
-          </div>
-        </div>
+        <livewire:feature-card :title="__('Interactive Exercises')" modal="interactive-exercises" :text="__('Engage with interactive exercises that adapt to your learning pace and style.')" />
         {{-- Feature 2 --}}
+        <livewire:feature-card :title="__('Daily Streaks')" modal="daily-streaks" :text="__(
+            'Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!',
+        )" />
+        {{-- Feature 3 --}}
         <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
           <h3 class="text-xl font-bold mb-2">{{ __('Leitner System') }}</h3>
           <p class="mb-4">
@@ -68,15 +65,6 @@
           <div class="mt-auto text-center">
             <a href="https://en.wikipedia.org/wiki/Leitner_system" target="_blank"
               class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
-          </div>
-        </div>
-        {{-- Feature 3 --}}
-        <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
-          <h3 class="text-xl font-bold mb-2">{{ __('Interactive Exercises') }}</h3>
-          <p class="mb-4">{{ __('Engage with interactive exercises that adapt to your learning pace and style.') }}
-          </p>
-          <div class="mt-auto text-center">
-            <a href="#" class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
           </div>
         </div>
       </div>
@@ -101,7 +89,6 @@
       <div
         class="contact-info shadow-lg p-4 bg-[#f7fafc] rounded-lg md:rotate-[10deg] md:translate-x-4 md:translate-y-2 dark:bg-gray-800">
         <h3 class="text-xl font-bold mb-3">{{ __('Contact with Developer') }}</h3>
-        <p>{{ __('Or contact with the developer from:') }}</p>
         <div class="flex gap-1 flex-wrap">
           <x-primary-button type="submit"><i class="fab fa-linkedin me-2"></i>
             <a href="https://www.linkedin.com/in/parsa-mostafaie">{{ __('LinkedIn') }}</a>
@@ -127,6 +114,8 @@
   @persist('toaster')
     <x-toaster-hub />
   @endpersist
+  <livewire:modals.daily-streaks />
+  <livewire:modals.interactive-exercises />
 </body>
 
 </html>

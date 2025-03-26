@@ -89,6 +89,9 @@ class Leitner implements Interfaces\Leitner
       ->whereDoesntHave('cards', function ($query) use ($user) {
         $query->where('user_id', $user->id);
       })
+      ->whereHas('question', function ($question) {
+        $question->where('status', 'approved');
+      })
       ->limit($_count)
       ->orderBy('id')
       ->get();
@@ -119,6 +122,9 @@ class Leitner implements Interfaces\Leitner
       })
       ->whereNotNull('review_date')
       ->where('review_date', '<=', now())
+      ->whereHas('courseQuestion.question', function ($question) {
+        $question->where('status', 'approved');
+      })
       ->orderBy('stage', 'desc')
       ->with('courseQuestion', 'courseQuestion.question', 'courseQuestion.course')
       ->first();
@@ -187,10 +193,13 @@ class Leitner implements Interfaces\Leitner
   public function getLearnedPercentage($course, $user)
   {
     if ($course->isEnrolledBy($user)) {
-      $q_sum = $course->questions()->count() * (count($this->getReviewWaits()) - 1);
+      $q_sum = $course->questions_approved()->count() * (count($this->getReviewWaits()) - 1);
       $user_q_sum =
         Card::whereHas('courseQuestion', fn($builder) => $builder->where('course_id', $course->id))
           ->where('user_id', $user->id)
+          ->whereHas('courseQuestion.question', function ($question) {
+            $question->where('status', 'approved');
+          })
           ->sum(DB::raw('stage - 1'));
 
       return $q_sum == 0 ? 100 : $user_q_sum / $q_sum * 100;

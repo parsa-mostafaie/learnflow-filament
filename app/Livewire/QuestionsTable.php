@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Question;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Course;
@@ -13,7 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
-use App\Models\Question;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
  * Class QuestionsTable
@@ -70,7 +71,23 @@ class QuestionsTable extends DataTableComponent
                     }
                 })
                 ->setFilterDefaultValue(false)
-                ->setInputAttributes($this->getFilterAttributes())
+                ->setInputAttributes($this->getFilterAttributes()),
+            SelectFilter::make(__("Status"))
+                ->options(
+                    [
+                        '' => __("All"),
+                        ...Question::query()
+                            ->distinct()
+                            ->pluck('status') // Fetch unique status values
+                            ->mapWithKeys(fn($value) => [$value => __($value)]) // Transform to key-value pair
+                            ->toArray()
+                    ]
+                )
+                ->filter(function (Builder $builder, $value) {
+                    if ($value) {
+                        $builder->where('status', $value);
+                    }
+                }),
         ];
     }
 
@@ -95,6 +112,17 @@ class QuestionsTable extends DataTableComponent
                 ->format(
                     fn($value, $row, Column $column) => $row->author->name
                 ),
+            ComponentColumn::make(__('Status'), 'status')
+                ->component('components.pill')
+                ->attributes(fn($value, $row, Column $column) => [
+                    'color' => match ($row->status) {
+                        'approved' => 'bg-green-500',
+                        'rejected' => 'bg-red-500',
+                        'pending' => 'bg-blue-500',
+                        default => null,
+                    },
+                    'content' => __($row->status)
+                ]),
             Column::make(__("Created at"), "created_at")
                 ->sortable(),
             Column::make(__("Updated at"), "updated_at")

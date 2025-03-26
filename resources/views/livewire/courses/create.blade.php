@@ -63,8 +63,8 @@ $_reset = function () {
     <div>
       {{-- File upload component for thumbnail --}}
       <x-file-upload wire:model="form.thumbnail" id="create-course-dropzone-file">
-        @if ($this->form->thumbnail)
-          <img class="mt-2 rounded-lg block" src="{{ $this->form->thumbnail->temporaryUrl() }}" />
+        @if ($this->form->tempUrl())
+          <img class="mt-2 rounded-lg block" src="{{ $this->form->tempUrl() }}" />
         @endif
       </x-file-upload>
 

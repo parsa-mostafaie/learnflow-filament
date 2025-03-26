@@ -31,4 +31,5 @@
   {{-- Livewire components for editing and assigning courses --}}
   <livewire:courses.edit />
   <livewire:courses.assign />
+  <livewire:courses.assign_file />
 </x-app-layout>

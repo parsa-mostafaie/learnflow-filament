@@ -16,9 +16,10 @@ return new class extends Migration {
             $table->string('question');
             $table->string('answer');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('status', ['pending', 'approved', 'rejected']);
             $table->timestamps();
 
-            $table->unique('question', 'answer');
+            $table->unique(['question', 'answer']);
         });
     }
 

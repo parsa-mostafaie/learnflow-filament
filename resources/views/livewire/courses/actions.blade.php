@@ -47,8 +47,8 @@ $course_model = computed(fn() => $this->course instanceof App\Models\Course ? $t
         @can('update', $this->course_model)
           <livewire:courses.action.edit-button :course="$this->course_model" />
         @endcan
-        @can('assign', $this->course_model)
-          <livewire:courses.action.assign-button :course="$this->course_model" />
+        @can('assignAny', $this->course_model)
+          <livewire:courses.action.assign-button :course="$this->course_model" wire:key="assign-any-{{ $this->course }}" />
         @endcan
       @endif
 

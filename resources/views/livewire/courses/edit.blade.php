@@ -95,7 +95,7 @@ $submit = function () {
           {{-- File upload component for thumbnail --}}
           <x-file-upload wire:model="form.thumbnail" id="edit-course-dropzone-file">
             <img class="mt-2 rounded-lg block"
-              src="{{ $this->form->thumbnail ? $this->form->thumbnail->temporaryUrl() : $this->form->course?->image_url }}" />
+              src="{{ $this->form->tempUrl() }}" />
           </x-file-upload>
           <p class="text-purple-500 my-2" wire:loading wire:target="form.thumbnail">{{ __('Loading...') }}</p>
           <x-input-error :messages="$errors->get('form.thumbnail')" class="mt-2" />

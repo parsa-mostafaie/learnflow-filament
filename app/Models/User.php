@@ -66,7 +66,7 @@ class User extends Authenticatable
      */
     public function getRoleNameAttribute()
     {
-        return array_flip(static::roles)[$this->role];
+        return static::getRoleName($this->role);
     }
 
     /**
@@ -119,7 +119,7 @@ class User extends Authenticatable
 
     public function activitySubjectStamp()
     {
-        return view('components.activity-stamp', ['title' => $this->name, 'slug' => $this->email, 'title_link' => "mailto:{$this->email}"]);
+        return view('components.activity-stamp', ['title' => $this->name, 'slug' => $this->email, 'title_link' => ""]);
     }
 
     /**

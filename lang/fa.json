@@ -10,16 +10,16 @@
     "Welcome to :name": "به :name خوش آمدید 🎉",
     "The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm": "پلتفرم نهایی برای یادگیری کارآمد، عمیق و مؤثر هر چیزی با استفاده از الگوریتم جعبه لایتنر 🧠",
     "Get Started": "بزن بریم! 🚀",
-    "About Us": "درباره ما 🧐",
-    "At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.": "در :name ما به ارائه منابع آموزشی درجه یک متناسب با نیازهای شما اختصاص داریم. پلتفرم ما به گونه ای طراحی شده است که کاربر پسند، تعاملی و جذاب باشد و به شما اطمینان دهد که بهترین تجربه یادگیری ممکن را دارید. ⭐️",
+    "About Us": "درباره سایت 🧐",
+    "At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.": "در :name امکان یادگیری اطلاعات مختلف و انتقال آنها به حافظه بلند مدت فراهم شده است. مبنای یادگیری اطلاعات در :name، روش یادگیری جعبه لایتنر است. طراحی :name به گونه ای است که علاوه بر دوره های تعریف شده، شما با طراحی بانک  سوالی به صورت مجموعه ای از پرسش و پاسخ ها قادر هستید  دوره جدیدی متناسب با نیازتان ایجاد نمایید.⭐🌟",
     "Our Features": "چرا ما؟ 🌟",
     "Daily Streaks": "فعالیت روزانه 🔄",
-    "Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!": "با انجام فعالیت های روزانه، شتاب یادگیری خود را حفظ کنید. ثابت بمانید و پیشرفت خود را افزایش دهید! 🚀",
+    "Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!": "با تبدیل یادگیری به بخشی از فعالیت های روزمره، موجب یادگیری مستمر، حفظ شتاب و ثبات یادگیری شده و پیشرفت خود را افزایش دهید! 🚀",
     "Learn More": "بیشتر بدانید 📖",
     "Leitner System": "الگوریتم لایتنر 🗂",
     "Utilize the efficient Leitner system to ensure you retain and recall what you learn effectively.": "از سیستم کارآمد لایتنر برای اطمینان از حفظ و یادآوری مطالبی که به طور مؤثر یاد می‌گیرید، استفاده کنید. 🧠",
-    "Interactive Exercises": "تمارین فعال ⚡️",
-    "Engage with interactive exercises that adapt to your learning pace and style.": "در تمرینات تعاملی که با سرعت و سبک یادگیری شما سازگار است، شرکت کنید. 🎯",
+    "Interactive Exercises": "یادگیری فعال ⚡️",
+    "Engage with interactive exercises that adapt to your learning pace and style.": "یادگیری فعال در مطالعه به معنای خواندن مطالب با عزمی راسخ برای ارزیابی و درک ارتباط آن ها با نیازهای شما است. یادگیری فعال روشی تعاملی و انتقادی با محتوا است که می تواند در وقت شما نیز صرفه جویی کند. 🎯",
     "Contact Us": "ارتباط با ما 📧",
     "Your Name": "نام شما ✍️",
     "Your Email": "ایمیل شما 📧",
@@ -54,6 +54,7 @@
     "Reset": "بازنشانی 🔄",
     "Edit a course": "ویرایش یک دوره ✏️",
     "Cancel": "لغو ❌",
+    "Close": "بستن",
     "Only Enrolled Courses": "فقط اونهایی که ثبت نام کردم 📝",
     "Enrolled Courses": "دوره هایی که ثبت نام کرده 📝",
     "More Enrolls First": "بیشتر ثبت نام کردن 🔝",
@@ -182,5 +183,36 @@
     "leaved-impersonation": "خروج از هویت جعلی",
     "Leaved Impersonation": "خارج شدن از هویت جعلی",
     "Taked Impersonation": "برگزیدن هویت جعلی",
-    "impersonated": "برگزیدن هویت جعلی"
+    "impersonated": "برگزیدن هویت جعلی",
+    "status": "وضعیت",
+    "Status": "وضعیت",
+    "pending": "در انتظار",
+    "rejected": "رد شده",
+    "Reject": "رد",
+    "approved": "تایید شده",
+    "Approve": "تایید",
+    "Move to pending": "انتفال به حالت انتظار تایید",
+    "Assign Multiple": "نسبت دادن دسته ای سوالات",
+    "Assign questions to course": "نسبت دادن فایلی از سوالات به دوره",
+    "Xlsx, Xls, CSV documents only": "فقط فایل های xlsx, xls, csv...",
+    "Approved Questions": "سوالات تایید شده",
+    "Rejected Questions": "سوالات تایید نشده",
+    "Pending Questions": "سوالات در انتظار تأیید",
+    "Column": "ستون",
+    "Ascending": "صعودی",
+    "Descending": "نزولی",
+    "Direction": "جهت",
+    "Creation Date": "تاریخ ساخت",
+    "Sort By": "مرتب سازی بر اساس",
+    "Filters": "فیلتر ها",
+    "Only My Questions": "فقط سوالات من",
+    "Assignment": "نسبت داده شدن",
+    "Only Assigned": "فقط نسبت داده شده ها",
+    "Only Unassigned": "فقط نسبت داده نشده ها",
+    "Assign Questions to a Course": "سوالاتی را به یک دوره نسبت بدهید",
+    "Filter and sort courses to find your desired ones.": "فیلتر و مرتب کنید دوره ها را تا دوره های مورد نظر خود را بیابید.",
+    "Search Courses": "جستجو در دوره ها",
+    "Enrolls Count": "تعداد ثبت نام ها",
+    "Questions Count": "تعداد سوالات",
+    "Search, filter, and sort questions to assign to this course.": "جست و جو، فیلتر و مرتب سازی کنید سوالات را تا به این دوره نسبت بدهیم"
 }

@@ -104,4 +104,9 @@ trait HasRoles
     {
         return min(max(static::roles[$role] ?? $role, static::MIN_ROLE), $secure ? static::MAX_SECURE_ROLE : static::MAX_ROLE);
     }
+
+    public static function getRoleName($role)
+    {
+        return array_flip(static::roles)[static::roles[$role]];
+    }
 }

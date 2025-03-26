@@ -58,27 +58,67 @@ class Course extends Model
         return $this->belongsToMany(Question::class, 'course_questions');
     }
 
+    public function questions_all()
+    {
+        return $this->questions()->withoutGlobalScope('hide_not_approveds');
+    }
+
+    public function questions_approved()
+    {
+        return $this->questions_all()->where('status', 'approved');
+    }
+
+    public function questions_rejected()
+    {
+        return $this->questions_all()->where('status', 'rejected');
+    }
+
+    public function questions_pending()
+    {
+        return $this->questions_all()->where('status', 'pending');
+    }
+
     /**
      * Search in courses
      */
     public function scopeSearch(Builder $builder, array $search): void
     {
-        $_ = fn($address, $default = '') => data_get($search, $address, $default);
-        $builder
-            ->where(function ($builder) use ($_) {
-                $search_text = "%{$_('search')}%";
+        $_ = fn($key, $default = null) => data_get($search, $key, $default);
+
+        $builder->when($_('text'), function ($query, $text) {
+            $query->where(function ($builder) use ($text) {
+                $searchText = "%{$text}%";
                 $builder
-                    ->whereLike('title', $search_text)
-                    ->orWhereLike('description', $search_text)
-                    ->orWhereLike('slug', $search_text);
-                $builder->orWhereHas('user', fn($user) => $user->whereLike('users.name', $search_text));
-            })
-            ->when($_('filters.only_enrolled', false), function ($builder) {
-                $builder->whereHas('enrolls', function ($users) {
-                    $users->where('users.id', auth()->id());
-                });
-            })
-            ->orderBy($_('sortBy', 'courses.created_at'), 'desc');
+                    ->where('title', 'like', $searchText)
+                    ->orWhere('description', 'like', $searchText)
+                    ->orWhere('slug', 'like', $searchText)
+                    ->orWhereHas('user', function ($userQuery) use ($searchText) {
+                        $userQuery->where('name', 'like', $searchText);
+                    });
+            });
+        });
+
+        $builder->when($_('filters.only_enrolled', false), function ($query) {
+            $query->whereHas('enrolls', function ($enrollQuery) {
+                $enrollQuery->where('user_id', auth()->id());
+            });
+        });
+
+        $allowedSortColumns = [
+            'courses.created_at',
+            'title',
+            'enrolls_count',
+            'questions_approved_count',
+        ];
+
+        $sortBy = $_('sortBy', 'courses.created_at');
+        if (!in_array($sortBy, $allowedSortColumns, true)) {
+            $sortBy = 'courses.created_at';
+        }
+
+        $sortDirection = strtolower($_('sortDirection', 'desc')) === 'asc' ? 'asc' : 'desc';
+
+        $builder->orderBy($sortBy, $sortDirection);
     }
 
     public function getActivitylogOptions(): LogOptions

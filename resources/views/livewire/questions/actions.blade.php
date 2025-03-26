@@ -22,5 +22,8 @@ $question_model = computed(fn() => $this->question instanceof App\Models\Questio
       {{-- Render the edit button if the user has permission --}}
       <livewire:questions.action.edit-button :question="$this->question_model" />
     @endcan
+    @can('changeStatus', $this->question_model)
+      <livewire:questions.action.status-button :question="$this->question_model" />
+    @endcan
   </x-button-group>
 </div>

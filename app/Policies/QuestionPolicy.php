@@ -101,4 +101,16 @@ class QuestionPolicy
         // Permanent deletion permission follows the deletion permission
         return $this->delete($user, $question);
     }
+
+    /**
+     * Determine whether the user can approve/reject/pend a specific question.
+     * 
+     * @param User|null $user
+     * @param Question $question
+     * @return bool
+     */
+    public function changeStatus(?User $user, Question $question): bool
+    {
+        return $user->isRole('developer');
+    }
 }

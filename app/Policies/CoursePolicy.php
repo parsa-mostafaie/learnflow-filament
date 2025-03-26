@@ -111,6 +111,23 @@ class CoursePolicy
     }
 
     /**
+     * Determine whether the user can assign file to a specific course.
+     * 
+     * @param User|null $user
+     * @param Course $course
+     * @return bool
+     */
+    public function assignMany(?User $user, Course $course): bool
+    {
+        return $this->assign($user, $course);
+    }
+
+    public function assignAny(?User $user, Course $course): bool
+    {
+        return $this->assignMany($user, $course) || $this->assign($user, $course);
+    }
+
+    /**
      * Determine whether the user can delete a specific course.
      * 
      * @param User|null $user

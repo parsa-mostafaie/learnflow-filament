@@ -13,5 +13,6 @@ return [
   "role_name" => "Role",
   "email" => "Email",
   "email_verified_at" => "Email Verify At",
-  "name" => "Name"
+  "name" => "Name",
+  "status" => "Status"
 ];

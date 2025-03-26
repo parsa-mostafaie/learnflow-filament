@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Course;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -74,7 +75,7 @@ class CourseForm extends Form
                 // Remove the previous image if updating an existing course
                 $this->course->removePreviousImage();
             }
-        } else if(isset($data['thumbnail'])) {
+        } else if (isset($data['thumbnail'])) {
             unset($data['thumbnail']);
         }
 
@@ -123,5 +124,16 @@ class CourseForm extends Form
         }
 
         return $this->course;
+    }
+
+    public function tempUrl()
+    {
+        $alternative = $this->course?->image_url ?? null;
+
+        try {
+            return $this->thumbnail?->temporaryUrl() ?? $alternative;
+        } catch (Exception $exception) {
+            return $alternative;
+        }
     }
 }
