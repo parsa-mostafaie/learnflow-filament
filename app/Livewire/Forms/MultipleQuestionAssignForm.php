@@ -48,7 +48,8 @@ class MultipleQuestionAssignForm extends Form
                     'question' => $row[1],
                     'answer' => $row[2],
                 ], [
-                    'user_id' => auth()->id()
+                    'user_id' => auth()->id(),
+                    'status' => \isRole('developer') ? 'approved' : 'pending'
                 ]);
 
                 // Assign the question to the course

@@ -98,7 +98,7 @@ mount(fn() => $this->loadMore());
         @endforeach
       @else
         <div class="p-4 text-center text-gray-500 dark:text-gray-400">
-          {{ __('No results found.') }}
+          {{ __('No results found') }}
         </div>
       @endif
     </div>

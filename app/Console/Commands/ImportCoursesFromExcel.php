@@ -56,7 +56,8 @@ class ImportCoursesFromExcel extends Command
                         'question' => $row[1],
                         'answer' => $row[2],
                     ], [
-                        'user_id' => 1
+                        'user_id' => 1,
+                        'status' => 'approved'
                     ]);
 
                     // Assign the question to the course
