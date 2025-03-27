@@ -207,4 +207,35 @@ class Leitner implements Interfaces\Leitner
 
     return null;
   }
+
+  public function getCardsInASubbox($course, $user, $stage, $sub_box)
+  {
+    $per_stage = $this->getReviewWait($stage);
+    $now = Carbon::now();
+
+    return Card::where('user_id', $user->id)
+      ->whereHas('courseQuestion.course', fn($q) => $q->where('id', $course->id))
+      ->whereRaw("FLOOR(GREATEST(LEAST($per_stage - (TIME_TO_SEC(TIMEDIFF(review_date, ?))/({$this->getDailyTaskDayLength()} * 3600)), $per_stage), 1)) = ?", [$now->toDateTimeString(), $sub_box])
+      ->where('stage', $stage)
+      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->get()
+      ->count();
+  }
+
+  public function countCompletedCards($course, $user)
+  {
+    return Card::where('user_id', $user->id)
+      ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
+      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->where('stage', count($this->getReviewWaits()) - 1)
+      ->count();
+  }
+
+  public function countNotImportedCards($course, $user)
+  {
+    return $course->questions_approved()->count() - Card::where('user_id', $user->id)
+      ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
+      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->count();
+  }
 }

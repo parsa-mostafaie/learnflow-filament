@@ -61,6 +61,10 @@ $course_model = computed(fn() => $this->course instanceof App\Models\Course ? $t
       @if (!$in_show)
         <livewire:courses.action.show-button :course="$this->course_model" />
       @endif
+
+      @can('getReport', $this->course_model)
+        <livewire:courses.action.report-button :course="$this->course_model" />
+      @endcan
     </x-button-group>
   @endif
 </div>

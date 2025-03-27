@@ -39,5 +39,9 @@ Route::view('profile', 'profile')
 Route::view('courses/{id}', 'course.single')
     ->name('course.single')->middleware("perform_daily_task");
 
+Route::view('report/{id}', 'report')
+    ->name('course.report')
+    ->middleware('auth');
+
 // Include authentication routes
 require __DIR__ . '/auth.php';

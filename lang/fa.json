@@ -214,5 +214,10 @@
     "Search Courses": "جستجو در دوره ها",
     "Enrolls Count": "تعداد ثبت نام ها",
     "Questions Count": "تعداد سوالات",
+    "Not Imported": "وارد نشده",
+    ":name's Report": "گزارش یادگیری :name",
+    "Completed": "تمام شده",
+    "Box": "جعبه",
+    "Get Report": "گرفتن گزارش",
     "Search, filter, and sort questions to assign to this course.": "جست و جو، فیلتر و مرتب سازی کنید سوالات را تا به این دوره نسبت بدهیم"
 }

@@ -127,6 +127,11 @@ class CoursePolicy
         return $this->assignMany($user, $course) || $this->assign($user, $course);
     }
 
+    public function getReport(?User $user, Course $course): bool
+    {
+        return $course->isEnrolledBy($user);
+    }
+
     /**
      * Determine whether the user can delete a specific course.
      * 
