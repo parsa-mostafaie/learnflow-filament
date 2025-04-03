@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->isRole('developer');
+        return true;
     }
 
     /**
@@ -34,9 +34,9 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $model): bool
+    public function update(?User $user, User $model): bool
     {
-        return $user->is($model) || $user->isRole('developer');
+        return $user && ($user->is($model) || $user->can('edit other users'));
     }
 
     /**
@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $this->update($user, $model);
+        return $user && ($user->is($model) || $user->can('delete other users'));
     }
 
     /**
@@ -60,7 +60,7 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
-        return $this->delete($user, $model);
+        return $user && ($user->is($model) || $user->can('delete other users'));
     }
 
     /**
@@ -68,12 +68,17 @@ class UserPolicy
      */
     public function changeRole(User $user, User $model, $next_role = null, $should_change = false): bool
     {
-        $next_role = User::validateRole($next_role ?? ($model->role + 1));
+        $next_role = User::sanitizeRole($next_role) ?? $model->next_role_name;
 
         return
             $user->isNot($model)
-            && $user->role > $model->role
-            && $user->role > $next_role
-            && ($next_role != $model->role || !$should_change);
+            && $user->can("make user {$model->role_name}")
+            && $user->can("make user {$next_role}")
+            && ($next_role != $model->role_name || !$should_change);
+    }
+
+    public function impersonate(User $user, User $model): bool
+    {
+        return $user->canImpersonate() && $model->canBeImpersonated() && $user->can('impersonate users') && $user->isNot($model) && !$model->can('prevent from impersonation by users') && $user->can("make user {$model->role_name}");
     }
 }

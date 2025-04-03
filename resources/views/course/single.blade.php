@@ -1,9 +1,11 @@
 @php
   use App\Models\Course;
-  use function Livewire\Volt\{on};
+  use Illuminate\Support\Facades\Gate;
 
   // Fetch the course with the given slug, including trashed courses
   $course = Course::withTrashed()->where('slug', $id)->firstOrFail();
+
+  Gate::authorize('view', $course);
 @endphp
 
 <x-app-layout>

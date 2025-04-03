@@ -18,7 +18,7 @@ class UserRoleChanged
     /**
      * Create a new event instance.
      */
-    public function __construct(public User $user, public User $causer, public int $previousRole, public int $currentRole)
+    public function __construct(public User $user, public User $causer, public string $previousRole, public string $currentRole)
     {
         //
     }

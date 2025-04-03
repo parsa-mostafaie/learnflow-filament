@@ -25,10 +25,10 @@ class LogUserRoleChange
         if ($event->currentRole == $event->previousRole)
             return;
 
-        $eventName = $event->currentRole > $event->previousRole ? "promoted" : "demoted";
+        $eventName = User::diffRoles($event->currentRole, $event->previousRole) > 0 ? "promoted" : "demoted";
 
-        $previousRoleName = array_flip(User::roles)[$event->previousRole];
-        $currentRoleName = array_flip(User::roles)[$event->currentRole];
+        $previousRoleName = $event->previousRole;
+        $currentRoleName = $event->currentRole;
 
         activity()
             ->causedBy($event->causer)

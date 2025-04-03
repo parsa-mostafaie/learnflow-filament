@@ -14,15 +14,13 @@ $user_model = computed(fn() => $this->user instanceof App\Models\User ? $this->u
 {{-- Container for the action buttons --}}
 <div>
   <x-button-group>
-    @can('changeRole', [$this->user_model])
+    @can('changeRole', [$this->user_model, $this->user_model->previous_role_name])
       {{-- Render the change role button if the user has permission --}}
       <livewire:users.action.change-role-button :user="$this->user_model" />
     @endcan
 
-    @canImpersonate($guard = null)
-    @canBeImpersonated($this->user_model, $guard = null)
-    <livewire:users.action.impersonate :user="$this->user_model" />
-    @endCanImpersonate
-    @endCanBeImpersonated
+    @can('impersonate', $this->user_model)
+      <livewire:users.action.impersonate :user="$this->user_model" />
+    @endcan
   </x-button-group>
 </div>

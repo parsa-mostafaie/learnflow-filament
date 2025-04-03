@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ __(config('app.name', 'Deeplearn')) }}</title>
+  <title>{{ __(config('app.name', 'LearnFlow')) }}</title>
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>">
 
@@ -25,7 +25,7 @@
 <body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
   {{-- Hero Section --}}
   <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
-    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'Deeplearn'))]) }}
+    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'LearnFlow'))]) }}
     </h2>
     <p class="text-xl mb-6">
       {{ __('The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm') }}
@@ -41,7 +41,7 @@
   <section id="about" class="container mx-auto p-8">
     <h2 class="text-3xl font-semibold mb-4">{{ __('About Us') }}</h2>
     <p>
-      {{ __('At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.', ['name' => __(config('app.name', 'Deeplearn'))]) }}
+      {{ __('At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.', ['name' => __(config('app.name', 'LearnFlow'))]) }}
     </p>
   </section>
 
@@ -107,7 +107,7 @@
   {{-- Footer --}}
   <footer
     class="bg-purple-700 text-white p-4 text-center container mx-auto rounded-lg dark:bg-gray-800 dark:text-white">
-    <p>&copy; {{ __('2025') }} {{ __(config('app.name', 'Deeplearn')) }}: {{ __('Deep learn anything.') }}
+    <p>&copy; {{ __('2025') }} {{ __(config('app.name', 'LearnFlow')) }}: {{ __('In-Depth learn anything.') }}
       {{ __('All rights reserved.') }}</p>
   </footer>
 

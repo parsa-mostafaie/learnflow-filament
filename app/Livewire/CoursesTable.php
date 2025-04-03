@@ -99,6 +99,7 @@ class CoursesTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make(__("Description"), "description")
+                ->collapseAlways()
                 ->sortable()
                 ->searchable(),
             CountColumn::make(__('Enrolled Users'))

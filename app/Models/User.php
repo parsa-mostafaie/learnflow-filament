@@ -11,6 +11,7 @@ use Spatie\Activitylog\LogOptions;
 use Lab404\Impersonate\Models\Impersonate;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -55,18 +56,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    /**
-     * Get the role name attribute.
-     * 
-     * This method returns the name of the role based on the role ID.
-     * 
-     * @return string
-     */
-    public function getRoleNameAttribute()
-    {
-        return static::getRoleName($this->role);
     }
 
     /**
@@ -127,7 +116,7 @@ class User extends Authenticatable
      */
     public function canImpersonate()
     {
-        return $this->isRole('developer');
+        return $this->can('impersonate users');
     }
 
     /**
@@ -135,6 +124,6 @@ class User extends Authenticatable
      */
     public function canBeImpersonated()
     {
-        return !$this->isRole('developer');
+        return !$this->can('prevent from impersonation by users');
     }
 }

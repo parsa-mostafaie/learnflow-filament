@@ -4,6 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Models\Question;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Maatwebsite\Excel\Facades\Excel;
@@ -49,7 +50,7 @@ class MultipleQuestionAssignForm extends Form
                     'answer' => $row[2],
                 ], [
                     'user_id' => auth()->id(),
-                    'status' => \isRole('developer') ? 'approved' : 'pending'
+                    'status' => Gate::allows('create approved questions') ? 'approved' : 'pending'
                 ]);
 
                 // Assign the question to the course

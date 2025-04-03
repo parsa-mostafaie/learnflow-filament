@@ -17,8 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up', // Set the health check route
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Alias the middleware for role checking and performing daily tasks
-        $middleware->alias(['isRole' => App\Http\Middleware\isRole::class, 'perform_daily_task' => App\Http\Middleware\PerfomDailyTask::class]);
+        // Alias the middleware for performing daily tasks
+        $middleware->alias(['perform_daily_task' => App\Http\Middleware\PerfomDailyTask::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Configure exception handling (currently empty)

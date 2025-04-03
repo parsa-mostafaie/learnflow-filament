@@ -2,6 +2,10 @@
 
 namespace App\Models\Traits;
 
+use Illuminate\Support\Facades\Cache;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles as SpatieHasRoles;
+
 /**
  * Trait HasRoles
  * 
@@ -9,22 +13,24 @@ namespace App\Models\Traits;
  */
 trait HasRoles
 {
-    const MAX_ROLE = 1, MAX_SECURE_ROLE = 1, MIN_ROLE = 0;
+    use SpatieHasRoles;
 
     const roles = [
-        0,
-        1,
-        2,
-        'user' => 0,
-        'admin' => 1,
-        'developer' => 2
+        'user',
+        'instructor',
+        'manager',
+        'admin',
+        'developer'
     ];
 
-    const roles_minified = [
-        'user' => 0,
-        'admin' => 1,
-        'developer' => 2
-    ];
+    protected static function bootHasRoles()
+    {
+        static::saving(function ($model) {
+            if ($model->getRoleNames()->count() == 0) {
+                $model->setRole('user');
+            }
+        });
+    }
 
     /**
      * Get the role name attribute.
@@ -35,7 +41,7 @@ trait HasRoles
      */
     public function getRoleNameAttribute()
     {
-        return $this->roleNames[$this->role] ?? 'unknown';
+        return $this->getRoleNames()[0] ?? 'user';
     }
 
     /**
@@ -44,69 +50,75 @@ trait HasRoles
      * This method sets the role based on the role name provided.
      * 
      * @param string $roleName
-     * @return bool
      */
-    public function setRoleByText($roleName)
+    public function setRole($roleName)
     {
-        $roleId = array_search($roleName, $this->roleNames);
-
-        if ($roleId !== false) {
-            $this->role = $roleId;
-            return true;
+        if (!$this->getRoleNamesCollection()->contains($roleName = $this->sanitizeRole($roleName))) {
+            return false;
         }
 
-        return false;
+        return $this->syncRoles([$roleName]);
     }
 
-    /**
-     * Check if the user has the specified role.
-     * 
-     * This method checks if the user's role is greater than or equal to the specified role.
-     * 
-     * @param string|int $role
-     * @return bool
-     */
-    public function isRole($role)
+    public static function getRoleNamesCollection()
     {
-        return $this->role >= static::roles[$role];
+        return Cache::remember('role-names-collection', now()->addMinutes(60), function () {
+            return collect(Role::orderBy('id')->pluck('name'));
+        });
     }
 
-    /**
-     * Check if the user is an admin.
-     * 
-     * @return bool
-     */
-    public function isAdmin()
+    public static function getNextRole($roleName, $null_if_not_found = false)
     {
-        return $this->isRole('admin');
+        return static::getRoleNamesCollection()->after(static::sanitizeRole($roleName)) ?? ($null_if_not_found ? null : $roleName);
     }
 
-    /**
-     * Check if the user is a regular user.
-     * 
-     * @return bool
-     */
-    public function isUser()
+    public static function getPreviousRole($roleName, $null_if_not_found = false)
     {
-        return $this->isRole('user');
+        return static::getRoleNamesCollection()->before(static::sanitizeRole($roleName)) ?? ($null_if_not_found ? null : $roleName);
     }
 
-    /**
-     * Validate the role based on its security level.
-     * 
-     * This method validates the role and ensures it is within the allowed range.
-     * 
-     * @param string|int $role
-     * @param bool $secure
-     * @return int
-     */
-    public static function validateRole($role, $secure = true)
+    public static function sanitizeRole($roleName)
     {
-        return min(max(static::roles[$role] ?? $role, static::MIN_ROLE), $secure ? static::MAX_SECURE_ROLE : static::MAX_ROLE);
+        $roleName = strtolower($roleName);
+
+        return static::getRoleNamesCollection()->contains($roleName) ? $roleName : null;
     }
 
-    public static function getRoleName($role)
+    public function getNextRoleNameAttribute()
     {
-        return array_flip(static::roles)[static::roles[$role]];
+        return static::getNextRole($this->role_name);
+    }
+
+    public function getPreviousRoleNameAttribute()
+    {
+        return static::getPreviousRole($this->role_name);
+    }
+
+    public static function getRoleNumber($roleName)
+    {
+        $roleName = static::sanitizeRole($roleName);
+
+        return $roleName ? static::getRoleNamesCollection()->search($roleName) : null;
+    }
+
+    public static function getAllRolesUntil($roleName)
+    {
+        $next = static::getNextRole($roleName, true);
+
+        return static::getRoleNamesCollection()->takeWhile(function ($role) use ($next) {
+            return $role != $next;
+        });
+    }
+
+    public static function getAllRolesAfter($roleName)
+    {
+        return static::getRoleNamesCollection()->skipUntil(function ($role) use ($roleName) {
+            return $role == $roleName; // Start including from $roleName
+        });
+    }
+
+    public static function diffRoles($first, $second)
+    {
+        return static::getRoleNumber($first) - static::getRoleNumber($second);
     }
 }

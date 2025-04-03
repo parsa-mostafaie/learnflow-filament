@@ -42,13 +42,11 @@ $action = function () {
 };
 ?>
 
-{{-- Container for the changeRole button --}}
+{{-- Container for the impersonate button --}}
 <div>
-  @canImpersonate($guard = null)
-    @canBeImpersonated($this->user, $guard = null)
-      <x-primary-button wire:click="action" title="{{ __('Impersonate') }}" class="text-blue-600">
-        <i class="fas fa-user-secret"></i>
-      </x-primary-button>
-    @endCanBeImpersonated
-  @endCanImpersonate
+  @can('impersonate', $this->user)
+    <x-secondary-button wire:click="action" title="{{ __('Impersonate') }}" class="text-blue-600">
+      <i class="fas fa-user-secret"></i>
+    </x-secondary-button>
+  @endcan
 </div>

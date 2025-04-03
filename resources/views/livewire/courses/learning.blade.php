@@ -50,7 +50,7 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
 
 {{-- Learning Section --}}
 <div>
-  @if ($course->isEnrolledBy(auth()->user()))
+  @if ($course->isEnrolledBy(auth()->user()) && Gate::allows('view', $course))
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-2">
       <div class="p-6 text-gray-900 dark:text-gray-100">
         <h1 class="text-lg text-center font-bold mb-1">{{ __('Learn') }}</h1>

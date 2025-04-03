@@ -13,7 +13,7 @@ $count = function ($stage, $sub) {
 $course_model = computed(function () {
     $model = \App\Models\Course::withTrashed()->findOrFail($this->course);
 
-    if (!$model->isEnrolledBy($this->user)) {
+    if (!Gate::allows('getReport', $model)) {
         abort(404);
     }
 

@@ -61,15 +61,15 @@ class UsersTable extends DataTableComponent
         return [
             SelectFilter::make(__('Role'))->options([
                 '' => __('All'),
-                ...User::query()
-                    ->distinct()
-                    ->pluck('role') // Fetch unique role values
-                    ->mapWithKeys(fn($value) => [$value => __(User::getRoleName($value))]) // Transform to key-value pair
+                ...User::getRoleNamesCollection()
+                    ->mapWithKeys(fn($value) => [$value => __($value)]) // Transform to key-value pair
                     ->toArray()
             ])
                 ->filter(function ($builder, $value) {
                     if ($value)
-                        $builder->where('users.role', '>=', $value);
+                        $builder->whereHas('roles', function ($query) use ($value) {
+                            $query->whereIn('name', User::getAllRolesAfter($value));
+                        });
                 }),
             SelectFilter::make(__("Verify state"))
                 ->options(['' => __('All'), 1 => __('Not Verified'), 2 => __("Verified")])
@@ -103,15 +103,15 @@ class UsersTable extends DataTableComponent
                 ->attributes(fn($row) => ['class' => 'text-purple-500'])
                 ->sortable()
                 ->searchable(),
-            ComponentColumn::make(__('Role'), 'role')
+            ComponentColumn::make(__('Role'), 'id')
                 ->component('components.pill')
                 ->attributes(fn($value, $row, Column $column) => [
-                    'color' => match ($row->role) {
-                        0 => 'bg-gray-500',
-                        1 => 'bg-blue-500',
-                        2 => 'bg-purple-500',
-                        3 => 'bg-green-500',
-                        default => 'bg-green-500',
+                    'color' => match ($row->role_name) {
+                        'user' => 'bg-gray-500',
+                        'instructor' => 'bg-blue-500',
+                        'manager' => 'bg-purple-500',
+                        'admin' => 'bg-green-500',
+                        default => 'bg-green-600',
                     },
                     'content' => __($row->role_name)
                 ]),

@@ -22,8 +22,7 @@ class CoursePolicy
      */
     public function enroll(?User $user, Course $course): bool
     {
-        // User must be authenticated to enroll in a course
-        return !!$user;
+        return (!!$user) && (!$course->trashed() || $course->author()->is($user) || $user->can('enroll to all courses'));
     }
 
     /**
@@ -38,6 +37,11 @@ class CoursePolicy
         return true;
     }
 
+    public function manage(?User $user): bool
+    {
+        return (!!$user) && $user->can('manage any courses');
+    }
+
     /**
      * Determine whether the user can view a specific course.
      * 
@@ -47,16 +51,12 @@ class CoursePolicy
      */
     public function view(?User $user, Course $course): bool
     {
-        if (!$user)
-            return false;
-
         // Developers can view any course
-        if ($user->isRole('developer')) {
+        if ($user && $user->can('view all courses')) {
             return true;
         }
 
-        // Users can view a course if it is not soft-deleted or if they are the author
-        return !$course->trashed() || $course->user_id == $user->id;
+        return (!$course->trashed()) || $course->author()->is($user);
     }
 
     /**
@@ -67,8 +67,7 @@ class CoursePolicy
      */
     public function create(?User $user): bool
     {
-        // Only admins can create courses
-        return $user->isRole('admin');
+        return $user && $user->can('create courses');
     }
 
     /**
@@ -80,8 +79,7 @@ class CoursePolicy
      */
     public function update(?User $user, Course $course): bool
     {
-        // Developers or the course author can update the course
-        return (!!$user) && ($user->isRole('developer') || $course->user->is($user));
+        return (!!$user) && ($user->can('update all courses') || $course->author()->is($user));
     }
 
     /**
@@ -93,8 +91,7 @@ class CoursePolicy
      */
     public function seeEnrolls(?User $user, Course $course): bool
     {
-        // Developers or the course author can update the course
-        return $this->update($user, $course);
+        return (!!$user) && ($user->can('see all courses enrolls') || $course->author()->is($user));
     }
 
     /**
@@ -106,8 +103,7 @@ class CoursePolicy
      */
     public function assign(?User $user, Course $course): bool
     {
-        // Assignment permission follows the update permission
-        return $this->update($user, $course);
+        return (!!$user) && ($user->can('assign to all courses') || $course->author()->is($user));
     }
 
     /**
@@ -119,7 +115,7 @@ class CoursePolicy
      */
     public function assignMany(?User $user, Course $course): bool
     {
-        return $this->assign($user, $course);
+        return (!!$user) && ($user->can('assign many questions to all courses') || $course->author()->is($user));
     }
 
     public function assignAny(?User $user, Course $course): bool
@@ -129,7 +125,7 @@ class CoursePolicy
 
     public function getReport(?User $user, Course $course): bool
     {
-        return $course->isEnrolledBy($user);
+        return $user && $course->isEnrolledBy($user);
     }
 
     /**
@@ -141,8 +137,7 @@ class CoursePolicy
      */
     public function delete(?User $user, Course $course): bool
     {
-        // Deletion permission follows the update permission
-        return $this->update($user, $course);
+        return (!!$user) && ($user->can('delete all courses') || $course->author()->is($user));
     }
 
     /**
@@ -155,7 +150,7 @@ class CoursePolicy
     public function restore(?User $user, Course $course): bool
     {
         // Restoration permission follows the deletion permission
-        return $this->delete($user, $course);
+        return (!!$user) && ($user->can('restore all courses') || $course->author()->is($user));
     }
 
     /**
@@ -167,7 +162,6 @@ class CoursePolicy
      */
     public function forceDelete(?User $user, Course $course): bool
     {
-        // Permanent deletion permission follows the deletion permission
-        return $this->delete($user, $course);
+        return (!!$user) && ($user->can('force delete all courses') || $course->author()->is($user));
     }
 }

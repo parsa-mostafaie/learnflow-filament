@@ -88,7 +88,7 @@ mount(fn() => $this->loadMore());
   </div>
 
   <!-- Courses List -->
-  <div class="p-6">
+  <div class="p-3">
     <div class="bg-white dark:bg-gray-800 rounded-lg flex flex-col gap-2">
       @if ($this->courses->isNotEmpty())
         @foreach ($this->courses as $course)

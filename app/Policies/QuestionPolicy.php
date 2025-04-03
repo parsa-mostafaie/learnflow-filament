@@ -34,8 +34,11 @@ class QuestionPolicy
      */
     public function view(User $user, Question $question): bool
     {
-        // All users can view a specific question
-        return true;
+        if ($user && $user->can('view all questions')) {
+            return true;
+        }
+
+        return ($question->status == 'approved') || $question->author()->is($user);
     }
 
     /**
@@ -46,8 +49,7 @@ class QuestionPolicy
      */
     public function create(?User $user): bool
     {
-        // Only authenticated admins can create questions
-        return (!!$user) && $user->isRole('admin');
+        return $user && $user->can('create questions');
     }
 
     /**
@@ -59,8 +61,7 @@ class QuestionPolicy
      */
     public function update(?User $user, Question $question): bool
     {
-        // Developers or the question author can update the question
-        return (!!$user) && ($user->isRole('developer') || $question->user->is($user));
+        return (!!$user) && ($user->can('update all questions') || $question->author()->is($user));
     }
 
     /**
@@ -72,8 +73,7 @@ class QuestionPolicy
      */
     public function delete(?User $user, Question $question): bool
     {
-        // Deletion permission follows the update permission
-        return $this->update($user, $question);
+        return (!!$user) && ($user->can('delete all questions') || $question->author()->is($user));
     }
 
     /**
@@ -85,8 +85,7 @@ class QuestionPolicy
      */
     public function restore(?User $user, Question $question): bool
     {
-        // Restoration permission follows the update permission
-        return $this->update($user, $question);
+        return (!!$user) && ($user->can('restore all questions') || $question->author()->is($user));
     }
 
     /**
@@ -98,8 +97,7 @@ class QuestionPolicy
      */
     public function forceDelete(?User $user, Question $question): bool
     {
-        // Permanent deletion permission follows the deletion permission
-        return $this->delete($user, $question);
+        return (!!$user) && ($user->can('force delete all questions') || $question->author()->is($user));
     }
 
     /**
@@ -111,6 +109,6 @@ class QuestionPolicy
      */
     public function changeStatus(?User $user, Question $question): bool
     {
-        return $user->isRole('developer');
+        return $user && $user->can('change questions state');
     }
 }

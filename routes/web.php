@@ -11,23 +11,24 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Admin routes, accessible only to authenticated and verified users with the 'admin' role
-Route::middleware(['auth', 'verified', 'isRole:admin'])->as('admin')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'verified', 'can:manage some thing'])->as('admin')->prefix('admin')->group(function () {
     // Admin home page
     Route::view('/', 'admin');
 
     // Admin questions page
     Route::view('questions', 'admin.questions')
-        ->name('.questions');
+        ->name('.questions')
+        ->can('manage any questions');
 
     // Admin courses page
     Route::view('courses', 'admin.courses')
-        ->name('.courses');
+        ->name('.courses')
+        ->can('manage any courses');
 
     // Developer users page
     Route::view('users', 'admin.users')
         ->name('.users')
-        ->can('viewAny', 'App\\Models\\User');
+        ->can('manage users or activities');
 });
 
 // Route for the profile page, accessible only to authenticated users

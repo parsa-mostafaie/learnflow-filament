@@ -115,7 +115,7 @@ class Question extends Model
         static::addGlobalScope('hide_not_approveds', function (Builder $builder) {
             $user = Auth::user();
 
-            if (!$user || !isRole('admin')) {
+            if (!$user || !$user->can('view all questions')) {
                 $builder->where(function ($query) use ($user) {
                     $query->where('status', 'approved')
                         ->orWhere('questions.user_id', $user?->id);
