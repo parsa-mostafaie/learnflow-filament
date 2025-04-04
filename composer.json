@@ -19,6 +19,7 @@
         "maatwebsite/excel": "^3.1",
         "masmerise/livewire-toaster": "^2.6",
         "milwad/laravel-validate": "^1.8",
+        "morilog/jalali": "^3.4",
         "rappasoft/laravel-livewire-tables": "^3.6",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-permission": "^6.16"

@@ -19,13 +19,14 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 -   Composer
 -   Node.js and NPM
 -   Git
--   PHP ext-zip in php.ini
+-   PHP ext-zip and ext-intl in php.ini
 
 ### Steps to Install
 
 1. Clone the project repository:
-    
+
     If you have Cloned The repository previously, you can skip this step. but run commands below in the directory that conatins composer.json and README.md
+
     ```bash
     git clone https://github.com/parsa-mostafaie/learnflow.git
     cd learnflow
@@ -64,17 +65,19 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
     ```
 
 7. Migrate the database and seed it:
+
     ```bash
     php artisan migrate --seed
     ```
 
 8. Seed database from excel file:
+
     ```bash
     php artisan import:courses ./words.xlsx
     ```
 
 9. Optimize For Better Performance:
-    
+
     ```bash
     php artisan optimize:clear
     php artisan optimize
@@ -83,25 +86,24 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 ### Running the Application
 
 Run the development server and vite in one command:
-`    composer run dev
-   `
+`   composer run dev
+  `
 
 You can now access the application in your browser at `http://localhost:8000`.
-You can login as super-admin By using ``pmostafaie1390@gmail.com`` as both of email & password
+You can login as super-admin By using `pmostafaie1390@gmail.com` as both of email & password
 
 ## Todos
 
-- Add Site settings
-- Rating to courses (and/or reaction)
-- Saving courses (favorites)
-- Permissions
-- Ban users
-- Socialite Logging in
-- Site search improvements
-- Category for courses
-- Purchasable Courses
-- **And more...**
-
+-   Add Site settings
+-   Rating to courses (and/or reaction)
+-   Saving courses (favorites)
+-   Permissions
+-   Ban users
+-   Socialite Logging in
+-   Site search improvements
+-   Category for courses
+-   Purchasable Courses
+-   **And more...**
 
 ## Contact
 

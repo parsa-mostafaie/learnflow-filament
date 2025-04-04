@@ -14,6 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 use App\Models\User;
+use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
@@ -122,10 +123,13 @@ class UsersTable extends DataTableComponent
                 ->setDataSource('enrolledCourses')
                 ->sortable(),
             Column::make(__("Verified at"), "email_verified_at")
+                ->format(fn($value, $row, Column $column) => $value ? Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P') : null)
                 ->sortable(),
             Column::make(__("Created at"), "created_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             Column::make(__("Updated at"), "updated_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             LivewireComponentColumn::make(__('Actions'), 'id')
                 ->component('users.actions')

@@ -14,7 +14,7 @@
         <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
           <div class="p-6 text-gray-900 dark:text-gray-100">
             {{-- Questions title --}}
-            <h3 class="font-bold text-lg mb-3">{{ __('Questions') }}</h3>
+            <h3 class="font-bold text-lg mb-3">{{ __('Questions ?') }}</h3>
             {{-- Livewire component for the questions table --}}
             <livewire:questions-table lazy />
           </div>

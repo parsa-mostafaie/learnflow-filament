@@ -17,4 +17,11 @@ class CourseUser extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected function casts(): array
+    {
+        return [
+            'last_course_visit' => 'datetime',
+        ];
+    }
 }

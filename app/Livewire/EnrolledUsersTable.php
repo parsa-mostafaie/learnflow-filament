@@ -8,9 +8,11 @@ use App\Models\CourseUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
+use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 
@@ -82,10 +84,13 @@ class EnrolledUsersTable extends DataTableComponent
                     fn($value, $row, Column $column) => $row->user->name
                 ),
             Column::make(__("Last Course Visited"), "last_course_visit")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             Column::make(__("Created at"), "created_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             Column::make(__("Updated at"), "updated_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             LivewireComponentColumn::make(__('Learn Percentage'), 'id')
                 ->component('courses.learned_percentage')

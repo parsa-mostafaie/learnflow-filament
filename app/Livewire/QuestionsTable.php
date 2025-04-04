@@ -9,6 +9,7 @@ use App\Models\Course;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
+use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
@@ -124,8 +125,10 @@ class QuestionsTable extends DataTableComponent
                     'content' => __($row->status)
                 ]),
             Column::make(__("Created at"), "created_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             Column::make(__("Updated at"), "updated_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
             LivewireComponentColumn::make(__('Actions'), 'id')
                 ->component('questions.actions')

@@ -1,18 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Number;
 
-/**
- * Check if the authenticated user has a specific role.
- * 
- * @param string $role
- * @return bool
- */
-function isRole($role)
+function forhumans(int|float $number, int $precision = 0, ?int $maxPrecision = 2, bool $abbreviate = true)
 {
-    /** @var \App\Models\User */
-    $u = Auth::user();
-
-    // Check if the user is authenticated and has the specified role
-    return $u && $u->isRole($role);
+    return Number::forHumans($number, $precision, $maxPrecision, $abbreviate);
 }

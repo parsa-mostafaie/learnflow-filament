@@ -38,7 +38,7 @@ Route::view('profile', 'profile')
 
 // Route for the single course page, with a middleware to perform daily tasks
 Route::view('courses/{id}', 'course.single')
-    ->name('course.single')->middleware("perform_daily_task");
+    ->name('course.single');
 
 Route::view('report/{id}', 'report')
     ->name('course.report')

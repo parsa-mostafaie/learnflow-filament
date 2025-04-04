@@ -18,6 +18,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Illuminate\Support\Arr;
+use Morilog\Jalali\Jalalian;
 use Spatie\Activitylog\Models\Activity as Activity;
 
 /**
@@ -200,8 +201,11 @@ class ActivitiesTable extends DataTableComponent
                 ->component('components.data-grid')
                 ->attributes(fn($value, $row, Column $column) => ['data' => Arr::except($row->properties, ['attributes', 'old'])])
                 ->collapseAlways(),
-            Column::make(__("Created at"), "created_at"),
+            Column::make(__("Created at"), "created_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
+                ->sortable(),
             Column::make(__("Updated at"), "updated_at")
+                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
                 ->sortable(),
         ];
     }

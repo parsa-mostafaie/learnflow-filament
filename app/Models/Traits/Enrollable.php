@@ -5,6 +5,7 @@ namespace App\Models\Traits;
 use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Number;
 
 /**
  * Trait Enrollable
@@ -99,5 +100,10 @@ trait Enrollable
     public function getTotalEnrollmentCountAttribute()
     {
         return $this->enrolls()->count();
+    }
+
+    public function getFormatedEnrollCountAttribute()
+    {
+        return forhumans($this->enrolls()->count());
     }
 }
