@@ -69,7 +69,7 @@ class QuestionForm extends Form
 
         // Create or update the question
         if (!$this->model) {
-            $user->questions()->create([$data, 'status' => $user->can("create approved questions") ? 'approved' : 'pending']);
+            $user->questions()->create([...$data, 'status' => $user->can("create approved questions") ? 'approved' : 'pending']);
         } else {
             $this->model->update($data);
         }

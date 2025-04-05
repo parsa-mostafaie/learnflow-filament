@@ -222,5 +222,15 @@
     "Get Report": "گرفتن گزارش",
     "instructor": "دبیر",
     "manager": "مدیر محتوا",
+    "Delete Question": " حذف سوال",
+    "Delete Course": " حذف دوره",
+    "Unenroll from Course": "لفو ثبت نام در دوره",
+    "Yes, delete it!": "آره حذفش کن!",
+    "No, keep it!": "نه، میخواهمش!",
+    "Yes, unenroll me!": "آره، من رو از ثبت نام این دوره خارج کن",
+    "No, keep me enrolled!": "نه، من رو ثبت نام شده نگه دار!",
+    "Are you sure you want to unenroll from this course?": "آیا مطمئن هستی نمیخواهید دیگر در این دوره ثبت شده باشید؟!",
+    "Are you sure you want to delete this question?": "آیا مطمئن هستید که می خواهید این سوال را حذف کنید؟",
+    "Are you sure you want to delete this course?": "آیا مطمئن هستید که می خواهید این دوره را حذف کنید؟",
     "Search, filter, and sort questions to assign to this course.": "جست و جو، فیلتر و مرتب سازی کنید سوالات را تا به این دوره نسبت بدهیم"
 }
