@@ -16,6 +16,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
 use App\Models\User;
 use Morilog\Jalali\Jalalian;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
@@ -80,7 +81,35 @@ class UsersTable extends DataTableComponent
                     } else if ($value == 1) {
                         $builder->whereNull('email_verified_at');
                     }
-                })
+                }),
+            DateRangeFilter::make(__('Creation Range'))
+                ->setPillsLocale('fa')
+                ->config([
+                    'allowInput' => true,   // Allow manual input of dates
+                    'altFormat' => 'j F Y', // Date format that will be displayed once selected
+                    'ariaDateFormat' => 'j F Y', // An aria-friendly date format
+                    'placeholder' => __('Enter Date Range'), // A placeholder value
+                    'locale' => 'fa',
+                ])
+                ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
+                    $builder
+                        ->whereDate('users.created_at', '>=', $dateRange['minDate']) // minDate is the start date selected
+                        ->whereDate('users.created_at', '<=', $dateRange['maxDate']); // maxDate is the end date selected
+                }),
+            DateRangeFilter::make(__('Updation Range'))
+                ->setPillsLocale('fa')
+                ->config([
+                    'allowInput' => true,   // Allow manual input of dates
+                    'altFormat' => 'j F Y', // Date format that will be displayed once selected
+                    'ariaDateFormat' => 'j F Y', // An aria-friendly date format
+                    'placeholder' => __('Enter Date Range'), // A placeholder value
+                    'locale' => 'fa',
+                ])
+                ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
+                    $builder
+                        ->whereDate('users.updated_at', '>=', $dateRange['minDate']) // minDate is the start date selected
+                        ->whereDate('users.updated_at', '<=', $dateRange['maxDate']); // maxDate is the end date selected
+                }),
         ];
     }
 

@@ -29,7 +29,7 @@ $_reset = function () {
 };
 ?>
 
-<section class="m-2 mx-3">
+<section class="m-2 mx-3" id="create-course">
   <div>
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
       {{ __('Add a course') }}
@@ -44,19 +44,19 @@ $_reset = function () {
     <div>
       <x-input-label for="title" :value="__('Title')" />
       <x-text-input wire:model="form.title" id="title" class="block mt-1 w-full" type="text" name="title" required
-        autofocus autocomplete="title" />
+        autocomplete="title" />
       <x-input-error :messages="$errors->get('form.title')" class="mt-2" />
     </div>
     <div>
       <x-input-label for="description" :value="__('Description')" />
-      <x-text-input wire:model="form.description" id="description" class="block mt-1 w-full" type="text"
-        name="description" autofocus autocomplete="description" />
+      <x-text-area wire:model="form.description" id="description" class="block mt-1 w-full" type="text"
+        name="description" autocomplete="description" />
       <x-input-error :messages="$errors->get('form.description')" class="mt-2" />
     </div>
     <div>
       <x-input-label for="slug" :value="__('Slug')" />
       <x-text-input wire:model="form.slug" id="slug" class="block mt-1 w-full" type="text" name="slug"
-        autofocus autocomplete="slug" />
+        autocomplete="slug" />
       <x-input-error :messages="$errors->get('form.slug')" class="mt-2" />
     </div>
 
@@ -74,7 +74,8 @@ $_reset = function () {
     </div>
 
     <div class="flex items-center gap-4">
-      <x-gradient-button>{{ __('Save') }}</x-gradient-button>
+      <x-gradient-button wire:loading.attr="disabled"
+        wire:target="form.thumbnail">{{ __('Save') }}</x-gradient-button>
       <x-gradient-button type="button" wire:click="_reset">{{ __('Reset') }}</x-gradient-button>
 
       <x-action-message class="me-3" on="course-stored" message="{{ __('Saved.') }}">

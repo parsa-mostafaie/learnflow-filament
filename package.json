@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@tailwindcss/typography": "^0.5.16",
+        "flatpickr": "^4.6.13",
         "sweetalert2": "^11.17.2"
     }
 }

@@ -115,8 +115,11 @@
         background-color: rgb(186, 85, 211);
         color: white;
     }
-}
 
-#nprogress .bar {
-    --livewire-progress-bar-color: rgb(186, 85, 211);
+    .clip-path-arrow {
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        width: 8px;
+        height: 8px;
+        background: inherit;
+    }
 }

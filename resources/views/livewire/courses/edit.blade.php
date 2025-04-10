@@ -79,7 +79,7 @@ $submit = function () {
 
         <div>
           <x-input-label for="description" :value="__('Description')" />
-          <x-text-input wire:model="form.description" id="description" class="block mt-1 w-full" type="text"
+          <x-text-area wire:model="form.description" id="description" class="block mt-1 w-full" type="text"
             name="description" autofocus autocomplete="description" :disabled="!$this->form->course" />
           <x-input-error :messages="$errors->get('form.description')" class="mt-2" />
         </div>
@@ -94,15 +94,15 @@ $submit = function () {
         <div>
           {{-- File upload component for thumbnail --}}
           <x-file-upload wire:model="form.thumbnail" id="edit-course-dropzone-file">
-            <img class="mt-2 rounded-lg block"
-              src="{{ $this->form->tempUrl() }}" />
+            <img class="mt-2 rounded-lg block" src="{{ $this->form->tempUrl() }}" />
           </x-file-upload>
           <p class="text-purple-500 my-2" wire:loading wire:target="form.thumbnail">{{ __('Loading...') }}</p>
           <x-input-error :messages="$errors->get('form.thumbnail')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">
-          <x-gradient-button :disabled="!$this->form->course">{{ __('Save') }}</x-gradient-button>
+          <x-gradient-button :disabled="!$this->form->course" wire:loading.attr="disabled"
+            wire:target="form.thumbnail">{{ __('Save') }}</x-gradient-button>
           <x-gradient-button :disabled="!$this->form->course" x-on:click="$dispatch('close-modal', 'edit-course')"
             type="button">{{ __('Cancel') }}</x-gradient-button>
           <x-gradient-button type="button" wire:click="_reset">{{ __('Reset') }}</x-gradient-button>

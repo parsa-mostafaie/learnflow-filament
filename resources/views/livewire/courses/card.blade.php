@@ -52,7 +52,7 @@ mount(function () {
       </p>
       <p class="text-gray-500">
         <i class="fas fa-users me-2"></i> {{-- Example icon for enrolled users --}}
-        {{ $course->formated_enroll_count }} {{ __('Enrolled Users') }}
+        {{ $course->formatted_enroll_count }} {{ __('Enrolled Users') }}
       </p>
       <p class="text-gray-500">
         <i class="fas fa-question-circle me-2"></i> {{-- Example icon for questions --}}

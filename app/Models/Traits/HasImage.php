@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -33,15 +34,15 @@ trait HasImage
      *
      * @return string|null
      */
-    public function getImageUrlAttribute(): string|null
+    protected function imageUrl(): Attribute
     {
-        if (!is_null($this->thumbnail)) {
-            if (!parse_url($this->thumbnail, PHP_URL_HOST)) {
-                return Storage::url($this->thumbnail);
-            }
-            return $this->thumbnail;
-        }
-        return $this->getAlternativeImage();
+        return Attribute::make(
+            get: fn() => !is_null($this->thumbnail)
+            ? (!parse_url($this->thumbnail, PHP_URL_HOST)
+                ? Storage::url($this->thumbnail)
+                : $this->thumbnail)
+            : $this->getAlternativeImage()
+        )->withoutObjectCaching();
     }
 
     /**

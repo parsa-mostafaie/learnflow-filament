@@ -46,6 +46,7 @@
 
   {{-- Theme toggler component --}}
   <x-theme-toggler />
+  <x-speed-dial />
 
   @persist('toaster')
     <x-toaster-hub />

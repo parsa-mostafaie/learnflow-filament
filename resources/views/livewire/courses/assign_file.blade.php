@@ -58,6 +58,14 @@ $submit = function () {
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
           {{ __('Assign questions to course') }}
         </p>
+
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <a target="_blank" href="{{ route('download.sample') }}">
+            <x-secondary-button>
+              {{ __('Download Sample File') }}
+            </x-secondary-button>
+          </a>
+        </p>
       </div>
 
       <form wire:submit="submit" class="space-y-6" @if (!$this->form->course) inert @endif>
@@ -70,7 +78,7 @@ $submit = function () {
         </div>
       </form>
 
-      <x-secondary-button wire:click="submit">
+      <x-secondary-button wire:click="submit" wire:loading.attr="disabled" wire:target="form.file, submit">
         {{ __('Assign Multiple') }}
       </x-secondary-button>
     </div>

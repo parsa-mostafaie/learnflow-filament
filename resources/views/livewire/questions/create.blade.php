@@ -29,7 +29,7 @@ $submit = function () {
 ?>
 
 {{-- Section for creating a new question --}}
-<section class="m-2 mx-3">
+<section class="m-2 mx-3" id="create-question">
   <div>
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
       {{ __('Add a question') }}
@@ -44,13 +44,13 @@ $submit = function () {
     <div>
       <x-input-label for="question" :value="__('Question Text')" />
       <x-text-input wire:model="form.question" id="question" class="block mt-1 w-full" type="text" name="question"
-        required autofocus autocomplete="question" />
+        required autocomplete="question" />
       <x-input-error :messages="$errors->get('form.question')" class="mt-2" />
     </div>
     <div>
       <x-input-label for="answer" :value="__('Question Answer')" />
       <x-text-input wire:model="form.answer" id="answer" class="block mt-1 w-full" type="text" name="answer"
-        autofocus autocomplete="answer" />
+        autocomplete="answer" />
       <x-input-error :messages="$errors->get('form.answer')" class="mt-2" />
     </div>
 

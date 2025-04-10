@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use App\Models\CourseUser;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 
@@ -44,12 +45,15 @@ trait Enrollable
 
     /**
      * Get the enrolled status for the authenticated user.
-     * 
+     *
      * @return bool
      */
-    public function getIsEnrolledAttribute()
+    protected function isEnrolled(): Attribute
     {
-        return $this->isEnrolledBy(Auth::user());
+        return Attribute::make(
+            get: fn() => $this->isEnrolledBy(Auth::user())
+        )
+            ->withoutObjectCaching();
     }
 
     /**
@@ -97,13 +101,17 @@ trait Enrollable
      * 
      * @return int
      */
-    public function getTotalEnrollmentCountAttribute()
+    protected function totalEnrollmentCount(): Attribute
     {
-        return $this->enrolls()->count();
+        return Attribute::make(
+            get: fn() => $this->enrolls()->count()
+        )->withoutObjectCaching();
     }
 
-    public function getFormatedEnrollCountAttribute()
+    protected function formattedEnrollCount(): Attribute
     {
-        return forhumans($this->enrolls()->count());
+        return Attribute::make(
+            get: fn() => forhumans($this->enrolls()->count())
+        )->withoutObjectCaching();
     }
 }

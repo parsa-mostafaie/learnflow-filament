@@ -19,6 +19,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Illuminate\Support\Arr;
 use Morilog\Jalali\Jalalian;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 use Spatie\Activitylog\Models\Activity as Activity;
 
 /**
@@ -117,6 +118,20 @@ class ActivitiesTable extends DataTableComponent
                         $builder->where('log_name', $value);
                     }
                 }),
+            DateRangeFilter::make(__('Creation Range'))
+                ->setPillsLocale('fa')
+                ->config([
+                    'allowInput' => true,   // Allow manual input of dates
+                    'altFormat' => 'j F Y', // Date format that will be displayed once selected
+                    'ariaDateFormat' => 'j F Y', // An aria-friendly date format
+                    'placeholder' => __('Enter Date Range'), // A placeholder value
+                    'locale' => 'fa',
+                ])
+                ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
+                    $builder
+                        ->whereDate('activity_log.created_at', '>=', $dateRange['minDate']) // minDate is the start date selected
+                        ->whereDate('activity_log.created_at', '<=', $dateRange['maxDate']); // maxDate is the end date selected
+                })
         ];
     }
 

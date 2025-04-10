@@ -15,6 +15,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\CountColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LivewireComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\BooleanFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 /**
@@ -88,6 +89,34 @@ class QuestionsTable extends DataTableComponent
                     if ($value) {
                         $builder->where('status', $value);
                     }
+                }),
+            DateRangeFilter::make(__('Creation Range'))
+                ->setPillsLocale('fa')
+                ->config([
+                    'allowInput' => true,   // Allow manual input of dates
+                    'altFormat' => 'j F Y', // Date format that will be displayed once selected
+                    'ariaDateFormat' => 'j F Y', // An aria-friendly date format
+                    'placeholder' => __('Enter Date Range'), // A placeholder value
+                    'locale' => 'fa',
+                ])
+                ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
+                    $builder
+                        ->whereDate('questions.created_at', '>=', $dateRange['minDate']) // minDate is the start date selected
+                        ->whereDate('questions.created_at', '<=', $dateRange['maxDate']); // maxDate is the end date selected
+                }),
+            DateRangeFilter::make(__('Updation Range'))
+                ->setPillsLocale('fa')
+                ->config([
+                    'allowInput' => true,   // Allow manual input of dates
+                    'altFormat' => 'j F Y', // Date format that will be displayed once selected
+                    'ariaDateFormat' => 'j F Y', // An aria-friendly date format
+                    'placeholder' => __('Enter Date Range'), // A placeholder value
+                    'locale' => 'fa',
+                ])
+                ->filter(function (Builder $builder, array $dateRange) { // Expects an array.
+                    $builder
+                        ->whereDate('questions.updated_at', '>=', $dateRange['minDate']) // minDate is the start date selected
+                        ->whereDate('questions.updated_at', '<=', $dateRange['maxDate']); // maxDate is the end date selected
                 }),
         ];
     }

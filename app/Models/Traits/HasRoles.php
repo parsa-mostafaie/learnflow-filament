@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles as SpatieHasRoles;
@@ -39,9 +40,11 @@ trait HasRoles
      * 
      * @return string
      */
-    public function getRoleNameAttribute()
+    protected function roleName(): Attribute
     {
-        return $this->getRoleNames()[0] ?? 'user';
+        return Attribute::make(
+            get: fn() => $this->getRoleNames()[0] ?? 'user'
+        )->withoutObjectCaching();
     }
 
     /**
@@ -84,14 +87,18 @@ trait HasRoles
         return static::getRoleNamesCollection()->contains($roleName) ? $roleName : null;
     }
 
-    public function getNextRoleNameAttribute()
+    protected function nextRoleName(): Attribute
     {
-        return static::getNextRole($this->role_name);
+        return Attribute::make(
+            get: fn() => static::getNextRole($this->role_name)
+        )->withoutObjectCaching();
     }
 
-    public function getPreviousRoleNameAttribute()
+    protected function previousRoleName(): Attribute
     {
-        return static::getPreviousRole($this->role_name);
+        return Attribute::make(
+            get: fn() => static::getPreviousRole($this->role_name)
+        )->withoutObjectCaching();
     }
 
     public static function getRoleNumber($roleName)
