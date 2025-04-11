@@ -44,9 +44,11 @@ $action = function () {
 
 {{-- Container for the impersonate button --}}
 <div>
-  @can('impersonate', $this->user)
-    <x-secondary-button wire:click="action" title="{{ __('Impersonate') }}" class="text-blue-600">
-      <i class="fas fa-user-secret"></i>
-    </x-secondary-button>
-  @endcan
+  @if (!app('impersonate')->isImpersonating())
+    @can('impersonate', $this->user)
+      <x-secondary-button wire:click="action" title="{{ __('Impersonate') }}" class="text-blue-600">
+        <i class="fas fa-user-secret"></i>
+      </x-secondary-button>
+    @endcan
+  @endif
 </div>

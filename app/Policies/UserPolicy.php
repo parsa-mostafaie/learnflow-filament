@@ -79,6 +79,6 @@ class UserPolicy
 
     public function impersonate(User $user, User $model): bool
     {
-        return $user->canImpersonate() && $model->canBeImpersonated() && $user->can('impersonate users') && $user->isNot($model) && !$model->can('prevent from impersonation by users') && $user->can("make user {$model->role_name}");
+        return $user->canImpersonate() && $model->canBeImpersonated() && !app('impersonate')->isImpersonating() && $user->can('impersonate users') && $user->isNot($model) && !$model->can('prevent from impersonation by users') && $user->can("make user {$model->role_name}");
     }
 }
