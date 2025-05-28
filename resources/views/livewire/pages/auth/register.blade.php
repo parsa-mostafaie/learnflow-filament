@@ -80,7 +80,7 @@ $register = function () {
     </div>
 
     <div class="flex items-center justify-between mt-4">
-      <a class="link" href="{{ route('login') }}" wire:navigate>
+      <a class="link" href="{{ login_url() }}">
         {{ __('Already registered?') }}
       </a>
 

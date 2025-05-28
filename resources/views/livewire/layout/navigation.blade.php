@@ -52,7 +52,7 @@ $logout_impersonation = function () {
               </x-nav-link>
             @endif
           @else
-            <x-nav-link :href="route('login')" wire:navigate>
+            <x-nav-link :href="login_url()">
               {{ __('Login') }}
             </x-nav-link>
             <x-nav-link :href="route('register')" wire:navigate>
@@ -134,7 +134,7 @@ $logout_impersonation = function () {
             </x-responsive-nav-link>
             @endif
           @else
-            <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')" wire:navigate>
+            <x-responsive-nav-link :href="login_url()" :active="request()->routeIs('login')">
               {{ __('Login') }}
             </x-responsive-nav-link>
 

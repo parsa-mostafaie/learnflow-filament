@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Services\Leitner;
+use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
+use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -35,8 +37,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if($this->app->environment('production')) {
+        if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+            // $switch
+            //     ->locales(['en', 'fa'])
+            //     ->flags([
+            //         'fa' => asset('flags/ir.svg'),
+            //         'en' => asset('flags/us.svg'),
+            //     ])
+            //     ->displayLocale('fa') // Sets Farsi as the language for label localization
+            //     ->circular();
+        });
     }
 }

@@ -33,8 +33,7 @@ class CoursePolicy
      */
     public function viewAny(?User $user): bool
     {
-        // All users can view any courses
-        return true;
+        return $this->manage($user);
     }
 
     public function manage(?User $user): bool
@@ -51,7 +50,6 @@ class CoursePolicy
      */
     public function view(?User $user, Course $course): bool
     {
-        // Developers can view any course
         if ($user && $user->can('view all courses')) {
             return true;
         }
@@ -140,6 +138,12 @@ class CoursePolicy
         return (!!$user) && ($user->can('delete all courses') || $course->author()->is($user));
     }
 
+    public function deleteAny(?User $user): bool
+    {
+        return (!!$user) && ($user->can('bulk delete courses'));
+    }
+
+
     /**
      * Determine whether the user can restore a specific course.
      * 
@@ -153,6 +157,12 @@ class CoursePolicy
         return (!!$user) && ($user->can('restore all courses') || $course->author()->is($user));
     }
 
+    public function restoreAny(?User $user): bool
+    {
+        // Restoration permission follows the deletion permission
+        return (!!$user) && ($user->can('bulk restore courses'));
+    }
+
     /**
      * Determine whether the user can permanently delete a specific course.
      * 
@@ -163,5 +173,10 @@ class CoursePolicy
     public function forceDelete(?User $user, Course $course): bool
     {
         return (!!$user) && ($user->can('force delete all courses') || $course->author()->is($user));
+    }
+
+    public function forceDeleteAny(?User $user): bool
+    {
+        return (!!$user) && ($user->can('bulk force delete courses'));
     }
 }

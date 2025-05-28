@@ -48,11 +48,17 @@ class RolesAndPermissionsSeeder extends Seeder
                 'make user manager',
                 'manage any activities',
                 'force delete all courses',
+                'bulk delete courses',
+                'bulk delete questions',
+                'bulk restore courses',
+                'bulk restore questions',
+                'bulk force delete questions',
                 'impersonate users',
             ],
             'developer' => [
                 'edit other users',
                 'delete other users',
+                'bulk force delete courses',
                 'make user admin',
                 'prevent from impersonation by users'
             ]

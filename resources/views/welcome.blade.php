@@ -31,7 +31,7 @@
     <p class="text-xl mb-6">
       {{ __('The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm') }}
     </p>
-    <a href="{{ route('login') }}" wire:navigate>
+    <a href="{{ login_url() }}">
       <x-primary-button type="button">
         <i class="fas fa-play me-2"></i> {{ __('Get Started') }}
       </x-primary-button>

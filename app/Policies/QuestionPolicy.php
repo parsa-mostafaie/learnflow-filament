@@ -21,8 +21,7 @@ class QuestionPolicy
      */
     public function viewAny(User $user): bool
     {
-        // All users can view any questions
-        return true;
+        return (!!$user) && $user->can('manage any questions');
     }
 
     /**
@@ -76,6 +75,11 @@ class QuestionPolicy
         return (!!$user) && ($user->can('delete all questions') || $question->author()->is($user));
     }
 
+    public function deleteAny(?User $user): bool
+    {
+        return (!!$user) && ($user->can('bulk delete questions'));
+    }
+
     /**
      * Determine whether the user can restore a specific question.
      * 
@@ -87,6 +91,13 @@ class QuestionPolicy
     {
         return (!!$user) && ($user->can('restore all questions') || $question->author()->is($user));
     }
+
+    public function restoreAny(?User $user): bool
+    {
+        // Restoration permission follows the deletion permission
+        return (!!$user) && ($user->can('bulk restore questions'));
+    }
+
 
     /**
      * Determine whether the user can permanently delete a specific question.
@@ -110,5 +121,10 @@ class QuestionPolicy
     public function changeStatus(?User $user, Question $question): bool
     {
         return $user && $user->can('change questions state');
+    }
+
+    public function forceDeleteAny(?User $user): bool
+    {
+        return (!!$user) && ($user->can('bulk force delete questions'));
     }
 }

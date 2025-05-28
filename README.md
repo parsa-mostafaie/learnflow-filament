@@ -19,7 +19,7 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 -   Composer
 -   Node.js and NPM
 -   Git
--   PHP ext-zip and ext-intl in php.ini
+-   PHP ext-zip and ext-intl and ext-gd in php.ini
 
 ### Steps to Install
 
