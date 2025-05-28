@@ -7,6 +7,8 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
+use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -73,15 +75,20 @@ class QuestionsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                // Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make()->preloadRecordSelect()
+                    ->recordSelectSearchColumns(['question', 'answer'])
+                    ->multiple(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DetachBulkAction::make(),
                 ]),
             ]);
     }
@@ -99,5 +106,10 @@ class QuestionsRelationManager extends RelationManager
     public static function getPluralModelLabel(): string
     {
         return __('questions.plural'); // Change the plural title
+    }
+
+    public function isReadOnly(): bool
+    {
+        return false;
     }
 }

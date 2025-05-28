@@ -104,6 +104,26 @@ class CoursePolicy
         return (!!$user) && ($user->can('assign to all courses') || $course->author()->is($user));
     }
 
+    public function attachQuestion(?User $user, Course $course): bool
+    {
+        return $this->assign($user, $course);
+    }
+
+    public function detachQuestion(?User $user, Course $course): bool
+    {
+        return $this->attachQuestion($user, $course);
+    }
+
+    public function attachAnyQuestion(?User $user, Course $course): bool
+    {
+        return $this->assign($user, $course);
+    }
+
+    public function detachAnyQuestion(?User $user, Course $course): bool
+    {
+        return $this->attachAnyQuestion($user, $course);
+    }
+
     /**
      * Determine whether the user can assign file to a specific course.
      * 

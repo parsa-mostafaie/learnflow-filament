@@ -187,6 +187,7 @@ class CourseResource extends Resource
                 Tables\Actions\ForceDeleteAction::make(),
                 Tables\Actions\RestoreAction::make(),
                 ActivityLogTimelineTableAction::make('Activities')
+                    ->authorize(fn() => auth()->user()->can('manage any activities'))
                     ->label(__('tables.actions.activities')),
             ])
             ->bulkActions([

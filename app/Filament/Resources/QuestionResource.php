@@ -130,15 +130,18 @@ class QuestionResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ForceDeleteAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                // Tables\Actions\ForceDeleteAction::make(),
                 // Tables\Actions\RestoreAction::make(),
                 ActivityLogTimelineTableAction::make('Activities')
-                    ->label(__('tables.actions.activities')),
+                    ->label(__('tables.actions.activities'))
+                    ->authorize(fn() => auth()->user()->can('manage any activities')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
+                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\ForceDeleteBulkAction::make(),
+                    //Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -169,5 +172,13 @@ class QuestionResource extends Resource
     public static function getPluralModelLabel(): string
     {
         return __('questions.plural'); // Change the plural title
+    }
+
+    public static function getRecordSubNavigation($page): array
+    {
+        return $page->generateNavigationItems([
+            QuestionResource\Pages\ViewQuestion::class,
+            QuestionResource\Pages\EditQuestion::class,
+        ]);
     }
 }
