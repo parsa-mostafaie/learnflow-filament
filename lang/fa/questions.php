@@ -16,7 +16,10 @@ return [
     'approved' => 'تایید شده',
     'rejected' => 'رد شده',
   ],
-  'filters'=>[
-    'author' => "نویسنده"
+  'filters' => [
+    'author' => "نویسنده",
+    "status" => "وضعیت",
+    'creation_range' => "بازه زمانی ایجاد",
+    "updation_range" => "بازه زمانی تغییر",
   ]
 ];

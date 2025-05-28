@@ -16,7 +16,10 @@ return [
     'approved' => 'Approved',
     'rejected' => 'Rejected',
   ],
-  'filters'=>[
-    'author'=>"Author"
+  'filters' => [
+    'author' => "Author",
+    "status" => "Status",
+    'creation_range' => "Creation Range",
+    "updation_range" => "Updation Range",
   ]
 ];

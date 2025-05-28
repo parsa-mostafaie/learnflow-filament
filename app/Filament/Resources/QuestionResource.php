@@ -101,15 +101,23 @@ class QuestionResource extends Resource
                     ->searchable()
                     ->multiple()
                     ->preload(),
+                SelectFilter::make('status')
+                    ->options([
+                        'pending' => __('questions.statuses.pending'),
+                        'approved' => __('questions.statuses.approved'),
+                        'rejected' => __('questions.statuses.rejected'),
+                    ])
+                    ->label(__('questions.filters.status')) // Localized label
+                    ->multiple(),
                 // Date Range Filter for "Creation Range"
                 DateRangeFilter::make('created_at')
-                    ->label(__('courses.filters.creation_range'))
+                    ->label(__('questions.filters.creation_range'))
                     ->firstDayOfWeek(6)
                     ->autoApply()
                     ->linkedCalendars(),
                 // Date Range Filter for "Updation Range"
                 DateRangeFilter::make('updated_at')
-                    ->label(__('courses.filters.updation_range'))
+                    ->label(__('questions.filters.updation_range'))
                     ->firstDayOfWeek(6)
                     ->autoApply()
                     ->linkedCalendars(),
