@@ -19,6 +19,22 @@ return [
         ],
       ],
     ],
+    'multiple' => [
+      'label' => 'تأیید انتخاب شده',
+      'modal' => [
+        'heading' => 'آیا مطمئنی می‌خوای همه :label رو تأیید کنی؟',
+        'actions' => [
+          'approve' => [
+            'label' => 'تأیید کن',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'approved' => [
+          'title' => 'همه موارد با موفقیت تأیید شدن!',
+        ],
+      ],
+    ],
   ],
   'reject' => [
     'single' => [
@@ -34,6 +50,22 @@ return [
       'notifications' => [
         'rejected' => [
           'title' => 'با موفقیت رد شد!',
+        ],
+      ],
+    ],
+    'multiple' => [
+      'label' => 'رد انتخاب شده',
+      'modal' => [
+        'heading' => 'آیا مطمئنی می‌خوای همه ":label" رو رد کنی؟',
+        'actions' => [
+          'reject' => [
+            'label' => 'رد کن',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'rejected' => [
+          'title' => 'همه موارد با موفقیت رد شدن!',
         ],
       ],
     ],
@@ -56,4 +88,5 @@ return [
       ],
     ],
   ],
+
 ];

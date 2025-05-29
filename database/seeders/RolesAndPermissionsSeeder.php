@@ -53,6 +53,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'bulk restore courses',
                 'bulk restore questions',
                 'bulk force delete questions',
+                'bulk change questions state',
                 'impersonate users',
             ],
             'developer' => [

@@ -123,9 +123,19 @@ class QuestionPolicy
         return $user && $user->can('change questions state');
     }
 
+    public function changeStatusAny(?User $user): bool
+    {
+        return $user && $user->can('bulk change questions state');
+    }
+
     public function approve(User $user, Question $question): bool
     {
         return $this->changeStatus($user, $question);
+    }
+
+    public function approveAny(User $user): bool
+    {
+        return $this->changeStatusAny($user);
     }
 
     public function reject(User $user, Question $question): bool
@@ -133,9 +143,19 @@ class QuestionPolicy
         return $this->changeStatus($user, $question);
     }
 
+    public function rejectAny(User $user): bool
+    {
+        return $this->changeStatusAny($user);
+    }
+
     public function pending(User $user, Question $question): bool
     {
         return $this->changeStatus($user, $question);
+    }
+
+    public function pendingAny(User $user): bool
+    {
+        return $this->changeStatusAny($user);
     }
 
     public function forceDeleteAny(?User $user): bool
