@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use App\Filament\Resources\QuestionResource;
 use Filament\Tables\Table;
 use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
@@ -34,46 +35,8 @@ class QuestionsRelationManager extends RelationManager
 
     public function table(Table $table): Table
     {
-        return $table
+        return QuestionResource::table($table)
             ->recordTitleAttribute('question')
-            ->columns([
-                Tables\Columns\TextColumn::make('question')
-                    ->label(__('questions.columns.question')) // Localized label
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('answer')
-                    ->label(__('questions.columns.answer')) // Localized label
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label(__('questions.columns.author')) // Localized label
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->label(__('questions.columns.status')) // Localized label
-                    ->badge()
-                    ->color(fn(string $state): string => match ($state) {
-                        'pending' => 'warning',
-                        'approved' => 'success',
-                        'rejected' => 'danger',
-                        default => 'gray',
-                    })
-                    ->icon(fn(string $state): string => match ($state) {
-                        'pending' => 'heroicon-o-clock',
-                        'approved' => 'heroicon-o-check-circle',
-                        'rejected' => 'heroicon-o-x-circle',
-                        default => 'heroicon-o-question-mark-circle',
-                    })
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'pending' => __('questions.statuses.pending'),    // Localized "Pending"
-                        'approved' => __('questions.statuses.approved'),  // Localized "Approved"
-                        'rejected' => __('questions.statuses.rejected'),  // Localized "Rejected"
-                        default => __('questions.statuses.unknown'),      // Localized "Unknown"
-                    }),
-            ])
-            ->filters([
-                //
-            ])
             ->headerActions([
                 // Tables\Actions\CreateAction::make(),
                 Tables\Actions\AttachAction::make()->preloadRecordSelect()
@@ -111,5 +74,10 @@ class QuestionsRelationManager extends RelationManager
     public function isReadOnly(): bool
     {
         return false;
+    }
+
+    public function getContentTabIcon(): ?string
+    {
+        return 'heroicon-question-mark-circle';
     }
 }

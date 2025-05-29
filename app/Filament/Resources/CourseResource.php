@@ -41,12 +41,18 @@ class CourseResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->label(__('courses.columns.title'))
                     ->required()
-                    ->afterStateUpdated(function (\Closure $get, \Closure $set, ?string $state) {
-                        if (!$get('is_slug_changed_manually') && filled($state)) {
-                            $set('slug', Str::slug($state));
-                        }
-                    })
                     ->live()
+                    ->afterStateUpdated(function ($get, Set $set, ?string $operation, ?string $old, ?string $state, ?Model $record) {
+                        if ($operation == 'edit' /*&& $record->isPublished()*/) {
+                            return;
+                        }
+
+                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
+
+                        $set('slug', Str::slug($state));
+                    })
                     ->maxLength(255),
                 Forms\Components\RichEditor::make('description')
                     ->label(__('courses.columns.description'))

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -129,5 +130,10 @@ class Question extends Model
         $this->status = $newStatus;
 
         return $this->save();
+    }
+
+    public function isStatus($status)
+    {
+        return Str::lower($this->status) == Str::lower($status);
     }
 }

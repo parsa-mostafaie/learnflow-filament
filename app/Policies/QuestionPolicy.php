@@ -123,6 +123,21 @@ class QuestionPolicy
         return $user && $user->can('change questions state');
     }
 
+    public function approve(User $user, Question $question): bool
+    {
+        return $this->changeStatus($user, $question);
+    }
+
+    public function reject(User $user, Question $question): bool
+    {
+        return $this->changeStatus($user, $question);
+    }
+
+    public function pending(User $user, Question $question): bool
+    {
+        return $this->changeStatus($user, $question);
+    }
+
     public function forceDeleteAny(?User $user): bool
     {
         return (!!$user) && ($user->can('bulk force delete questions'));

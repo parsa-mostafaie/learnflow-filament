@@ -17,6 +17,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\IconColumn;
+use App\Filament\Actions\ApproveAction;
+use App\Filament\Actions\PendingAction;
+use App\Filament\Actions\RejectAction;
 use Filament\Tables\Columns\Summarizers\Range;
 
 class QuestionResource extends Resource
@@ -133,6 +136,9 @@ class QuestionResource extends Resource
                 Tables\Actions\DeleteAction::make(),
                 // Tables\Actions\ForceDeleteAction::make(),
                 // Tables\Actions\RestoreAction::make(),
+                ApproveAction::make(),
+                RejectAction::make(),
+                PendingAction::make(),
                 ActivityLogTimelineTableAction::make('Activities')
                     ->label(__('tables.actions.activities'))
                     ->authorize(fn() => auth()->user()->can('manage any activities')),
