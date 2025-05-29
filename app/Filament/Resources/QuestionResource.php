@@ -20,6 +20,7 @@ use Filament\Tables\Columns\IconColumn;
 use App\Filament\Actions\ApproveAction;
 use App\Filament\Actions\ApproveBulkAction;
 use App\Filament\Actions\PendingAction;
+use App\Filament\Actions\PendingBulkAction;
 use App\Filament\Actions\RejectAction;
 use App\Filament\Actions\RejectBulkAction;
 use Filament\Tables\Columns\Summarizers\Range;
@@ -149,9 +150,10 @@ class QuestionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     ApproveBulkAction::make(),
+                    PendingBulkAction::make(),
                     RejectBulkAction::make(),
                     // Tables\Actions\ForceDeleteBulkAction::make(),
-                    //Tables\Actions\RestoreBulkAction::make(),
+                    // Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }

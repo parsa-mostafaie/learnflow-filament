@@ -87,5 +87,23 @@ return [
         ],
       ],
     ],
+    'pending' => [
+      'multiple' => [
+        'label' => 'Bulk Set as Pending',
+        'modal' => [
+          'heading' => 'Are you sure you want to set all selected ":label" as pending?',
+          'actions' => [
+            'pending' => [
+              'label' => 'Set as Pending',
+            ],
+          ],
+        ],
+        'notifications' => [
+          'pending' => [
+            'title' => 'All items marked as pending successfully!',
+          ],
+        ],
+      ],
+    ],
   ],
 ];
