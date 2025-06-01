@@ -2,10 +2,17 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Support\Enums\FontWeight;
 use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 use App\Filament\Resources\CourseResource\Pages;
 use Illuminate\Support\Facades\Gate;
+use Filament\Infolists\Components\Grid;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\Group;
+use Filament\Infolists\Components\Section;
 use App\Filament\Resources\CourseResource\RelationManagers;
 use Filament\Tables\Columns\Summarizers\Range;
 use App\Models\Course;
@@ -14,6 +21,7 @@ use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action as ActionsAction;
@@ -27,6 +35,7 @@ use Illuminate\Validation\Rule;
 use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use Milwad\LaravelValidate\Rules\ValidSlug;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
 class CourseResource extends Resource
 {
@@ -42,16 +51,16 @@ class CourseResource extends Resource
                     ->label(__('courses.columns.title'))
                     ->required()
                     ->live()
-                    ->afterStateUpdated(function ($get, Set $set, ?string $operation, ?string $old, ?string $state, ?Model $record) {
+                    ->afterStateUpdated(function (?string $state, $set, $get, ?string $operation = null, ?string $old = null, ?Model $record = null) {
                         if ($operation == 'edit' /*&& $record->isPublished()*/) {
                             return;
                         }
 
-                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                        if (($get('slug') ?? '') !== Str::slug($old ?? '')) {
                             return;
                         }
 
-                        $set('slug', Str::slug($state));
+                        $set('slug', Str::slug($state ?? ''));
                     })
                     ->maxLength(255),
                 Forms\Components\RichEditor::make('description')
@@ -59,11 +68,11 @@ class CourseResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('slug')
                     ->label(__('courses.columns.slug'))
-                    ->nullable()
+                    ->required()
                     ->maxLength(255)
                     ->rule(fn($record) => [new ValidSlug])
                     ->unique(ignoreRecord: true)
-                    ->afterStateUpdated(function (\Closure $set) {
+                    ->afterStateUpdated(function (Set $set) {
                         $set('is_slug_changed_manually', true);
                     }),
                 Forms\Components\FileUpload::make('thumbnail')
@@ -238,11 +247,92 @@ class CourseResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
-            ]);
+            ])
+            ->withCount('enrolls');
     }
 
     public static function getWidgets(): array
     {
         return [CourseResource\Widgets\CourseOverview::class];
     }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Section::make(__('courses.sections.main_info'))
+                    ->description(__('courses.sections.main_info_desc'))
+                    ->columns(1)
+                    ->schema([
+                        ImageEntry::make('thumbnail')
+                            ->label(false)
+                            ->disk('public')
+                            ->defaultImageUrl((new Course)->getAlternativeImage())
+                            ->extraImgAttributes(['loading' => 'lazy']),
+                        Group::make()
+                            ->schema([
+                                TextEntry::make('title')
+                                    ->label(false)
+                                    ->color('primary')
+                                    ->weight('bold')
+                                    ->placeholder(__('courses.placeholders.title'))
+                                    ->size('lg'),
+                                Grid::make()
+                                    ->columns(2)
+                                    ->schema([
+                                        TextEntry::make('slug')
+                                            ->label(__('courses.columns.slug'))
+                                            ->copyable()
+                                            ->color('gray')
+                                            ->placeholder(__('courses.placeholders.slug'))
+                                            ->icon('heroicon-o-link'),
+                                        TextEntry::make('author.name')
+                                            ->label(__('courses.columns.author'))
+                                            ->color('info'),
+                                    ]),
+
+                            ])
+                            ->columnSpan(1),
+                    ]),
+                Section::make(__('courses.sections.details'))
+                    ->columns(1)
+                    ->schema([
+                        TextEntry::make('description')
+                            ->label(false)
+                            ->placeholder(__('courses.placeholders.description'))
+                            ->markdown(),
+
+                        TextEntry::make('enrolls_count')
+                            ->label(__('courses.columns.enrolls_count'))
+                            ->color('indigo')
+                            ->numeric(),
+                    ]),
+                Section::make(__('courses.sections.meta'))
+                    ->columns(3)
+                    ->collapsed()
+                    ->schema([
+                        TextEntry::make('created_at')
+                            ->label(__('courses.columns.created_at'))
+                            ->dateTime()
+                            ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
+                            ->color('success')
+                            ->placeholder(__('courses.placeholders.created_at')),
+
+                        TextEntry::make('updated_at')
+                            ->label(__('courses.columns.updated_at'))
+                            ->dateTime()
+                            ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
+                            ->color('warning')
+                            ->placeholder(__('courses.placeholders.updated_at')),
+
+                        TextEntry::make('deleted_at')
+                            ->label(__('courses.columns.deleted_at'))
+                            ->dateTime()
+                            ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
+                            ->color('danger')
+                            ->placeholder(__('courses.placeholders.deleted_at')),
+                    ]),
+            ]);
+    }
+
 }

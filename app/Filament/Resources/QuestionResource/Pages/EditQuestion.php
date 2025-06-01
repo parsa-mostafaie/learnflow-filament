@@ -17,4 +17,9 @@ class EditQuestion extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('questions.pages.edit');
+    } 
 }

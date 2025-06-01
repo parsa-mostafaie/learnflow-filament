@@ -41,17 +41,20 @@ class QuestionsRelationManager extends RelationManager
                 // Tables\Actions\CreateAction::make(),
                 Tables\Actions\AttachAction::make()->preloadRecordSelect()
                     ->recordSelectSearchColumns(['question', 'answer'])
-                    ->multiple(),
+                    ->multiple()
+                    ->authorize(fn() => auth()->user()->can('attachAnyQuestion', $this->getOwnerRecord())),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DetachAction::make(),
+                Tables\Actions\DetachAction::make()
+                    ->authorize(fn() => auth()->user()->can('detachQuestion', $this->getOwnerRecord())),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     // Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\DetachBulkAction::make(),
+                    Tables\Actions\DetachBulkAction::make()
+                        ->authorize(fn() => auth()->user()->can('detachAnyQuestion', $this->getOwnerRecord())),
                 ]),
             ]);
     }

@@ -21,4 +21,9 @@ class ViewCourse extends ViewRecord
                 ->label(__('tables.actions.activities')),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('courses.pages.view');
+    }
 }

@@ -19,4 +19,9 @@ class EditCourse extends EditRecord
             Actions\RestoreAction::make(),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('courses.pages.edit');
+    }
 }

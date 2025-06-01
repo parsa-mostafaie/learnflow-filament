@@ -28,4 +28,9 @@ class ViewQuestion extends ViewRecord
                 ->authorize(fn() => auth()->user()->can('manage any activities')),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('questions.pages.view');
+    }
 }

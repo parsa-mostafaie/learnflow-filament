@@ -21,5 +21,10 @@ return [
     "status" => "Status",
     'creation_range' => "Creation Range",
     "updation_range" => "Updation Range",
-  ]
+  ],
+  'pages' =>
+    [
+      'edit' => "Edit Question",
+      'view' => "View Question"
+    ]
 ];

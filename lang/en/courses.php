@@ -29,5 +29,24 @@ return [
     "approved_questions_count" => "Approved questions",
     "rejected_questions_count" => "Rejected questions",
     "pending_questions_count" => "Pending questions"
-  ]
+  ],
+  'pages' =>
+    [
+      'edit' => "Edit Course",
+      'view' => "View Course"
+    ],
+  'sections' => [
+    'main_info' => 'Main Information',
+    'main_info_desc' => 'View the general details of the course.',
+    'meta' => 'Metadata',
+    'details' => "Details"
+  ],
+  'placeholders' => [
+    'title' => 'No title provided! 😶‍🌫️',
+    'slug' => 'Slug is empty 🕵️‍♂️',
+    'description' => 'No description available 🤷‍♂️',
+    'created_at' => 'No creation date 😵‍💫',
+    'updated_at' => 'No update date 😴',
+    'deleted_at' => 'Not Deleted 😶‍🌫️',
+  ],
 ];

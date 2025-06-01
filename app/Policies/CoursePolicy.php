@@ -116,7 +116,7 @@ class CoursePolicy
 
     public function attachAnyQuestion(?User $user, Course $course): bool
     {
-        return $this->assign($user, $course);
+        return $this->assignMany($user, $course);
     }
 
     public function detachAnyQuestion(?User $user, Course $course): bool
