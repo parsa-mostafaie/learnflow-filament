@@ -56,8 +56,6 @@ class QuestionImporter extends Importer
             ->first();
 
         if ($existing) {
-            // throw new \Exception('NOT EXST');
-            Log::info('EXSt');
             return null;
         }
 

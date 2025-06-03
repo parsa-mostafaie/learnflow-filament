@@ -97,12 +97,14 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.png'))
             ->font('Vazirmatn')
             ->emailVerification(EmailVerificationPrompt::class)
-            ->spa(true)->userMenuItems([
-                    'profile' => MenuItem::make()
-                        ->label(fn() => auth()->user()->name)
-                        ->url(fn(): string => EditProfilePage::getUrl())
-                        ->icon('heroicon-m-user-circle')
-                ])
-        ;
+            ->spa(true)
+            ->userMenuItems([
+                'profile' => MenuItem::make()
+                    ->label(fn() => auth()->user()->name)
+                    ->url(fn(): string => EditProfilePage::getUrl())
+                    ->icon('heroicon-m-user-circle')
+            ])
+            ->databaseNotifications()
+            ->sidebarCollapsibleOnDesktop();
     }
 }
