@@ -17,6 +17,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\IconColumn;
+use Illuminate\Validation\Rules\Unique;
+use Filament\Forms\Get;
 use App\Filament\Actions\ApproveAction;
 use App\Filament\Actions\ApproveBulkAction;
 use App\Filament\Actions\PendingAction;
@@ -38,12 +40,20 @@ class QuestionResource extends Resource
                 Forms\Components\TextInput::make('question')
                     ->label(__('questions.columns.question')) // Localized label
                     ->required()
-                    ->maxLength(255),
+                    ->live()
+                    ->unique(ignoreRecord: true, modifyRuleUsing: fn(Unique $rule, Get $get) =>
+                        $rule->where(
+                            fn($query) => $query
+                                ->where('answer', $get('answer'))
+                        ))
+                    ->maxLength(255)
+                    ->afterStateUpdated(fn($state, callable $set) => $set('question', trim($state))),
 
                 Forms\Components\TextInput::make('answer')
                     ->label(__('questions.columns.answer')) // Localized label
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->afterStateUpdated(fn($state, callable $set) => $set('answer', trim($state)))
             ]);
     }
 
@@ -88,17 +98,16 @@ class QuestionResource extends Resource
                     ->label(__('questions.columns.created_at')) // Localized label
                     ->dateTime()
                     ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
-                    ->sortable()
-                    ->summarize(Range::make()->minimalDateTimeDifference())
-                    ->toggleable(isToggledHiddenByDefault: true),
-
+                    ->sortable(query: function (Builder $query, string $direction): Builder {
+                        return $query->orderBy('questions.created_at', $direction);
+                    }),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('questions.columns.updated_at')) // Localized label
                     ->dateTime()
                     ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
-                    ->sortable()
-                    ->summarize(Range::make()->minimalDateTimeDifference())
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(query: function (Builder $query, string $direction): Builder {
+                        return $query->orderBy('questions.updated_at', $direction);
+                    })
             ])
             ->filters([
                 SelectFilter::make('author')

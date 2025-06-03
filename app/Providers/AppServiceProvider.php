@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\Leitner;
 use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
+use Illuminate\Support\Facades\Gate;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
 
@@ -40,6 +41,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+
+        Gate::policy(\Spatie\Activitylog\Models\Activity::class, \App\Policies\SpatieActivityPolicy::class);
 
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             // $switch

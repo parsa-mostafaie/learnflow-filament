@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Filament\Imports;
+
+use App\Models\Question;
+use Illuminate\Support\Facades\Log;
+use Filament\Actions\Imports\ImportColumn;
+use Filament\Actions\Imports\Importer;
+use Filament\Actions\Imports\Models\Import;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
+
+class QuestionImporter extends Importer
+{
+    protected static ?string $model = Question::class;
+
+    public static function getColumns(): array
+    {
+        return [
+            ImportColumn::make('question')
+                ->requiredMapping()
+                ->rules(['required', 'max:255'])
+                ->label(__('questions.importer.question'))
+                ->exampleHeader(__('questions.importer.question')),
+            ImportColumn::make('answer')
+                ->requiredMapping()
+                ->rules([
+                    'required',
+                    'max:255',
+                ])
+                ->label(__('questions.importer.answer'))
+                ->exampleHeader(__('questions.importer.answer'))
+        ];
+    }
+
+    public function resolveRecord(): ?Question
+    {
+        // return Question::firstOrNew([
+        //     // Update existing records, matching them by `$this->data['column_name']`
+        //     // 'email' => $this->data['email'],
+
+        //     'question' => trim($this->data['question']),
+        //     'answer' => trim($this->data['answer']),
+        // ], [
+        //     'user_id' => auth()->id(),
+        //     'status' => Gate::allows('create approved questions') ? 'approved' : 'pending'
+        // ]);
+
+        // // return new Question();
+
+        $question = trim($this->data['question']);
+        $answer = trim($this->data['answer']);
+
+        $existing = Question::where('question', $question)
+            ->where('answer', $answer)
+            ->first();
+
+        if ($existing) {
+            // throw new \Exception('NOT EXST');
+            Log::info('EXSt');
+            return null;
+        }
+
+        return new Question([
+            'question' => $question,
+            'answer' => $answer,
+            'user_id' => auth()->id(),
+            'status' => Gate::allows('create approved questions') ? 'approved' : 'pending',
+        ]);
+    }
+
+    public static function getCompletedNotificationBody(Import $import): string
+    {
+        $body = trans_choice('questions.messages.import_success', $import->successful_rows, [
+            'count' => $import->successful_rows,
+        ]);
+
+        if ($failedRowsCount = $import->getFailedRowsCount()) {
+            $body .= ' ' . number_format($failedRowsCount) . ' ' . str('row')->plural($failedRowsCount) . ' failed to import.';
+        }
+
+        return $body;
+    }
+
+    protected function afterSave(): void
+    {
+        if (!blank($this->options['course_id']))
+            $this->record->courses()->syncWithoutDetaching([$this->options['course_id']]);
+    }
+}

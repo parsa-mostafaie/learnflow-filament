@@ -26,5 +26,12 @@ return [
     [
       'edit' => "Edit Question",
       'view' => "View Question"
-    ]
+    ],
+  'messages' => [
+    'import_success' => '{1} Your question import has completed and :count row imported.|[2,*] Your question import has completed and :count rows imported.',
+  ],
+  'importer' => [
+    'question' => 'Question',
+    'answer' => 'Answer',
+  ],
 ];

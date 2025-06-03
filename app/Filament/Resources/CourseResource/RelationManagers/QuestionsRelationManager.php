@@ -6,6 +6,8 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\ImportAction;
+use App\Filament\Imports\QuestionImporter;
 use App\Filament\Resources\QuestionResource;
 use Filament\Tables\Table;
 use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
@@ -39,6 +41,9 @@ class QuestionsRelationManager extends RelationManager
             ->recordTitleAttribute('question')
             ->headerActions([
                 // Tables\Actions\CreateAction::make(),
+                ImportAction::make()
+                    ->importer(QuestionImporter::class)
+                    ->options(['course_id' => $this->getOwnerRecord()->getKey()]),
                 Tables\Actions\AttachAction::make()->preloadRecordSelect()
                     ->recordSelectSearchColumns(['question', 'answer'])
                     ->multiple()
