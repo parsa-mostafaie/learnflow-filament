@@ -56,6 +56,9 @@ class QuestionImporter extends Importer
             ->first();
 
         if ($existing) {
+            if (!blank($this->options['course_id']))
+                $existing->courses()->syncWithoutDetaching([$this->options['course_id']]);
+
             return null;
         }
 
