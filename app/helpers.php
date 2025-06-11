@@ -14,6 +14,11 @@ function login_url()
     return Filament::getCurrentPanel()->getLoginUrl();
 }
 
+function register_url()
+{
+    return Filament::getCurrentPanel()->getRegistrationUrl();
+}
+
 if (!function_exists('is_jalali_supported')) {
     /**
      * Determine if the current locale supports the Jalali calendar.

@@ -1,6 +1,7 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
+import preset from "./vendor/filament/support/tailwind.config.preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,7 +11,9 @@ export default {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./vendor/masmerise/livewire-toaster/resources/views/*.blade.php",
-        "./app/**/*.php"
+        "./app/**/*.php",
+        "./resources/views/filament/**/*.blade.php",
+        "./vendor/filament/**/*.blade.php",
     ],
 
     theme: {
@@ -25,7 +28,8 @@ export default {
                 },
             },
         },
-
-        plugins: [forms, typography],
     },
+
+    plugins: [forms, typography],
+    presets: [preset],
 };

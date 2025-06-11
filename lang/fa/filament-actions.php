@@ -104,5 +104,49 @@ return [
       ],
     ],
   ],
-
+  'learn' => [
+    'single' => [
+      'label' => 'یادگیری',
+      'modal' => [
+        //
+      ],
+      'notifications' => [
+        //
+      ],
+    ],
+  ],
+  'enroll' => [
+    'single' => [
+      'label' => 'ثبت‌نام',
+      'modal' => [
+        'heading' => 'ثبت‌نام در :label',
+        'actions' => [
+          'enroll' => [
+            'label' => 'ثبت‌نام',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'enrolled' => [
+          'title' => 'با موفقیت ثبت‌نام شدید',
+        ],
+      ],
+    ],
+    'unenroll' => [
+      'label' => 'لغو ثبت‌نام',
+      'modal' => [
+        'heading' => 'لغو ثبت‌نام از :label',
+        'actions' => [
+          'unenroll' => [
+            'label' => 'لغو ثبت‌نام',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'unenrolled' => [
+          'title' => 'ثبت‌نام شما لغو شد',
+        ],
+      ],
+    ],
+  ],
 ];

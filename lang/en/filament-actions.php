@@ -106,4 +106,49 @@ return [
       ],
     ],
   ],
+  'learn' => [
+    'single' => [
+      'label' => 'Learn',
+      'modal' => [
+        //
+      ],
+      'notifications' => [
+        //
+      ],
+    ],
+  ],
+  'enroll' => [
+    'single' => [
+      'label' => 'Enroll',
+      'modal' => [
+        'heading' => 'Enroll in :label',
+        'actions' => [
+          'enroll' => [
+            'label' => 'Enroll',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'enrolled' => [
+          'title' => 'Successfully enrolled',
+        ],
+      ],
+    ],
+    'unenroll' => [
+      'label' => 'Unenroll',
+      'modal' => [
+        'heading' => 'Unenroll from :label',
+        'actions' => [
+          'unenroll' => [
+            'label' => 'Unenroll',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'unenrolled' => [
+          'title' => 'Successfully unenrolled',
+        ],
+      ],
+    ],
+  ],
 ];

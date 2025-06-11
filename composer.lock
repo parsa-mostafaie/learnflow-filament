@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51085137e79ef4e007b3c582896b4af8",
+    "content-hash": "db224747025f75745bdd9710aa6591f5",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4753,6 +4753,54 @@
             "time": "2025-03-24T10:02:05+00:00"
         },
         {
+            "name": "monzer/filament-email-verification-alert",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monzer15/filament-email-verification-alert.git",
+                "reference": "7b2850661978045abb4d8ec84c92677965687abe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monzer15/filament-email-verification-alert/zipball/7b2850661978045abb4d8ec84c92677965687abe",
+                "reference": "7b2850661978045abb4d8ec84c92677965687abe",
+                "shasum": ""
+            },
+            "require": {
+                "filament/support": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Monzer\\FilamentEmailVerificationAlert\\EmailVerificationAlertServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Monzer\\FilamentEmailVerificationAlert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Monzer Osman",
+                    "email": "monzerosman15@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Send Email verifications on the fly!",
+            "support": {
+                "issues": "https://github.com/monzer15/filament-email-verification-alert/issues",
+                "source": "https://github.com/monzer15/filament-email-verification-alert/tree/v1.0.0"
+            },
+            "time": "2025-02-12T16:15:24+00:00"
+        },
+        {
             "name": "morilog/jalali",
             "version": "v3.4.2",
             "source": {
@@ -6890,6 +6938,48 @@
                 }
             ],
             "time": "2025-02-28T20:29:57+00:00"
+        },
+        {
+            "name": "stechstudio/filament-impersonate",
+            "version": "3.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stechstudio/filament-impersonate.git",
+                "reference": "0035ca0b6ebd945ec1b1b2cd409282f56be5c74f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stechstudio/filament-impersonate/zipball/0035ca0b6ebd945ec1b1b2cd409282f56be5c74f",
+                "reference": "0035ca0b6ebd945ec1b1b2cd409282f56be5c74f",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "lab404/laravel-impersonate": "^1.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "STS\\FilamentImpersonate\\FilamentImpersonateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "STS\\FilamentImpersonate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Filament package to impersonate your users.",
+            "support": {
+                "issues": "https://github.com/stechstudio/filament-impersonate/issues",
+                "source": "https://github.com/stechstudio/filament-impersonate/tree/3.16"
+            },
+            "time": "2025-04-15T23:12:37+00:00"
         },
         {
             "name": "symfony/clock",

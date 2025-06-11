@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }"
-  x-bind:class="{ 'dark': darkMode }" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      localStorage.setItem('darkMode', 'true');
-  }
-  darkMode = JSON.parse(localStorage.getItem('darkMode'));
-  $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))">
+<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{
+    theme: localStorage.getItem('theme') || 'system',
+    get isDark() {
+        return this.theme === 'dark' ||
+            (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+}"
+  x-init="$watch('theme', val => localStorage.setItem('theme', val))">
 
 <head>
   <meta charset="utf-8">
@@ -23,7 +25,7 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
+<body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip" x-bind:class="{ 'dark': isDark }">
   {{-- Hero Section --}}
   <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
     <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'LearnFlow'))]) }}

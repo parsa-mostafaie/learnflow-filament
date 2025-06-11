@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html dir="{{ __(key: 'ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }"
-  x-init="if (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      localStorage.setItem('darkMode', 'true');
-  }
-  darkMode = JSON.parse(localStorage.getItem('darkMode'));
-  $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)));">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ __(key: 'ltr') }}" x-data="{
+    theme: localStorage.getItem('theme') || 'system',
+    get isDark() {
+        return this.theme === 'dark' ||
+            (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+}"
+  x-init="$watch('theme', val => localStorage.setItem('theme', val))">
 
 <head>
   <meta charset="utf-8">
@@ -21,10 +23,12 @@
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
   {{-- Scripts --}}
+  @filamentStyles
+  @filamentScripts
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased" x-bind:class="{ 'dark': darkMode }">
+<body class="font-sans antialiased" x-bind:class="{ 'dark': isDark }">
   <div class="min-h-screen bg-purple-100 dark:bg-purple-700">
     {{-- Livewire navigation component --}}
     <livewire:layout.navigation />
@@ -51,6 +55,7 @@
   @persist('toaster')
     <x-toaster-hub />
   @endpersist
+  @livewire('notifications')
 </body>
 
 </html>

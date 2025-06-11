@@ -7,6 +7,7 @@ use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 use App\Filament\Resources\CourseResource\Pages;
 use Illuminate\Support\Facades\Gate;
+use App\Filament\Actions\LearnAction;
 use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\TextEntry;
@@ -15,6 +16,7 @@ use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\Section;
 use App\Filament\Resources\CourseResource\RelationManagers;
 use Filament\Tables\Columns\Summarizers\Range;
+use App\Filament\Actions\EnrollToggleAction;
 use App\Models\Course;
 use App\Models\User;
 use Filament\Actions\Action;
@@ -40,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
 class CourseResource extends Resource
 {
     protected static ?string $model = Course::class;
+
+    protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
@@ -197,6 +201,8 @@ class CourseResource extends Resource
             )
             ->actions([
                 Tables\Actions\ViewAction::make(),
+                LearnAction::make(),
+                EnrollToggleAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
@@ -268,7 +274,7 @@ class CourseResource extends Resource
                             ->label(false)
                             ->disk('public')
                             ->defaultImageUrl((new Course)->getAlternativeImage())
-                            ->extraImgAttributes(['loading' => 'lazy']),
+                            ->extraImgAttributes(['loading' => 'lazy', 'class' => 'rounded']),
                         Group::make()
                             ->schema([
                                 TextEntry::make('title')
@@ -278,7 +284,7 @@ class CourseResource extends Resource
                                     ->placeholder(__('courses.placeholders.title'))
                                     ->size('lg'),
                                 Grid::make()
-                                    ->columns(2)
+                                    ->columns(3)
                                     ->schema([
                                         TextEntry::make('slug')
                                             ->label(__('courses.columns.slug'))
@@ -288,7 +294,13 @@ class CourseResource extends Resource
                                             ->icon('heroicon-o-link'),
                                         TextEntry::make('author.name')
                                             ->label(__('courses.columns.author'))
+                                            ->weight('bold')
                                             ->color('info'),
+                                        TextEntry::make('enrolls_count')
+                                            ->label(__('courses.columns.enrolls_count'))
+                                            ->color('success')
+                                            ->weight('bold')
+                                            ->numeric(),
                                     ]),
 
                             ])
@@ -301,11 +313,6 @@ class CourseResource extends Resource
                             ->label(false)
                             ->placeholder(__('courses.placeholders.description'))
                             ->markdown(),
-
-                        TextEntry::make('enrolls_count')
-                            ->label(__('courses.columns.enrolls_count'))
-                            ->color('indigo')
-                            ->numeric(),
                     ]),
                 Section::make(__('courses.sections.meta'))
                     ->columns(3)

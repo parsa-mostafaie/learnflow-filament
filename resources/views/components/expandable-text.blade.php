@@ -2,27 +2,46 @@
 
 @php
   use Illuminate\Support\Str;
-  $isTruncated = Str::length($text) > $limit;
+
+  // Sanitize the rich text HTML (Filament rich text content)
+  $safeHtml = str($text)->markdown()->sanitizeHtml();
+
+  // Remove HTML tags to calculate plain text length
+  $strippedText = strip_tags($safeHtml);
+
+  // Check if text needs truncation
+  $isTruncated = Str::length($strippedText) > $limit;
+
+  // Truncate plain text only for preview
+  $truncatedText = Str::limit($strippedText, $limit, '...');
 @endphp
 
 <div>
-  @if (Str::length($text) > 0)
+  @if (Str::length($strippedText) > 0)
     <div x-data="{ showFullText: @js(!$isTruncated) }" class="max-w-full p-2 border rounded-lg shadow-md bg-white my-2 text-justify text-wrap">
+
+      {{-- Optional slot content --}}
       @if ($show_slot)
         {{ $slot }}
       @endif
-      {{-- Display Summary Text --}}
-      <p x-show="!showFullText" class="text-gray-700 flex justify-between items-start gap-4">
-        {{ $isTruncated ? Str::limit($text, $limit, '...') : $text }}
-        <i class="fas fa-align-left text-gray-400"></i> {{-- Icon on the right --}}
-      </p>
 
-      {{-- Display Full Text --}}
-      <p x-show="showFullText" class="text-gray-700 flex justify-between items-start gap-4">
-        {{ $text }}
-        <i class="fas fa-file-alt text-gray-400"></i> {{-- Icon on the right --}}
-      </p>
+      {{-- Truncated view (plain text styled like HTML) --}}
+      <div x-show="!showFullText" class="text-gray-700 flex justify-between items-start gap-4">
+        <p class="flex-1 max-w-full">
+          {{ $truncatedText }}
+        </p>
+        <i class="fas fa-align-left text-gray-400"></i>
+      </div>
 
+      {{-- Full rich text content (sanitized HTML) --}}
+      <div x-show="showFullText" class="text-gray-700 flex justify-between items-start gap-4">
+        <div class="flex-1 max-w-full prose prose-sm">
+          {!! $safeHtml !!}
+        </div>
+        <i class="fas fa-file-alt text-gray-400"></i>
+      </div>
+
+      {{-- Toggle button (show more / less) --}}
       @if ($isTruncated)
         {{-- Toggle Button (Display only if text is truncated) --}}
         <button @click="showFullText = !showFullText"

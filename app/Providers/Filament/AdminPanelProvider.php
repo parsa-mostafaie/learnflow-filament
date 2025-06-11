@@ -5,7 +5,10 @@ namespace App\Providers\Filament;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Rmsramos\Activitylog\ActivitylogPlugin;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+use Monzer\FilamentEmailVerificationAlert\EmailVerificationAlertPlugin;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Navigation\MenuItem;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
@@ -105,6 +108,16 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-m-user-circle')
             ])
             ->databaseNotifications()
-            ->sidebarCollapsibleOnDesktop();
+            ->sidebarCollapsibleOnDesktop()
+            ->navigationItems(
+                [
+                    NavigationItem::make('feed')
+                        ->label(__('navigation.feed'))
+                        ->group(fn() => __('navigation.group.general'))
+                        ->icon('heroicon-o-newspaper')
+                        ->url(fn() => route('dashboard'))
+                        ->sort(0)
+                ]
+            );
     }
 }

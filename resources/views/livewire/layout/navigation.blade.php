@@ -55,7 +55,7 @@ $logout_impersonation = function () {
             <x-nav-link :href="login_url()">
               {{ __('Login') }}
             </x-nav-link>
-            <x-nav-link :href="route('register')" wire:navigate>
+            <x-nav-link :href="register_url()" wire:navigate>
               {{ __('Register') }}
             </x-nav-link>
             @endif
@@ -83,7 +83,7 @@ $logout_impersonation = function () {
               </x-slot>
 
               <x-slot name="content">
-                <x-dropdown-link :href="route('profile')" wire:navigate>
+                <x-dropdown-link :href="route('filament.panel.pages.my-profile')">
                   {{ __('Profile') }}
                 </x-dropdown-link>
 
@@ -138,7 +138,7 @@ $logout_impersonation = function () {
               {{ __('Login') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')" wire:navigate>
+            <x-responsive-nav-link :href="register_url()" :active="request()->routeIs('register')" wire:navigate>
               {{ __('Register') }}
             </x-responsive-nav-link>
             @endif
@@ -154,7 +154,7 @@ $logout_impersonation = function () {
               </div>
 
               <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" wire:navigate>
+                <x-responsive-nav-link :href="route('filament.panel.pages.my-profile')">
                   {{ __('Profile') }}
                 </x-responsive-nav-link>
 

@@ -134,4 +134,9 @@ class Course extends Model
     {
         return view('components.activity-stamp', ['title' => $this->title, 'slug' => $this->slug, 'title_link' => route('course.single', $this->slug)]);
     }
+
+    public function getLearnUrlAttribute()
+    {
+        return route('course.single', $this->slug);
+    }
 }

@@ -84,7 +84,7 @@ class EnrolledUsersTable extends DataTableComponent
                     fn($value, $row, Column $column) => $row->user->name
                 ),
             Column::make(__("Last Course Visited"), "last_course_visit")
-                ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))
+                ->format(fn($value, $row, Column $column) => $value ? Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P') : '')
                 ->sortable(),
             Column::make(__("Created at"), "created_at")
                 ->format(fn($value, $row, Column $column) => Jalalian::fromCarbon($value)->format('%A %d %B %Y ساعت %I:%M %P'))

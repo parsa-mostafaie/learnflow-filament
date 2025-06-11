@@ -3,7 +3,7 @@
   use Illuminate\Support\Facades\Gate;
 
   // Fetch the course with the given slug, including trashed courses
-  $course = Course::withTrashed()->where('slug', $id)->firstOrFail();
+  $course = Course::withTrashed()->where('slug', $id)->withCount('enrolls')->firstOrFail();
 
   Gate::authorize('view', $course);
 @endphp
@@ -23,7 +23,8 @@
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
           {{-- Livewire component for the course card --}}
-          <livewire:courses.card :$course />
+          {{-- <livewire:courses.card :$course /> --}}
+          <livewire:courses.infolist :$course />
         </div>
       </div>
       {{-- Livewire component for course learning section --}}

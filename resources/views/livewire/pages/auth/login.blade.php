@@ -63,7 +63,7 @@ $login = function () {
           <a class="link" href="{{ route('password.request') }}" wire:navigate>
             {{ __('Forgot your password?') }}
           </a>
-          <a class="link" href="{{ route('register') }}" wire:navigate>
+          <a class="link" href="{{ register_url() }}" wire:navigate>
             {{ __('Don\'t have any account?') }}
           </a>
         @endif
