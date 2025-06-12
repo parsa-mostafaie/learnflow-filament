@@ -139,4 +139,9 @@ class Course extends Model
     {
         return route('course.single', $this->slug);
     }
+
+    public function getReportUrlAttribute()
+    {
+        return route('course.report', $this->id);
+    }
 }

@@ -59,7 +59,7 @@ class EnrollToggleAction extends Action
       $this->isEnrolled($record) ? 'heroicon-m-user-minus' : 'heroicon-m-user-plus'
     );
 
-    $this->groupedIcon(FilamentIcon::resolve('actions::enroll-action.grouped') ?? 'heroicon-m-user-plus');
+    $this->groupedIcon(fn($record) => FilamentIcon::resolve('actions::enroll-action.grouped') ?? ($this->isEnrolled($record) ? 'heroicon-o-user-minus' : 'heroicon-o-user-plus'));
 
     $this->modalIcon(
       fn(Model $record): string =>

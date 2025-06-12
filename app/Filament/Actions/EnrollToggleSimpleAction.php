@@ -50,7 +50,7 @@ class EnrollToggleSimpleAction extends Action
 
     $this->icon(fn(): string => $this->isEnrolled() ? 'heroicon-m-user-minus' : 'heroicon-m-user-plus');
 
-    $this->groupedIcon(FilamentIcon::resolve('actions::enroll-action.grouped') ?? 'heroicon-m-user-plus');
+    $this->groupedIcon(fn() => FilamentIcon::resolve('actions::enroll-action.grouped') ?? ($this->isEnrolled() ? 'heroicon-o-user-minus' : 'heroicon-o-user-plus'));
 
     $this->modalIcon(fn(): string => $this->isEnrolled() ? 'heroicon-o-user-minus' : 'heroicon-o-user-plus');
 

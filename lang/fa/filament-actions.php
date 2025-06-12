@@ -115,6 +115,17 @@ return [
       ],
     ],
   ],
+  'report' => [
+    'single' => [
+      'label' => 'گزارش',
+      'modal' => [
+        //
+      ],
+      'notifications' => [
+        //
+      ],
+    ],
+  ],
   'enroll' => [
     'single' => [
       'label' => 'ثبت‌نام',

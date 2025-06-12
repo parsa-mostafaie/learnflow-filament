@@ -6,7 +6,7 @@
             (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
 }"
-  x-init="$watch('theme', val => localStorage.setItem('theme', val))">
+  x-init="$watch('theme', val => localStorage.setItem('theme', val))"  x-bind:class="{ 'dark': isDark }">
 
 <head>
   <meta charset="utf-8">

@@ -22,6 +22,7 @@ use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
+use App\Filament\Actions\GetReportAction;
 use Filament\Forms\Set;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
@@ -90,7 +91,6 @@ class CourseResource extends Resource
                     ->dehydrated(false),
             ]);
     }
-
 
     public static function getRecordSubNavigation($page): array
     {
@@ -202,6 +202,7 @@ class CourseResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 LearnAction::make(),
+                GetReportAction::make(),
                 EnrollToggleAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

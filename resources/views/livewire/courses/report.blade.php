@@ -22,7 +22,7 @@ $course_model = computed(function () {
 ?>
 
 <div>
-  <h1 class="mb-8 text-3xl font-bold text-center">{{ __(':name\'s Report', ['name' => $this->course_model->title]) }}
+  <h1 class="mb-8 text-gray-900 text-3xl font-bold text-center">{{ __(':name\'s Report', ['name' => $this->course_model->title]) }}
   </h1>
 
   <div class="flex flex-wrap justify-center gap-5 max-w-[1200px] mx-auto">

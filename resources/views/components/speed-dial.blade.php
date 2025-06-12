@@ -3,7 +3,7 @@
     x-transition:enter-start="opacity-0 scale-75" x-transition:enter-end="opacity-100 scale-100"
     x-transition:leave="transform transition ease-in duration-100" x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-75" class="flex flex-col space-y-4" x-cloak> {{-- Home Button --}}
-    <a href="{{ route('welcome') }}" wire:navigate
+    <a href="{{ route('welcome') }}"
       class="flex dark:hover:text-gray-300 justify-center items-center w-10 h-10 text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow transition duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
       <i class="fas fa-home text-lg"></i>
     </a>

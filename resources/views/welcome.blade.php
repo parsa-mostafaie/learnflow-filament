@@ -6,7 +6,7 @@
             (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
 }"
-  x-init="$watch('theme', val => localStorage.setItem('theme', val))">
+  x-init="$watch('theme', val => localStorage.setItem('theme', val))" x-bind:class="{ 'dark': isDark }">
 
 <head>
   <meta charset="utf-8">
@@ -22,10 +22,12 @@
   <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
   {{-- Styles --}}
+  @filamentStyles
+  @filamentScripts
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip" x-bind:class="{ 'dark': isDark }">
+<body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
   {{-- Hero Section --}}
   <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
     <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'LearnFlow'))]) }}
@@ -114,11 +116,13 @@
       {{ __('All rights reserved.') }}</p>
   </footer>
 
+  <x-theme-toggler />
+  
+  <livewire:modals.daily-streaks />
+  <livewire:modals.interactive-exercises />
   @persist('toaster')
     <x-toaster-hub />
   @endpersist
-  <livewire:modals.daily-streaks />
-  <livewire:modals.interactive-exercises />
 </body>
 
 </html>
