@@ -4,9 +4,13 @@ namespace App\Providers;
 
 use App\Services\Leitner;
 use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use Filament\Infolists\Infolist;
+use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
+use Filament\Tables\Table;
 
 /**
  * Class AppServiceProvider
@@ -41,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+
+        Number::useLocale(App::getLocale());
+        Table::$defaultNumberLocale = App::getLocale();
+        Infolist::$defaultNumberLocale = App::getLocale();
 
         Gate::policy(\Spatie\Activitylog\Models\Activity::class, \App\Policies\SpatieActivityPolicy::class);
 

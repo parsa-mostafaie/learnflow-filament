@@ -9,11 +9,19 @@ use Filament\Infolists\Contracts\HasInfolists;
 use Filament\Infolists\Infolist;
 use App\Filament\Resources\CourseResource;
 
-use function Livewire\Volt\{uses, state};
+use function Livewire\Volt\{uses, state, on};
 
 uses([HasForms::class, HasInfolists::class, InteractsWithForms::class, InteractsWithInfolists::class]);
 
 state('course');
+
+on([
+    'course-single-reload' => function ($course) {
+        if ($course == $this->course->id) {
+            $this->course->refresh();
+        }
+    },
+]);
 
 $courseInfolist = function (Infolist $infolist) {
     return CourseResource::infolist($infolist)->record($this->course);

@@ -68,8 +68,7 @@ class EnrollToggleSimpleAction extends Action
       return !Auth::user()?->can('enroll', $record);
     });
 
-    $this->action(function (): void {
-      $record = $this->getRecord();
+    $this->action(function ($record, $livewire): void {
       $user = Auth::user();
 
       if (!$user) {
@@ -95,8 +94,8 @@ class EnrollToggleSimpleAction extends Action
       event(new CourseEnrollment($user, $record, !$this->isEnrolled()));
 
       // Dispatch events to reload the courses table and the single course view
-      $this->dispatch('courses-table-reload');
-      $this->dispatch('course-single-reload', [$record]);
+      $livewire->dispatch('courses-table-reload');
+      $livewire->dispatch('course-single-reload', [$record->id]);
       $this->record($record->fresh());
 
       $this->success();

@@ -80,8 +80,7 @@ class EnrollToggleAction extends Action
       !Auth::user()?->can('enroll', $record)
     );
 
-    $this->action(function () {
-      $record = $this->getRecord();
+    $this->action(function ($record) {
       $user = Auth::user();
 
       if (!$user) {

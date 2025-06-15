@@ -9,6 +9,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Actions\LearnSimpleAction;
 use App\Filament\Actions\EnrollToggleSimpleAction;
+use App\Filament\Actions\GetReportSimpleAction;
 
 class ViewCourse extends ViewRecord
 {
@@ -19,6 +20,7 @@ class ViewCourse extends ViewRecord
         return [
             Actions\EditAction::make(),
             LearnSimpleAction::make(),
+            GetReportSimpleAction::make(),
             EnrollToggleSimpleAction::make(),
             ActivityLogTimelineSimpleAction::make('Activities')
                 ->authorize(fn() => auth()->user()->can('manage any activities'))

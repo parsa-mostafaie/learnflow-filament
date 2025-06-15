@@ -100,7 +100,8 @@ class QuestionResource extends Resource
                     ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
                     ->sortable(query: function (Builder $query, string $direction): Builder {
                         return $query->orderBy('questions.created_at', $direction);
-                    }),
+                    })
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('questions.columns.updated_at')) // Localized label
                     ->dateTime()
@@ -108,6 +109,7 @@ class QuestionResource extends Resource
                     ->sortable(query: function (Builder $query, string $direction): Builder {
                         return $query->orderBy('questions.updated_at', $direction);
                     })
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('author')

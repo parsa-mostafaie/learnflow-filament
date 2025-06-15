@@ -113,6 +113,7 @@ class CourseResource extends Resource
                 ,
                 Tables\Columns\TextColumn::make('id')
                     ->label(__('courses.columns.id'))
+                    ->numeric()
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -123,22 +124,27 @@ class CourseResource extends Resource
                 Tables\Columns\TextColumn::make('enrolls_count')
                     ->label(__('courses.columns.enrolls_count'))
                     ->counts('enrolls')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('questions_all_count')
                     ->label(__('courses.columns.all_questions_count'))
                     ->counts('questions_all')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('questions_approved_count')
                     ->label(__('courses.columns.approved_questions_count'))
                     ->counts('questions_approved')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('questions_rejected_count')
                     ->label(__('courses.columns.rejected_questions_count'))
                     ->counts('questions_rejected')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('questions_pending_count')
                     ->label(__('courses.columns.pending_questions_count'))
                     ->counts('questions_pending')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->label(__('courses.columns.slug'))
@@ -297,7 +303,7 @@ class CourseResource extends Resource
                                             ->label(__('courses.columns.author'))
                                             ->weight('bold')
                                             ->color('info'),
-                                        TextEntry::make('enrolls_count')
+                                        TextEntry::make('formatted_enrolls_count')
                                             ->label(__('courses.columns.enrolls_count'))
                                             ->color('success')
                                             ->weight('bold')

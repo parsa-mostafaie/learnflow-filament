@@ -108,7 +108,14 @@ trait Enrollable
         )->withoutObjectCaching();
     }
 
-    protected function formattedEnrollCount(): Attribute
+    protected function enrollsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->enrolls()->count()
+        )->withoutObjectCaching();
+    }
+
+    protected function formattedEnrollsCount(): Attribute
     {
         return Attribute::make(
             get: fn() => forhumans($this->enrolls()->count())

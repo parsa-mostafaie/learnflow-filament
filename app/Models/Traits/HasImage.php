@@ -22,7 +22,9 @@ trait HasImage
     protected static function bootHasImage()
     {
         static::deleted(function ($model) {
-            $model->removeImage();
+            if ($model->forceDeleting) {
+                $model->removeImage();
+            }
         });
     }
 
@@ -72,6 +74,7 @@ trait HasImage
         if (!($path = $this->thumbnail)) {
             return true;
         }
+
         return Storage::disk('public')->delete($path);
     }
 

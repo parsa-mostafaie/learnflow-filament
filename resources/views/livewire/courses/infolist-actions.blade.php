@@ -12,6 +12,7 @@ use App\Filament\Resources\CourseResource\Pages\ViewCourse;
 use App\Models\Course;
 use Filament\Support\Facades\FilamentIcon;
 use App\Filament\Actions\EnrollToggleSimpleAction;
+use App\Filament\Actions\GetReportSimpleAction;
 
 use function Livewire\Volt\{uses, state};
 
@@ -20,16 +21,20 @@ uses([HasForms::class, HasActions::class, InteractsWithActions::class, Interacts
 state('course');
 
 $viewAction = function () {
-    return Action::make('view')->color('primary')->label(__('filament-actions::view.single.label'))->record($this->course)->url(fn($record) => ViewCourse::getUrl([$record]))->icon('heroicon-o-eye');
+    return Action::make('view')->authorizeAny('viewAny')->color('primary')->label(__('filament-actions::view.single.label'))->record($this->course)->url(fn($record) => ViewCourse::getUrl([$record]))->icon('heroicon-o-eye');
 };
 
 $enrollAction = function () {
     return EnrollToggleSimpleAction::make('enroll')->record($this->course);
 };
+
+$reportAction = function () {
+    return GetReportSimpleAction::make('report')->record($this->course);
+};
 ?>
 
 <div>
-  <x-filament-actions::group :actions="[$this->enrollAction, $this->viewAction]" />
+  <x-filament-actions::group :actions="[$this->enrollAction, $this->viewAction, $this->reportAction]" />
 
   <x-filament-actions::modals />
 </div>
