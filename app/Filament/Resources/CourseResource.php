@@ -291,7 +291,7 @@ class CourseResource extends Resource
                                     ->placeholder(__('courses.placeholders.title'))
                                     ->size('lg'),
                                 Grid::make()
-                                    ->columns(3)
+                                    ->columns(4)
                                     ->schema([
                                         TextEntry::make('slug')
                                             ->label(__('courses.columns.slug'))
@@ -305,6 +305,11 @@ class CourseResource extends Resource
                                             ->color('info'),
                                         TextEntry::make('formatted_enrolls_count')
                                             ->label(__('courses.columns.enrolls_count'))
+                                            ->color('success')
+                                            ->weight('bold')
+                                            ->numeric(),
+                                        TextEntry::make('formatted_approved_questions_count')
+                                            ->label(__('courses.columns.questions_count'))
                                             ->color('success')
                                             ->weight('bold')
                                             ->numeric(),

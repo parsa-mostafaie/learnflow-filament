@@ -25,6 +25,7 @@ return [
     "created_at" => "تاریخ ایجاد",
     "updated_at" => "تاریخ تغییر",
     "enrolls_count" => "تعداد کاربر های ثبت نام شده",
+    "questions_count" => "تعداد سوالات",
     "all_questions_count" => "تعداد تمام سوالات",
     "approved_questions_count" => "تعداد سوالات تایید شده",
     "rejected_questions_count" => "تعداد سوالات رد شده",

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasImage;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -143,5 +144,19 @@ class Course extends Model
     public function getReportUrlAttribute()
     {
         return route('course.report', $this->id);
+    }
+
+    protected function approvedQuestionsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->questions_approved()->count()
+        )->withoutObjectCaching();
+    }
+
+    protected function formattedApprovedQuestionsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => forhumans($this->questions_approved()->count())
+        )->withoutObjectCaching();
     }
 }

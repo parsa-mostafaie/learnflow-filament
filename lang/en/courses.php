@@ -25,6 +25,7 @@ return [
     "created_at" => "Created At",
     "updated_at" => "Updated At",
     "enrolls_count" => "Enrolled users",
+    "questions_count" => "Questions",
     "all_questions_count" => "Total questions",
     "approved_questions_count" => "Approved questions",
     "rejected_questions_count" => "Rejected questions",
