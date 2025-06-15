@@ -21,7 +21,7 @@ class LogTakeImpersonationActivity
      */
     public function handle(TakeImpersonation $event): void
     {
-        activity("Authentication")
+        activity("authentication")
             ->causedBy($event->impersonator)
             ->performedOn($event->impersonated)
             ->withProperties(['ip' => request()->ip()])

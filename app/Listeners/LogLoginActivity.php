@@ -27,11 +27,11 @@ class LogLoginActivity
          */
         $user = $event->user;
 
-        activity("Authentication")
+        activity("authentication")
             ->causedBy($user)
             ->performedOn($user)
             ->withProperties(['ip' => request()->ip(), 'remember' => $event->remember, 'guard' => $event->guard])
-            ->event('Login')
+            ->event('login')
             ->log("Login");
     }
 }

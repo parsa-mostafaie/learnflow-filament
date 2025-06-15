@@ -26,11 +26,11 @@ class LogLogoutActivity
          */
         $user = $event->user;
 
-        activity("Authentication")
+        activity("authentication")
             ->causedBy($user)
             ->performedOn($user)
             ->withProperties(['ip' => request()->ip(), 'guard' => $event->guard])
-            ->event('Log Out')
+            ->event('logout')
             ->log("Log Out");
     }
 }
