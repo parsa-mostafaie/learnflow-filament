@@ -20,7 +20,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return true;
+        return ((!!$user) && $user->can('manage any users')) || ($user->is($model));
     }
 
     /**

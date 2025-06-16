@@ -44,6 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ->registration()
             ->emailVerification()
             ->passwordReset()
+            ->profile(EditProfilePage::class)
             ->colors([
                 'primary' => Color::Purple,
             ])
@@ -118,6 +119,9 @@ class AdminPanelProvider extends PanelProvider
                         ->url(fn() => route('dashboard'))
                         ->sort(0)
                 ]
+            )
+            ->defaultAvatarProvider(
+                \App\Filament\AvatarProviders\BoringAvatarProvider::class
             );
     }
 }
