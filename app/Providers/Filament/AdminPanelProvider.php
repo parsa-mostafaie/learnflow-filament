@@ -123,5 +123,6 @@ class AdminPanelProvider extends PanelProvider
             ->defaultAvatarProvider(
                 \App\Filament\AvatarProviders\BoringAvatarProvider::class
             );
+        ;
     }
 }

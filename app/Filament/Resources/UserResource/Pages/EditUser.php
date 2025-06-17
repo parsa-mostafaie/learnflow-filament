@@ -17,4 +17,9 @@ class EditUser extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('users.pages.edit');
+    }
 }

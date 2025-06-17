@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Support\Colors\Color;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,10 +25,12 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('users.columns.name'))
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
+                    ->label(__('users.columns.email'))
                     ->required()
                     ->maxLength(255),
                 // Forms\Components\DateTimePicker::make('email_verified_at'),
@@ -89,7 +92,7 @@ class UserResource extends Resource
                             'instructor' => 'info',
                             'manager' => 'primary',
                             'admin' => 'success',
-                            default => 'success',
+                            default => Color::Lime,
                         }
                     )
                     ->icon(

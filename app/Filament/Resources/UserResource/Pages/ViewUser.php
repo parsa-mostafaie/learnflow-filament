@@ -16,4 +16,9 @@ class ViewUser extends ViewRecord
             // Actions\EditAction::make(),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('users.pages.view');
+    }
 }
