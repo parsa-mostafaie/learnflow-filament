@@ -6,12 +6,16 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Tables\Actions\Action as ActionsAction;
 use Filament\Forms\Form;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Support\Colors\Color;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -81,6 +85,18 @@ class UserResource extends Resource
                     ->icon('heroicon-o-envelope')
                     ->url(fn($record) => $record->email ? "mailto:{$record->email}" : null)
                     ->searchable(),
+                Tables\Columns\TextColumn::make('enrolled_courses_count')
+                    ->label(__('users.columns.enrolled_courses_count'))
+                    ->counts('enrolledCourses')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('courses_count')
+                    ->label(__('users.columns.courses_count'))
+                    ->counts('courses')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 /// TODO: for role, course count, enrolled courses count
                 /// TODO: Colorized Columns,
                 Tables\Columns\TextColumn::make('role_name')
@@ -117,7 +133,8 @@ class UserResource extends Resource
                     ->label(__('users.columns.email_verified_at'))
                     ->dateTime()
                     ->when(\is_jalali_supported(), fn($column) => $column->jalaliDateTime('l j F Y H:i:s'))
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('users.columns.created_at'))
                     ->dateTime()
@@ -132,8 +149,73 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('role')
+                    ->label(__('users.filters.role'))
+                    ->options(function () {
+                        return User::getRoleNamesCollection()
+                            ->mapWithKeys(
+                                fn($value) => [
+                                    $value => match ($value) {
+                                        'user' => __('users.roles.user'),         // Localized "User"
+                                        'instructor' => __('users.roles.instructor'), // Localized "Instructor"
+                                        'manager' => __('users.roles.manager'),   // Localized "Manager"
+                                        'admin' => __('users.roles.admin'),       // Localized "Admin"
+                                        'developer' => __('users.roles.developer'),       // Localized "Developer"
+                                        default => __('users.roles.unknown'),     // Localized "Unknown"
+                                    }
+                                ]
+                            )
+                            ->toArray();
+                    })
+                    ->query(function (Builder $query, $state) {
+                        $value = $state['values'] ?? [];
+
+                        if ($value)
+                            $query->whereHas('roles', function (Builder $query) use ($value) {
+                                $query->whereIn('name', Arr::wrap($value));
+                            });
+                    })
+                    ->multiple(),
+                SelectFilter::make('verify_state')
+                    ->options([
+                        'unverified' => __('users.filters.email_state.unverified'),
+                        'verified' => __('users.filters.email_state.verified'),
+                    ])
+                    ->query(function (Builder $query, $state) {
+                        $value = $state['value'] ?? null;
+
+                        if ($value) {
+                            if ($value == 'verified')
+                                $query->whereNotNull('email_verified_at');
+                            else
+                                $query->whereNull('email_verified_at');
+                        }
+                    })
+                    ->label(__('users.filters.email_state.label')),
+                DateRangeFilter::make('email_verified_at')
+                    ->label(__('users.filters.email_verified_range'))
+                    ->firstDayOfWeek(6)
+                    ->autoApply()
+                    ->linkedCalendars(),
+                // Date Range Filter for "Creation Range"
+                DateRangeFilter::make('created_at')
+                    ->label(__('users.filters.creation_range'))
+                    ->firstDayOfWeek(6)
+                    ->autoApply()
+                    ->linkedCalendars(),
+                // Date Range Filter for "Updation Range"
+                DateRangeFilter::make('updated_at')
+                    ->label(__('users.filters.updation_range'))
+                    ->firstDayOfWeek(6)
+                    ->autoApply()
+                    ->linkedCalendars(),
                 /// TODO: Filters
             ])
+            ->filtersTriggerAction(
+                fn(ActionsAction $action) => $action
+                    ->button()
+                    ->label(__('tables.filter')),
+            )
             ->actions([
                 Impersonate::make(),
                 Tables\Actions\ViewAction::make(),
@@ -154,6 +236,12 @@ class UserResource extends Resource
         return [
             // TODO: Relations
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withCount('courses', 'enrolledCourses');
     }
 
     public static function getPages(): array

@@ -140,12 +140,14 @@ class CourseResource extends Resource
                     ->label(__('courses.columns.rejected_questions_count'))
                     ->counts('questions_rejected')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('questions_pending_count')
                     ->label(__('courses.columns.pending_questions_count'))
                     ->counts('questions_pending')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('slug')
                     ->label(__('courses.columns.slug'))
                     ->sortable()
