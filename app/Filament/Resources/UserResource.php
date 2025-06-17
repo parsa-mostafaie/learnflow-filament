@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Support\Colors\Color;
+use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -134,6 +135,7 @@ class UserResource extends Resource
                 /// TODO: Filters
             ])
             ->actions([
+                Impersonate::make(),
                 Tables\Actions\ViewAction::make(),
                 // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

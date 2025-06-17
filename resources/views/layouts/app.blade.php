@@ -6,7 +6,7 @@
             (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
 }"
-  x-init="$watch('theme', val => localStorage.setItem('theme', val))"  x-bind:class="{ 'dark': isDark }">
+  x-init="$watch('theme', val => localStorage.setItem('theme', val))" x-bind:class="{ 'dark': isDark }">
 
 <head>
   <meta charset="utf-8">
@@ -56,6 +56,8 @@
     <x-toaster-hub />
   @endpersist
   @livewire('notifications')
+
+  <x-impersonate::banner />
 </body>
 
 </html>

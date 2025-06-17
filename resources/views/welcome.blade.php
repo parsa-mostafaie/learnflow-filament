@@ -117,12 +117,14 @@
   </footer>
 
   <x-theme-toggler />
-  
+
   <livewire:modals.daily-streaks />
   <livewire:modals.interactive-exercises />
   @persist('toaster')
     <x-toaster-hub />
   @endpersist
+
+  <x-impersonate::banner />
 </body>
 
 </html>
