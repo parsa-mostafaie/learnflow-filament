@@ -1,6 +1,7 @@
 @import url(https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/font-face.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css);
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap);
+@import url(https://tetunori.github.io/fluent-emoji-webfont/dist/FluentEmojiColor.css);
 
 @tailwind base;
 @tailwind components;
@@ -9,9 +10,9 @@
 
 @layer components {
     body {
-        font-family: Figtree, "Vazir", ui-sans-serif, system-ui, sans-serif,
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-            "Noto Color Emoji" !important;
+        font-family: Figtree, "Fluent Emoji Color", "Vazir", ui-sans-serif,
+            system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol", "Noto Color Emoji" !important;
     }
 
     :root {

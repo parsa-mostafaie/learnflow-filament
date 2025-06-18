@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Support\Enums\FontWeight;
 use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 use App\Filament\Resources\CourseResource\Pages;
