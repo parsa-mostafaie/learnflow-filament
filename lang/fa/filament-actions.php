@@ -160,4 +160,40 @@ return [
       ],
     ],
   ],
+
+  // modes: single, demote, {in future: multiple, demote-multiple}
+  'change-role' => [
+    'single' => [
+      'label' => 'ارتقا به :label',
+      'modal' => [
+        'heading' => 'ارتقا به :label',
+        'actions' => [
+          'change-role' => [
+            'label' => 'ارتقا',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'change-roled' => [
+          'title' => 'با موفقیت ارتقا داده شد',
+        ],
+      ],
+    ],
+    'demote' => [
+      'label' => 'تنزل به :label',
+      'modal' => [
+        'heading' => 'تنزل به :label',
+        'actions' => [
+          'change-role' => [
+            'label' => 'تنزل',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'change-roled' => [
+          'title' => 'با موفقیت تنزل یافت',
+        ],
+      ],
+    ],
+  ],
 ];

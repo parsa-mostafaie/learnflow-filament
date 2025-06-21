@@ -7,6 +7,8 @@ use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Events\{CourseEnrollment};
+
 
 class EnrollToggleAction extends Action
 {
@@ -80,7 +82,7 @@ class EnrollToggleAction extends Action
       !Auth::user()?->can('enroll', $record)
     );
 
-    $this->action(function ($record) {
+    $this->action(function ($record, $livewire) {
       $user = Auth::user();
 
       if (!$user) {
@@ -98,6 +100,16 @@ class EnrollToggleAction extends Action
         $this->failure();
         return;
       }
+
+      // Check and perform daily tasks for the user
+      $record->checkDailyTasks($user);
+
+      // Optional: Dispatch an event for course enrollment
+      event(new CourseEnrollment($user, $record, !$this->isEnrolled()));
+
+      // Dispatch events to reload the courses table and the single course view
+      $livewire->dispatch('courses-table-reload');
+      $livewire->dispatch('course-single-reload', [$record->id]);
 
       $this->success();
       $this->record($record->fresh());

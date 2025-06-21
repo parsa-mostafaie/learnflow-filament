@@ -5,6 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use App\Filament\Actions\ChangeRoleUserAction;
+use App\Filament\Actions\ChangeRoleInstructorAction;
+use App\Filament\Actions\ChangeRoleManagerAction;
+use App\Filament\Actions\ChangeRoleAdminAction;
+use App\Filament\Actions\ChangeRoleDeveloperAction;
 use Filament\Forms;
 use Filament\Tables\Actions\Action as ActionsAction;
 use Filament\Forms\Form;
@@ -217,6 +222,11 @@ class UserResource extends Resource
                     ->label(__('tables.filter')),
             )
             ->actions([
+                ChangeRoleUserAction::make(),
+                ChangeRoleInstructorAction::make(),
+                ChangeRoleManagerAction::make(),
+                ChangeRoleAdminAction::make(),
+                ChangeRoleDeveloperAction::make(),
                 Impersonate::make(),
                 Tables\Actions\ViewAction::make(),
                 // Tables\Actions\EditAction::make(),
