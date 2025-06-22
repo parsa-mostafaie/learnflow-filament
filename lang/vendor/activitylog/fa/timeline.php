@@ -1,13 +1,13 @@
 <?php
 return [
     'title' => [
-        'modifiedTitle' => 'The <strong>%s</strong> was <strong>%s</strong> by <strong>%s</strong>. <br><small> Updated at: <strong>%s</strong></small>',
+        'modifiedTitle' => '<strong>%1$s</strong> توسط <strong>%3$s</strong>، <strong>%2$s</strong> شد. <br><small> به روزرسانی شده در: <strong>%4$s</strong></small>',
     ],
     'properties' => [
-        'modifiedProperties'     => '%s %s the following: <br>%s',
+        'modifiedProperties' => '%1$s مورد زیر را %2$s کرد: <br>%3$s',
         'compareOldAndNewValues' => [
-            'notEquals' => '- %s from <strong>%s</strong> to <strong>%s</strong>',
-            'equals'    => '- %s <strong>%s</strong>',
+            'notEquals' => '- %s از <strong>%s</strong> به <strong>%s</strong>',
+            'equals' => '- %s <strong>%s</strong>',
         ],
         'getNewValues' => '- %s <strong>%s</strong>',
     ],
