@@ -8,14 +8,6 @@
       <i class="fas fa-home text-lg"></i>
     </a>
 
-    {{-- Users Button --}}
-    @can('manage users or activities')
-      <a href="{{ route('admin.users') }}" wire:navigate title="{{ __('speed-dial.users') }}"
-        class="flex justify-center dark:hover:text-gray-300 items-center w-10 h-10 text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow transition duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-        <i class="fas fa-users text-lg"></i>
-      </a>
-    @endcan
-
     {{-- Filament Panel Button --}}
     @auth
       {{-- @can('access filament panel') --}}

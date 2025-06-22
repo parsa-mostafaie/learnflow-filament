@@ -47,7 +47,7 @@ $logout_impersonation = function () {
               {{ __('Dashboard') }}
             </x-nav-link>
             @can('manage some thing')
-              <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')" wire:navigate>
+              <x-nav-link :href="route('filament.panel.pages.dashboard')">
                 {{ __('Admin') }}
               </x-nav-link>
             @endif
@@ -129,7 +129,7 @@ $logout_impersonation = function () {
           </x-responsive-nav-link>
 
           @can('manage some thing')
-            <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')" wire:navigate>
+            <x-responsive-nav-link :href="route('filament.panel.pages.dashboard')">
               {{ __('Admin') }}
             </x-responsive-nav-link>
             @endif

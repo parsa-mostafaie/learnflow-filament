@@ -11,16 +11,6 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::middleware(['auth', 'verified', 'can:manage some thing'])->as('admin')->prefix('admin')->group(function () {
-    // Admin home page
-    Route::view('/', 'admin');
-
-    // Developer users page
-    Route::view('users', 'admin.users')
-        ->name('.users')
-        ->can('manage users or activities');
-});
-
 // Route for the profile page, accessible only to authenticated users
 Route::view('profile', 'profile')
     ->middleware(['auth'])
