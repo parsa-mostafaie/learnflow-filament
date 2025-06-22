@@ -151,4 +151,40 @@ return [
       ],
     ],
   ],
+
+  // modes: single, demote, {in future: multiple, demote-multiple}
+  'change-role' => [
+    'single' => [
+      'label' => 'Promote to :label',
+      'modal' => [
+        'heading' => 'Promote to :label',
+        'actions' => [
+          'change-role' => [
+            'label' => 'Promote',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'change-roled' => [
+          'title' => 'Promoted successfully',
+        ],
+      ],
+    ],
+    'demote' => [
+      'label' => 'Demote to :label',
+      'modal' => [
+        'heading' => 'Demote to :label',
+        'actions' => [
+          'change-role' => [
+            'label' => 'Demote',
+          ],
+        ],
+      ],
+      'notifications' => [
+        'change-roled' => [
+          'title' => 'Demoted successfully',
+        ],
+      ],
+    ],
+  ],
 ];

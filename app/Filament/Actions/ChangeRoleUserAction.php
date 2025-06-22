@@ -15,7 +15,7 @@ class ChangeRoleUserAction extends ChangeRoleAction
 
   public static function getDefaultName(): ?string
   {
-    return 'change-role';
+    return 'change-role-user';
   }
 
   protected function setUp(): void

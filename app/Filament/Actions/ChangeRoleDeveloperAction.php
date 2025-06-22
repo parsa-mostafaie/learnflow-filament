@@ -15,7 +15,7 @@ class ChangeRoleDeveloperAction extends ChangeRoleAction
 
   public static function getDefaultName(): ?string
   {
-    return 'change-role';
+    return 'change-role-developer';
   }
 
   protected function setUp(): void

@@ -15,7 +15,7 @@ class ChangeRoleManagerAction extends ChangeRoleAction
 
   public static function getDefaultName(): ?string
   {
-    return 'change-role';
+    return 'change-role-manager';
   }
 
   protected function setUp(): void

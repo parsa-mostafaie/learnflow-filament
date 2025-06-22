@@ -13,10 +13,10 @@ class ChangeRoleAction extends Action
 {
     use CanCustomizeProcess;
 
-    public static function getDefaultName(): ?string
-    {
-        return 'change-role';
-    }
+    // public static function getDefaultName(): ?string
+    // {
+    //     return 'change-role';
+    // }
 
     protected function setUp(): void
     {
@@ -36,17 +36,17 @@ class ChangeRoleAction extends Action
 
         $this->successNotificationTitle(fn() => $this->getLocalizedValue('notifications.change-roled.title', null, [
             'label' => $this->getRecordTitle(),
-        ]));
+        ], true));
 
         $this->defaultColor(fn() => $this->getMode($this->getRecord()) == "promoted" ? 'success' : 'warning');
 
-        $this->groupedIcon(fn() => FilamentIcon::resolve('actions::change-role-action.grouped') ?? $this->getDefaultIcon());
+        $this->groupedIcon(fn() => FilamentIcon::resolve('actions::' . $this->getDefaultName() . '-action.grouped') ?? $this->getDefaultIcon());
 
         $this->icon(fn() => $this->getDefaultIcon());
 
         $this->requiresConfirmation();
 
-        $this->modalIcon(fn() => FilamentIcon::resolve('actions::change-role-action.modal') ?? $this->getDefaultIcon());
+        $this->modalIcon(fn() => FilamentIcon::resolve('actions::' . $this->getDefaultName() . '-action.modal') ?? $this->getDefaultIcon());
 
         // $this->keyBindings(['mod+a']);
 
@@ -89,10 +89,11 @@ class ChangeRoleAction extends Action
         });
     }
 
-    protected function getLocalizedValue($key, $default = null, $replace = null)
+    protected function getLocalizedValue($key, $default = null, $replace = null, $inverse = false)
     {
         $mode = $this->getMode($this->getRecord());
-        $mode = $mode == "promoted" ? "single" : "demote";
+        $singleOn = $inverse ? "demoted" : "promoted";
+        $mode = $mode == $singleOn ? "single" : "demote";
 
         return __("filament-actions.change-role.$mode.$key", $replace) ?? $default;
     }
