@@ -2,6 +2,7 @@
 
 <?php
 use function Livewire\Volt\{state, computed};
+use Illuminate\Support\Number;
 use App\Facades\Leitner;
 
 state(['course', 'user']);
@@ -36,18 +37,18 @@ $course_model = computed(function () {
       class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#ffded5] to-[#ffc2b5] shadow-lg">
       <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Not Imported') }}</h2>
       <div class="flex flex-wrap justify-center gap-2">
-        <x-shematic.disabled-subbox>{{ Leitner::countNotImportedCards($this->course_model, $this->user) }}</x-shematic.disabled-subbox>
+        <x-shematic.disabled-subbox>{{ Number::format(Leitner::countNotImportedCards($this->course_model, $this->user)) }}</x-shematic.disabled-subbox>
       </div>
     </x-shematic.notimported-box>
 
     @foreach (range(1, 5) as $stage)
       <x-shematic.box
         class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#e3e3e3] to-[#ffffff] shadow-lg">
-        <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Box') }} {{ $stage }}</h2>
+        <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Box') }} {{ Number::format($stage) }}</h2>
         <div class="flex flex-wrap justify-center gap-2">
           @foreach (range(1, Leitner::getReviewWait($stage)) as $sub)
             <button wire:click="dispatch('open-modal', 'in-stage-modal-{{ $stage }}-{{ $sub }}')">
-              <x-shematic.subbox>{{ $this->count($stage, $sub) }}</x-shematic.subbox>
+              <x-shematic.subbox>{{ Number::format($this->count($stage, $sub)) }}</x-shematic.subbox>
             </button>
           @endforeach
         </div>
@@ -59,7 +60,7 @@ $course_model = computed(function () {
       class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#d5ffd5] to-[#c2ffc2] shadow-lg">
       <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Completed') }}</h2>
       <div class="flex flex-wrap justify-center gap-2">
-        <x-shematic.disabled-subbox>{{ Leitner::countCompletedCards($this->course_model, $this->user) }}</x-shematic.disabled-subbox>
+        <x-shematic.disabled-subbox>{{ Number::format(Leitner::countCompletedCards($this->course_model, $this->user)) }}</x-shematic.disabled-subbox>
       </div>
     </x-shematic.completed-box>
   </div>

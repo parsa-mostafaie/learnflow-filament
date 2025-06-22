@@ -1,16 +1,18 @@
 @props(['list', 'stage', 'sub'])
 <?php
 use function Livewire\Volt\{state, computed};
+use Illuminate\Support\Number;
 
 state(['list', 'stage', 'sub']);
 ?>
+
 <div>
   <x-modal name="in-stage-modal-{{ $stage }}-{{ $sub }}">
     <div class="p-6 bg-white rounded-lg max-w-lg mx-auto text-gray-800">
-      <h2 class="text-lg font-bold text-purple-700 mb-4">سوالات موجود در جعبه
-        {{ $stage }}
-        و خانه
-        {{ $this->sub }}</h2>
+      <h2 class="text-lg font-bold text-purple-700 mb-4">سوالات موجود در خانه
+        {{ Number::format($stage) }}
+        و روز
+        {{ Number::format($this->sub) }}</h2>
       @if (count($list) != 0)
         <p class="leading-relaxed text-justify text-red-600 font-bold">
           این ها را بخاطر نسپارید، ممکن است فرایند یادگیری را مختل کند!
