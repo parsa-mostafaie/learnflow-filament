@@ -262,6 +262,7 @@ class CourseResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ])
+            ->with(['user', 'author'])
             ->withCount('enrolls');
     }
 

@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
+use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
+use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 use App\Models\User;
 use App\Filament\Actions\ChangeRoleUserAction;
 use App\Filament\Actions\ChangeRoleInstructorAction;
@@ -231,6 +233,9 @@ class UserResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                ActivityLogTimelineTableAction::make('Activities')
+                    ->label(__('tables.actions.activities'))
+                    ->authorize(fn() => auth()->user()->can('manage any activities'))
                 /// TODO: Implement Actions ++ Impersonate
             ])
             ->bulkActions([
@@ -245,13 +250,15 @@ class UserResource extends Resource
     {
         return [
             // TODO: Relations
+            ActivitylogRelationManager::class,
         ];
     }
 
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->withCount('courses', 'enrolledCourses');
+            ->withCount('courses', 'enrolledCourses')
+            ->with('roles');
     }
 
     public static function getPages(): array

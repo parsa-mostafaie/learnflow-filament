@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -20,7 +21,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Question extends Model
 {
     /** @use HasFactory<\Database\Factories\QuestionFactory> */
-    use HasFactory, Traits\HasAuthor, LogsActivity;
+    use HasFactory, Traits\HasAuthor, LogsActivity, Traits\HasStatus;
 
     protected $fillable = ["question", "answer", 'user_id', 'status'];
 
@@ -125,15 +126,4 @@ class Question extends Model
         });
     }
 
-    public function setStatus($newStatus)
-    {
-        $this->status = $newStatus;
-
-        return $this->save();
-    }
-
-    public function isStatus($status)
-    {
-        return Str::lower($this->status) == Str::lower($status);
-    }
 }

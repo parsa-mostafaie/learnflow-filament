@@ -16,10 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php', // Set the path for console commands
         health: '/up', // Set the health check route
     )
-    ->withMiddleware(function (Middleware $middleware) {
-        // Alias the middleware for performing daily tasks
-        $middleware->alias(['perform_daily_task' => App\Http\Middleware\PerfomDailyTask::class]);
-    })
+    ->withMiddleware(function (Middleware $middleware) {})
     ->withExceptions(function (Exceptions $exceptions) {
         // Configure exception handling (currently empty)
     })
