@@ -222,6 +222,19 @@ class Leitner implements Interfaces\Leitner
       ->count();
   }
 
+  public function listCardsInASubbox($course, $user, $stage, $sub_box)
+  {
+    $per_stage = $this->getReviewWait($stage);
+    $now = Carbon::now();
+
+    return Card::where('user_id', $user->id)
+      ->whereHas('courseQuestion.course', fn($q) => $q->where('id', $course->id))
+      ->whereRaw("FLOOR(GREATEST(LEAST($per_stage - (TIME_TO_SEC(TIMEDIFF(review_date, ?))/({$this->getDailyTaskDayLength()} * 3600)), $per_stage), 1)) = ?", [$now->toDateTimeString(), $sub_box])
+      ->where('stage', $stage)
+      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->get();
+  }
+
   public function countCompletedCards($course, $user)
   {
     return Card::where('user_id', $user->id)

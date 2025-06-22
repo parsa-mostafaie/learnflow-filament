@@ -23,6 +23,12 @@
 
 <body class="bg-[#f5f5f5] p-5">
   <livewire:courses.report :user="Auth::user()" :course="$id" />
+
+  @persist('toaster')
+    <x-toaster-hub />
+  @endpersist
+
+  <x-impersonate::banner />
 </body>
 
 </html>

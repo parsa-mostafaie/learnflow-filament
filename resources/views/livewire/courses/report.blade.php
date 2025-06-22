@@ -10,6 +10,10 @@ $count = function ($stage, $sub) {
     return Leitner::getCardsInASubbox($this->course_model, $this->user, $stage, $sub);
 };
 
+$list = function ($stage, $sub) {
+    return Leitner::listCardsInASubbox($this->course_model, $this->user, $stage, $sub);
+};
+
 $course_model = computed(function () {
     $model = \App\Models\Course::withTrashed()->findOrFail($this->course);
 
@@ -22,7 +26,8 @@ $course_model = computed(function () {
 ?>
 
 <div>
-  <h1 class="mb-8 text-gray-900 text-3xl font-bold text-center">{{ __(':name\'s Report', ['name' => $this->course_model->title]) }}
+  <h1 class="mb-8 text-gray-900 text-3xl font-bold text-center">
+    {{ __(':name\'s Report', ['name' => $this->course_model->title]) }}
   </h1>
 
   <div class="flex flex-wrap justify-center gap-5 max-w-[1200px] mx-auto">
@@ -41,7 +46,9 @@ $course_model = computed(function () {
         <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Box') }} {{ $stage }}</h2>
         <div class="flex flex-wrap justify-center gap-2">
           @foreach (range(1, Leitner::getReviewWait($stage)) as $sub)
-            <x-shematic.subbox>{{ $this->count($stage, $sub) }}</x-shematic.subbox>
+            <button wire:click="dispatch('open-modal', 'in-stage-modal-{{ $stage }}-{{ $sub }}')">
+              <x-shematic.subbox>{{ $this->count($stage, $sub) }}</x-shematic.subbox>
+            </button>
           @endforeach
         </div>
       </x-shematic.box>
@@ -55,6 +62,11 @@ $course_model = computed(function () {
         <x-shematic.disabled-subbox>{{ Leitner::countCompletedCards($this->course_model, $this->user) }}</x-shematic.disabled-subbox>
       </div>
     </x-shematic.completed-box>
-
   </div>
+
+  @foreach (range(1, 5) as $stage)
+    @foreach (range(1, Leitner::getReviewWait($stage)) as $sub)
+      <livewire:modals.in-stage-modals :$stage :$sub :list="$this->list($stage, $sub)" />
+    @endforeach
+  @endforeach
 </div>
