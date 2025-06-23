@@ -39,11 +39,11 @@ state(['list', 'stage', 'sub']);
         </table>
       </div>
       @if (count($list) == 0)
-        <p class="text-yellow-500 italic font-bold text-center">خالیه!</p>
+        <p class="text-yellow-500 italic font-bold text-center">{{ __('messages.empty') }}</p>
       @endif
       <div class="mt-6 flex justify-end">
         {{-- <x-danger-button type="button"
-          wire:click="dispatch('close-modal', 'in-stage-modal-{{ $stage }}-{{ $sub }})">{{ __('Close') }}</x-danger-button> --}}
+          wire:click="dispatch('close-modal', 'in-stage-modal-{{ $stage }}-{{ $sub }})">{{ __('messages.close') }}</x-danger-button> --}}
       </div>
     </div>
   </x-modal>

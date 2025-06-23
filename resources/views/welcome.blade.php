@@ -30,46 +30,44 @@
 <body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
   {{-- Hero Section --}}
   <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
-    <h2 class="text-4xl font-bold mb-4">{{ __('Welcome to :name', ['name' => __(config('app.name', 'LearnFlow'))]) }}
+    <h2 class="text-4xl font-bold mb-4">{{ __('messages.welcome', ['name' => __(config('app.name', 'LearnFlow'))]) }}
     </h2>
     <p class="text-xl mb-6">
-      {{ __('The ultimate platform to learn anything efficiently and effectively using the Leitner box algorithm') }}
+      {{ __('messages.overview') }}
     </p>
     <a href="{{ login_url() }}">
       <x-primary-button type="button">
-        <i class="fas fa-play me-2"></i> {{ __('Get Started') }}
+        <i class="fas fa-play me-2"></i> {{ __('messages.get-started') }}
       </x-primary-button>
     </a>
   </header>
 
   {{-- About Section --}}
   <section id="about" class="container mx-auto p-8">
-    <h2 class="text-3xl font-semibold mb-4">{{ __('About Us') }}</h2>
+    <h2 class="text-3xl font-semibold mb-4">{{ __('landing.headings.about') }}</h2>
     <p>
-      {{ __('At :name, we are dedicated to providing top-notch learning resources tailored to your needs. Our platform is designed to be user-friendly, interactive, and engaging, ensuring you have the best learning experience possible.', ['name' => __(config('app.name', 'LearnFlow'))]) }}
+      {{ __('landing.paragraphs.about', ['name' => __(config('app.name', 'LearnFlow'))]) }}
     </p>
   </section>
 
   {{-- Features Section --}}
   <section id="features" class="container mx-auto bg-gray-200 p-8 dark:bg-gray-700">
     <div>
-      <h2 class="text-3xl font-semibold mb-4">{{ __('Our Features') }}</h2>
+      <h2 class="text-3xl font-semibold mb-4">{{ __('landing.headings.features') }}</h2>
       <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {{-- Feature 1 --}}
-        <livewire:feature-card :title="__('Interactive Exercises')" modal="interactive-exercises" :text="__('Engage with interactive exercises that adapt to your learning pace and style.')" />
+        <livewire:feature-card :title="__('landing.features.A.header')" modal="interactive-exercises" :text="__('landing.features.A.text')" />
         {{-- Feature 2 --}}
-        <livewire:feature-card :title="__('Daily Streaks')" modal="daily-streaks" :text="__(
-            'Maintain your learning momentum by achieving daily streaks. Stay consistent and see your progress soar!',
-        )" />
+        <livewire:feature-card :title="__('landing.features.B.header')" modal="daily-streaks" :text="__('landing.features.B.text')" />
         {{-- Feature 3 --}}
         <div class="bg-white p-6 rounded shadow scale-on-hover flex flex-col dark:bg-gray-800">
-          <h3 class="text-xl font-bold mb-2">{{ __('Leitner System') }}</h3>
+          <h3 class="text-xl font-bold mb-2">{{ __('landing.features.C.header') }}</h3>
           <p class="mb-4">
-            {{ __('Utilize the efficient Leitner system to ensure you retain and recall what you learn effectively.') }}
+            {{ __('landing.features.C.text') }}
           </p>
           <div class="mt-auto text-center">
             <a href="https://en.wikipedia.org/wiki/Leitner_system" target="_blank"
-              class="text-purple-700 hover:underline dark:text-purple-500">{{ __('Learn More') }}</a>
+              class="text-purple-700 hover:underline dark:text-purple-500">{{ __('messages.learn-more') }}</a>
           </div>
         </div>
       </div>
@@ -78,31 +76,31 @@
 
   {{-- Contact Section --}}
   <section id="contact" class="container mx-auto p-8">
-    <h2 class="text-3xl font-semibold mb-4">{{ __('Contact Us') }}</h2>
+    <h2 class="text-3xl font-semibold mb-4">{{ __('landing.contact.us') }}</h2>
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2 gap-6">
       <form class="grid gap-6" action="mailto:pmostafaie1390@gmail.com" method="post" enctype="text/plain">
-        <x-text-input type="text" placeholder="{{ __('Your Name') }}"
+        <x-text-input type="text" placeholder="{{ __('landing.contact.name') }}"
           class="input dark:bg-gray-700 dark:text-white" />
-        <x-text-input type="email" placeholder="{{ __('Your Email') }}"
+        <x-text-input type="email" placeholder="{{ __('landing.contact.email') }}"
           class="input dark:bg-gray-700 dark:text-white" />
-        <x-text-area placeholder="{{ __('Your Message') }}"
+        <x-text-area placeholder="{{ __('landing.contact.message') }}"
           class="input h-32 dark:bg-gray-700 dark:text-white"></x-text-area>
         <x-primary-button type="submit" class="justify-center">
-          <i class="fas fa-paper-plane me-2"></i> {{ __('Send Message') }}
+          <i class="fas fa-paper-plane me-2"></i> {{ __('landing.contact.send') }}
         </x-primary-button>
       </form>
       <div
         class="contact-info shadow-lg p-4 bg-[#f7fafc] rounded-lg md:rotate-[10deg] md:translate-x-4 md:translate-y-2 dark:bg-gray-800">
-        <h3 class="text-xl font-bold mb-3">{{ __('Contact with Developer') }}</h3>
+        <h3 class="text-xl font-bold mb-3">{{ __('landing.contact.developer.title') }}</h3>
         <div class="flex gap-1 flex-wrap">
           <x-primary-button type="submit"><i class="fab fa-linkedin me-2"></i>
-            <a href="https://www.linkedin.com/in/parsa-mostafaie">{{ __('LinkedIn') }}</a>
+            <a href="https://www.linkedin.com/in/parsa-mostafaie">{{ __('landing.contact.developer.linkedin') }}</a>
           </x-primary-button>
           <x-primary-button type="submit"><i class="fab fa-github me-2"></i>
-            <a href="https://github.com/parsa-mostafaie">{{ __('GitHub') }}</a>
+            <a href="https://github.com/parsa-mostafaie">{{ __('landing.contact.developer.github') }}</a>
           </x-primary-button>
           <x-primary-button type="submit"><i class="fa fa-phone me-2"></i>
-            <a href="tel:+989056372307">{{ __('Phone') }}</a>
+            <a href="tel:+989056372307">{{ __('landing.contact.developer.phone') }}</a>
           </x-primary-button>
         </div>
       </div>
@@ -112,8 +110,9 @@
   {{-- Footer --}}
   <footer
     class="bg-purple-700 text-white p-4 text-center container mx-auto rounded-lg dark:bg-gray-800 dark:text-white">
-    <p>&copy; {{ __('2025') }} {{ __(config('app.name', 'LearnFlow')) }}: {{ __('In-Depth learn anything.') }}
-      {{ __('All rights reserved.') }}</p>
+    <p>&copy; {{ __('landing.footer.year') }} {{ __(config('app.name', 'LearnFlow')) }}:
+      {{ __('landing.footer.text') }}
+      {{ __('landing.footer.rights') }}</p>
   </footer>
 
   <x-theme-toggler />

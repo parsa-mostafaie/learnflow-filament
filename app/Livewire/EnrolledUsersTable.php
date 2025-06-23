@@ -76,7 +76,7 @@ class EnrolledUsersTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make(__("Id"), "id")
+            Column::make(__("users.columns.id"), "id")
                 ->sortable()
                 ->searchable(),
             Column::make(__("User"), "user_id")

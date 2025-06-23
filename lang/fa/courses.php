@@ -13,6 +13,7 @@ return [
     'creation_range' => "بازه زمانی ایجاد",
     "updation_range" => "بازه زمانی تغییر",
     "my_courses" => "فقط دوره های من",
+    "enrolled" => "فقط ثبت نام شده ها"
   ],
   'columns' => [
     'title' => "عنوان",

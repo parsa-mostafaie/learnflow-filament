@@ -56,7 +56,7 @@ mount(fn() => $this->loadMore());
       {{ __('Filter and sort courses to find your desired ones.') }}
     </p>
     <x-search-input onInput="searchChange()" model="search.text"
-      placeholder="{{ __('Filter Title, description, slug of course...') }}" />
+      placeholder="{{ __('feed.search.text') }}" />
   </div>
 
   <!-- Filters and Sorting -->
@@ -65,7 +65,7 @@ mount(fn() => $this->loadMore());
       <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('Filters') }}</p>
       <div class="flex flex-wrap gap-4 items-center">
         <x-checkbox-filter id="enrolled-filter" model="search.filters.only_enrolled"
-          label="{{ __('Only Enrolled Courses') }}" wire:change="searchChange" />
+          label="{{ __('courses.filters.enrolled') }}" wire:change="searchChange" />
       </div>
     </div>
     <div class="space-y-4 mt-6">
@@ -75,7 +75,7 @@ mount(fn() => $this->loadMore());
             'courses.created_at' => __('Creation Date'),
             'enrolls_count' => __('Enrolls Count'),
             'questions_approved_count' => __('Questions Count'),
-            'title' => __('Title'),
+            'title' => __('courses.columns.title'),
         ]"
           wire:change="searchChange" />
         <x-dropdown-filter id="sort-direction" model="search.sortDirection" label="{{ __('Direction') }}"
@@ -98,7 +98,7 @@ mount(fn() => $this->loadMore());
         @endforeach
       @else
         <div class="p-4 text-center text-gray-500 dark:text-gray-400">
-          {{ __('No results found') }}
+          {{ __('messages.nothing-found') }}
         </div>
       @endif
     </div>
@@ -106,6 +106,6 @@ mount(fn() => $this->loadMore());
 
   {{-- Loading indicator for fetching more courses --}}
   <div wire:loading class="text-purple-900 dark:text-purple-400 px-2">
-    {{ __('Loading more courses') }}...
+    {{ __('feed.search.more') }}...
   </div>
 </div>

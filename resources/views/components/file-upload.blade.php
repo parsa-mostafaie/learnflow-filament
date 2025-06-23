@@ -42,12 +42,12 @@
             <svg class="w-12 h-12 mb-4 text-purple-500 dark:text-purple-400 animate-bounce" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
             </svg>
-            <p class="mb-2 text-sm text-purple-500 dark:text-purple-400"><span class="font-semibold">{{ __('Click to upload') }}</span> {{ __('or drag and drop') }}</p>
+            <p class="mb-2 text-sm text-purple-500 dark:text-purple-400"><span class="font-semibold">{{ __('messages.file-upload.upload') }}</span> {{ __('messages.file-upload.drag-drop') }}</p>
             <p class="text-xs text-purple-500 dark:text-purple-400">
                 @if(!empty($file_types) && $file_types->hasActualContent())
                     {{ $file_types }}
                 @else
-                    {{ __('SVG, PNG, JPG or other image types') }}
+                    {{ __('messages.file-upload.conditions') }}
                 @endif
             </p>
         </div>
@@ -60,8 +60,8 @@
             <svg class="w-12 h-12 mb-4 text-purple-500 dark:text-purple-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
             </svg>
-            <p class="mb-2 text-sm text-purple-500 dark:text-purple-400"><span class="font-semibold">{{ __('Selected File:') }}</span> <span x-text="fileName"></span></p>
-            <button @click="removeFile" type="button" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 dark:bg-red-400 dark:hover:bg-red-500">{{ __('Remove File') }}</button>
+            <p class="mb-2 text-sm text-purple-500 dark:text-purple-400"><span class="font-semibold">{{ __('messages.file-upload.selected') }}</span> <span x-text="fileName"></span></p>
+            <button @click="removeFile" type="button" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 dark:bg-red-400 dark:hover:bg-red-500">{{ __('messages.file-upload.remove') }}</button>
         </div>
     </div>
 </div>

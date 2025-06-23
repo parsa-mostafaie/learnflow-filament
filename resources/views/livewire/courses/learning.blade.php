@@ -41,7 +41,7 @@ $loadCard = function () {
     $this->card = Leitner::getFirstToLearnCard($this->course, auth()->id());
 
     if (!$this->card) {
-        Toaster::success(__("You've Completed your today's learning!"));
+        Toaster::success(__('messages.learn-finished'));
     }
 };
 
@@ -53,7 +53,7 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
   @if ($course->isEnrolledBy(auth()->user()) && Gate::allows('view', $course))
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-2">
       <div class="p-6 text-gray-900 dark:text-gray-100">
-        <h1 class="text-lg text-center font-bold mb-1">{{ __('Learn') }}</h1>
+        <h1 class="text-lg text-center font-bold mb-1">{{ __('messages.learn') }}</h1>
         <div class="my-2 container mx-auto">
           <div class="mx-auto md:w-[50%]">
             <x-progress :percentage="$this->percentage" />
@@ -65,7 +65,7 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
               @if ($this->card)
                 <livewire:courses.question-card :card="$this->card" wire:key="{{ $this->card->id }}" />
               @else
-                {{ __("You've Completed your today's learning!") }}
+                {{ __("messages.learn-finished") }}
               @endif
             @else
               <x-gradient-button type="button" wire:click="loadCard">{{ __('Start Learning!') }}</x-gradient-button>

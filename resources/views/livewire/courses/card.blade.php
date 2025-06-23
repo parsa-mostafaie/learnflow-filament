@@ -56,7 +56,7 @@ mount(function () {
       </p>
       <p class="text-gray-500">
         <i class="fas fa-question-circle me-2"></i> {{-- icon for questions --}}
-        {{ forhumans($course->questions_approved()->count()) }} {{ __('Questions') }}
+        {{ forhumans($course->questions_approved()->count()) }} {{ __('questions.plural') }}
       </p>
     </div>
   </div>
@@ -64,7 +64,7 @@ mount(function () {
   <x-expandable-text :text="$course->description">
     <span class="font-bold text-gray-700">
       <i class="fas fa-info-circle me-2"></i> {{-- icon for description --}}
-      {{ __('Description') }}
+      {{ __('courses.columns.description') }}
     </span>
   </x-expandable-text>
 

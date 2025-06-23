@@ -1,7 +1,7 @@
 <div>
   <x-modal name="daily-streaks">
     <div class="p-6 bg-white rounded-lg max-w-lg mx-auto text-gray-800">
-      <h2 class="text-lg font-bold text-purple-700 mb-4">{{ __('Daily Streaks') }}</h2>
+      <h2 class="text-lg font-bold text-purple-700 mb-4">فعالیت روزانه</h2>
       <p class="leading-relaxed text-justify">
         یادگیری یک سفر مادام العمر است که زندگی ما را غنی می‌کند، افق دید ما را گسترده می‌کند و ذهن ما را تیز نگه
         می‌دارد.
@@ -21,7 +21,8 @@
         <li>چالش یادگیری را در طول زندگی خود بپذیرید و دنیایی از فرصت‌ها و امکانات را باز خواهید کرد.</li>
       </ul>
       <div class="mt-6 flex justify-end">
-        <x-danger-button type="button" wire:click="dispatch('close-modal', 'daily-streaks')">{{ __('Close') }}</x-danger-button>
+        <x-danger-button type="button"
+          wire:click="dispatch('close-modal', 'daily-streaks')">{{ __('messages.close') }}</x-danger-button>
       </div>
     </div>
   </x-modal>
