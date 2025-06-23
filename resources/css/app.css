@@ -39,6 +39,7 @@
         --tw-space-x-reverse: 1 !important;
     }
 
+    /** Landing */
     .header-section {
         @apply bg-purple-500;
         /* Header section color */
@@ -71,6 +72,7 @@
         @apply transition-transform duration-200 hover:transform hover:scale-[95%];
     }
 
+    /** Utilities */
     .container {
         @apply mx-auto;
     }
@@ -81,6 +83,8 @@
     textarea {
         @apply p-2 outline-none;
     }
+
+    /** button group */
 
     .btn-group {
         display: flex;
@@ -104,7 +108,7 @@
         border-end-start-radius: 0 !important;
     }
 
-    /* Gradient Scroll Bar */
+    /** Gradient Scroll Bar */
 
     /* width, height */
     ::-webkit-scrollbar {
@@ -128,6 +132,7 @@
         border-radius: 100vh;
     }
 
+    /** Purple Selection */
     *::selection {
         background-color: rgb(186, 85, 211);
         color: white;

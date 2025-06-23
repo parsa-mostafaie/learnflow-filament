@@ -16,7 +16,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-// Route for the single course page, with a middleware to perform daily tasks
+// Route for the single course page
 Route::view('courses/{id}', 'course.single')
     ->name('course.single');
 
