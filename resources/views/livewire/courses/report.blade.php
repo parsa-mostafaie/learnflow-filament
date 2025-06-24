@@ -28,14 +28,14 @@ $course_model = computed(function () {
 
 <div>
   <h1 class="mb-8 text-gray-900 text-3xl font-bold text-center">
-    {{ __(':name\'s Report', ['name' => $this->course_model->title]) }}
+    {{ __('report-page.title', ['name' => $this->course_model->title]) }}
   </h1>
 
   <div class="flex flex-wrap justify-center gap-5 max-w-[1200px] mx-auto">
     <!-- Not Imported Box -->
     <x-shematic.notimported-box
       class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#ffded5] to-[#ffc2b5] shadow-lg">
-      <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Not Imported') }}</h2>
+      <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('report-page.not-imported') }}</h2>
       <div class="flex flex-wrap justify-center gap-2">
         <x-shematic.disabled-subbox>{{ Number::format(Leitner::countNotImportedCards($this->course_model, $this->user)) }}</x-shematic.disabled-subbox>
       </div>
@@ -44,7 +44,7 @@ $course_model = computed(function () {
     @foreach (range(1, 5) as $stage)
       <x-shematic.box
         class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#e3e3e3] to-[#ffffff] shadow-lg">
-        <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Box') }} {{ Number::format($stage) }}</h2>
+        <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('report-page.box') }} {{ Number::format($stage) }}</h2>
         <div class="flex flex-wrap justify-center gap-2">
           @foreach (range(1, Leitner::getReviewWait($stage)) as $sub)
             <button wire:click="dispatch('open-modal', 'in-stage-modal-{{ $stage }}-{{ $sub }}')">
@@ -58,7 +58,7 @@ $course_model = computed(function () {
     <!-- Completed Box -->
     <x-shematic.completed-box
       class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#d5ffd5] to-[#c2ffc2] shadow-lg">
-      <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('Completed') }}</h2>
+      <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('report-page.completed') }}</h2>
       <div class="flex flex-wrap justify-center gap-2">
         <x-shematic.disabled-subbox>{{ Number::format(Leitner::countCompletedCards($this->course_model, $this->user)) }}</x-shematic.disabled-subbox>
       </div>

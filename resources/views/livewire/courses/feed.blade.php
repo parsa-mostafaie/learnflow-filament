@@ -50,10 +50,10 @@ mount(fn() => $this->loadMore());
   <!-- Page Header: Title and Search Input -->
   <div class="bg-white dark:bg-gray-800 p-6 space-y-6 shadow rounded">
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-      {{ __('Search Courses') }}
+      {{ __('feed.search.title') }}
     </h2>
     <p class="text-sm text-gray-600 dark:text-gray-400">
-      {{ __('Filter and sort courses to find your desired ones.') }}
+      {{ __('feed.search.desired') }}
     </p>
     <x-search-input onInput="searchChange()" model="search.text"
       placeholder="{{ __('feed.search.text') }}" />
@@ -62,26 +62,26 @@ mount(fn() => $this->loadMore());
   <!-- Filters and Sorting -->
   <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 shadow mt-2">
     <div class="space-y-4">
-      <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('Filters') }}</p>
+      <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('feed.filters.title') }}</p>
       <div class="flex flex-wrap gap-4 items-center">
         <x-checkbox-filter id="enrolled-filter" model="search.filters.only_enrolled"
           label="{{ __('courses.filters.enrolled') }}" wire:change="searchChange" />
       </div>
     </div>
     <div class="space-y-4 mt-6">
-      <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('Sort By') }}</p>
+      <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('feed.sort.title') }}</p>
       <div class="flex gap-4 flex-wrap items-center">
-        <x-dropdown-filter id="sort-column" model="search.sortBy" label="{{ __('Column') }}" :options="[
+        <x-dropdown-filter id="sort-column" model="search.sortBy" label="{{ __('feed.column') }}" :options="[
             'courses.created_at' => __('courses.columns.created_at'),
             'enrolls_count' => __('courses.columns.enrolls_count'),
             'questions_approved_count' => __('courses.columns.all_questions_count'),
             'title' => __('courses.columns.title'),
         ]"
           wire:change="searchChange" />
-        <x-dropdown-filter id="sort-direction" model="search.sortDirection" label="{{ __('Direction') }}"
+        <x-dropdown-filter id="sort-direction" model="search.sortDirection" label="{{ __('feed.sort.direction.title') }}"
           :options="[
-              'asc' => __('Ascending'),
-              'desc' => __('Descending'),
+              'asc' => __('feed.sort.direction.asc'),
+              'desc' => __('feed.sort.direction.desc'),
           ]" wire:change="searchChange" />
       </div>
     </div>
