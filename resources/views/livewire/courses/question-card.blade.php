@@ -36,13 +36,13 @@ $knowing = function ($state) {
         {{ $card->courseQuestion->question->answer }}</p>
       <div class="flex justify-center">
         <x-button-group>
-          <x-primary-button type="button" wire:click="knowing(true)">{{ __('I know this') }}</x-primary-button>
-          <x-danger-button type="button" wire:click="knowing(false)">{{ __('I don\'t know this') }}</x-danger-button>
+          <x-primary-button type="button" wire:click="knowing(true)">{{ __('messages.known') }}</x-primary-button>
+          <x-danger-button type="button" wire:click="knowing(false)">{{ __('messages.unknown') }}</x-danger-button>
         </x-button-group>
       </div>
     @else
       <x-primary-button class="mt-2" type="button" x-show="showAnswerButton"
-        wire:click="toggleAnswer">{{ __('See the Answer') }}!</x-primary-button>
+        wire:click="toggleAnswer">{{ __('messages.show-me-answer') }}!</x-primary-button>
     @endif
   @endif
 </div>

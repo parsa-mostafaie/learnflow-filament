@@ -24,9 +24,5 @@ Route::view('report/{id}', 'report')
     ->name('course.report')
     ->middleware('auth');
 
-Route::get('/download-sample-import', function () {
-    return response()->download(public_path('import-sample.xlsx'));
-})->name('download.sample');
-
 // Include authentication routes
 require __DIR__ . '/auth.php';

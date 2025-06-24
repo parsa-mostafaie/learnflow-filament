@@ -27,11 +27,11 @@ $course_model = computed(fn() => $this->course instanceof App\Models\Course ? $t
   <x-button-group>
     {{-- Action buttons for trashed courses --}}
     @if ($this->course_model->trashed())
-      @if (!$this->in_show)
+      {{-- @if (!$this->in_show)
         @can('forceDelete', $this->course_model)
           <livewire:courses.action.forcedelete-button :course="$this->course_model" />
         @endcan
-      @endif
+      @endif --}}
       @can('restore', $this->course_model)
         <livewire:courses.action.restore-button :course="$this->course_model" />
       @endcan
@@ -42,14 +42,14 @@ $course_model = computed(fn() => $this->course instanceof App\Models\Course ? $t
     @endif
 
     {{-- Action buttons for non-trashed courses when not in show mode --}}
-    @if (!$in_show)
-      @can('update', $this->course_model)
+    {{-- @if (!$in_show) --}}
+    {{-- @can('update', $this->course_model)
         <livewire:courses.action.edit-button :course="$this->course_model" />
-      @endcan
-      {{-- @can('assignAny', $this->course_model)
+      @endcan --}}
+    {{-- @can('assignAny', $this->course_model)
         <livewire:courses.action.assign-button :course="$this->course_model" wire:key="assign-any-{{ $this->course }}" />
       @endcan --}}
-    @endif
+    {{-- @endif --}}
 
     {{-- Enroll/Unenroll button --}}
     @can('enroll', $this->course_model)
@@ -57,11 +57,11 @@ $course_model = computed(fn() => $this->course instanceof App\Models\Course ? $t
     @endcan
 
     {{-- Show button when not in show mode --}}
-    @if (!$in_show)
-      @can('view', $this->course_model)
-        <livewire:courses.action.show-button :course="$this->course_model" />
-      @endcan
-    @endif
+    {{-- @if (!$in_show) --}}
+    @can('view', $this->course_model)
+      <livewire:courses.action.show-button :course="$this->course_model" />
+    @endcan
+    {{-- @endif --}}
 
     @can('getReport', $this->course_model)
       <livewire:courses.action.report-button :course="$this->course_model" />

@@ -64,7 +64,7 @@ $resetPassword = function () {
   <form wire:submit="resetPassword">
     {{-- Email Address --}}
     <div>
-      <x-input-label for="email" :value="__('Email')" />
+      <x-input-label for="email" :value="__('users.columns.email')" />
       <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required
         autofocus autocomplete="username" />
       <x-input-error :messages="$errors->get('email')" class="mt-2" />

@@ -28,7 +28,7 @@ $action = function () {
 {{-- Delete button with authorization check --}}
 <div>
   @can('delete', $this->course)
-    <x-danger-button wire:click="action" title="{{ __('Delete') }}">
+    <x-danger-button wire:click="action" title="{{ __('actions.delete') }}">
       <i class="fas fa-trash-alt"></i>
     </x-danger-button>
   @endcan

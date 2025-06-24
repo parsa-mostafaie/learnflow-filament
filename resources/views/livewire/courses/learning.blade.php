@@ -68,7 +68,7 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
                 {{ __("messages.learn-finished") }}
               @endif
             @else
-              <x-gradient-button type="button" wire:click="loadCard">{{ __('Start Learning!') }}</x-gradient-button>
+              <x-gradient-button type="button" wire:click="loadCard">{{ __('messages.start-learning') }}</x-gradient-button>
             @endif
           @else
             {{ __("You've Completed this course!") }}

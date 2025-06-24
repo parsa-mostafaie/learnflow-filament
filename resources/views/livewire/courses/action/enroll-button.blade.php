@@ -63,7 +63,7 @@ $action = function () {
 {{-- Enroll button with authorization check --}}
 <div>
   @can('enroll', $this->course)
-    <x-primary-button wire:click="action" title="{{ $this->course->is_enrolled ? __('Unenroll') : __('Enroll') }}">
+    <x-primary-button wire:click="action" title="{{ $this->course->is_enrolled ? __('actions.unenroll') : __('actions.enroll') }}">
       @if ($this->course->is_enrolled)
         <i class="fas fa-user-minus"></i> <!-- Icon for Unenroll -->
       @else
