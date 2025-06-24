@@ -8,15 +8,33 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * ApproveBulkAction is a custom bulk action for Filament Tables that allows authorized users to approve records. (Many record each time the action is executed.)
+ *
+ * @package \App\Filament\Actions
+ * @see \App\Filament\Actions\ApproveAction
+ */
 class ApproveBulkAction extends BulkAction
 {
   use CanCustomizeProcess;
 
+  /**
+   * Get the default name of the action. 
+   * 
+   * Will be used to differentiate from other bulk actions.
+   *
+   * @return string|null
+   */
   public static function getDefaultName(): ?string
   {
     return 'approve';
   }
 
+  /**
+   * Set up the action.
+   *
+   * @return void
+   */
   protected function setUp(): void
   {
     parent::setUp();
@@ -31,14 +49,37 @@ class ApproveBulkAction extends BulkAction
 
     $this->successNotificationTitle(__('filament-actions.approve.multiple.notifications.approved.title'));
 
+    /**
+     * Set the default color of the action.
+     *
+     * @var string
+     */
     $this->defaultColor('success');
 
+    /**
+     * Set the icon of the action.
+     *
+     * @see \Filament\Support\Facades\FilamentIcon::resolve()
+     */
     $this->icon(FilamentIcon::resolve('actions::approve-action') ?? 'heroicon-m-check-circle');
 
+    /**
+     * Require confirmation before performing the action.
+     */
     $this->requiresConfirmation();
 
+    /**
+     * Set the modal icon of the action.
+     *
+     * @see \Filament\Support\Facades\FilamentIcon::resolve()
+     */
     $this->modalIcon(FilamentIcon::resolve('actions::approve-action.modal') ?? 'heroicon-o-check');
 
+    /**
+     * Perform the action.
+     * 
+     * Will Change status of records to "approved"
+     */
     $this->action(function (): void {
       $this->process(function (Collection $records) {
         $records->each(function (Model $record) {

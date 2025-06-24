@@ -8,6 +8,7 @@ use App\Models\CourseQuestion;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Leitner
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class Leitner implements Interfaces\Leitner
 {
+  //* learning process
+
   /**
    * Update the card's stage and review date based on whether the user knows the card.
    * 
@@ -130,7 +133,7 @@ class Leitner implements Interfaces\Leitner
       ->first();
   }
 
-  // Configurables
+  //* Configurables
 
   /**
    * Get the length of a day for the daily tasks.
@@ -183,6 +186,8 @@ class Leitner implements Interfaces\Leitner
     return config('app.leitner.review_wait_per_stage.' . $stage, null);
   }
 
+  //* Learning Report
+
   /**
    * Get learned percent of course
    * 
@@ -208,6 +213,16 @@ class Leitner implements Interfaces\Leitner
     return null;
   }
 
+  /**
+   * Returns count of cards in a stage and a sub_stage (sub_box)
+   * 
+   * @param \App\Models\Course $course
+   * @param \App\Models\User $user
+   * @param int $stage
+   * @param int $sub_box
+   * 
+   * @return int|null
+   */
   public function getCardsInASubbox($course, $user, $stage, $sub_box)
   {
     $per_stage = $this->getReviewWait($stage);
@@ -222,6 +237,16 @@ class Leitner implements Interfaces\Leitner
       ->count();
   }
 
+  /**
+   * Returns list of cards in a stage and a sub_stage (sub_box)
+   * 
+   * @param \App\Models\Course $course
+   * @param \App\Models\User $user
+   * @param int $stage
+   * @param int $sub_box
+   * 
+   * @return Collection<int, \App\Models\Card>
+   */
   public function listCardsInASubbox($course, $user, $stage, $sub_box)
   {
     $per_stage = $this->getReviewWait($stage);
@@ -235,6 +260,14 @@ class Leitner implements Interfaces\Leitner
       ->get();
   }
 
+  /**
+   * Returns the number of cards for which the learning process has been completed.
+   * 
+   * @param \App\Models\Course $course
+   * @param \App\Models\User $user
+   * 
+   * @return int|null
+   */
   public function countCompletedCards($course, $user)
   {
     return Card::where('user_id', $user->id)
@@ -244,6 +277,14 @@ class Leitner implements Interfaces\Leitner
       ->count();
   }
 
+  /**
+   * Returns the number of cards that were not included in the learning process. (currently)
+   * 
+   * @param \App\Models\Course $course
+   * @param \App\Models\User $user
+   * 
+   * @return int|null
+   */
   public function countNotImportedCards($course, $user)
   {
     return $course->questions_approved()->count() - Card::where('user_id', $user->id)

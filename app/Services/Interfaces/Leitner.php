@@ -72,4 +72,19 @@ interface Leitner
    * @return float|null
    */
   public function getLearnedPercentage($course, $user);
+
+  /**
+   * Get the review wait times for each stage.
+   * 
+   * @return array
+   */
+  public function getReviewWaits();
+
+  /**
+   * Get the review wait time for a specific stage.
+   * 
+   * @param string|int $stage
+   * @return mixed
+   */
+  public function getReviewWait();
 }
