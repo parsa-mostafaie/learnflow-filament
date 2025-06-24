@@ -79,7 +79,7 @@ class EnrolledUsersTable extends DataTableComponent
             Column::make(__("users.columns.id"), "id")
                 ->sortable()
                 ->searchable(),
-            Column::make(__("User"), "user_id")
+            Column::make(__("users.singular"), "user_id")
                 ->format(
                     fn($value, $row, Column $column) => $row->user->name
                 ),

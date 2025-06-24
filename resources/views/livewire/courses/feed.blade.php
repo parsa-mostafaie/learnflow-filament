@@ -72,9 +72,9 @@ mount(fn() => $this->loadMore());
       <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('Sort By') }}</p>
       <div class="flex gap-4 flex-wrap items-center">
         <x-dropdown-filter id="sort-column" model="search.sortBy" label="{{ __('Column') }}" :options="[
-            'courses.created_at' => __('Creation Date'),
-            'enrolls_count' => __('Enrolls Count'),
-            'questions_approved_count' => __('Questions Count'),
+            'courses.created_at' => __('courses.columns.created_at'),
+            'enrolls_count' => __('courses.columns.enrolls_count'),
+            'questions_approved_count' => __('courses.columns.all_questions_count'),
             'title' => __('courses.columns.title'),
         ]"
           wire:change="searchChange" />

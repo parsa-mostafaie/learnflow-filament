@@ -31,7 +31,7 @@ $unenroll = function () {
         // Dispatch events to reload the courses table and the single course view
         $this->dispatch('courses-table-reload');
         $this->dispatch('course-single-reload', $this->course->id);
-        Toaster::info(__('Done.'));
+        Toaster::info(__('messages.done'));
     }
 };
 
@@ -56,7 +56,7 @@ $action = function () {
     // Dispatch events to reload the courses table and the single course view
     $this->dispatch('courses-table-reload');
     $this->dispatch('course-single-reload', $this->course->id);
-    Toaster::info(__('Done.'));
+    Toaster::info(__('messages.done'));
 };
 ?>
 
