@@ -28,7 +28,7 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
     If you have Cloned The repository previously, you can skip this step. but run commands below in the directory that conatins composer.json and README.md
 
     ```bash
-    git clone https://github.com/parsa-mostafaie/learnflow.git
+    git clone https://github.com/parsa-mostafaie/learnflow-filament.git
     cd learnflow
     ```
 
