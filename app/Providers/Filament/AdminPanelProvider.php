@@ -108,6 +108,7 @@ class AdminPanelProvider extends PanelProvider
                     ->url(fn(): string => EditProfilePage::getUrl())
                     ->icon('heroicon-m-user-circle')
             ])
+            ->unsavedChangesAlerts()
             ->databaseNotifications()
             ->sidebarCollapsibleOnDesktop()
             ->navigationItems(
