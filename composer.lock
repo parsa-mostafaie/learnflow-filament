@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db224747025f75745bdd9710aa6591f5",
+    "content-hash": "c0dafe98d0ef339582f14b2eba652652",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4751,54 +4751,6 @@
                 }
             ],
             "time": "2025-03-24T10:02:05+00:00"
-        },
-        {
-            "name": "monzer/filament-email-verification-alert",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/monzer15/filament-email-verification-alert.git",
-                "reference": "7b2850661978045abb4d8ec84c92677965687abe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/monzer15/filament-email-verification-alert/zipball/7b2850661978045abb4d8ec84c92677965687abe",
-                "reference": "7b2850661978045abb4d8ec84c92677965687abe",
-                "shasum": ""
-            },
-            "require": {
-                "filament/support": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Monzer\\FilamentEmailVerificationAlert\\EmailVerificationAlertServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Monzer\\FilamentEmailVerificationAlert\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Monzer Osman",
-                    "email": "monzerosman15@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Send Email verifications on the fly!",
-            "support": {
-                "issues": "https://github.com/monzer15/filament-email-verification-alert/issues",
-                "source": "https://github.com/monzer15/filament-email-verification-alert/tree/v1.0.0"
-            },
-            "time": "2025-02-12T16:15:24+00:00"
         },
         {
             "name": "morilog/jalali",
@@ -9638,6 +9590,59 @@
                 }
             ],
             "time": "2025-02-25T15:25:22+00:00"
+        },
+        {
+            "name": "bauerdot/laravel-dbml",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bauerDOTuzh/laravel-dbml.git",
+                "reference": "db14e615bf1fa9b93bead0f008b74ccdc486a836"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bauerDOTuzh/laravel-dbml/zipball/db14e615bf1fa9b93bead0f008b74ccdc486a836",
+                "reference": "db14e615bf1fa9b93bead0f008b74ccdc486a836",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.37|^11.0|^12.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0|^9.0|^10.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bauerdot\\LaravelDbml\\LaravelDbmlServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bauerdot\\LaravelDbml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arsanandha Aphisitworachorch",
+                    "email": "arsanandha.ap@gmail.com"
+                }
+            ],
+            "description": "Kacher is Laravel DB to DBML (dbdiagram.io/dbdocs.io)",
+            "keywords": [
+                "laravel"
+            ],
+            "support": {
+                "source": "https://github.com/bauerDOTuzh/laravel-dbml/tree/v0.0.2"
+            },
+            "time": "2025-05-14T12:47:43+00:00"
         },
         {
             "name": "brianium/paratest",
