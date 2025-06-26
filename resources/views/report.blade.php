@@ -12,8 +12,7 @@
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
   {{-- Fonts --}}
-  <link rel="preconnect" href="https://fonts.bunny.net">
-  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+  <x-fonts />
 
   {{-- Scripts --}}
   @filamentStyles
@@ -21,7 +20,7 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#f5f5f5] p-5">
+<body class="bg-[#f5f5f5] p-5 font-sans">
   <livewire:courses.report :user="Auth::user()" :course="$id" />
 
   <x-impersonate::banner />

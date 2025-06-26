@@ -19,7 +19,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Figtree", "Fluent Emoji Color", "Vazirmatn", ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 purple: {
