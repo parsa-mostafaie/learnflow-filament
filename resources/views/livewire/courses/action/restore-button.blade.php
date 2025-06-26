@@ -29,7 +29,7 @@ $action = function () {
 <div>
   @can('restore', $this->course)
     <x-primary-button wire:click="action" title="{{ __('actions.restore') }}">
-      <i class="fas fa-undo"></i>
+      <x-heroicon-s-arrow-uturn-left class="w-4 h-4" />
     </x-primary-button>
   @endcan
 </div>

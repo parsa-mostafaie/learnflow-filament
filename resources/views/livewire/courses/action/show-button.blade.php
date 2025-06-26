@@ -13,7 +13,7 @@ state(['course']);
   @can('view', $this->course)
   <x-secondary-button wire:navigate
     href="{{ route('course.single', $this->course->slug) }}" title="{{ __('actions.view') }}">
-    <i class="fas fa-eye"></i>
+    <x-heroicon-s-eye class="w-4 h-4" />
   </x-secondary-button>
   @endcan
 </div>

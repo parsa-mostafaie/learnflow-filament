@@ -9,6 +9,7 @@
         "php": "^8.2",
         "aphisitworachorch/kacher": "^1.2",
         "bezhansalleh/filament-language-switch": "^3.1",
+        "blade-ui-kit/blade-heroicons": "^2.6",
         "filament/filament": "3.3",
         "jantinnerezo/livewire-alert": "^4.0",
         "joaopaulolndev/filament-edit-profile": "^1.0",

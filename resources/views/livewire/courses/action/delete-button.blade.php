@@ -29,7 +29,7 @@ $action = function () {
 <div>
   @can('delete', $this->course)
     <x-danger-button wire:click="action" title="{{ __('actions.delete') }}">
-      <i class="fas fa-trash-alt"></i>
+      <x-heroicon-s-trash class="w-4 h-4" />
     </x-danger-button>
   @endcan
 </div>

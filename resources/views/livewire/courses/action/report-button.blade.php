@@ -10,7 +10,7 @@ state(['course']);
 <div>
   @can('getReport', $this->course)
     <x-secondary-button wire:navigate href="{{ route('course.report', $this->course->id) }}" title="{{ __('report-page.action') }}">
-      <i class="fas fa-chart-line"></i>
+      <x-heroicon-s-chart-bar class="w-4 h-4" />
     </x-secondary-button>
   @endcan
 </div>

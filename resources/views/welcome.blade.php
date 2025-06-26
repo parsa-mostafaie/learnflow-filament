@@ -18,8 +18,7 @@
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
   {{-- Fonts --}}
-  <link rel="preconnect" href="https://fonts.bunny.net">
-  <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+  <x-fonts />
 
   {{-- Styles --}}
   @filamentStyles
@@ -37,7 +36,8 @@
     </p>
     <a href="{{ login_url() }}">
       <x-primary-button type="button">
-        <i class="fas fa-play me-2"></i> {{ __('messages.get-started') }}
+        <x-heroicon-c-play class="me-2 w-5 h-5" />
+        {{ __('messages.get-started') }}
       </x-primary-button>
     </a>
   </header>
@@ -86,20 +86,21 @@
         <x-text-area placeholder="{{ __('landing.contact.message') }}"
           class="input h-32 dark:bg-gray-700 dark:text-white"></x-text-area>
         <x-primary-button type="submit" class="justify-center">
-          <i class="fas fa-paper-plane me-2"></i> {{ __('landing.contact.send') }}
+          <x-heroicon-c-paper-airplane class="me-2 w-5 h-5" />
+          {{ __('landing.contact.send') }}
         </x-primary-button>
       </form>
       <div
         class="contact-info shadow-lg p-4 bg-[#f7fafc] rounded-lg md:rotate-[10deg] md:translate-x-4 md:translate-y-2 dark:bg-gray-800">
         <h3 class="text-xl font-bold mb-3">{{ __('landing.contact.developer.title') }}</h3>
         <div class="flex gap-1 flex-wrap">
-          <x-primary-button type="submit"><i class="fab fa-linkedin me-2"></i>
+          <x-primary-button type="submit"><x-icon-linkedin class="w-5 h-5 me-2" />
             <a href="https://www.linkedin.com/in/parsa-mostafaie">{{ __('landing.contact.developer.linkedin') }}</a>
           </x-primary-button>
-          <x-primary-button type="submit"><i class="fab fa-github me-2"></i>
+          <x-primary-button type="submit"><x-icon-github class="w-5 h-5 me-2" />
             <a href="https://github.com/parsa-mostafaie">{{ __('landing.contact.developer.github') }}</a>
           </x-primary-button>
-          <x-primary-button type="submit"><i class="fa fa-phone me-2"></i>
+          <x-primary-button type="submit"><x-heroicon-c-phone class="me-2 w-5 h-5" />
             <a href="tel:+989056372307">{{ __('landing.contact.developer.phone') }}</a>
           </x-primary-button>
         </div>
