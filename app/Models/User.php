@@ -138,10 +138,21 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
         return true;
     }
 
-
     public function getFilamentAvatarUrl(): ?string
     {
         $avatarColumn = config('filament-edit-profile.avatar_column', 'avatar_url');
-        return $this->$avatarColumn ? Storage::disk('public')->url($this->$avatarColumn) : null;
+
+        return $this->$avatarColumn
+            ? Storage::disk('public')->url($this->$avatarColumn)
+            : null;
+    }
+
+    public function getFilamentAvatarUrlAttribute(): ?string
+    {
+        $avatarColumn = config('filament-edit-profile.avatar_column', 'avatar_url');
+
+        return $this->$avatarColumn
+            ? Storage::disk('public')->url($this->$avatarColumn)
+            : app(\Filament\Facades\Filament::getDefaultAvatarProvider())->get($this);
     }
 }

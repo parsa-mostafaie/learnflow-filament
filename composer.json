@@ -16,6 +16,7 @@
         "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.9",
+        "laravolt/avatar": "^6.2",
         "livewire/livewire": "^3.5",
         "livewire/volt": "^1.0",
         "maatwebsite/excel": "^3.1",

@@ -68,11 +68,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('avatar_url')
+                Tables\Columns\ImageColumn::make('filament_avatar_url')
                     ->label(__('users.columns.avatar'))
-                    ->disk('public')
+                    // ->disk('public')
                     ->circular()
-                    /// TODO: Uncomment line below
                     // ->defaultImageUrl((new Course)->getAlternativeImage())
                     ->size(40),
                 Tables\Columns\TextColumn::make('id')

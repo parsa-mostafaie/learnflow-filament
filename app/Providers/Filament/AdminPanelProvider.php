@@ -121,9 +121,9 @@ class AdminPanelProvider extends PanelProvider
                         ->sort(0)
                 ]
             )
-            //           ->defaultAvatarProvider(
-            //             \App\Filament\AvatarProviders\BoringAvatarProvider::class
-            //       );
+            ->defaultAvatarProvider(
+                \App\Filament\AvatarProviders\GravatarAvatarProvider::class
+            );
         ;
     }
 }
