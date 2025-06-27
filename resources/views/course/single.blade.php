@@ -26,19 +26,20 @@
         "@type": "Course",
         "name": "{{ $course->title }}",
         "description": "{{ $course->description }}",
+        "image": "{{ $course->image_url }}",
         "provider": {
           "@type": "Organization",
-          "name": {{ __(config('app.name', 'LearnFlow')) }},
+          "name": "{{ __(config('app.name', 'LearnFlow')) }}",
           "url": "{{ url('/') }}"
         },
         "hasCourseInstance": {
           "@type": "CourseInstance",
           "name": "{{ $course->title }}",
           "courseMode": "online",
-          "startDate": "{{ $course->created_at }}",
+          "startDate": "{{ $course->created_at->toIso8601String() }}",
           "instructor": {
             "@type": "Person",
-            "name": "{{ $course->user->name }}",
+            "name": "{{ $course->user->name }}"
           },
           "location": {
             "@type": "VirtualLocation",
@@ -46,7 +47,7 @@
           },
           "offers": {
             "@type": "Offer",
-            "price": "0",
+            "price": "0.00",
             "priceCurrency": "IRR",
             "availability": "https://schema.org/InStock",
             "url": "{{ url()->current() }}"
