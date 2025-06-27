@@ -6,9 +6,56 @@
   $course = Course::withTrashed()->where('slug', $id)->withCount('enrolls')->firstOrFail();
 
   Gate::authorize('view', $course);
+
+  $strippedText = strip_tags(str($course->description)->markdown()->sanitizeHtml());
+
+  // Truncate plain text only for preview
+  $truncatedText = Str::limit($strippedText, 350, '...');
 @endphp
 
-<x-app-layout>
+<x-app-layout title="{{ $course->title }} - ">
+  <x-slot name="meta">
+    <meta name="description" content="{{ $truncatedText }}">
+    <meta name="author" content="{{ $course->user->name }}">
+    <meta property="og:description" content="{{ $truncatedText }}">
+    <meta property="og:type" content="course">
+    <meta property="og:image" content="{{ $course->image_url }}">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "{{ $course->title }}",
+        "description": "{{ $course->description }}",
+        "provider": {
+          "@type": "Organization",
+          "name": {{ __(config('app.name', 'LearnFlow')) }},
+          "url": "{{ url('/') }}"
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "name": "{{ $course->title }}",
+          "courseMode": "online",
+          "startDate": "{{ $course->created_at }}",
+          "instructor": {
+            "@type": "Person",
+            "name": "{{ $course->user->name }}",
+          },
+          "location": {
+            "@type": "VirtualLocation",
+            "url": "{{ url()->current() }}"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IRR",
+            "availability": "https://schema.org/InStock",
+            "url": "{{ url()->current() }}"
+          }
+        }
+      }
+      </script>
+  </x-slot>
+
   {{-- Header slot --}}
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">

@@ -1,4 +1,4 @@
-@props(['robots' => ''])
+@props(['robots' => '', 'title' => '', 'canonical'])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ __(key: 'ltr') }}" x-data="{
@@ -14,10 +14,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
+  <meta name="rights" content="{{ __('seo.rights') }}">
+  <meta name="application-name" content="{{ config('app.name', 'LearnFlow') }}">
+  <meta name="theme-color" content="#6b46c1">
   <meta name="robots" content="{{ $robots }}index, {{ $robots }}follow">
-
-  <title>{{ __(config('app.name', 'LearnFlow')) }}</title>
-
+  <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
+  <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
+  @if (isset($meta))
+    {{ $meta }}
+  @endif
+  <title>{{ $title }}{{ __(config('app.name', 'LearnFlow')) }}</title>
+  @if ($title)
+    <meta property="og:title" content="{{ $title }}{{ __(config('app.name', 'LearnFlow')) }}">
+  @endif
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
   {{-- Fonts --}}
