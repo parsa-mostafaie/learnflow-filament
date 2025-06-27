@@ -11,10 +11,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ __('seo.landing.description', ['name' => __(config('app.name', 'LearnFlow'))]) }}">
+  <meta name="keywords" content="{{ implode(', ', __('seo.landing.keywords')) }}">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="canonical" href="{{ url()->current() }}">
+  <meta property="og:title" content="{{ __(config('app.name', 'LearnFlow')) }}">
+  <meta property="og:description"
+    content="{{ __('seo.landing.description', ['name' => __(config('app.name', 'LearnFlow'))]) }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ asset('banner.jpg') }}">
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
+  <meta name="rights" content="{{ __('seo.rights') }}">
+  <meta name="application-name" content="{{ config('app.name', 'LearnFlow') }}">
+  <meta name="theme-color" content="#6b46c1">
 
   <title>{{ __(config('app.name', 'LearnFlow')) }}</title>
-  {{-- <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>"> --}}
+
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
   {{-- Fonts --}}

@@ -35,7 +35,7 @@ mount(function () {
   <div class="flex gap-4 md:gap-6 sm:flex-row flex-col flex-wrap items-center md:items-start">
     <div class="w-full md:w-auto flex justify-center">
       {{-- Course image --}}
-      <img src="{{ $course->image_url }}" class="sm:max-w-[300px] sm:max-h-[200px] rounded-lg" alt="Course Image" />
+      <img src="{{ $course->image_url }}" loading="lazy" class="sm:max-w-[300px] sm:max-h-[200px] rounded-lg" alt="Course Image" />
     </div>
     <div class="grow text-center sm:text-start">
       <h1 class="font-bold text-lg flex justify-between sm:flex-row flex-col mb-2 gap-2 items-center">
