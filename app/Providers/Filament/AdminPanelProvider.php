@@ -98,6 +98,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->brandName(__("LearnFlow"))
             ->brandLogo(asset("favicon.png"))
+            ->brandLogoHeight("2.5rem")
             ->favicon(asset('favicon.png'))
             ->font('Vazirmatn')
             ->emailVerification(EmailVerificationPrompt::class)
