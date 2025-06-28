@@ -26,6 +26,8 @@
   <meta name="robots" content="{{ $robots }}index, {{ $robots }}follow">
   <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
   <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
+  <meta property="og:site_name" content="{{ __(config('app.name', 'LearnFlow')) }}">
+  <meta property="og:see_also" content="{{ url('/') }}">
   @if (isset($meta))
     {{ $meta }}
   @endif

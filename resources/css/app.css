@@ -40,11 +40,6 @@
     }
 
     /** Landing */
-    .header-section {
-        @apply bg-purple-500;
-        /* Header section color */
-    }
-
     section,
     nav,
     header {
@@ -54,19 +49,6 @@
     .link {
         @apply underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800;
     }
-
-    .contact-info {
-        @apply rounded shadow shadow-sm;
-    }
-
-    .contact-info p {
-        @apply mb-2;
-    }
-
-    /* 
-    .contact-info a {
-        @apply block text-[#6b46c1] mb-2;
-    } */
 
     .scale-on-hover {
         @apply transition-transform duration-200 hover:transform hover:scale-[95%];

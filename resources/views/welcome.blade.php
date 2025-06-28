@@ -20,6 +20,8 @@
     content="{{ __('seo.landing.description', ['name' => __(config('app.name', 'LearnFlow'))]) }}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{ asset('banner.jpg') }}">
+  <meta property="og:site_name" content="{{ __(config('app.name', 'LearnFlow')) }}">
+  <meta property="og:see_also" content="{{ url('/') }}">
   <meta property="og:url" content="{{ url()->current() }}">
   <meta name="robots" content="index, follow">
   <meta http-equiv="Content-Language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -42,7 +44,7 @@
 
 <body class="antialiased font-sans dark:bg-gray-900 dark:text-white overflow-x-clip">
   {{-- Hero Section --}}
-  <header class="header-section text-white text-center py-20 container mx-auto dark:bg-gray-800">
+  <header class="header-section bg-purple-500 text-white text-center py-20 container mx-auto dark:bg-gray-800">
     <h2 class="text-4xl font-bold mb-4">{{ __('messages.welcome', ['name' => __(config('app.name', 'LearnFlow'))]) }}
     </h2>
     <p class="text-xl mb-6">
