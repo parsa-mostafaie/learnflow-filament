@@ -67,7 +67,7 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 7. Migrate the database and seed it:
 
     ```bash
-    php artisan migrate --seed
+    php artisan migrate:fresh --seed
     ```
 
 8. Seed database from excel file:

@@ -1,5 +1,9 @@
 @props(['robots' => '', 'title' => '', 'canonical'])
 
+@php
+  $fullTitle = (filled($title) ? "$title - " : null) . __(config('app.name', 'LearnFlow'));
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ __(key: 'ltr') }}" x-data="{
     theme: localStorage.getItem('theme') || 'system',
@@ -25,10 +29,8 @@
   @if (isset($meta))
     {{ $meta }}
   @endif
-  <title>{{ $title }}{{ __(config('app.name', 'LearnFlow')) }}</title>
-  @if ($title)
-    <meta property="og:title" content="{{ $title }}{{ __(config('app.name', 'LearnFlow')) }}">
-  @endif
+  <title>{{ $fullTitle }}</title>
+  <meta property="og:title" content="{{ $fullTitle }}">
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
   {{-- Fonts --}}

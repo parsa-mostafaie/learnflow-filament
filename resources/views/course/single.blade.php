@@ -13,7 +13,7 @@
   $truncatedText = Str::limit($strippedText, 350, '...');
 @endphp
 
-<x-app-layout title="{{ $course->title }} - ">
+<x-app-layout title="{{ $course->title }}">
   <x-slot name="meta">
     <meta name="description" content="{{ $truncatedText }}">
     <meta name="author" content="{{ $course->user->name }}">
