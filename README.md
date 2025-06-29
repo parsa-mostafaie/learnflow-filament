@@ -29,7 +29,7 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 
     ```bash
     git clone https://github.com/parsa-mostafaie/learnflow-filament.git
-    cd learnflow
+    cd learnflow-filament
     ```
 
 2. Install PHP dependencies:
