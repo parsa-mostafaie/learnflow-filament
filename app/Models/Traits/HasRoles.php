@@ -16,7 +16,7 @@ trait HasRoles
 {
     use SpatieHasRoles;
 
-    const roles = [
+    public const ROLES = [
         'user',
         'instructor',
         'manager',

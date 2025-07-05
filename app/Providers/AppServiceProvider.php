@@ -10,6 +10,7 @@ use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Filament\Infolists\Infolist;
 use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Collection;
 use Filament\Tables\Table;
 
 /**
@@ -51,6 +52,25 @@ class AppServiceProvider extends ServiceProvider
         Infolist::$defaultNumberLocale = App::getLocale();
 
         Gate::policy(\Spatie\Activitylog\Models\Activity::class, \App\Policies\SpatieActivityPolicy::class);
+
+        Collection::macro('cumulativeSum', function ($key = null, $sum_key = "cumulative") {
+            $sum = 0;
+
+            return $this->map(function ($item) use (&$sum, $key, $sum_key) {
+                $value = is_null($key)
+                    ? (is_numeric($item) ? $item : 0)
+                    : data_get($item, $key, 0);
+
+                $sum += $value;
+
+                return match (true) {
+                    is_null($key) => $sum,
+                    is_array($item) => [...$item, $sum_key => $sum],
+                    is_object($item) => tap(clone $item, fn($item) => $item->$sum_key = $sum),
+                    default => $item, // fallback
+                };
+            });
+        });
 
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             // $switch

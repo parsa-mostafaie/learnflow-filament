@@ -105,6 +105,9 @@ trait Enrollable
         // Clear the cache for the enrollment status
         Cache::forget($this->getEnrollmentCacheKey($user));
 
+        $key = config("app.name") . ".enrolls_count_" . static::class . "_" . $this->id;
+        request()->attributes->remove($key);
+
         // Return true to indicate successful unenrollment
         return true;
     }
@@ -117,21 +120,37 @@ trait Enrollable
     protected function totalEnrollmentCount(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->enrolls()->count()
+            get: function () {
+                return $this->enrolls_count;
+            }
         )->withoutObjectCaching();
     }
 
     protected function enrollsCount(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->enrolls()->count()
+            get: function () {
+                $key = config("app.name") . ".enrolls_count_" . static::class . "_" . $this->id;
+
+                if (request()->attributes->has($key)) {
+                    return request()->attributes->get($key);
+                }
+
+                $count = $this->enrolls()->count();
+
+                request()->attributes->set($key, $count);
+
+                return $count;
+            }
         )->withoutObjectCaching();
     }
 
     protected function formattedEnrollsCount(): Attribute
     {
         return Attribute::make(
-            get: fn() => forhumans($this->enrolls()->count())
+            get: function () {
+                return forhumans($this->enrolls_count);
+            }
         )->withoutObjectCaching();
     }
 }

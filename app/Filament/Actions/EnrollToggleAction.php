@@ -105,7 +105,7 @@ class EnrollToggleAction extends Action
       $record->checkDailyTasks($user);
 
       // Optional: Dispatch an event for course enrollment
-      event(new CourseEnrollment($user, $record, !$this->isEnrolled()));
+      event(new CourseEnrollment($user, $record, !$this->isEnrolled($record)));
 
       // Dispatch events to reload the courses table and the single course view
       $livewire->dispatch('courses-table-reload');
