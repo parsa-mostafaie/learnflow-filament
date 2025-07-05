@@ -51,7 +51,7 @@ mount(function () {
         <x-heroicon-s-users class="me-2 w-5 h-5 inline" /> {{ $course->formatted_enrolls_count }} {{ __('users.plural') }}
       </p>
       <p class="text-gray-500">
-        <x-heroicon-s-question-mark-circle class="me-2 w-5 h-5 inline" />{{ forhumans($course->questions_approved()->count()) }} {{ __('questions.plural') }}
+        <x-heroicon-s-question-mark-circle class="me-2 w-5 h-5 inline" />{{ $course->formatted_approved_questions_count }} {{ __('questions.plural') }}
       </p>
     </div>
   </div>

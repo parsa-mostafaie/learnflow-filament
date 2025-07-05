@@ -136,7 +136,7 @@ trait Enrollable
                     return request()->attributes->get($key);
                 }
 
-                $count = $this->enrolls()->count();
+                $count = array_key_exists('enrolls_count', $this->getAttributes()) ? $this->getAttributes()['enrolls_count'] : $this->enrolls()->count();
 
                 request()->attributes->set($key, $count);
 

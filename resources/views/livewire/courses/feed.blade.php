@@ -22,7 +22,7 @@ on(['course-reload' => 'searchChange']);
 
 $loadMore = function () {
     $newCourses = Course::withTrashed()
-        ->with(['user'])
+        ->with(['author'])
         ->withCount('enrolls')
         ->withCount('questions_approved')
         ->search($this->search)

@@ -16,7 +16,7 @@
 <x-app-layout title="{{ $course->title }}">
   <x-slot name="meta">
     <meta name="description" content="{{ $truncatedText }}">
-    <meta name="author" content="{{ $course->user->name }}">
+    <meta name="author" content="{{ $course->author->name }}">
     <meta property="og:description" content="{{ $truncatedText }}">
     <meta property="og:type" content="course">
     <meta property="og:image" content="{{ $course->image_url }}">
@@ -39,7 +39,7 @@
           "startDate": "{{ $course->created_at->toIso8601String() }}",
           "instructor": {
             "@type": "Person",
-            "name": "{{ $course->user->name }}"
+            "name": "{{ $course->author->name }}"
           },
           "location": {
             "@type": "VirtualLocation",

@@ -198,7 +198,7 @@ class Leitner implements Interfaces\Leitner
   public function getLearnedPercentage($course, $user)
   {
     if ($course->isEnrolledBy($user)) {
-      $q_sum = $course->questions_approved()->count() * (count($this->getReviewWaits()) - 1);
+      $q_sum = $course->approved_questions_count * (count($this->getReviewWaits()) - 1);
       $user_q_sum =
         Card::whereHas('courseQuestion', fn($builder) => $builder->where('course_id', $course->id))
           ->where('user_id', $user->id)
@@ -233,7 +233,6 @@ class Leitner implements Interfaces\Leitner
       ->whereRaw("FLOOR(GREATEST(LEAST($per_stage - (TIME_TO_SEC(TIMEDIFF(review_date, ?))/({$this->getDailyTaskDayLength()} * 3600)), $per_stage), 1)) = ?", [$now->toDateTimeString(), $sub_box])
       ->where('stage', $stage)
       ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
-      ->get()
       ->count();
   }
 
@@ -287,7 +286,7 @@ class Leitner implements Interfaces\Leitner
    */
   public function countNotImportedCards($course, $user)
   {
-    return $course->questions_approved()->count() - Card::where('user_id', $user->id)
+    return $course->approved_questions_count - Card::where('user_id', $user->id)
       ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
       ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
       ->count();

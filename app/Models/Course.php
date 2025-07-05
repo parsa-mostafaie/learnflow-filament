@@ -149,14 +149,27 @@ class Course extends Model
     protected function approvedQuestionsCount(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->questions_approved()->count()
+            get: function () {
+                $key = config("app.name") . ".approved_questions_count_" . static::class . "_" . $this->id;
+
+                if (request()->attributes->has($key)) {
+                    return request()->attributes->get($key);
+                }
+
+                $count = array_key_exists('questions_approved_count', $this->getAttributes()) ? $this->getAttributes()['questions_approved_count'] : $this->questions_approved()->count();
+
+                request()->attributes->set($key, $count);
+
+                return $count;
+            }
+            // fn() => $this->questions_approved()->count()
         )->withoutObjectCaching();
     }
 
     protected function formattedApprovedQuestionsCount(): Attribute
     {
         return Attribute::make(
-            get: fn() => forhumans($this->questions_approved()->count())
+            get: fn() => forhumans($this->approved_questions_count)
         )->withoutObjectCaching();
     }
 }
