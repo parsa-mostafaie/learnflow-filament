@@ -269,10 +269,10 @@ class Leitner implements Interfaces\Leitner
    */
   public function countCompletedCards($course, $user)
   {
-    return Card::where('user_id', $user->id)
+    return Card::whereBelongsTo($user)
       ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
       ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
-      ->where('stage', count($this->getReviewWaits()) - 1)
+      ->where('stage', count($this->getReviewWaits()))
       ->count();
   }
 
@@ -286,7 +286,7 @@ class Leitner implements Interfaces\Leitner
    */
   public function countNotImportedCards($course, $user)
   {
-    return $course->approved_questions_count - Card::where('user_id', $user->id)
+    return $course->approved_questions_count - Card::whereBelongsTo($user)
       ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
       ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
       ->count();

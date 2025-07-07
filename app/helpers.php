@@ -1,25 +1,40 @@
 <?php
 
 use Filament\Facades\Filament;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 
-function forhumans(int|float $number, int $precision = 0, ?int $maxPrecision = 2, bool $abbreviate = true)
-{
-    return Number::forHumans($number, $precision, $maxPrecision, $abbreviate);
+//? Numbers
+if (!function_exists('forhumans')) {
+    function forhumans(int|float $number, int $precision = 0, ?int $maxPrecision = 2, bool $abbreviate = true)
+    {
+        return Number::forHumans($number, $precision, $maxPrecision, $abbreviate);
+    }
 }
 
-function login_url()
-{
-    return Filament::getCurrentPanel()->getLoginUrl();
+//? filament authentication
+if (!function_exists('login_url')) {
+
+    /**
+     * @param  array<mixed>  $parameters
+     */
+    function login_url(array $parameters = []): ?string
+    {
+        return Filament::getCurrentPanel()->getLoginUrl($parameters);
+    }
 }
 
-function register_url()
-{
-    return Filament::getCurrentPanel()->getRegistrationUrl();
+if (!function_exists('register_url')) {
+
+    /**
+     * @param  array<mixed>  $parameters
+     */
+    function register_url(array $parameters = []): ?string
+    {
+        return Filament::getCurrentPanel()->getRegistrationUrl($parameters);
+    }
 }
 
+//? Date and time Localization
 if (!function_exists('is_jalali_supported')) {
     /**
      * Determine if the current locale supports the Jalali calendar.
