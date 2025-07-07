@@ -1,13 +1,26 @@
-@props(['list', 'stage', 'sub'])
+@props(['list' => [], 'stage', 'sub', 'course', 'user'])
 <?php
-use function Livewire\Volt\{state, computed};
+use function Livewire\Volt\{state, on, computed};
+use App\Facades\Leitner;
 use Illuminate\Support\Number;
 
-state(['list', 'stage', 'sub']);
+state(['list', 'stage', 'sub', 'course', 'user']);
+
+$lister = function ($stage, $sub) {
+    return Leitner::listCardsInASubbox($this->course, $this->user, $stage, $sub);
+};
+
+$modalName = computed(fn() => "in-stage-modal-$this->stage-$this->sub");
+
+$loadData = function () {
+    if (empty($this->list)) {
+        $this->list = $this->lister($this->stage, $this->sub);
+    }
+};
 ?>
 
-<div>
-  <x-modal name="in-stage-modal-{{ $stage }}-{{ $sub }}">
+<div x-on:open-modal.window="$event.detail == '{{ $this->modalName }}' ? $wire.loadData() : null">
+  <x-modal name="{{ $this->modalName }}">
     <div class="p-6 bg-white rounded-lg max-w-lg mx-auto text-gray-800">
       <h2 class="text-lg font-bold text-purple-700 mb-4">سوالات موجود در خانه
         {{ Number::format($stage) }}

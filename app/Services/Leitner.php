@@ -252,6 +252,7 @@ class Leitner implements Interfaces\Leitner
     $now = Carbon::now();
 
     return Card::where('user_id', $user->id)
+      ->with('courseQuestion', 'courseQuestion.question')
       ->whereHas('courseQuestion.course', fn($q) => $q->where('id', $course->id))
       ->whereRaw("FLOOR(GREATEST(LEAST($per_stage - (TIME_TO_SEC(TIMEDIFF(review_date, ?))/({$this->getDailyTaskDayLength()} * 3600)), $per_stage), 1)) = ?", [$now->toDateTimeString(), $sub_box])
       ->where('stage', $stage)

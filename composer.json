@@ -3,11 +3,10 @@
     "name": "parsa/learnflow",
     "type": "project",
     "description": "Learn everything deeply!",
-    "keywords": ["laravel", "framework"],
+    "keywords": ["learning", "leitner-box", "learnflow"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "aphisitworachorch/kacher": "^1.2",
         "bezhansalleh/filament-language-switch": "^3.1",
         "blade-ui-kit/blade-heroicons": "^2.6",
         "filament/filament": "3.3",
@@ -35,6 +34,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
+        "aphisitworachorch/kacher": "^1.2",
         "bauerdot/laravel-dbml": "^0.0.2",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.3",

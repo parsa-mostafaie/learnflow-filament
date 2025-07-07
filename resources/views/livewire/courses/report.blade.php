@@ -11,10 +11,6 @@ $count = function ($stage, $sub) {
     return Leitner::getCardsInASubbox($this->course_model, $this->user, $stage, $sub);
 };
 
-$list = function ($stage, $sub) {
-    return Leitner::listCardsInASubbox($this->course_model, $this->user, $stage, $sub);
-};
-
 $course_model = computed(function () {
     $model = \App\Models\Course::withTrashed()->findOrFail($this->course);
 
@@ -67,7 +63,7 @@ $course_model = computed(function () {
 
   @foreach (range(1, 5) as $stage)
     @foreach (range(1, Leitner::getReviewWait($stage)) as $sub)
-      <livewire:modals.in-stage-modals :$stage :$sub :list="$this->list($stage, $sub)" />
+      <livewire:modals.in-stage-modals :$stage :$sub :course="$this->course_model" :user="$this->user" />
     @endforeach
   @endforeach
 </div>
