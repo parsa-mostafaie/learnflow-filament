@@ -66,17 +66,17 @@ class Course extends Model
 
     public function questions_approved()
     {
-        return $this->questions_all()->where('status', 'approved');
+        return $this->questions_all()->ofStatus('approved');
     }
 
     public function questions_rejected()
     {
-        return $this->questions_all()->where('status', 'rejected');
+        return $this->questions_all()->ofStatus('rejected');
     }
 
     public function questions_pending()
     {
-        return $this->questions_all()->where('status', 'pending');
+        return $this->questions_all()->ofStatus('pending');
     }
 
     /**

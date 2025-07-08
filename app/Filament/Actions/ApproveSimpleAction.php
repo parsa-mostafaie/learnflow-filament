@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
@@ -43,7 +44,7 @@ class ApproveSimpleAction extends Action
         $this->keyBindings(['mod+a']);
 
         $this->hidden(static function (Model $record): bool {
-            return $record->isStatus('approved');
+            return $record->isStatus(Status::Approved);
         });
 
         $this->authorize(function (Model $record): bool {
@@ -52,7 +53,7 @@ class ApproveSimpleAction extends Action
 
         $this->action(function (): void {
             $result = $this->process(function (Model $record) {
-                return $record->setStatus('approved');
+                return $record->setStatus(Status::Approved);
             });
 
             if (!$result) {

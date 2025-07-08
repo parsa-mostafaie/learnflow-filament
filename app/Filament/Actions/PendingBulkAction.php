@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
@@ -37,13 +38,15 @@ class PendingBulkAction extends BulkAction
 
         $this->requiresConfirmation();
 
+        $this->authorize('pendingAny');
+
         $this->modalIcon(FilamentIcon::resolve('actions::pending-action.modal') ?? 'heroicon-o-clock');
 
         $this->action(function (): void {
             $this->process(function (Collection $records) {
                 $records->each(function (Model $record) {
-                    if (!$record->isStatus('pending')) {
-                        $record->setStatus('pending');
+                    if (!$record->isStatus(Status::Pending)) {
+                        $record->setStatus(Status::Pending);
                     }
                 });
             });

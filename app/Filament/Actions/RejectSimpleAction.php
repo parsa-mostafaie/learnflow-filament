@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
@@ -42,12 +43,12 @@ class RejectSimpleAction extends Action
 
         $this->keyBindings(['mod+r']);
 
-        $this->hidden(fn(Model $record): bool => $record->isStatus('rejected'));
+        $this->hidden(fn(Model $record): bool => $record->isStatus(Status::Rejected));
 
         $this->authorize(fn(Model $record): bool => auth()->user()?->can('reject', $record));
 
         $this->action(function (): void {
-            $result = $this->process(fn(Model $record) => $record->setStatus('rejected'));
+            $result = $this->process(fn(Model $record) => $record->setStatus(Status::Rejected));
 
             $result ? $this->success() : $this->failure();
         });

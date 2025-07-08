@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\QuestionResource\Pages;
 
 use App\Filament\Resources\QuestionResource;
-use Filament\Actions;
+use App\Enums\Status;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateQuestion extends CreateRecord
@@ -14,7 +14,7 @@ class CreateQuestion extends CreateRecord
     {
         $data['user_id'] = auth()->id();
 
-        $data['status'] = auth()->user()->can("create approved questions") ? 'approved' : 'pending';
+        $data['status'] = auth()->user()->can("create approved questions") ? Status::Approved : Status::Pending;
 
         return $data;
     }

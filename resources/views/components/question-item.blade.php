@@ -1,5 +1,6 @@
 @props(['question', 'selected'])
 
+{{-- TODO: Refactor to match Enum Structure -- Or remove this! --}}
 <li class="px-4 py-4 flex justify-between items-center">
   <div class="flex items-center">
     <input type="checkbox" id="ci_question_{{ $question['id'] }}" wire:key="ci_question_{{ $question['id'] }}"

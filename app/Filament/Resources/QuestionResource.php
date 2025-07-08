@@ -6,6 +6,7 @@ use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 use App\Filament\Resources\QuestionResource\Pages;
 use App\Filament\Resources\QuestionResource\RelationManagers;
 use App\Models\Question;
+use App\Enums\Status as StatusEnum;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -75,25 +76,7 @@ class QuestionResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->label(__('questions.columns.status')) // Localized label
-                    ->badge()
-                    ->color(fn(string $state): string => match ($state) {
-                        'pending' => 'warning',
-                        'approved' => 'success',
-                        'rejected' => 'danger',
-                        default => 'gray',
-                    })
-                    ->icon(fn(string $state): string => match ($state) {
-                        'pending' => 'heroicon-o-clock',
-                        'approved' => 'heroicon-o-check-circle',
-                        'rejected' => 'heroicon-o-x-circle',
-                        default => 'heroicon-o-question-mark-circle',
-                    })
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'pending' => __('questions.statuses.pending'),    // Localized "Pending"
-                        'approved' => __('questions.statuses.approved'),  // Localized "Approved"
-                        'rejected' => __('questions.statuses.rejected'),  // Localized "Rejected"
-                        default => __('questions.statuses.unknown'),      // Localized "Unknown"
-                    }),
+                    ->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('questions.columns.created_at')) // Localized label
                     ->dateTime()
@@ -119,11 +102,7 @@ class QuestionResource extends Resource
                     ->multiple()
                     ->preload(),
                 SelectFilter::make('status')
-                    ->options([
-                        'pending' => __('questions.statuses.pending'),
-                        'approved' => __('questions.statuses.approved'),
-                        'rejected' => __('questions.statuses.rejected'),
-                    ])
+                    ->options(StatusEnum::class)
                     ->label(__('questions.filters.status')) // Localized label
                     ->multiple(),
                 // Date Range Filter for "Creation Range"

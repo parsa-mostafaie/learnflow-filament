@@ -2,6 +2,7 @@
 
 <?php
 use function Livewire\Volt\{state, computed, on, mount};
+use App\Enums\Status;
 
 // Define the state for the component
 state(['card', 'showAnswer' => false]);
@@ -20,7 +21,7 @@ $knowing = function ($state) {
 <div
   class="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 height-100 container"
   x-data="{ showAnswerButton: false }" x-init="setTimeout(() => showAnswerButton = true, 5000)">
-  @if ($card->courseQuestion->question->status == 'approved')
+  @if ($card->courseQuestion->question->isStatus(Status::Approved))
     <div class="flex justify-between sm:flex-row flex-col gap-2 flex-wrap-reverse sm:justify-center items-center"
       dir="auto">
       <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white select-none me-auto">

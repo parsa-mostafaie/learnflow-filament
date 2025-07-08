@@ -6,6 +6,7 @@ use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Actions\Action;
+use App\Enums\Status;
 
 class PendingSimpleAction extends Action
 {
@@ -42,12 +43,12 @@ class PendingSimpleAction extends Action
 
         $this->keyBindings(['mod+p']);
 
-        $this->hidden(fn(Model $record): bool => $record->isStatus('pending'));
+        $this->hidden(fn(Model $record): bool => $record->isStatus(Status::Pending));
 
         $this->authorize(fn(Model $record): bool => auth()->user()?->can('pending', $record));
 
         $this->action(function (): void {
-            $result = $this->process(fn(Model $record) => $record->setStatus('pending'));
+            $result = $this->process(fn(Model $record) => $record->setStatus(Status::Pending));
 
             $result ? $this->success() : $this->failure();
         });

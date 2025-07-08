@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -56,7 +57,7 @@ class Question extends Model
         })
             // Filter by status.
             ->when($_('filters.status'), function ($query, $status) {
-                $query->where('questions.status', $status);
+                $query->ofStatus($status);
             })
             // Filter by user ownership.
             ->when($_('filters.only_my_questions', false), function ($query) {
@@ -119,11 +120,22 @@ class Question extends Model
 
             if (!$user || !$user->can('view all questions')) {
                 $builder->where(function ($query) use ($user) {
-                    $query->where('status', 'approved')
+                    $query->ofStatus(Status::Approved)
                         ->orWhere('questions.user_id', $user?->id);
                 });
             }
         });
     }
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'status' => Status::class,
+        ];
+    }
 }

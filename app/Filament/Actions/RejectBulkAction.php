@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
@@ -39,11 +40,13 @@ class RejectBulkAction extends BulkAction
 
     $this->modalIcon(FilamentIcon::resolve('actions::reject-action.modal') ?? 'heroicon-o-x-circle');
 
+    $this->authorize('rejectAny');
+
     $this->action(function (): void {
       $this->process(function (Collection $records) {
         $records->each(function (Model $record) {
-          if (!$record->isStatus('rejected')) {
-            $record->setStatus('rejected');
+          if (!$record->isStatus(Status::Rejected)) {
+            $record->setStatus(Status::Rejected);
           }
         });
       });

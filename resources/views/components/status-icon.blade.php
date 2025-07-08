@@ -1,5 +1,6 @@
 @props(['status'])
 
+{{-- TODO: Refactor to match Enum Structure -- Or remove this! --}}
 @if ($status === 'pending')
   <span class="inline-flex items-center text-blue-500">
     <x-heroicon-s-clock class="ms-2 w-5 h-5" /> {{-- Pending Icon --}}

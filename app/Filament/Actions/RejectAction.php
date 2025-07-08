@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Tables\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
@@ -43,7 +44,7 @@ class RejectAction extends Action
     $this->keyBindings(['mod+r']);
 
     $this->hidden(static function (Model $record): bool {
-      return $record->isStatus('rejected');
+      return $record->isStatus(Status::Rejected);
     });
 
     $this->authorize(function (Model $record): bool {
@@ -52,7 +53,7 @@ class RejectAction extends Action
 
     $this->action(function (): void {
       $result = $this->process(function (Model $record) {
-        return $record->setStatus('rejected');
+        return $record->setStatus(Status::Rejected);
       });
 
       if (!$result) {

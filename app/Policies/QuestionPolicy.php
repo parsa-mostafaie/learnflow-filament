@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\Status;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -37,7 +38,7 @@ class QuestionPolicy
             return true;
         }
 
-        return ($question->status == 'approved') || $question->author()->is($user);
+        return ($question->isStatus(Status::Approved)) || $question->author()->is($user);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Config;
 use App\Models\Card;
 use App\Models\CourseQuestion;
+use App\Enums\Status;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -93,7 +94,7 @@ class Leitner implements Interfaces\Leitner
         $query->where('user_id', $user->id);
       })
       ->whereHas('question', function ($question) {
-        $question->where('status', 'approved');
+        $question->ofStatus(Status::Approved);
       })
       ->limit($_count)
       ->orderBy('id')
@@ -126,7 +127,7 @@ class Leitner implements Interfaces\Leitner
       ->whereNotNull('review_date')
       ->where('review_date', '<=', now())
       ->whereHas('courseQuestion.question', function ($question) {
-        $question->where('status', 'approved');
+        $question->ofStatus(Status::Approved);
       })
       ->orderBy('stage', 'desc')
       ->with('courseQuestion', 'courseQuestion.question', 'courseQuestion.course')
@@ -203,7 +204,7 @@ class Leitner implements Interfaces\Leitner
         Card::whereHas('courseQuestion', fn($builder) => $builder->where('course_id', $course->id))
           ->where('user_id', $user->id)
           ->whereHas('courseQuestion.question', function ($question) {
-            $question->where('status', 'approved');
+            $question->ofStatus(Status::Approved);
           })
           ->sum(DB::raw('stage - 1'));
 
@@ -232,7 +233,7 @@ class Leitner implements Interfaces\Leitner
       ->whereHas('courseQuestion.course', fn($q) => $q->where('id', $course->id))
       ->whereRaw("FLOOR(GREATEST(LEAST($per_stage - (TIME_TO_SEC(TIMEDIFF(review_date, ?))/({$this->getDailyTaskDayLength()} * 3600)), $per_stage), 1)) = ?", [$now->toDateTimeString(), $sub_box])
       ->where('stage', $stage)
-      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->whereHas('courseQuestion.question', fn($q) => $q->ofStatus(Status::Approved))
       ->count();
   }
 
@@ -256,7 +257,7 @@ class Leitner implements Interfaces\Leitner
       ->whereHas('courseQuestion.course', fn($q) => $q->where('id', $course->id))
       ->whereRaw("FLOOR(GREATEST(LEAST($per_stage - (TIME_TO_SEC(TIMEDIFF(review_date, ?))/({$this->getDailyTaskDayLength()} * 3600)), $per_stage), 1)) = ?", [$now->toDateTimeString(), $sub_box])
       ->where('stage', $stage)
-      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->whereHas('courseQuestion.question', fn($q) => $q->ofStatus(Status::Approved))
       ->get();
   }
 
@@ -272,7 +273,7 @@ class Leitner implements Interfaces\Leitner
   {
     return Card::whereBelongsTo($user)
       ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
-      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->whereHas('courseQuestion.question', fn($q) => $q->ofStatus(Status::Approved))
       ->where('stage', count($this->getReviewWaits()))
       ->count();
   }
@@ -289,7 +290,7 @@ class Leitner implements Interfaces\Leitner
   {
     return $course->approved_questions_count - Card::whereBelongsTo($user)
       ->whereHas('courseQuestion.course', fn($cq) => $cq->where('id', $course->id))
-      ->whereHas('courseQuestion.question', fn($q) => $q->where('status', 'approved'))
+      ->whereHas('courseQuestion.question', fn($q) => $q->ofStatus(Status::Approved))
       ->count();
   }
 }

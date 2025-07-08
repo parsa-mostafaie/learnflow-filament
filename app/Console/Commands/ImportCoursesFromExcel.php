@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Question;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use App\Enums\Status as StatusEnum;
 use Illuminate\Database\QueryException;
 
 /**
@@ -110,7 +111,7 @@ class ImportCoursesFromExcel extends Command
                         'answer' => $row[2],
                     ], [
                         'user_id' => 1,
-                        'status' => 'approved'
+                        'status' => StatusEnum::Approved
                     ]);
 
                     // Associate the question with the course

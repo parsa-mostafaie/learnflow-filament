@@ -63,7 +63,7 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
           @if ($this->percentage != 100)
             @if ($this->started)
               @if ($this->card)
-                <livewire:courses.question-card :card="$this->card" wire:key="{{ $this->card->id }}" />
+                <livewire:courses.question-card :card="$this->card" wire:key="card-{{ $this->card->id }}" />
               @else
                 {{ __("messages.learn-finished") }}
               @endif

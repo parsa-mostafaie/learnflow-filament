@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Tables\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
@@ -43,7 +44,7 @@ class PendingAction extends Action
     $this->keyBindings(['mod+p']);
 
     $this->hidden(static function (Model $record): bool {
-      return $record->isStatus('pending');
+      return $record->isStatus(Status::Pending);
     });
 
     $this->authorize(function (Model $record): bool {
@@ -52,7 +53,7 @@ class PendingAction extends Action
 
     $this->action(function (): void {
       $result = $this->process(function (Model $record) {
-        return $record->setStatus('pending');
+        return $record->setStatus(Status::Pending);
       });
 
       if (!$result) {

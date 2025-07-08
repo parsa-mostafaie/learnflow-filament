@@ -3,6 +3,7 @@
 namespace App\Filament\Actions;
 
 use Filament\Tables\Actions\Action;
+use App\Enums\Status as StatusEnum;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
@@ -97,7 +98,7 @@ class ApproveAction extends Action
          * @return bool
          */
         $this->hidden(static function (Model $record): bool {
-            return $record->isStatus('approved');
+            return $record->isStatus(StatusEnum::Approved);
         });
 
         /**
@@ -117,7 +118,7 @@ class ApproveAction extends Action
          */
         $this->action(function (): void {
             $result = $this->process(function (Model $record) {
-                return $record->setStatus('approved');
+                return $record->setStatus(StatusEnum::Approved);
             });
 
             if (!$result) {

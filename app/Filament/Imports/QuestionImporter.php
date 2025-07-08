@@ -2,6 +2,7 @@
 
 namespace App\Filament\Imports;
 
+use App\Enums\Status;
 use App\Models\Question;
 use Illuminate\Support\Facades\Log;
 use Filament\Actions\Imports\ImportColumn;
@@ -66,7 +67,7 @@ class QuestionImporter extends Importer
             'question' => $question,
             'answer' => $answer,
             'user_id' => auth()->id(),
-            'status' => Gate::allows('create approved questions') ? 'approved' : 'pending',
+            'status' => Gate::allows('create approved questions') ? Status::Approved : Status::Pending,
         ]);
     }
 

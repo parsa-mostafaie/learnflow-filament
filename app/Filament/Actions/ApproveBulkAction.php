@@ -2,6 +2,7 @@
 
 namespace App\Filament\Actions;
 
+use App\Enums\Status;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Facades\FilamentIcon;
@@ -75,6 +76,8 @@ class ApproveBulkAction extends BulkAction
      */
     $this->modalIcon(FilamentIcon::resolve('actions::approve-action.modal') ?? 'heroicon-o-check');
 
+    $this->authorize('approveAny');
+
     /**
      * Perform the action.
      * 
@@ -83,8 +86,8 @@ class ApproveBulkAction extends BulkAction
     $this->action(function (): void {
       $this->process(function (Collection $records) {
         $records->each(function (Model $record) {
-          if (!$record->isStatus('approved')) {
-            $record->setStatus('approved');
+          if (!$record->isStatus(Status::Approved)) {
+            $record->setStatus(Status::Approved);
           }
         });
       });
