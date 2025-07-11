@@ -15,7 +15,7 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 
 ### Prerequisites
 
--   PHP >= 8.x (Recommended 8.2.12)
+-   PHP >= 8.x (Recommended 8.3.23)
 -   Composer
 -   Node.js and NPM
 -   Git
@@ -25,7 +25,7 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 
 1. Clone the project repository:
 
-    If you have Cloned The repository previously, you can skip this step. but run commands below in the directory that conatins composer.json and README.md
+    If you have Cloned The repository previously, you can skip this step. otherwise, run commands below in the directory that conatins composer.json and README.md to clone the repository
 
     ```bash
     git clone https://github.com/parsa-mostafaie/learnflow-filament.git
@@ -70,13 +70,21 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
     php artisan migrate:fresh --seed
     ```
 
-8. Seed database from excel file:
+8. Seed database from excel file: [optional]
 
     ```bash
     php artisan import:courses ./words.xlsx
     ```
 
-9. Optimize For Better Performance:
+9. Prefetch Google fonts: [optional]
+
+    If you want to make sure fonts are ready to go before anyone visits your site, you can prefetch them with this artisan command.
+
+    ```bash
+    php artisan google-fonts:fetch
+    ```
+
+10. Optimize For Better Performance:
 
     ```bash
     php artisan optimize:clear
@@ -86,8 +94,8 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
 ### Running the Application
 
 Run the development server and vite in one command:
-`   composer run dev
-  `
+`composer run dev
+`
 
 You can now access the application in your browser at `http://localhost:8000`.
 You can login as super-admin By using `pmostafaie1390@gmail.com` as both of email & password
