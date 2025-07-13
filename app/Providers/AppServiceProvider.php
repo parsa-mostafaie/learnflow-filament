@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\Leitner;
+use App\Services\Interfaces\Leitner as LeitnerInterface;
 use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
@@ -28,11 +29,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(Leitner::class, function ($app) {
-            return new Leitner();
-        });
+        $this->app->bind(LeitnerInterface::class, Leitner::class);
 
-        $this->app->alias(Leitner::class, 'leitner');
+        $this->app->alias(LeitnerInterface::class, 'leitner');
     }
 
     /**

@@ -125,25 +125,25 @@ class CourseResource extends Resource
                     ->counts('enrolls')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('questions_all_count')
+                Tables\Columns\TextColumn::make('all_questions_count')
                     ->label(__('courses.columns.all_questions_count'))
-                    ->counts('questions_all')
+                    ->counts('allQuestions')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('questions_approved_count')
+                Tables\Columns\TextColumn::make('approved_questions_count')
                     ->label(__('courses.columns.approved_questions_count'))
-                    ->counts('questions_approved')
+                    ->counts('approvedQuestions')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('questions_rejected_count')
+                Tables\Columns\TextColumn::make('rejected_questions_count')
                     ->label(__('courses.columns.rejected_questions_count'))
-                    ->counts('questions_rejected')
+                    ->counts('rejectedQuestions')
                     ->numeric()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('questions_pending_count')
+                Tables\Columns\TextColumn::make('pending_questions_count')
                     ->label(__('courses.columns.pending_questions_count'))
-                    ->counts('questions_pending')
+                    ->counts('pendingQuestions')
                     ->numeric()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -24,7 +24,7 @@ $loadMore = function () {
     $newCourses = Course::withTrashed()
         ->with(['author'])
         ->withCount('enrolls')
-        ->withCount('questions_approved')
+        ->withCount('approvedQuestions')
         ->search($this->search)
         ->skip($this->offset)
         ->take($this->limit)
@@ -55,8 +55,7 @@ mount(fn() => $this->loadMore());
     <p class="text-sm text-gray-600 dark:text-gray-400">
       {{ __('feed.search.desired') }}
     </p>
-    <x-search-input onInput="searchChange()" model="search.text"
-      placeholder="{{ __('feed.search.text') }}" />
+    <x-search-input onInput="searchChange()" model="search.text" placeholder="{{ __('feed.search.text') }}" />
   </div>
 
   <!-- Filters and Sorting -->
@@ -74,12 +73,12 @@ mount(fn() => $this->loadMore());
         <x-dropdown-filter id="sort-column" model="search.sortBy" label="{{ __('feed.column') }}" :options="[
             'courses.created_at' => __('courses.columns.created_at'),
             'enrolls_count' => __('courses.columns.enrolls_count'),
-            'questions_approved_count' => __('courses.columns.all_questions_count'),
+            'approved_questions_count' => __('courses.columns.all_questions_count'),
             'title' => __('courses.columns.title'),
         ]"
           wire:change="searchChange" />
-        <x-dropdown-filter id="sort-direction" model="search.sortDirection" label="{{ __('feed.sort.direction.title') }}"
-          :options="[
+        <x-dropdown-filter id="sort-direction" model="search.sortDirection"
+          label="{{ __('feed.sort.direction.title') }}" :options="[
               'asc' => __('feed.sort.direction.asc'),
               'desc' => __('feed.sort.direction.desc'),
           ]" wire:change="searchChange" />

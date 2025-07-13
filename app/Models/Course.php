@@ -59,24 +59,24 @@ class Course extends Model
         return $this->belongsToMany(Question::class, 'course_questions');
     }
 
-    public function questions_all()
+    public function allQuestions()
     {
         return $this->questions()->withoutGlobalScope('hide_not_approveds');
     }
 
-    public function questions_approved()
+    public function approvedQuestions()
     {
-        return $this->questions_all()->ofStatus('approved');
+        return $this->allQuestions()->ofStatus('approved');
     }
 
-    public function questions_rejected()
+    public function rejectedQuestions()
     {
-        return $this->questions_all()->ofStatus('rejected');
+        return $this->allQuestions()->ofStatus('rejected');
     }
 
-    public function questions_pending()
+    public function pendingQuestions()
     {
-        return $this->questions_all()->ofStatus('pending');
+        return $this->allQuestions()->ofStatus('pending');
     }
 
     /**
@@ -109,7 +109,7 @@ class Course extends Model
             'courses.created_at',
             'title',
             'enrolls_count',
-            'questions_approved_count',
+            'approved_questions_count',
         ];
 
         $sortBy = $_('sortBy', 'courses.created_at');
@@ -156,13 +156,13 @@ class Course extends Model
                     return request()->attributes->get($key);
                 }
 
-                $count = array_key_exists('questions_approved_count', $this->getAttributes()) ? $this->getAttributes()['questions_approved_count'] : $this->questions_approved()->count();
+                $count = array_key_exists('approved_questions_count', $this->getAttributes()) ? $this->getAttributes()['approved_questions_count'] : $this->approvedQuestions()->count();
 
                 request()->attributes->set($key, $count);
 
                 return $count;
             }
-            // fn() => $this->questions_approved()->count()
+            // fn() => $this->approvedQuestions()->count()
         )->withoutObjectCaching();
     }
 
