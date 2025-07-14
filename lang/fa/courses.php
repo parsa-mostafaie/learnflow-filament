@@ -30,7 +30,9 @@ return [
     "all_questions_count" => "تعداد تمام سوالات",
     "approved_questions_count" => "تعداد سوالات تایید شده",
     "rejected_questions_count" => "تعداد سوالات رد شده",
-    "pending_questions_count" => "تعداد سوالات در انتظار تایید"
+    "pending_questions_count" => "تعداد سوالات در انتظار تایید",
+    'learned_percentage' => "میزان یادگیری",
+    "last_course_visited" => "آخرین بازدید از دوره"
   ],
   'pages' =>
     [

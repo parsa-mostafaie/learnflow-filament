@@ -38,6 +38,6 @@ class LearnSimpleAction extends Action
             return auth()->user()?->can('view', $record);
         });
 
-        $this->url(fn($record) => $record->learn_url);
+        $this->url(fn($record) => $record->learn_url, true);
     }
 }

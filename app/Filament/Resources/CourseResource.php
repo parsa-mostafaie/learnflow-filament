@@ -8,6 +8,7 @@ use App\Filament\Resources\CourseResource\Pages;
 use Illuminate\Support\Facades\Gate;
 use App\Filament\Actions\LearnAction;
 use Filament\Infolists\Components\Grid;
+use App\Filament\Resources\CourseResource\RelationManagers\EnrollsRelationManager;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ImageEntry;
@@ -231,8 +232,9 @@ class CourseResource extends Resource
     public static function getRelations(): array
     {
         return [
+            EnrollsRelationManager::class,
+            QuestionsRelationManager::class,
             ActivitylogRelationManager::class,
-            QuestionsRelationManager::class
         ];
     }
 

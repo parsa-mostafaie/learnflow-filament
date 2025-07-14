@@ -118,7 +118,7 @@ class AdminPanelProvider extends PanelProvider
                         ->label(__('navigation.feed'))
                         ->group(fn() => __('navigation.group.general'))
                         ->icon('heroicon-o-newspaper')
-                        ->url(fn() => route('dashboard'))
+                        ->url(fn() => route('dashboard'), true)
                         ->sort(0)
                 ]
             )

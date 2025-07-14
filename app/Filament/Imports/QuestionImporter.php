@@ -36,19 +36,6 @@ class QuestionImporter extends Importer
 
     public function resolveRecord(): ?Question
     {
-        // return Question::firstOrNew([
-        //     // Update existing records, matching them by `$this->data['column_name']`
-        //     // 'email' => $this->data['email'],
-
-        //     'question' => trim($this->data['question']),
-        //     'answer' => trim($this->data['answer']),
-        // ], [
-        //     'user_id' => auth()->id(),
-        //     'status' => Gate::allows('create approved questions') ? 'approved' : 'pending'
-        // ]);
-
-        // // return new Question();
-
         $question = trim($this->data['question']);
         $answer = trim($this->data['answer']);
 

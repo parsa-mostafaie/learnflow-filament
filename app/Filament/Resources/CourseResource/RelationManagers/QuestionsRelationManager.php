@@ -43,7 +43,8 @@ class QuestionsRelationManager extends RelationManager
                 // Tables\Actions\CreateAction::make(),
                 ImportAction::make()
                     ->importer(QuestionImporter::class)
-                    ->options(['course_id' => $this->getOwnerRecord()->getKey()]),
+                    ->options(['course_id' => $this->getOwnerRecord()->getKey()])
+                    ->authorize(fn() => auth()->user()->can('attachAnyQuestion', $this->getOwnerRecord())),
                 Tables\Actions\AttachAction::make()->preloadRecordSelect()
                     ->recordSelectSearchColumns(['question', 'answer'])
                     ->multiple()

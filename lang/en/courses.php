@@ -29,7 +29,9 @@ return [
     "all_questions_count" => "Total questions",
     "approved_questions_count" => "Approved questions",
     "rejected_questions_count" => "Rejected questions",
-    "pending_questions_count" => "Pending questions"
+    "pending_questions_count" => "Pending questions",
+    "learned_percentage" => "Learned Percentage",
+    "last_course_visited" => "Last Course Visited at"
   ],
   'pages' =>
     [
