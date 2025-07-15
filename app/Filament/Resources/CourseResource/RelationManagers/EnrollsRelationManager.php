@@ -43,7 +43,7 @@ class EnrollsRelationManager extends RelationManager
                         $owner = $this->getOwnerRecord();
                         $percentage = Leitner::getLearnedPercentage($owner, $record);
 
-                        return rand(0,100);
+                        return $percentage;
                     })
                     ->formatStateUsing(fn($state) => Number::percentage($state, 0, 2))
                     ->color(function ($state) {
