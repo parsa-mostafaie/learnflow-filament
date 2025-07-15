@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use App\Services\Leitner;
 use App\Services\Interfaces\Leitner as LeitnerInterface;
 use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
@@ -16,14 +17,14 @@ use Filament\Tables\Table;
 
 /**
  * Class AppServiceProvider
- * 
+ *
  * This service provider is responsible for registering and bootstrapping application services.
  */
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     * 
+     *
      * This method registers the Leitner service as a singleton in the application container
      * and creates an alias for the service.
      */
@@ -36,14 +37,15 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     * 
+     *
      * This method is called after all other services have been registered and is used for
      * initializing or bootstrapping any application services.
      */
     public function boot(): void
     {
-        if ($this->app->environment('production')) {
-            \URL::forceScheme('https');
+        if ($this->app->environment('production') && !app()->runningInConsole()) {
+            URL::forceScheme('https');
+	        URL::forceHttps($this->app->isProduction());
         }
 
         Number::useLocale(App::getLocale());
