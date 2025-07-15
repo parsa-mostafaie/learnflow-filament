@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\ForceHttps;
 
 /**
  * Configure the application.
@@ -16,7 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php', // Set the path for console commands
         health: '/up', // Set the health check route
     )
-    ->withMiddleware(function (Middleware $middleware) {})
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append(ForceHttps::class);
+    })
     ->withExceptions(function (Exceptions $exceptions) {
         // Configure exception handling (currently empty)
     })

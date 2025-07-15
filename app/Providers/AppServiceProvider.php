@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if ($this->app->environment('production') && !app()->runningInConsole()) {
             URL::forceScheme('https');
-	        URL::forceHttps($this->app->isProduction());
+            URL::forceHttps($this->app->isProduction());
         }
 
         Number::useLocale(App::getLocale());
