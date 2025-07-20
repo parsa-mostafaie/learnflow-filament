@@ -77,14 +77,6 @@
       </div>
       {{-- Livewire component for course learning section --}}
       <livewire:courses.learning :$course />
-
-      @can('seeEnrolls', $course)
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-2 overflow-visible">
-          <div class="p-6 text-gray-900 dark:text-gray-100">
-            <livewire:enrolled-users-table :$course lazy />
-          </div>
-        </div>
-      @endcan
     </div>
   </div>
 </x-app-layout>

@@ -26,7 +26,6 @@
         "mokhosh/filament-jalali": "^4.10",
         "morilog/jalali": "^3.4",
         "predis/predis": "^3.0",
-        "rappasoft/laravel-livewire-tables": "^3.6",
         "rmsramos/activitylog": "^1.0",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-google-fonts": "^1.4",

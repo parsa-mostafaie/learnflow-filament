@@ -38,6 +38,6 @@ class GetReportAction extends Action
             return auth()->user()?->can('getReport', $record);
         });
 
-        $this->url(fn($record) => $record->report_url);
+        $this->url(fn($record) => $record->report_url, true);
     }
 }
