@@ -38,7 +38,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
         'name',
         'email',
         'password',
-        'avatar_url'
+        'avatar_url',
+        'custom_fields',
     ];
 
     /**
@@ -61,6 +62,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'custom_fields' => 'array'
         ];
     }
 

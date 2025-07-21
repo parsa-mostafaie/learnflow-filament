@@ -95,11 +95,11 @@
     <h2 class="text-3xl font-semibold mb-4">{{ __('landing.contact.us') }}</h2>
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2 gap-6">
       <form class="grid gap-6" action="mailto:pmostafaie1390@gmail.com" method="post" enctype="text/plain">
-        <x-text-input type="text" placeholder="{{ __('landing.contact.name') }}"
+        <x-text-input name="name" type="text" placeholder="{{ __('landing.contact.name') }}"
+          class="input dark:bg-gray-700 dark:text-white" autocomplete="name" />
+        <x-text-input name="mail" type="email" placeholder="{{ __('landing.contact.email') }}"
           class="input dark:bg-gray-700 dark:text-white" />
-        <x-text-input type="email" placeholder="{{ __('landing.contact.email') }}"
-          class="input dark:bg-gray-700 dark:text-white" />
-        <x-text-area placeholder="{{ __('landing.contact.message') }}"
+        <x-text-area name="message" placeholder="{{ __('landing.contact.message') }}"
           class="input h-32 dark:bg-gray-700 dark:text-white"></x-text-area>
         <x-primary-button type="submit" class="justify-center">
           <x-heroicon-c-paper-airplane class="me-2 w-5 h-5" />
