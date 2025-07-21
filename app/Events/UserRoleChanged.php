@@ -11,12 +11,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Event UserRoleChanged
+ *
+ * Triggered when a user's role is updated by another user.
+ */
 class UserRoleChanged
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
+     *
+     * @param User   $user         The user whose role has changed
+     * @param User   $causer       The user who caused the change
+     * @param string $previousRole The user's previous role
+     * @param string $currentRole  The user's new role
      */
     public function __construct(public User $user, public User $causer, public string $previousRole, public string $currentRole)
     {

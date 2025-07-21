@@ -9,9 +9,12 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * ApproveAction is a custom action for Filament Tables that allows authorized users to approve records. (One record each time the action is executed.)
+ * ApproveAction is a custom action for Filament Tables that allows authorized users to approve records.
+ * (One record each time the action is executed.)
  *
  * @package \App\Filament\Actions
+ * 
+ * @see \App\Filament\Actions\ApproveSimpleAction
  * @see \App\Filament\Actions\ApproveBulkAction
  */
 class ApproveAction extends Action
@@ -19,8 +22,8 @@ class ApproveAction extends Action
     use CanCustomizeProcess;
 
     /**
-     * Get the default name of the action. 
-     * 
+     * Get the default name of the action.
+     *
      * Will be used to differentiate from other actions.
      *
      * @return string|null
@@ -84,7 +87,7 @@ class ApproveAction extends Action
 
         /**
          * Add key bindings for the action.
-         * 
+         *
          * Defines keyboard shortcut to call the action.
          *
          * @var array
@@ -113,8 +116,10 @@ class ApproveAction extends Action
 
         /**
          * Perform the action.
-         * 
-         * Will Change status of record to "approved"
+         *
+         * Will change status of record to "approved"
+         *
+         * @return void
          */
         $this->action(function (): void {
             $result = $this->process(function (Model $record) {

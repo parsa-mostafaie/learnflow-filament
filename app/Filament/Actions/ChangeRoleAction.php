@@ -9,15 +9,27 @@ use App\Events\UserRoleChanged;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+/**
+ * ChangeRoleAction is a Filament action to change the role of a user.
+ * It supports dynamic labeling, icons, confirmation, authorization, and event dispatching.
+ *
+ * @see \App\Filament\Actions\ChangeRoleUserAction
+ * @see \App\Filament\Actions\ChangeRoleInstructorAction
+ * @see \App\Filament\Actions\ChangeRoleManagerAction
+ * @see \App\Filament\Actions\ChangeRoleAdminAction
+ * @see \App\Filament\Actions\ChangeRoleDeveloperAction
+ * 
+ * @package \App\Filament\Actions
+*/
 class ChangeRoleAction extends Action
 {
     use CanCustomizeProcess;
 
-    // public static function getDefaultName(): ?string
-    // {
-    //     return 'change-role';
-    // }
-
+    /**
+     * Set up the action.
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -89,6 +101,15 @@ class ChangeRoleAction extends Action
         });
     }
 
+    /**
+     * Get a localized string for the action, based on the current mode.
+     *
+     * @param string $key Translation key suffix
+     * @param mixed|null $default Default value if translation missing
+     * @param array|null $replace Replacement parameters for translation
+     * @param bool $inverse Whether to inverse the mode mapping (default false)
+     * @return string|null
+     */
     protected function getLocalizedValue($key, $default = null, $replace = null, $inverse = false)
     {
         $mode = $this->getMode($this->getRecord());
@@ -98,6 +119,11 @@ class ChangeRoleAction extends Action
         return __("filament-actions.change-role.$mode.$key", $replace) ?? $default;
     }
 
+    /**
+     * Get the default icon name for the action based on the role change mode.
+     *
+     * @return string
+     */
     protected function getDefaultIcon(): string
     {
         return $this->getMode($this->getRecord()) === 'promoted'
@@ -105,17 +131,34 @@ class ChangeRoleAction extends Action
             : 'heroicon-m-arrow-down-circle';
     }
 
+    /**
+     * Determine if the user is being promoted or demoted.
+     *
+     * @param \App\Models\User|Model $user User model or compatible Model
+     * @return string 'promoted' or 'demoted'
+     */
     protected function getMode($user): string
     {
         return User::diffRoles($user->role_name, $this->getNextRole()) < 0 ? "promoted" : "demoted";
     }
 
+    /**
+     * Get the next role for the user.
+     *
+     * @return string|null Next role as string or null if undefined
+     */
     protected function getNextRole(): ?string
     {
         // Logic to determine the next role based on the current role or other criteria
         return 'user'; // Placeholder, should return the next role as a string
     }
 
+    /**
+     * Get the title for the current record.
+     *
+     * @param \Illuminate\Database\Eloquent\Model|null $record Optional record model; defaults to current
+     * @return string
+     */
     public function getRecordTitle(?Model $record = null): string
     {
         $record ??= $this->getRecord();

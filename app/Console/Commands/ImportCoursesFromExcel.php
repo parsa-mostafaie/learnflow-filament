@@ -33,6 +33,8 @@ class ImportCoursesFromExcel extends Command
 
     /**
      * Create a new command instance.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -41,6 +43,8 @@ class ImportCoursesFromExcel extends Command
 
     /**
      * Execute the console command.
+     *
+     * @return int|void
      */
     public function handle()
     {

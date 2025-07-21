@@ -10,9 +10,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * ApproveBulkAction is a custom bulk action for Filament Tables that allows authorized users to approve records. (Many record each time the action is executed.)
+ * ApproveBulkAction is a custom bulk action for Filament Tables that allows authorized users to approve records.
+ * (Many records each time the action is executed.)
  *
  * @package \App\Filament\Actions
+ * 
+ * @see \App\Filament\Actions\ApproveSimpleAction
  * @see \App\Filament\Actions\ApproveAction
  */
 class ApproveBulkAction extends BulkAction
@@ -20,7 +23,7 @@ class ApproveBulkAction extends BulkAction
   use CanCustomizeProcess;
 
   /**
-   * Get the default name of the action. 
+   * Get the default name of the action.
    * 
    * Will be used to differentiate from other bulk actions.
    *
@@ -81,7 +84,9 @@ class ApproveBulkAction extends BulkAction
     /**
      * Perform the action.
      * 
-     * Will Change status of records to "approved"
+     * Will change status of records to "approved"
+     *
+     * @return void
      */
     $this->action(function (): void {
       $this->process(function (Collection $records) {

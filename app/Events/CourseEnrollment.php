@@ -12,12 +12,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Event CourseEnrollment
+ *
+ * Triggered when a user enrolls or unenrolls from a course.
+ * Useful for broadcasting, logging, or other reactive logic.
+ */
 class CourseEnrollment
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
+     *
+     * @param  User   $user     The user performing the action
+     * @param  Course $course   The course involved
+     * @param  bool   $unenroll Whether the user is unenrolling
      */
     public function __construct(public User $user, public Course $course, public bool $unenroll = false)
     {

@@ -8,15 +8,34 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Actions\Action;
 
+/**
+ * ApproveSimpleAction is a simple custom action for Filament Tables
+ * that allows authorized users to approve a single record at a time.
+ * 
+ * @package \App\Filament\Actions
+ * 
+ * @see \App\Filament\Actions\ApproveAction
+ * @see \App\Filament\Actions\ApproveBulkAction
+ */
 class ApproveSimpleAction extends Action
 {
     use CanCustomizeProcess;
 
+    /**
+     * Get the default name of the action.
+     *
+     * @return string|null
+     */
     public static function getDefaultName(): ?string
     {
         return 'approve';
     }
 
+    /**
+     * Set up the action.
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
