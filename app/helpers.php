@@ -53,3 +53,8 @@ if (!function_exists('is_jalali_supported')) {
         return false;
     }
 }
+
+//? csp
+function csp_nonce(){
+    return app('csp-nonce');
+}

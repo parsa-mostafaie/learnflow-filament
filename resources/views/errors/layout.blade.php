@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  @cspMetaTag
 
   <title>@yield('title')</title>
 
   {{-- Styles --}}
-  <style>
+  <style @cspNonce>
     html,
     body {
       background-color: #fff;

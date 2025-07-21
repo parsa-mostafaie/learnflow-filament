@@ -28,6 +28,7 @@
         "predis/predis": "^3.0",
         "rmsramos/activitylog": "^1.0",
         "spatie/laravel-activitylog": "^4.10",
+        "spatie/laravel-csp": "^3.13",
         "spatie/laravel-google-fonts": "^1.4",
         "spatie/laravel-permission": "^6.16",
         "stechstudio/filament-impersonate": "^3.16"

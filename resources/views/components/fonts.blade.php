@@ -1,5 +1,5 @@
 <link rel="preconnect" href="https://fonts.bunny.net">
 
-@googlefonts
-@googlefonts('vazirmatn')
-@googlefonts('open-sans')
+@googlefonts(['nonce' => csp_nonce()])
+@googlefonts(['font' => 'vazirmatn', 'nonce' => csp_nonce()])
+@googlefonts(['font' => 'open-sans', 'nonce' => csp_nonce()])

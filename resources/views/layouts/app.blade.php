@@ -35,6 +35,8 @@
   <meta property="og:title" content="{{ $fullTitle }}">
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
+  @cspMetaTag
+
   {{-- Fonts --}}
   <x-fonts />
 

@@ -4,10 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  @cspMetaTag
 
   <title>@yield('title')</title>
 
-  <style>
+  <style @cspNonce>
     /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
     html {
       line-height: 1.15;
@@ -525,7 +526,7 @@
     }
   </style>
 
-  <style>
+  <style @cspNonce>
     body {
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }

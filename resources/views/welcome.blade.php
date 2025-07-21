@@ -29,6 +29,8 @@
   <meta name="application-name" content="{{ config('app.name', 'LearnFlow') }}">
   <meta name="theme-color" content="#6b46c1">
 
+  @cspMetaTag
+
   <title>{{ __(config('app.name', 'LearnFlow')) }}</title>
 
   <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
