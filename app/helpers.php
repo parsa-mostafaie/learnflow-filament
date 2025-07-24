@@ -53,3 +53,23 @@ if (!function_exists('is_jalali_supported')) {
         return false;
     }
 }
+
+use LanguageDetection\Language;
+use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
+use Google\Cloud\TextToSpeech\V1\AudioConfig;
+
+//? Ai features
+if (!function_exists('langof')) {
+    function langof($string)
+    {
+        $ld = new Language(['fa', 'en', 'ar']);
+
+        $ld->setMaxNgrams(9000);
+
+        $language = $ld->detect($string)->bestResults()->close();
+
+        return $language;
+    }
+}
