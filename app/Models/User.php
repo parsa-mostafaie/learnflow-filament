@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Traits\UnverifyEmailOnChange;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -27,7 +27,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Traits\HasRoles, CausesActivity, LogsActivity, Impersonate;
+    use HasFactory, Notifiable, Traits\HasRoles, CausesActivity, LogsActivity, Impersonate, UnverifyEmailOnChange;
 
     /**
      * The attributes that are mass assignable.
