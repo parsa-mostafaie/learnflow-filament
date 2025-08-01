@@ -7,7 +7,7 @@ use Illuminate\Support\Number;
 if (!function_exists('forhumans')) {
     function forhumans(int|float $number, int $precision = 0, ?int $maxPrecision = 2, bool $abbreviate = true)
     {
-        return Number::forHumans($number, $precision, $maxPrecision, $abbreviate);
+        return $number == 0 ? Number::format(0, $precision, $maxPrecision) : Number::forHumans($number, $precision, $maxPrecision, $abbreviate);
     }
 }
 
