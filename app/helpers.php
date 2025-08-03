@@ -24,6 +24,22 @@ if (!function_exists('changeLabel')) {
     }
 }
 
+if (!function_exists('changeColor')) {
+    function changeColor(float $percent): array
+    {
+        return $percent > 0
+            ? Color::Emerald
+            : ($percent < 0 ? Color::Rose : Color::Gray);
+    }
+}
+
+if (!function_exists('changeIcon')) {
+    function changeIcon(float $percent): string
+    {
+        return $percent > 0 ? "heroicon-m-arrow-trending-up" : "heroicon-m-arrow-trending-down";
+    }
+}
+
 if (!function_exists('changeInfo')) {
     function changeInfo(Collection $collection): array
     {
@@ -36,11 +52,9 @@ if (!function_exists('changeInfo')) {
             ? (($last - $prev) / $prev) * 100
             : ($last > 0 ? 100 : 0);
 
-        $color = $percentage > 0
-            ? Color::Emerald
-            : ($percentage < 0 ? Color::Rose : Color::Gray);
+        $color = changeColor($percentage);
 
-        $icon = $percentage ? ($percentage > 0 ? "heroicon-m-arrow-trending-up" : "heroicon-m-arrow-trending-down") : null;
+        $icon = $percentage ? changeIcon($percentage) : null;
 
         $description = $percentage ? changeLabel($percentage) : null;
 
