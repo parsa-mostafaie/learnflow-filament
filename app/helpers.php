@@ -1,13 +1,55 @@
 <?php
 
 use Filament\Facades\Filament;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Number;
+use Filament\Support\Colors\Color;
 
 //? Numbers
 if (!function_exists('forhumans')) {
     function forhumans(int|float $number, int $precision = 0, ?int $maxPrecision = 2, bool $abbreviate = true)
     {
         return $number == 0 ? Number::format(0, $precision, $maxPrecision) : Number::forHumans($number, $precision, $maxPrecision, $abbreviate);
+    }
+}
+
+if (!function_exists('changeLabel')) {
+    function changeLabel(float $percent): string
+    {
+        $key = $percent >= 0 ? 'increase' : 'decrease';
+
+        $formattedValue = Number::percentage(abs($percent), precision: 2);
+
+        return __("messages.$key", ['value' => $formattedValue]);
+    }
+}
+
+if (!function_exists('changeInfo')) {
+    function changeInfo(Collection $collection): array
+    {
+        $last = $collection->last();
+        $prev = $collection->count() >= 2
+            ? $collection->slice(-2, 1)->first()
+            : null;
+
+        $percentage = $prev && $prev != 0
+            ? (($last - $prev) / $prev) * 100
+            : ($last > 0 ? 100 : 0);
+
+        $color = $percentage > 0
+            ? Color::Emerald
+            : ($percentage < 0 ? Color::Rose : Color::Gray);
+
+        $icon = $percentage ? ($percentage > 0 ? "heroicon-m-arrow-trending-up" : "heroicon-m-arrow-trending-down") : null;
+
+        $description = $percentage ? changeLabel($percentage) : null;
+
+        return [
+            'percentage' => $percentage,
+            'color' => $color,
+            'icon' => $icon,
+            'description' => $description,
+        ];
     }
 }
 

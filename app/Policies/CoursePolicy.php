@@ -36,6 +36,11 @@ class CoursePolicy
         return $this->manage($user);
     }
 
+    public function viewOverview(?User $user): bool
+    {
+        return (!!$user) && ($user->can('view courses overview'));
+    }
+
     public function manage(?User $user): bool
     {
         return (!!$user) && $user->can('manage any courses');

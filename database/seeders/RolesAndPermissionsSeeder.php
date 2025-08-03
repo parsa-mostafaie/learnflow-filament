@@ -55,6 +55,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'bulk force delete questions',
                 'bulk change questions state',
                 'impersonate users',
+                'view courses overview'
             ],
             'developer' => [
                 'edit other users',
