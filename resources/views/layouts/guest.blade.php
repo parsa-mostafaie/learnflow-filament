@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html dir="{{ __('ltr') }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{
+    theme: localStorage.getItem('theme') || 'system',
+    get isDark() {
+        return this.theme === 'dark' ||
+            (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+}"
+  x-init="$watch('theme', val => localStorage.setItem('theme', val))" x-bind:class="{ 'dark': isDark }">
 
 <head>
   <meta charset="utf-8">
@@ -17,12 +24,12 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
+<body class="font-sans text-gray-900 antialiased" x-bind:class="{ 'dark': isDark }">
   {{-- Main container --}}
   <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-purple-100 dark:bg-purple-900">
     {{-- Application logo --}}
     <div>
-      <a href="/" wire:navigate>
+      <a href="/">
         <x-application-logo class="w-20 h-20 fill-current text-purple-500 dark:text-purple-300" />
       </a>
     </div>
@@ -33,6 +40,8 @@
       {{ $slot }}
     </div>
   </div>
+
+  <x-theme-toggler />
 
   @persist('toaster')
     <x-toaster-hub />

@@ -23,7 +23,7 @@ $sendVerification = function () {
 $logout = function (Logout $logout) {
     $logout();
 
-    $this->redirect('/', navigate: true);
+    $this->redirect('/', navigate: false);
 };
 
 ?>

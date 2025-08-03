@@ -1,6 +1,7 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
+import colors from "tailwindcss/colors";
 import preset from "./vendor/filament/support/tailwind.config.preset";
 
 /** @type {import('tailwindcss').Config} */
@@ -26,6 +27,7 @@ export default {
                     600: "#6B46C1",
                     800: "#553C9A",
                 },
+                ...colors,
             },
         },
     },

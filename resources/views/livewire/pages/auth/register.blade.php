@@ -36,7 +36,7 @@ $register = function () {
 
     Toaster::success(__('Logged in!'));
 
-    $this->redirect(route('dashboard', absolute: false), navigate: true);
+    $this->redirect(route('dashboard', absolute: false), navigate: false);
 };
 
 ?>
