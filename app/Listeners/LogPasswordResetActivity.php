@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\CourseEnrollment;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LogCourseEnrollmentActivity
+class LogPasswordResetActivity
 {
     /**
      * Create the event listener.
@@ -19,18 +19,22 @@ class LogCourseEnrollmentActivity
     /**
      * Handle the event.
      */
-    public function handle(CourseEnrollment $event): void
+    public function handle(PasswordReset $event): void
     {
-        $eventName = $event->unenroll ? "unenrolled" : "enrolled";
+        /**
+         * @var \App\Models\User
+         */
+        $user = $event->user;
 
-        activity("enrollment")
-            ->causedBy($event->user)
-            ->performedOn($event->course)
+        activity("authentication")
+            ->causedBy(null)
+            ->performedOn($user)
             ->withProperties([
                 'ip' => request()->ip(),
                 'user_agent' => request()->userAgent(),
+                'email' => $user->email,
             ])
-            ->event($eventName)
-            ->log($eventName);
+            ->event('password-reset')
+            ->log("Password reset");
     }
 }

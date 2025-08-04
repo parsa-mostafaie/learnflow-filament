@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\CourseEnrollment;
+use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LogCourseEnrollmentActivity
+class LogFailedActivity
 {
     /**
      * Create the event listener.
@@ -19,18 +19,17 @@ class LogCourseEnrollmentActivity
     /**
      * Handle the event.
      */
-    public function handle(CourseEnrollment $event): void
+    public function handle(Failed $event): void
     {
-        $eventName = $event->unenroll ? "unenrolled" : "enrolled";
-
-        activity("enrollment")
-            ->causedBy($event->user)
-            ->performedOn($event->course)
+        activity("authentication")
+            ->causedBy(null)
             ->withProperties([
                 'ip' => request()->ip(),
                 'user_agent' => request()->userAgent(),
+                'guard' => $event->guard,
+                'email' => $event->credentials['email'] ?? 'unknown'
             ])
-            ->event($eventName)
-            ->log($eventName);
+            ->event('failed')
+            ->log("Login failed");
     }
 }

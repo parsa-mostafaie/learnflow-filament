@@ -9,6 +9,8 @@ use App\Http\Responses\LogoutResponse;
 use Filament\Http\Responses\Auth\Contracts\LogoutResponse as LogoutResponseContract;
 use App\Http\Responses\LoginResponse;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse as LoginResponseContract;
+use App\Http\Responses\RegistrationResponse;
+use Filament\Http\Responses\Auth\Contracts\RegistrationResponse as RegistrationResponseContract;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
@@ -39,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(LogoutResponseContract::class, LogoutResponse::class);
         $this->app->bind(LoginResponseContract::class, LoginResponse::class);
+        $this->app->bind(RegistrationResponseContract::class, RegistrationResponse::class);
     }
 
     /**

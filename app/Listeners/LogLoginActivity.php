@@ -21,7 +21,6 @@ class LogLoginActivity
      */
     public function handle(Login $event): void
     {
-
         /**
          * @var \App\Models\User
          */
@@ -30,7 +29,12 @@ class LogLoginActivity
         activity("authentication")
             ->causedBy($user)
             ->performedOn($user)
-            ->withProperties(['ip' => request()->ip(), 'remember' => $event->remember, 'guard' => $event->guard])
+            ->withProperties([
+                'ip' => request()->ip(),
+                'user_agent' => request()->userAgent(),
+                'remember' => $event->remember,
+                'guard' => $event->guard
+            ])
             ->event('login')
             ->log("Login");
     }

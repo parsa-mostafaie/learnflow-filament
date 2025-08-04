@@ -34,7 +34,11 @@ class LogUserRoleChange
             ->causedBy($event->causer)
             ->performedOn($event->user)
             ->event($eventName)
-            ->withProperties(['old' => ['role' => $previousRoleName], 'attributes' => ['role' => $currentRoleName]])
+            ->withProperties([
+                'old' =>
+                    ['role' => $previousRoleName],
+                'attributes' => ['role' => $currentRoleName]
+            ])
             ->log(str($eventName)->ucfirst() . " user role from {$previousRoleName} to {$currentRoleName}");
     }
 }

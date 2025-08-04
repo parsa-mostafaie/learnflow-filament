@@ -2,11 +2,12 @@
 
 namespace App\Listeners;
 
-use Lab404\Impersonate\Events\LeaveImpersonation;
+use Illuminate\Auth\Events\Attempting;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LogLeaveImpersonationActivity
+class LogAttemptingActivity
 {
     /**
      * Create the event listener.
@@ -19,16 +20,18 @@ class LogLeaveImpersonationActivity
     /**
      * Handle the event.
      */
-    public function handle(LeaveImpersonation $event): void
+    public function handle(Attempting $event): void
     {
         activity("authentication")
-            ->causedBy($event->impersonator)
-            ->performedOn($event->impersonated)
+            ->causedBy(null)
             ->withProperties([
                 'ip' => request()->ip(),
                 'user_agent' => request()->userAgent(),
+                'remember' => $event->remember,
+                'guard' => $event->guard,
+                'email' => $event->credentials['email'] ?? 'unknown'
             ])
-            ->event('leaved-impersonation')
-            ->log("Leaved Impersonation");
+            ->event('attempting')
+            ->log("Attempting to log in");
     }
 }
