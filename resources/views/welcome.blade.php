@@ -139,6 +139,7 @@
   @persist('toaster')
     <x-toaster-hub />
   @endpersist
+  @livewire('notifications')
 
   <x-impersonate::banner />
 </body>

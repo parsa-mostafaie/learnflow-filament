@@ -5,7 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\Facades\URL;
 use App\Services\Leitner;
 use App\Services\Interfaces\Leitner as LeitnerInterface;
-use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
+use App\Http\Responses\LogoutResponse;
+use Filament\Http\Responses\Auth\Contracts\LogoutResponse as LogoutResponseContract;
+use App\Http\Responses\LoginResponse;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse as LoginResponseContract;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
@@ -33,6 +36,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(LeitnerInterface::class, Leitner::class);
 
         $this->app->alias(LeitnerInterface::class, 'leitner');
+
+        $this->app->bind(LogoutResponseContract::class, LogoutResponse::class);
+        $this->app->bind(LoginResponseContract::class, LoginResponse::class);
     }
 
     /**
