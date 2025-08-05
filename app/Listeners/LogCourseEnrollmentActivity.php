@@ -28,7 +28,7 @@ class LogCourseEnrollmentActivity
             ->performedOn($event->course)
             ->withProperties([
                 'ip' => request()->ip(),
-                'user_agent' => request()->userAgent(),
+                'user_agent' => request()->userAgent(), 
             ])
             ->event($eventName)
             ->log($eventName);

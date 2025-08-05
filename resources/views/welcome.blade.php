@@ -130,6 +130,8 @@
     <p>&copy; {{ __('landing.footer.year') }} {{ __(config('app.name', 'LearnFlow')) }}:
       {{ __('landing.footer.text') }}
       {{ __('landing.footer.rights') }}</p>
+      <livewire:text-to-speech :text="__('landing.footer.text')"
+        class="mt-4 max-w-md mx-auto bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg"></livewire:text-to-speech>
   </footer>
 
   <x-theme-toggler />
