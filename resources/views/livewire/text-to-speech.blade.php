@@ -7,11 +7,14 @@ use function Livewire\Volt\{state, mount};
 state(['text' => '', 'lang' => null]);
 
 $detectLanguage = function () {
-    $result = langof($this->text); // e.g. ["fa" => 0.84]
+    if ($this->lang == null) {
+        $result = langof($this->text); // e.g. ["fa" => 0.84]
 
-    $key = array_keys($result)[0];
-    $lang = ['fa' => 'fa-IR', 'en' => 'en-US', 'ar' => 'ar-SA'][$key];
-    $this->lang = [$lang => $result[$key]];
+        $key = array_keys($result)[0];
+        $lang = ['fa' => 'fa-IR', 'en' => 'en-US', 'ar' => 'ar-SA'][$key];
+
+        $this->lang = ['lang' => $lang, 'confidence' => $result[$key], $lang => $result[$key]];
+    }
 
     return $this->lang;
 };
@@ -32,12 +35,12 @@ $detectLanguage = function () {
         }
     }
 }" x-init="$wire.detectLanguage().then(result => {
-    lang = Object.keys(result)[0];
-    confidence = result[lang];
-})"
+    lang = result['lang'];
+    confidence = result['confidence'];
+});"
   class="p-4 rounded-2xl shadow-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 max-w-xl mx-auto space-y-4">
   <div class="flex items-center justify-between gap-2">
-    <h2 class="text-lg font-semibold">Detected Language</h2>
+    <h2 class="text-lg font-semibold">{{ __('tts.detected') }}</h2>
     <button @click="speak" :class="speaking ? 'animate-pulse text-blue-600' : 'text-gray-500 hover:text-blue-600'"
       class="transition" title="Speak text">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,15 +52,16 @@ $detectLanguage = function () {
 
   <template x-if="lang">
     <div class="space-y-1">
-      <p class="text-sm text-gray-500">Language code: <strong x-text="lang"></strong></p>
+      <p class="text-sm text-gray-500">{{ __('tts.lang_code') }}: <strong x-text="lang"></strong></p>
       <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
         <div class="bg-blue-600 h-2 rounded-full transition-all duration-300"
           :style="'width: ' + (confidence * 100).toFixed(1) + '%'"></div>
       </div>
-      <p class="text-xs text-gray-400" x-text="'Confidence: ' + (confidence * 100).toFixed(1) + '%'"></p>
+      <p class="text-xs text-gray-400" x-text="'{{ __('tts.confidence') }}: ' + (confidence * 100).toFixed(1) + '%'">
+      </p>
     </div>
   </template>
 
   <p class="text-sm mt-4 font-mono bg-gray-100 dark:bg-gray-800 p-3 rounded text-gray-700 dark:text-gray-300 whitespace-pre-wrap"
-    x-text="text"></p>
+    x-text="text" dir="auto"></p>
 </div>

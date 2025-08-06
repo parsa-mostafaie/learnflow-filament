@@ -24,9 +24,10 @@ class LogTakeImpersonationActivity
         activity("authentication")
             ->causedBy($event->impersonator)
             ->performedOn($event->impersonated)
-            ->withProperties(['ip' => request()->ip(),
-                    'user_agent' => request()->userAgent(),
-])
+            ->withProperties([
+                'ip' => request()->ip(),
+                'user_agent' => request()->userAgent(),
+            ])
             ->event('impersonated')
             ->log("Taked Impersonation");
     }
