@@ -38,7 +38,7 @@ $detectLanguage = function () {
     lang = result['lang'];
     confidence = result['confidence'];
 });"
-  class="p-4 rounded-2xl shadow-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 max-w-xl mx-auto space-y-4">
+  class="p-4 rounded-2xl shadow-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 max-w-lg mx-auto space-y-4">
   <div class="flex items-center justify-between gap-2">
     <h2 class="text-lg font-semibold">{{ __('tts.detected') }}</h2>
     <button @click="speak" :class="speaking ? 'animate-pulse text-blue-600' : 'text-gray-500 hover:text-blue-600'"

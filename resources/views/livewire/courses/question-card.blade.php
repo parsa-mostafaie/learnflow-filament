@@ -19,9 +19,8 @@ $knowing = function ($state) {
 ?>
 
 <div class="w-full">
-  @if(false)
   <div
-    class="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 height-100 container"
+    class="max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 height-100 container"
     x-data="{ showAnswerButton: false }" x-init="setTimeout(() => showAnswerButton = true, 5000)">
     @if ($card->courseQuestion->question->isStatus(Status::Approved))
       <div class="flex justify-between sm:flex-row flex-col gap-2 flex-wrap-reverse sm:justify-center items-center"
@@ -49,7 +48,6 @@ $knowing = function ($state) {
       @endif
     @endif
   </div>
-  @else
+  <hr class="my-2" />
   <livewire:text-to-speech :text="$card->courseQuestion->question->question" class="mb-4" />
-  @endif
 </div>
