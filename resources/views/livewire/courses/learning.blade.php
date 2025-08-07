@@ -55,7 +55,7 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
       <div class="p-6 text-gray-900 dark:text-gray-100">
         <h1 class="text-lg text-center font-bold mb-1">{{ __('messages.learn') }}</h1>
         <div class="my-2 container mx-auto">
-          <div class="mx-auto md:w-[50%]">
+          <div class="mx-auto max-w-lg">
             <x-progress :percentage="$this->percentage" />
           </div>
         </div>

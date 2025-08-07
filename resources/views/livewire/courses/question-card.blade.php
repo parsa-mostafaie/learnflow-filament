@@ -25,10 +25,10 @@ $knowing = function ($state) {
     @if ($card->courseQuestion->question->isStatus(Status::Approved))
       <div class="flex justify-between sm:flex-row flex-col gap-2 flex-wrap-reverse sm:justify-center items-center"
         dir="auto">
-        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white select-none me-auto">
+        <span class="text-2xl inline-block font-bold tracking-tight text-gray-900 dark:text-white select-none sm:me-auto">
           {{ $card->courseQuestion->question->question }}
-        </h5>
-        <div class="rounded-lg bg-purple-700 dark:bg-purple-500 text-gray-200 p-2">
+        </span>
+        <div class="rounded-lg bg-purple-700 dark:bg-purple-500 text-gray-100 dark:text-gray-200 p-2">
           {{ $card->courseQuestion->course->title }}
         </div>
       </div>
