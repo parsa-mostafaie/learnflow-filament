@@ -20,16 +20,20 @@ $knowing = function ($state) {
 
 <div class="w-full">
   <div
-    class="max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 height-100 container"
+    class="max-w-lg p-4 border border-gray-200 rounded-2xl shadow-lg bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 dark:border-gray-700 height-100 container"
     x-data="{ showAnswerButton: false }" x-init="setTimeout(() => showAnswerButton = true, 5000)">
     @if ($card->courseQuestion->question->isStatus(Status::Approved))
-      <div class="flex justify-between sm:flex-row flex-col gap-2 flex-wrap-reverse sm:justify-center items-center"
-        dir="auto">
-        <span class="text-2xl inline-block font-bold tracking-tight text-gray-900 dark:text-white select-none sm:me-auto">
-          {{ $card->courseQuestion->question->question }}
-        </span>
-        <div class="rounded-lg bg-purple-700 dark:bg-purple-500 text-gray-100 dark:text-gray-200 p-2">
-          {{ $card->courseQuestion->course->title }}
+      <div class="flex justify-between items-center sm:flex-row flex-col-reverse gap-2 flex-wrap-reverse" dir="auto">
+        <div class="flex justify-center flex-1">
+          <span class="text-center text-2xl inline-block font-bold tracking-tight text-gray-900 dark:text-white select-none">
+            {{ $card->courseQuestion->question->question }}
+          </span>
+        </div>
+
+        <div class="flex justify-center flex-1">
+          <div class="text-center rounded-xl bg-purple-600 dark:bg-purple-500 text-gray-100 dark:text-gray-200 p-2 text-sm">
+            {{ $card->courseQuestion->course->title }}
+          </div>
         </div>
       </div>
 
@@ -43,8 +47,10 @@ $knowing = function ($state) {
           </x-button-group>
         </div>
       @else
-        <x-primary-button class="mt-2" type="button" x-show="showAnswerButton"
-          wire:click="toggleAnswer">{{ __('messages.show-me-answer') }}!</x-primary-button>
+        <div class="flex justify-center">
+          <x-primary-button class="mt-2" type="button" x-show="showAnswerButton"
+            wire:click="toggleAnswer">{{ __('messages.show-me-answer') }}</x-primary-button>
+        </div>
       @endif
     @endif
   </div>
