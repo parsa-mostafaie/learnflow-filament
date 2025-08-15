@@ -28,7 +28,7 @@ $course_model = computed(function () {
   </h1>
 
   <div class="flex flex-wrap justify-center gap-5 max-w-[1200px] mx-auto">
-    <!-- Not Imported Box -->
+    {{-- Not Imported Box --}}
     <x-shematic.notimported-box
       class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#ffded5] to-[#ffc2b5] shadow-lg">
       <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('report-page.not-imported') }}</h2>
@@ -51,7 +51,7 @@ $course_model = computed(function () {
       </x-shematic.box>
     @endforeach
 
-    <!-- Completed Box -->
+    {{-- Completed Box --}}
     <x-shematic.completed-box
       class="w-[300px] h-[250px] flex flex-col justify-between p-5 rounded-lg bg-gradient-to-br from-[#d5ffd5] to-[#c2ffc2] shadow-lg">
       <h2 class="text-2xl mb-2 text-[#333] text-center">{{ __('report-page.completed') }}</h2>

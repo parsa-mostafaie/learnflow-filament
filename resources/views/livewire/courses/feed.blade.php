@@ -47,7 +47,7 @@ mount(fn() => $this->loadMore());
 
 <div id="search-courses-section" x-data="{ loading: false }"
   @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !loading && $wire.more_found) { loading = true; $wire.loadMore().then(() => { loading = false; }); }">
-  <!-- Page Header: Title and Search Input -->
+  {{-- Page Header: Title and Search Input --}}
   <div class="bg-white dark:bg-gray-800 p-6 space-y-6 shadow rounded">
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
       {{ __('feed.search.title') }}
@@ -58,7 +58,7 @@ mount(fn() => $this->loadMore());
     <x-search-input onInput="searchChange()" model="search.text" placeholder="{{ __('feed.search.text') }}" />
   </div>
 
-  <!-- Filters and Sorting -->
+  {{-- Filters and Sorting --}}
   <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 shadow mt-2">
     <div class="space-y-4">
       <p class="font-bold text-gray-800 dark:text-gray-200">{{ __('feed.filters.title') }}</p>
@@ -86,7 +86,7 @@ mount(fn() => $this->loadMore());
     </div>
   </div>
 
-  <!-- Courses List -->
+  {{-- Courses List --}}
   <div class="p-3">
     <div class="bg-white dark:bg-gray-800 rounded-lg flex flex-col gap-2">
       @if ($this->courses->isNotEmpty())

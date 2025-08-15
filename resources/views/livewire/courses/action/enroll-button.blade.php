@@ -66,9 +66,9 @@ $action = function () {
     <x-primary-button wire:click="action"
       title="{{ $this->course->is_enrolled ? __('actions.unenroll') : __('actions.enroll') }}">
       @if ($this->course->is_enrolled)
-        <x-heroicon-s-user-minus class="w-4 h-4" /> <!-- Icon for Unenroll -->
+        <x-heroicon-s-user-minus class="w-4 h-4" /> {{-- Icon for Unenroll --}}
       @else
-        <x-heroicon-s-user-plus class="w-4 h-4" /> <!-- Icon for Enroll -->
+        <x-heroicon-s-user-plus class="w-4 h-4" /> {{-- Icon for Enroll --}}
       @endif
     </x-primary-button>
   @endcan
