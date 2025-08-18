@@ -30,45 +30,47 @@ $knowing = function ($state) {
           dark:from-purple-600 dark:to-purple-500 text-white px-5 py-3 text-sm sm:text-base font-semibold
           shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5 active:scale-95
           transition-all duration-300 break-all">
-          {{ $card->courseQuestion->course->title }}
+          <span>
+            <x-heroicon-c-book-open class="size-5 inline-block" />
+            {{ $card->courseQuestion->course->title }}
+          </span>
           <span
             class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-white rounded-full
             group-hover:w-2/3 transition-all duration-300"></span>
         </a>
 
         {{-- Question --}}
-        <span class="text-2xl break-all font-extrabold tracking-tight text-gray-900 dark:text-white select-none leading-snug">
-          {{ $card->courseQuestion->question->question }}
+        <span
+          class="text-2xl break-all w-full font-extrabold tracking-tight text-gray-900 dark:text-white select-none leading-snug">
+          <livewire:speechable-text :text="$card->courseQuestion->question->question" />
         </span>
       </div>
 
       {{-- Answer Section --}}
       @if ($showAnswer)
-        <p class="mt-3 mb-4 text-lg break-all text-purple-700 dark:text-purple-400 font-semibold text-center leading-relaxed">
-          {{ $card->courseQuestion->question->answer }}
+        <p
+          class="mt-3 mb-4 text-lg break-all text-purple-700 dark:text-purple-400 font-semibold text-center leading-relaxed w-full">
+          <livewire:speechable-text :text="$card->courseQuestion->question->answer" />
         </p>
         <div class="flex justify-center gap-3">
           <x-primary-button type="button" wire:click="knowing(true)" class="flex items-center gap-2">
-            <x-heroicon-c-sparkles class="w-5 h-5" />
+            <x-heroicon-c-sparkles class="size-5" />
             {{ __('messages.known') }}
           </x-primary-button>
 
           <x-danger-button type="button" wire:click="knowing(false)" class="flex items-center gap-2">
-            <x-heroicon-c-face-frown class="w-5 h-5" />
+            <x-heroicon-c-face-frown class="size-5" />
             {{ __('messages.unknown') }}
           </x-danger-button>
         </div>
       @else
         <div class="flex justify-center mt-4" x-show="showAnswerButton">
           <x-primary-button wire:click="toggleAnswer" class="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold">
-            <x-heroicon-c-bolt class="w-5 h-5" />
+            <x-heroicon-c-bolt class="size-5" />
             {{ __('messages.show-me-answer') }}
           </x-primary-button>
         </div>
       @endif
     @endif
   </div>
-
-  <hr class="my-2" />
-  <livewire:text-to-speech :text="$card->courseQuestion->question->question" class="mb-4" />
 </div>

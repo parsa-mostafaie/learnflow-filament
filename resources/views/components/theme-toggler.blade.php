@@ -5,19 +5,20 @@
   class="fixed bottom-4 left-4 rounded-lg text-sm p-2.5 text-gray-500 dark:text-gray-400 hover:bg-purple-100 dark:hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-700 bg-gradient-to-br from-purple-600 to-blue-500 dark:bg-gradient-to-br dark:from-purple-600 dark:to-blue-500 z-[100]">
 
   {{-- ☀️ Light Icon --}}
-  <svg x-show="theme === 'light'" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+  <svg x-show="theme === 'light'" class="size-5" fill="currentColor" viewBox="0 0 20 20">
     <path
       d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
       fill="#FFD700"></path>
   </svg>
 
   {{-- 🌙 Dark Icon --}}
-  <svg x-show="theme === 'dark'" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+  <svg x-show="theme === 'dark'" class="size-5" fill="currentColor" viewBox="0 0 20 20">
     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" fill="#FFFACD"></path>
   </svg>
 
   {{-- ⚙️ System Icon (fixed size & color) --}}
-  <svg x-show="theme === 'system'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+  <svg x-show="theme === 'system'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+    class="size-5">
     <path fill="#cbd5e1"
       d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 0 0-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 0 0 .649.375h2.158ZM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 0 0 6 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 0 0 0-.75L7.839 7.758ZM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 0 0 4.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 0 0-.65.375l-1.078 1.868Z" />
     <path fill-rule="evenodd" fill="#cbd5e1"

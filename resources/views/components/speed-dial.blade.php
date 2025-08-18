@@ -5,7 +5,7 @@
     x-transition:leave-end="opacity-0 scale-75" class="flex flex-col space-y-4" x-cloak> {{-- Home Button --}}
     <a href="{{ route('welcome') }}"
       class="flex dark:hover:text-gray-300 justify-center items-center w-10 h-10 text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow transition duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-      <x-heroicon-s-home class="w-5 h-5 text-lg" />
+      <x-heroicon-s-home class="size-5 text-lg" />
     </a>
 
     {{-- Filament Panel Button --}}
@@ -13,7 +13,7 @@
       {{-- @can('access filament panel') --}}
       <a href="{{ route('filament.panel.pages.dashboard') }}" title="{{ __('speed-dial.filament') }}"
         class="flex dark:hover:text-gray-300 justify-center items-center w-10 h-10 text-indigo-600 hover:text-indigo-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow transition duration-300 ease-in-out hover:bg-indigo-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-indigo-300 focus:outline-none dark:focus:ring-indigo-500">
-        <x-heroicon-s-briefcase class="w-5 h-5 text-lg" />
+        <x-heroicon-s-briefcase class="size-5 text-lg" />
       </a>
       {{-- @endcan --}}
     @endauth
@@ -23,13 +23,13 @@
       {{-- Login --}}
       <a href="{{ route('filament.panel.auth.login') }}" title="{{ __('speed-dial.login') }}"
         class="flex justify-center items-center dark:hover:text-gray-300 w-10 h-10 text-blue-600 hover:text-blue-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow transition duration-300 ease-in-out hover:bg-blue-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-500">
-        <x-heroicon-s-arrow-right-end-on-rectangle class="w-5 h-5 text-lg" />
+        <x-heroicon-s-arrow-right-end-on-rectangle class="size-5 text-lg" />
       </a>
 
       {{-- Register --}}
       <a href="{{ route('filament.panel.auth.register') }}" title="{{ __('speed-dial.register') }}"
         class="flex justify-center items-center dark:hover:text-gray-300 w-10 h-10 text-green-600 hover:text-green-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow transition duration-300 ease-in-out hover:bg-green-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-green-300 focus:outline-none dark:focus:ring-green-500">
-        <x-heroicon-s-user-plus class="w-5 h-5 text-lg" />
+        <x-heroicon-s-user-plus class="size-5 text-lg" />
       </a>
     @endguest
   </div>

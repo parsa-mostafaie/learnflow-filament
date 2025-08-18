@@ -30,7 +30,7 @@
         <p class="flex-1 max-w-full">
           {!! $truncatedText !!}
         </p>
-        <x-heroicon-s-document-text class="w-5 h-5 text-gray-400" />
+        <x-heroicon-s-document-text class="size-5 text-gray-400" />
       </div>
 
       {{-- Full rich text content (sanitized HTML) --}}
@@ -38,7 +38,7 @@
         <div class="flex-1 max-w-full prose prose-sm">
           {!! $safeHtml !!}
         </div>
-        <x-heroicon-s-clipboard-document class="w-5 h-5 text-gray-400" />
+        <x-heroicon-s-clipboard-document class="size-5 text-gray-400" />
       </div>
 
       {{-- Toggle button (show more / less) --}}
@@ -47,8 +47,8 @@
         <button @click="showFullText = !showFullText"
           class="mt-2 text-sm font-medium text-blue-500 hover:text-blue-700 focus:outline-none focus:ring focus:ring-blue-300 flex justify-end items-center">
 
-          <x-heroicon-s-chevron-down x-show="!showFullText" class="w-5 h-5" />
-          <x-heroicon-s-chevron-up x-show="showFullText" class="w-5 h-5" />
+          <x-heroicon-s-chevron-down x-show="!showFullText" class="size-5" />
+          <x-heroicon-s-chevron-up x-show="showFullText" class="size-5" />
         </button>
       @endif
     </div>

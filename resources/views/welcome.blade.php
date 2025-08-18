@@ -52,7 +52,7 @@
     </p>
     <a href="{{ login_url() }}">
       <x-primary-button type="button">
-        <x-heroicon-c-play class="me-2 w-5 h-5" />
+        <x-heroicon-c-play class="me-2 size-5" />
         {{ __('messages.get-started') }}
       </x-primary-button>
     </a>
@@ -102,7 +102,7 @@
         <x-text-area name="message" placeholder="{{ __('landing.contact.message') }}"
           class="input h-32 dark:bg-gray-700 dark:text-white"></x-text-area>
         <x-primary-button type="submit" class="justify-center">
-          <x-heroicon-c-paper-airplane class="me-2 w-5 h-5" />
+          <x-heroicon-c-paper-airplane class="me-2 size-5" />
           {{ __('landing.contact.send') }}
         </x-primary-button>
       </form>
@@ -110,13 +110,13 @@
         class="contact-info shadow-lg p-4 bg-[#f7fafc] rounded-lg md:rotate-[10deg] md:translate-x-4 md:translate-y-2 dark:bg-gray-800">
         <h3 class="text-xl font-bold mb-3">{{ __('landing.contact.developer.title') }}</h3>
         <div class="flex gap-1 flex-wrap">
-          <x-primary-button type="submit"><x-icon-linkedin class="w-5 h-5 me-2" />
+          <x-primary-button type="submit"><x-icon-linkedin class="size-5 me-2" />
             <a href="https://www.linkedin.com/in/parsa-mostafaie">{{ __('landing.contact.developer.linkedin') }}</a>
           </x-primary-button>
-          <x-primary-button type="submit"><x-icon-github class="w-5 h-5 me-2" />
+          <x-primary-button type="submit"><x-icon-github class="size-5 me-2" />
             <a href="https://github.com/parsa-mostafaie">{{ __('landing.contact.developer.github') }}</a>
           </x-primary-button>
-          <x-primary-button type="submit"><x-heroicon-c-phone class="me-2 w-5 h-5" />
+          <x-primary-button type="submit"><x-heroicon-c-phone class="me-2 size-5" />
             <a href="tel:+989056372307">{{ __('landing.contact.developer.phone') }}</a>
           </x-primary-button>
         </div>

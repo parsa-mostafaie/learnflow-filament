@@ -2,7 +2,7 @@
 
 <?php
 
-use function Livewire\Volt\{state, mount};
+use function Livewire\Volt\{state};
 
 state(['text' => '', 'lang' => null]);
 
@@ -21,7 +21,7 @@ $detectLanguage = function () {
 ?>
 
 <div x-data="{
-    text: @entangle('text').live,
+    text: $wire.entangle('text').live,
     lang: null,
     confidence: null,
     speaking: false,
@@ -43,10 +43,7 @@ $detectLanguage = function () {
     <h2 class="text-lg font-semibold">{{ __('tts.detected') }}</h2>
     <button @click="speak" :class="speaking ? 'animate-pulse text-blue-600' : 'text-gray-500 hover:text-blue-600'"
       class="transition" title="Speak text">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M11 5L6 9H2v6h4l5 4V5zm10 7a4 4 0 00-3-3.87m3 3.87a4 4 0 01-3 3.87m0-7.74v7.74" />
-      </svg>
+      <x-heroicon-c-speaker-wave class="size-5" />
     </button>
   </div>
 
