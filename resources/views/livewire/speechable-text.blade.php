@@ -37,7 +37,7 @@ $detectLanguage = function () {
 }" x-init="$wire.detectLanguage().then(result => {
     lang = result['lang'];
     confidence = result['confidence'];
-});" class="flex justify-between items-center gap-1 w-4/5 mx-auto flex-wrap">
+});" class="flex justify-between items-center gap-1 w-4/5 mx-auto flex-wrap justify-self-auto">
   <button @click="speak" :class="speaking ? 'animate-pulse text-blue-600' : 'text-gray-500 hover:text-blue-600'"
     class="transition" :title="(confidence * 100).toFixed(1) + '% ' + lang">
     <x-heroicon-c-speaker-wave class="size-5" />

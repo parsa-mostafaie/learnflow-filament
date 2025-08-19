@@ -65,10 +65,11 @@ $percentage = computed(fn() => Leitner::getLearnedPercentage($this->course, auth
               @if ($this->card)
                 <livewire:courses.question-card :card="$this->card" wire:key="card-{{ $this->card->id }}" />
               @else
-                {{ __("messages.learn-finished") }}
+                {{ __('messages.learn-finished') }}
               @endif
             @else
-              <x-gradient-button type="button" wire:click="loadCard">{{ __('messages.start-learning') }}</x-gradient-button>
+              <x-gradient-button type="button"
+                wire:click="loadCard">{{ __('messages.start-learning') }}</x-gradient-button>
             @endif
           @else
             {{ __("You've Completed this course!") }}
