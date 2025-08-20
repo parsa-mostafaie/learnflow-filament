@@ -111,10 +111,6 @@ if (!function_exists('is_jalali_supported')) {
 }
 
 use LanguageDetection\Language;
-use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
-use Google\Cloud\TextToSpeech\V1\SynthesisInput;
-use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
-use Google\Cloud\TextToSpeech\V1\AudioConfig;
 
 //? Ai features
 if (!function_exists('langof')) {
