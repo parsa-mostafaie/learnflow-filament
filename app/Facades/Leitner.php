@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static int|null countCompletedCards(\App\Models\Course $course, \App\Models\User $user)
  * @method static int|null countNotImportedCards(\App\Models\Course $course, \App\Models\User $user)
  *
- * @see \App\Contracts\LeitnerInterface
+ * @see \App\Services\Interfaces\TTS
  * @see \App\Services\Leitner
  */
 class Leitner extends Facade
