@@ -50,6 +50,9 @@ $generate = function () {
                     alert('Audio playback prevented by browser. Please interact with the page first.');
                 });
         }
+    },
+    end() {
+        this.speaking = false
     }
 }" x-init="$wire.detectLanguage().then(result => {
     lang = result['lang'];
@@ -66,5 +69,5 @@ $wire.generate().then(
     <x-heroicon-c-speaker-wave class="size-5" />
   </button>
   <span>{{ $this->text }}</span>
-  <audio class="hidden" @ended="this.speaking = false" :src="url" preload></audio>
+  <audio class="hidden" @ended="end" :src="url" preload></audio>
 </span>

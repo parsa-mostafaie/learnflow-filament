@@ -43,4 +43,18 @@ return [
   */
   'disk' => 'public',
   'path' => 'tts',
+
+  /*
+  |--------------------------------------------------------------------------
+  | Use Browser's default SpeechSynthesis or not
+  | 
+  | May need change in code if set to true, because TTSService 
+  | requires to a wav binary returned from TTSProvider, but browser does not.
+  |
+  | NOTE: even if set to true, if you try to TTS::generate, the output will
+  |       not change, BECAUSE its just a flag for views to switch between 
+  |       TTS Facade and JS's SpeechSynthesis
+  | --------------------------------------------------------------------------
+  */
+  'browser' => env('TTS_BROWSER', false)
 ];

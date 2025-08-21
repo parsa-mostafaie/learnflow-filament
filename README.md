@@ -84,7 +84,17 @@ LearnFlow is a platform designed to help users learn anything efficiently and ef
     php artisan google-fonts:fetch
     ```
 
-10. Optimize For Better Performance:
+10. Setup Multilingual Text-to-speech
+
+    LearnFlow uses the Strategy pattern to create easily extensible Services and Facades for TTS providers. One of the best providers is [Piper](https://github.com/OHF-Voice/piper1-gpl), and by default, this project uses the `local` provider (see `config/tts.php`), which is compatible with Piper.
+
+    See this [guide](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/API_HTTP.md) to install and run the Piper HTTP server on port `5000` (you are free to choose any directory to set up Piper). If you don't want to customize the `config/tts.php` config file, please ensure you have installed the following voices: `fa_IR-amir-medium`, `en_US-lessac-medium`, `ar_JO-kareem-medium`.
+
+    **Tip:** In `.env`, you can change `TTS_URL`.
+
+    **Surprise:** If you set `TTS_BROWSER` to `true` in `.env`, the project will use the browser-native `SpeechSynthesis`. However, it is set to `false` by default because `SpeechSynthesis` does not support some languages and may not be supported by the user's browser.
+
+11. Optimize For Better Performance:
 
     ```bash
     php artisan optimize:clear
