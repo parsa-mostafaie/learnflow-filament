@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\TTS;
 use Illuminate\Support\Facades\URL;
 use App\Services\Leitner;
 use App\Services\Interfaces\Leitner as LeitnerInterface;
@@ -10,6 +11,7 @@ use Filament\Http\Responses\Auth\Contracts\LogoutResponse as LogoutResponseContr
 use App\Http\Responses\LoginResponse;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse as LoginResponseContract;
 use App\Http\Responses\RegistrationResponse;
+use App\Services\Interfaces\TTS as TTSInterface;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse as RegistrationResponseContract;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
@@ -36,8 +38,10 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(LeitnerInterface::class, Leitner::class);
-
         $this->app->alias(LeitnerInterface::class, 'leitner');
+
+        $this->app->bind(TTSInterface::class, TTS::class);
+        $this->app->alias(TTSInterface::class, 'tts');
 
         $this->app->bind(LogoutResponseContract::class, LogoutResponse::class);
         $this->app->bind(LoginResponseContract::class, LoginResponse::class);

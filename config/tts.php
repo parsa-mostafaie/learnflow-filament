@@ -32,7 +32,7 @@ return [
           'options' => ["ar_JO-kareem-medium"]
         ]
       ],
-      'provider' => App\Services\TTS\LocalTTSProvider::class
+      'provider' => App\TTS\Providers\LocalTTSProvider::class
     ],
   ],
 

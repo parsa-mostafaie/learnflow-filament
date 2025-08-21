@@ -42,7 +42,7 @@ $knowing = function ($state) {
         {{-- Question --}}
         <span
           class="text-2xl break-all w-full font-extrabold tracking-tight text-gray-900 dark:text-white select-none leading-snug">
-          <livewire:speechable-text :text="$card->courseQuestion->question->question" />
+          <livewire:piper-text :text="$card->courseQuestion->question->question" />
         </span>
       </div>
 
@@ -50,7 +50,7 @@ $knowing = function ($state) {
       @if ($showAnswer)
         <p
           class="mt-3 mb-4 text-lg break-all text-purple-700 dark:text-purple-400 font-semibold text-center leading-relaxed w-full">
-          <livewire:speechable-text :text="$card->courseQuestion->question->answer" />
+          <livewire:piper-text :text="$card->courseQuestion->question->answer" />
         </p>
         <div class="flex justify-center gap-3">
           <x-primary-button type="button" wire:click="knowing(true)" class="flex items-center gap-2">

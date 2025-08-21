@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services\TTS;
+namespace App\TTS\Providers;
 
 use App\Helpers\LangHelper;
 use Illuminate\Support\Facades\Http;
+use App\TTS\Interfaces\TTSProviderInterface;
 
 class LocalTTSProvider implements TTSProviderInterface
 {

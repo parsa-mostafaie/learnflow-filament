@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\TTS;
+namespace App\TTS\Interfaces;
 
 interface TTSProviderInterface
 {

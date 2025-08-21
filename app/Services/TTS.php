@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Services\TTS;
+namespace App\Services;
 
 use App\Helpers\LangHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use App\TTS\Interfaces\TTSProviderInterface;
+use App\Services\Interfaces\TTS as ITTS;
 
-class TTSService
+class TTS implements ITTS
 {
   protected TTSProviderInterface $provider;
 
   public function __construct(?string $providerName = null)
   {
-    $providerName = $providerName ?? config('tts.default');
+    $providerName ??= config('tts.default');
     $config = config("tts.providers.$providerName");
 
-    if (!$config || !$config['provider']):
-      throw new \InvalidArgumentException("Unsupported TTS provider [$providerName]");
-    else:
+    if (!empty($config) && is_array($config) && !empty($config['provider'])) {
       $this->provider = app($config['provider'], ['config' => $config]);
-    endif;
+    } else {
+      throw new \InvalidArgumentException("Unsupported TTS provider [$providerName]");
+    }
   }
 
   /**
