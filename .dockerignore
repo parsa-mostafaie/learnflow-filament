@@ -1,0 +1,36 @@
+# Laravel build ignores
+/vendor
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+
+# Environment and configs
+.env
+.env.*
+!.env.example
+Homestead.json
+Homestead.yaml
+auth.json
+
+# IDEs and editors
+/.idea
+/.vscode
+/.fleet
+/.nova
+/.zed
+.phpactor.json
+
+# Tests and cache
+/.phpunit.cache
+.phpunit.result.cache
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# Docker specific ignores
+.git
+docker-compose.override.yml
