@@ -7,34 +7,70 @@ FROM php:8.3-fpm-alpine AS base
 RUN apk add --no-cache \
     bash \
     curl \
+    curl-dev \
     zip \
     unzip \
+    autoconf \
+    make \
+    g++ \
     libpng-dev \
     libjpeg-turbo-dev \
     libwebp-dev \
     libzip-dev \
     icu-dev \
     oniguruma-dev \
-    openssl \
+    openssl-dev \
     libxslt-dev \
-    && docker-php-ext-configure gd --with-jpeg --with-webp \
-    && docker-php-ext-install \
-        fileinfo \
-        gd \
-        intl \
-        mbstring \
-        exif \
-        mysqli \
-        pdo_mysql \
-        sqlite3 \
-        xsl \
-        zip \
-        pcntl \
-        bcmath \
-    && docker-php-ext-enable opcache
+    sqlite-dev \
+    mariadb-connector-c-dev \
+    libsodium-dev \
+    && docker-php-ext-configure gd --with-jpeg --with-webp 
+RUN docker-php-ext-install \
+        curl
+RUN docker-php-ext-install \
+        fileinfo
+RUN docker-php-ext-install \
+        gd
+RUN docker-php-ext-install \
+        intl
+RUN docker-php-ext-install \
+        mbstring 
+RUN docker-php-ext-install \
+        exif
+RUN docker-php-ext-install \
+        mysqli
+RUN docker-php-ext-install \
+        pdo_mysql
+RUN docker-php-ext-install \
+        pdo_sqlite
+RUN docker-php-ext-install \
+        sodium
+RUN docker-php-ext-install \
+        xsl
+RUN docker-php-ext-install \
+        zip
+RUN docker-php-ext-install \
+        pcntl
+RUN docker-php-ext-install \
+        bcmath
 
+RUN docker-php-ext-enable opcache \
+    curl \
+    fileinfo \
+    gd \
+    intl \
+    mbstring \
+    exif \
+    mysqli \
+    pdo_mysql \
+    pdo_sqlite \
+    sodium \
+    xsl \
+    zip \
+    pcntl \
+    bcmath
 
-# Copy custom php.ini (we'll add this file next)
+# Copy custom php.ini
 COPY ./docker/php/php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY ./docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
@@ -62,7 +98,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-COPY --from=vendor /var/www/html/vendor. ./vendor
+COPY --from=vendor /var/www/html/vendor ./vendor
 RUN npm run build
 
 
@@ -76,6 +112,8 @@ COPY --from=vendor /var/www/html/vendor ./vendor
 
 # Copy Laravel app source
 COPY . .
+
+RUN cp .env.example .env
 
 RUN php artisan key:generate
 RUN php artisan storage:link

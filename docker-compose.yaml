@@ -25,13 +25,15 @@ services:
       - app
     networks:
       - laravel
+    env_file:
+      - .env.docker
 
   mysql:
     image: mysql:8.4
     container_name: laravel_mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
@@ -48,6 +50,8 @@ services:
     image: redis:alpine
     container_name: laravel_redis
     restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     ports:
       - "6379:6379"
     networks:
