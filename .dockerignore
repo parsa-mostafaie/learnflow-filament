@@ -34,3 +34,7 @@ yarn-error.log
 # Docker specific ignores
 .git
 docker-compose.override.yml
+bootstrap/cache/*
+Dockerfile
+**/.gitignore
+**/.gitattributes

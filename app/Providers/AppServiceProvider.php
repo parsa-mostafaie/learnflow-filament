@@ -37,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        dd(config(), env("APP_ENV"), config('app.url'), env('REDIS_HOST', '127.0.0.1'), config('database.redis'), $this->app->environment('production'), !app()->runningInConsole(), env('APP_ENV') === 'production', config('app.timezone') === 'production'));
+
         $this->app->bind(LeitnerInterface::class, Leitner::class);
         $this->app->alias(LeitnerInterface::class, 'leitner');
 

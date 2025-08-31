@@ -116,11 +116,11 @@ COPY . .
 RUN cp .env.example .env
 
 RUN php artisan key:generate
-RUN php artisan storage:link
-RUN php artisan migrate:fresh --seed
-RUN php artisan google-fonts:fetch
-RUN php artisan optimize:clear
-RUN php artisan optimize
+# RUN php artisan storage:link
+# RUN php artisan migrate:fresh --seed
+# RUN php artisan google-fonts:fetch
+# RUN php artisan optimize:clear
+# RUN php artisan optimize
 
 # Copy built frontend assets
 COPY --from=nodebuild /app/public/build ./public/build
