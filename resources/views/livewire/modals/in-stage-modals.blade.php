@@ -21,7 +21,7 @@ $loadData = function () {
 
 <div x-on:open-modal.window="$event.detail == '{{ $this->modalName }}' ? $wire.loadData() : null">
   <x-modal name="{{ $this->modalName }}">
-    <div class="p-6 rounded-lg max-w-lg mx-auto text-gray-800">
+    <div class="p-6 rounded-lg max-w-lg mx-auto">
       <h2 class="text-lg font-bold text-purple-700 mb-4">سوالات موجود در خانه
         {{ Number::format($stage) }}
         و روز
