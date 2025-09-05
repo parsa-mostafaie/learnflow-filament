@@ -1,6 +1,6 @@
 <div>
   <x-modal name="daily-streaks">
-    <div class="p-6 bg-white rounded-lg max-w-lg mx-auto text-gray-800">
+    <div class="p-6 rounded-lg max-w-lg mx-auto text-gray-800">
       <h2 class="text-lg font-bold text-purple-700 mb-4">فعالیت روزانه</h2>
       <p class="leading-relaxed text-justify">
         یادگیری یک سفر مادام العمر است که زندگی ما را غنی می‌کند، افق دید ما را گسترده می‌کند و ذهن ما را تیز نگه
