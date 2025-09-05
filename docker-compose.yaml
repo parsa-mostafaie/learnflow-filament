@@ -7,6 +7,10 @@ services:
     restart: unless-stopped
     volumes:
       - web_app:/var/www/html
+      - storage_data:/var/www/html/storage
+      - ./.env:/var/www/html/.env:ro
+    depends_on:
+      - db
     networks:
       - laravel
     env_file:
@@ -28,7 +32,7 @@ services:
     env_file:
       - .env.docker
 
-  mysql:
+  db:
     image: mysql:8.4
     container_name: laravel_mysql
     restart: unless-stopped
@@ -66,3 +70,4 @@ volumes:
   dbdata:
   redisdata:
   web_app:
+  storage_data:

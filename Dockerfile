@@ -25,33 +25,21 @@ RUN apk add --no-cache \
     mariadb-connector-c-dev \
     libsodium-dev \
     && docker-php-ext-configure gd --with-jpeg --with-webp 
+
 RUN docker-php-ext-install \
-        curl
-RUN docker-php-ext-install \
-        fileinfo
-RUN docker-php-ext-install \
-        gd
-RUN docker-php-ext-install \
-        intl
-RUN docker-php-ext-install \
-        mbstring 
-RUN docker-php-ext-install \
-        exif
-RUN docker-php-ext-install \
-        mysqli
-RUN docker-php-ext-install \
-        pdo_mysql
-RUN docker-php-ext-install \
-        pdo_sqlite
-RUN docker-php-ext-install \
-        sodium
-RUN docker-php-ext-install \
-        xsl
-RUN docker-php-ext-install \
-        zip
-RUN docker-php-ext-install \
-        pcntl
-RUN docker-php-ext-install \
+        curl \
+        fileinfo \
+        gd \
+        intl \
+        mbstring  \
+        exif \
+        mysqli \
+        pdo_mysql \
+        pdo_sqlite \
+        sodium \
+        xsl \
+        zip \
+        pcntl \
         bcmath
 
 RUN docker-php-ext-enable opcache \
@@ -115,18 +103,20 @@ COPY . .
 
 RUN cp .env.example .env
 
-RUN php artisan key:generate
-# RUN php artisan storage:link
-# RUN php artisan migrate:fresh --seed
-# RUN php artisan google-fonts:fetch
-# RUN php artisan optimize:clear
-# RUN php artisan optimize
-
 # Copy built frontend assets
 COPY --from=nodebuild /app/public/build ./public/build
 
 # Set permissions for Laravel storage & bootstrap
-RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache public
+RUN chmod -R 775 storage bootstrap/cache
+
+COPY ./docker/docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+COPY ./docker/install.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/install.sh
 
 EXPOSE 9000
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["php-fpm"]

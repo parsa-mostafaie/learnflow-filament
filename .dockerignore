@@ -38,3 +38,30 @@ bootstrap/cache/*
 Dockerfile
 **/.gitignore
 **/.gitattributes
+
+# Caches
+bootstrap/cache/**
+
+# Storages
+storage/app/private/**
+storage/app/public/**
+storage/app/debugbar/**
+storage/logs/**
+
+# Framework
+storage/framework/compiled.php
+storage/framework/config.php
+storage/framework/down
+storage/framework/events.scanned.php
+storage/framework/maintenance.php
+storage/framework/routes.php
+storage/framework/routes.scanned.php
+storage/framework/schedule-*
+storage/framework/services.json
+###
+storage/framework/cache/**
+!storage/framework/cache/data
+storage/framework/cache/data/**
+storage/framework/sessions/**
+storage/framework/testing/**
+storage/framework/views/**

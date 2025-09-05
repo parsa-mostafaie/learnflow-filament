@@ -1,6 +1,6 @@
 <div>
   <x-modal name="interactive-exercises">
-    <div class="p-6 bg-white rounded-lg max-w-lg mx-auto text-gray-800">
+    <div class="p-6 rounded-lg max-w-lg mx-auto text-gray-800">
       <h2 class="text-lg font-bold text-purple-700 mb-4">تمرین‌های تعاملی</h2>
       <p class="leading-relaxed text-justify">
         با یادگیری فعال علاوه بر کلاس درس، هنگام مطالعه نیز می‌توانید مطالب را بهتر درک کرده و به خاطر بسپارید. به این
